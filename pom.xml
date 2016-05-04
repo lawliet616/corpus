@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>hu.bugbusters.corpus</groupId>
+	<artifactId>corpus-parent</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<source.encoding>UTF-8</source.encoding>
+		<jdk.version>1.7</jdk.version>
+		<junit.version>4.12</junit.version>
+		<ojdbc.version>11.2.0</ojdbc.version>
+		<hibernate.version>5.1.0.Final</hibernate.version>
+		<log4j.version>2.5</log4j.version>
+		<juplo.version>1.1.0</juplo.version>
+	</properties>
+
+	<modules>
+		<module>corpus-web</module>
+	</modules>
+
+</project>

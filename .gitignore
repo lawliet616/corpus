@@ -1,0 +1,12 @@
+*.settings/
+*/.build/
+*/.tern-project
+*/.apt_generated/
+
+*.factorypath
+*.classpath
+*/bin/
+
+*.project
+*/target
+/target

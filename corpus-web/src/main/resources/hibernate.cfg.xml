@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+	"classpath://org/hibernate/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.connection.datasource">java:/jndi/bookDatasource</property>
+		<property name="hibernate.default_schema">JAVA_A_GYAKORLATBAN</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+		<property name="hibernate.id.new_generator_mappings">false</property>
+		<property name="show_sql">true</property>
+
+		<mapping class="hu.bugbusters.corpus.core.bean.Course"></mapping>
+		<mapping class="hu.bugbusters.corpus.core.bean.RegisteredUser"></mapping>
+	</session-factory>
+</hibernate-configuration>

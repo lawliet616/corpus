@@ -7,13 +7,35 @@
 	<packaging>pom</packaging>
 
 	<properties>
+		<!-- Base information -->
 		<source.encoding>UTF-8</source.encoding>
 		<jdk.version>1.7</jdk.version>
+		
+		<!-- Javax Servlet -->
+		<javax.version>3.1.0</javax.version>
+		<jsp.version>2.0</jsp.version>
+		<jstl.version>1.2</jstl.version>
+		
+		<!-- Junit -->
 		<junit.version>4.12</junit.version>
+		
+		<!-- BeanUtils -->
+		<commons.version>1.9.2</commons.version>
+		
+		<!-- Oracle -->
+		<oracle.version>14</oracle.version>
 		<ojdbc.version>11.2.0</ojdbc.version>
+		
+		<!-- Hibernate -->
 		<hibernate.version>5.1.0.Final</hibernate.version>
 		<log4j.version>2.5</log4j.version>
 		<juplo.version>1.1.0</juplo.version>
+		
+		<!-- Spring -->
+		<spring.version>4.2.5.RELEASE</spring.version>
+		
+		<!-- Vaadin -->
+		<vaadin.version>7.6.5</vaadin.version>
 	</properties>
 
 	<modules>

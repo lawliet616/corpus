@@ -14,41 +14,41 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<version>${javax.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>2.0</version>
+			<version>${jsp.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>jstl</groupId>
 			<artifactId>jstl</artifactId>
-			<version>1.2</version>
+			<version>${jstl.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
-			<version>1.9.2</version>
+			<version>${commons.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>com.oracle</groupId>
 			<artifactId>ojdbc</artifactId>
-			<version>14</version>
+			<version>${oracle.version}</version>
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/ojdbc6.jar</systemPath> <!-- must match file name -->
 		</dependency>
@@ -70,17 +70,37 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.2.5.RELEASE</version>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-server</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-client-compiled</artifactId>
+			<version>${vaadin.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.vaadin</groupId>
+			<artifactId>vaadin-themes</artifactId>
+			<version>${vaadin.version}</version>
 		</dependency>
 		
 	</dependencies>
 
 	<build>
+	
 		<plugins>
+		
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.2</version>
@@ -90,16 +110,19 @@
 					<encoding>${source.encoding}</encoding>
 				</configuration>
 			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.cxf</groupId>
 				<artifactId>cxf-java2ws-plugin</artifactId>
 				<version>3.1.6</version>
 				<dependencies>
+				
 					<dependency>
 						<groupId>org.apache.cxf</groupId>
 						<artifactId>cxf-rt-frontend-jaxws</artifactId>
 						<version>3.1.6</version>
 					</dependency>
+					
 					<dependency>
 						<groupId>org.apache.cxf</groupId>
 						<artifactId>cxf-rt-frontend-simple</artifactId>
@@ -109,6 +132,7 @@
 				</dependencies>
 
 				<executions>
+				
 					<execution>
 						<id>process-classes</id>
 						<phase>process-classes</phase>
@@ -125,9 +149,13 @@
 
 				</executions>
 			</plugin>
+			
 		</plugins>
+		
 		<pluginManagement>
+		
 			<plugins>
+			
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -152,16 +180,22 @@
 						</lifecycleMappingMetadata>
 					</configuration>
 				</plugin>
+				
 			</plugins>
+			
 		</pluginManagement>
+		
 	</build>
 
 
 	<profiles>
+	
 		<profile>
 			<id>generate</id>
 			<build>
+			
 				<plugins>
+				
 					<plugin>
 						<groupId>de.juplo</groupId>
 						<artifactId>hibernate4-maven-plugin</artifactId>
@@ -182,13 +216,18 @@
 							<outputFile>${basedir}/sql/drop_and_create_db_script.sql</outputFile>
 						</configuration>
 					</plugin>
+					
 				</plugins>
+				
 			</build>
 		</profile>
+		
 		<profile>
 			<id>deployToTest</id>
 			<build>
+			
 				<plugins>
+				
 					<plugin>
 						<groupId>org.wildfly.plugins</groupId>
 						<artifactId>wildfly-maven-plugin</artifactId>
@@ -218,9 +257,12 @@
 							</execution>
 						</executions>
 					</plugin>
+					
 				</plugins>
+				
 			</build>
 		</profile>
+		
 	</profiles>
 
 </project>

@@ -22,8 +22,9 @@
     );
 	
 	create table JAVA_A_GYAKORLATBAN.registereduser_course (
-        r_id number(19,0),
-		c_id number(19,0),
-		constraint fk_course foreign key (r_id) references registereduser(id),
-		constraint fk_course foreign key (c_id) references course(id)
+        r_id number(19,0) not null,
+		c_id number(19,0) not null,
+		primary key(r_id, c_id),
+		constraint fk_course foreign key (r_id) references JAVA_A_GYAKORLATBAN.registereduser(id),
+		constraint fk_user foreign key (c_id) references JAVA_A_GYAKORLATBAN.course(id)
     );

@@ -50,7 +50,7 @@
 			<artifactId>ojdbc</artifactId>
 			<version>${oracle.version}</version>
 			<scope>system</scope>
-			<systemPath>${basedir}/lib/ojdbc6.jar</systemPath> <!-- must match file name -->
+			<systemPath>${basedir}/lib/ojdbc6.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -69,12 +69,6 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 		
 		<dependency>
@@ -161,10 +155,10 @@
 						<id>process-classes</id>
 						<phase>process-classes</phase>
 						<configuration>
-							<className>hu.bugbusters.corpus.core.dao.impl.BookDaoImpl</className>
+							<className>hu.bugbusters.corpus.core.dao.impl.DaoImpl</className>
 							<genWsdl>true</genWsdl>
 							<verbose>true</verbose>
-							<outputFile>${project.parent.build.directory}/wsdl/BookDaoImpl.wsdl</outputFile>
+							<outputFile>${project.parent.build.directory}/wsdl/DaoImpl.wsdl</outputFile>
 						</configuration>
 						<goals>
 							<goal>java2ws</goal>

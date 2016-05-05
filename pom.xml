@@ -31,9 +31,6 @@
 		<log4j.version>2.5</log4j.version>
 		<juplo.version>1.1.0</juplo.version>
 		
-		<!-- Spring -->
-		<spring.version>4.2.5.RELEASE</spring.version>
-		
 		<!-- Vaadin -->
 		<vaadin.version>7.6.5</vaadin.version>
 	</properties>

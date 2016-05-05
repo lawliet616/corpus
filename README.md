@@ -1,2 +1,2 @@
 # corpus
-Corpus Project with JavaEE, Spring and Vaadin
+Corpus Project with JavaEE and Vaadin

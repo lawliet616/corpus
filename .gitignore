@@ -10,3 +10,7 @@
 *.project
 */target
 /target
+
+/corpus-web/src/main/webapp/VAADIN/gwt-unitCache
+/corpus-web/src/main/webapp/VAADIN/widgetsets/WEB-INF/deploy/hu.bugbusters.corpus.core.vaadin.CorpusWidgetSet/rpcPolicyManifest
+/corpus-web/src/main/webapp/VAADIN/widgetsets/hu.bugbusters.corpus.core.vaadin.CorpusWidgetSet

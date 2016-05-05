@@ -12,12 +12,12 @@
 
 		<init-param>
 			<param-name>UI</param-name>
-			<param-value>hu.bugbusters.corpus.core.vaadin.UI</param-value>
+			<param-value>hu.bugbusters.corpus.core.vaadin.CorpusUI</param-value>
 		</init-param>
 
 		<init-param>
 			<param-name>widgetset</param-name>
-			<param-value>hu.bugbusters.corpus.core.vaadin.WidgetSet</param-value>
+			<param-value>hu.bugbusters.corpus.core.vaadin.CorpusWidgetSet</param-value>
 		</init-param>
 
 	</servlet>

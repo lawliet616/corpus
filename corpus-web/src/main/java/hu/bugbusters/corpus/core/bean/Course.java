@@ -3,15 +3,12 @@ package hu.bugbusters.corpus.core.bean;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,14 +26,14 @@ public class Course implements Serializable {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "size")
-	private int size;
+	@Column(name = "room")
+	private int room;
 
 	@Column(name = "credit")
 	private int credit;
 	
-	@Column(name = "teacher")
-	private String teacher;
+	@Column(name = "professor")
+	private String professor;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "courses")
 	private Set<RegisteredUser> students;
@@ -57,12 +54,12 @@ public class Course implements Serializable {
 		this.name = name;
 	}
 
-	public int getSize() {
-		return size;
+	public int getRoom() {
+		return room;
 	}
 
-	public void setSize(int size) {
-		this.size = size;
+	public void setRoom(int room) {
+		this.room = room;
 	}
 
 	public int getCredit() {
@@ -73,12 +70,12 @@ public class Course implements Serializable {
 		this.credit = credit;
 	}
 
-	public String getTeacher() {
-		return teacher;
+	public String getProfessor() {
+		return professor;
 	}
 
-	public void setTeacher(String teacher) {
-		this.teacher = teacher;
+	public void setProfessor(String professor) {
+		this.professor = professor;
 	}
 
 	public Set<RegisteredUser> getStudents() {

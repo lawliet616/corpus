@@ -42,7 +42,7 @@ public class RegisteredUser implements Serializable {
 	private String email;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "connection", joinColumns = { 
+	@JoinTable(name = "registereduser_course", joinColumns = { 
 			@JoinColumn(name = "r_id", nullable = false, updatable = false) }, 
 			inverseJoinColumns = { @JoinColumn(name = "c_id", 
 					nullable = false, updatable = false) })

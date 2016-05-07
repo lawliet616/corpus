@@ -24,12 +24,7 @@
 
 	<servlet-mapping>
 		<servlet-name>Vaadin</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
-	
-	<servlet-mapping>
-		<servlet-name>Vaadin</servlet-name>
-		<url-pattern>/vaadin/*</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
 	<servlet-mapping>

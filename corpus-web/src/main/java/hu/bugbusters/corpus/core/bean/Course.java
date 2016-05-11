@@ -20,7 +20,7 @@ public class Course implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "course_seq", allocationSize = 1)
-	@Column(name = "c_id", unique = true, nullable = false)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
 	@Column(name = "name")

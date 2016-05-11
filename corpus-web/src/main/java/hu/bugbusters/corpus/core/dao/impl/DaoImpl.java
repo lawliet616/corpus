@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Restrictions;
 
 import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
@@ -69,7 +71,10 @@ public class DaoImpl implements Dao{
 	public RegisteredUser getUserByUserName(String username) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
-		RegisteredUser user = session.get(RegisteredUser.class, username);
+		Criteria crit = session.createCriteria(RegisteredUser.class);
+		Criterion userNameCrit = Restrictions.eq("username", username);
+		crit.add(userNameCrit);
+		RegisteredUser user = (RegisteredUser)crit.list().get(0);
 		transaction.commit();
 		session.close();
 		return user;

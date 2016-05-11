@@ -28,3 +28,6 @@
 		constraint fk_course foreign key (r_id) references JAVA_A_GYAKORLATBAN.registereduser(id),
 		constraint fk_user foreign key (c_id) references JAVA_A_GYAKORLATBAN.course(id)
     );
+
+    create sequence JAVA_A_GYAKORLATBAN.registereduser_seq;
+    create sequence JAVA_A_GYAKORLATBAN.course_seq;

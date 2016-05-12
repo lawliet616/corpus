@@ -18,7 +18,7 @@ import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 
 public class LoginView extends CustomComponent implements View, Button.ClickListener {
-	public static final String NAME = "login";
+	public static final String NAME = "LoginView";
 	private final TextField userName;
 	private final PasswordField password;
 	private final Button button;

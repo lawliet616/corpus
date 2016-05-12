@@ -5,7 +5,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.CustomComponent;
 
 public class UserView extends CustomComponent implements View {
-	public static final String NAME = "user";
+	public static final String NAME = "UserView";
 
 	@Override
 	public void enter(ViewChangeEvent event) {

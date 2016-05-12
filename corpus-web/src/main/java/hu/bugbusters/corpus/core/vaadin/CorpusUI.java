@@ -10,7 +10,9 @@ import com.vaadin.ui.UI;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.vaadin.view.AdminView;
 import hu.bugbusters.corpus.core.vaadin.view.LoginView;
+import hu.bugbusters.corpus.core.vaadin.view.TeacherView;
 import hu.bugbusters.corpus.core.vaadin.view.UserView;
 
 import com.vaadin.ui.Button.ClickEvent;
@@ -24,6 +26,8 @@ public class CorpusUI extends UI {
 
 		navigator.addView(LoginView.NAME, new LoginView());
 		navigator.addView(UserView.NAME, new UserView());
+		navigator.addView(TeacherView.NAME, new TeacherView());
+		navigator.addView(AdminView.NAME, new AdminView());
 		
 		navigator.navigateTo(LoginView.NAME);
 	}

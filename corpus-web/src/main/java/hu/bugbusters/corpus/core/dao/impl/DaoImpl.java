@@ -13,11 +13,11 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.util.HibernateUtil;
 
-public class DaoImpl implements Dao{
+public class DaoImpl implements Dao {
 
 	@Override
 	public List<Course> listAllCourses() {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
 		Criteria crit = session.createCriteria(Course.class);
 		List<Course> courses = crit.list();
@@ -28,7 +28,7 @@ public class DaoImpl implements Dao{
 
 	@Override
 	public List<RegisteredUser> listAllUsers() {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
 		Criteria crit = session.createCriteria(RegisteredUser.class);
 		List<RegisteredUser> users = crit.list();
@@ -39,7 +39,7 @@ public class DaoImpl implements Dao{
 
 	@Override
 	public Course getCourseById(Long id) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
 		Course course = session.get(Course.class, id);
 		transaction.commit();
@@ -49,7 +49,7 @@ public class DaoImpl implements Dao{
 
 	@Override
 	public Course getCourseByName(String name) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
 		Course course = session.get(Course.class, name);
 		transaction.commit();
@@ -59,7 +59,7 @@ public class DaoImpl implements Dao{
 
 	@Override
 	public RegisteredUser getUserById(Long id) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
 		RegisteredUser user = session.get(RegisteredUser.class, id);
 		transaction.commit();
@@ -69,7 +69,7 @@ public class DaoImpl implements Dao{
 
 	@Override
 	public List<RegisteredUser> getUserByUserName(String username) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
 		Criteria crit = session.createCriteria(RegisteredUser.class);
 		Criterion userNameCrit = Restrictions.eq("username", username);
@@ -81,56 +81,80 @@ public class DaoImpl implements Dao{
 	}
 
 	@Override
-	public void saveCourse(Course course) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+	public <T> void saveEntity(T entity) {
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
-		session.save(course);
+		session.save(entity);
 		transaction.commit();
 		session.close();
 	}
 
 	@Override
-	public void saveUser(RegisteredUser registeredUser) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+	public <T> void updateEntity(T entity) {
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
-		session.save(registeredUser);
+		session.update(entity);
 		transaction.commit();
 		session.close();
 	}
 
 	@Override
-	public void updateCourse(Course course) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
+	public <T> void deleteEntity(T entity) {
+		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
-		session.update(course);
+		session.delete(entity);
 		transaction.commit();
 		session.close();
 	}
 
 	@Override
-	public void updateUser(RegisteredUser registeredUser) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = session.beginTransaction();
-		session.update(registeredUser);
-		transaction.commit();
+	public <T> void saveEntities(List<T> entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
+
+		for (int i = 0; i < entities.size(); i++) {
+
+			session.save(entities.get(i));
+			if (i % batchSize == 0) {
+				//flush a batch of inserts and release memory
+				session.flush();
+				session.clear();
+			}
+		}
+
+		tx.commit();
 		session.close();
 	}
 
 	@Override
-	public void deleteCourse(Course course) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = session.beginTransaction();
-		session.delete(course);
-		transaction.commit();
+	public <T> void updateEntities(List<T> entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
+
+		for (int i = 0; i < entities.size(); i++) {
+
+			session.update(entities.get(i));
+			if (i % batchSize == 0) {
+				//flush a batch of inserts and release memory
+				session.flush();
+				session.clear();
+			}
+		}
+
+		tx.commit();
 		session.close();
 	}
 
 	@Override
-	public void deleteUser(RegisteredUser registeredUser) {
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction transaction = session.beginTransaction();
-		session.delete(registeredUser);
-		transaction.commit();
+	public <T> void deleteEntities(List<T> entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
+
+		for (int i = 0; i < entities.size(); i++) {
+			session.delete(entities.get(i));
+		}
+
+		tx.commit();
 		session.close();
 	}
 

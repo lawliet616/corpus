@@ -4,23 +4,35 @@ import java.util.List;
 
 import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import hu.bugbusters.corpus.core.util.HibernateUtil;
+import org.hibernate.SessionFactory;
 
 public interface Dao {
-	public List<Course> listAllCourses();
-	public List<RegisteredUser> listAllUsers();
-	
-	public Course getCourseById(Long id);
-	public Course getCourseByName(String name);
+	SessionFactory SESSION_FACTORY = HibernateUtil.getSessionFactory();
 
-	public RegisteredUser getUserById(Long id);
-	public List<RegisteredUser> getUserByUserName(String name);
-	
-	public void saveCourse(Course course);
-	public void saveUser(RegisteredUser registeredUser);
-	
-	public void updateCourse(Course course);
-	public void updateUser(RegisteredUser registeredUser);
-	
-	public void deleteCourse(Course course);
-	public void deleteUser(RegisteredUser registeredUser);
+	List<Course> listAllCourses();
+
+	List<RegisteredUser> listAllUsers();
+
+	Course getCourseById(Long id);
+
+	Course getCourseByName(String name);
+
+	RegisteredUser getUserById(Long id);
+
+	List<RegisteredUser> getUserByUserName(String name);
+
+	<T> void saveEntity(T entity);
+
+	<T> void updateEntity(T entity);
+
+	<T> void deleteEntity(T entity);
+
+	int batchSize = 20;
+
+	<T> void saveEntities(List<T> entities);
+
+	<T> void updateEntities(List<T> entities);
+
+	<T> void deleteEntities(List<T> entities);
 }

@@ -25,7 +25,7 @@ public class TeacherView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Login.navigateByRoleIfNeCessary(Role.TEACHER);
+		Login.navigateByRoleIfNecessary(Role.TEACHER);
 	}
 
 }

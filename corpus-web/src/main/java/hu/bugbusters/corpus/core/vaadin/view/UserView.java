@@ -27,6 +27,6 @@ public class UserView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Login.navigateByRoleIfNeCessary(Role.USER);
+		Login.navigateByRoleIfNecessary(Role.USER);
 	}
 }

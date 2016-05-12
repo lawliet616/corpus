@@ -27,7 +27,7 @@ public class AdminView extends CustomComponent implements View{
 	
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Login.navigateByRoleIfNeCessary(Role.ADMIN);
+		Login.navigateByRoleIfNecessary(Role.ADMIN);
 	}
 
 }

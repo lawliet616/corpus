@@ -45,4 +45,8 @@ public class CorpusUI extends UI {
 			throw new IllegalArgumentException("Unknown view");
 		}
 	}
+
+	public void navigateToLogin() {
+		navigator.navigateTo(LoginView.NAME);
+	}
 }

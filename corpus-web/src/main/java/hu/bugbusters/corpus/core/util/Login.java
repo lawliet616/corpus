@@ -31,12 +31,16 @@ public class Login {
 		VaadinService.getCurrentRequest().getWrappedSession().invalidate();
 	}
 	
-	public static void navigateByRoleIfNeCessary(Role role) {
-		Dao dao = new DaoImpl();
-		RegisteredUser registeredUser = dao.getUserById(getLoggedInUserId());
-		
-		if(role != registeredUser.getRole()) {
-			((CorpusUI)UI.getCurrent()).navigateToViewByRole(role);
+	public static void navigateByRoleIfNecessary(Role role) {
+		if(loggedIn()) {
+			Dao dao = new DaoImpl();
+			RegisteredUser registeredUser = dao.getUserById(getLoggedInUserId());
+			
+			if(role != registeredUser.getRole()) {
+				((CorpusUI)UI.getCurrent()).navigateToViewByRole(role);
+			}
+		} else {
+			((CorpusUI)UI.getCurrent()).navigateToLogin();
 		}
 	}
 	

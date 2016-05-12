@@ -16,14 +16,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "course")
 public class Course implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "course_seq", allocationSize = 1)
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
-	@Column(name = "name")
+	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
 	@Column(name = "room")
@@ -31,7 +31,7 @@ public class Course implements Serializable {
 
 	@Column(name = "credit")
 	private int credit;
-	
+
 	@Column(name = "professor")
 	private String professor;
 

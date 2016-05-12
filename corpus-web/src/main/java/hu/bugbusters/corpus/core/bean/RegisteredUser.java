@@ -23,36 +23,36 @@ import hu.bugbusters.corpus.core.util.RoleConverter;
 @Entity
 @Table(name = "registereduser")
 public class RegisteredUser implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "registereduser_seq", allocationSize = 1)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id", nullable = false)
 	private Long id;
 
-	@Column(name = "username")
+	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 
-	@Column(name = "password")
+	@Column(name = "password", nullable = false)
 	private String password;
 
-	@Column(name = "role")
+	@Column(name = "role", nullable = false)
 	@Convert(converter = RoleConverter.class)
 	private Role role;
 
 	@Column(name = "fullname")
 	private String fullname;
 
-	@Column(name = "email")
+	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "registereduser_course", joinColumns = { 
-			@JoinColumn(name = "r_id", nullable = false, updatable = false) }, 
-			inverseJoinColumns = { @JoinColumn(name = "c_id", 
-					nullable = false, updatable = false) })
+	@JoinTable(name = "registereduser_course", joinColumns = {
+			@JoinColumn(name = "r_id", nullable = false, updatable = false)},
+			inverseJoinColumns = {@JoinColumn(name = "c_id",
+					nullable = false, updatable = false)})
 	private Set<Course> courses;
-	
+
 	public Long getId() {
 		return id;
 	}

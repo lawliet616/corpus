@@ -13,7 +13,7 @@ public interface Dao {
 	public Course getCourseByName(String name);
 
 	public RegisteredUser getUserById(Long id);
-	public RegisteredUser getUserByUserName(String name);
+	public List<RegisteredUser> getUserByUserName(String name);
 	
 	public void saveCourse(Course course);
 	public void saveUser(RegisteredUser registeredUser);

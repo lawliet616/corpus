@@ -68,16 +68,16 @@ public class DaoImpl implements Dao{
 	}
 
 	@Override
-	public RegisteredUser getUserByUserName(String username) {
+	public List<RegisteredUser> getUserByUserName(String username) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		Criteria crit = session.createCriteria(RegisteredUser.class);
 		Criterion userNameCrit = Restrictions.eq("username", username);
 		crit.add(userNameCrit);
-		RegisteredUser user = (RegisteredUser)crit.list().get(0);
+		List<RegisteredUser> users = crit.list();
 		transaction.commit();
 		session.close();
-		return user;
+		return users;
 	}
 
 	@Override

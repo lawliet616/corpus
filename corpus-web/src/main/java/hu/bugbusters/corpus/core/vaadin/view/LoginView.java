@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.UserError;
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
@@ -16,9 +15,12 @@ import com.vaadin.ui.VerticalLayout;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.util.Login;
+import hu.bugbusters.corpus.core.util.Role;
+import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 public class LoginView extends CustomComponent implements View, Button.ClickListener {
-	public static final String NAME = "LoginView";
+	public static final String NAME = "Login";
 	private final TextField userName;
 	private final PasswordField password;
 	private final Button button;
@@ -58,8 +60,9 @@ public class LoginView extends CustomComponent implements View, Button.ClickList
 			RegisteredUser registeredUser = registeredUserList.get(0);
 			
 			if(registeredUser.getPassword().equals(password.getValue())) {
-				VaadinService.getCurrentRequest().getWrappedSession().setAttribute("userId", registeredUser.getId());
-				this.getUI().getNavigator().navigateTo(UserView.NAME);
+				Login.setLoggedInUserId(registeredUser.getId());
+				
+				((CorpusUI)getUI()).navigateToViewByRole(registeredUser.getRole());
 			} else {
 				
 			}

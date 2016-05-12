@@ -1,4 +1,4 @@
-package hu.bugbusters.corpus.core.vaadin.view;
+package hu.bugbusters.corpus.core.vaadin.view.login;
 
 import java.util.List;
 
@@ -7,11 +7,13 @@ import org.hibernate.cfg.NotYetImplementedException;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.CustomComponent;
+import com.vaadin.ui.FormLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
@@ -19,30 +21,11 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.util.Login;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
-public class LoginView extends CustomComponent implements View, Button.ClickListener {
+public class LoginView extends LoginDesign implements View, ClickListener{
 	public static final String NAME = "Login";
-	private final TextField userName;
-	private final PasswordField password;
-	private final Button button;
 	
 	public LoginView() {
-		VerticalLayout verticalLayout = new VerticalLayout();
-		userName = new TextField("Felhasználónév");
-		password = new PasswordField("Jelszó");
-		button = new Button("Bejelentkezés", this);
-		
-		userName.setRequired(true);
-		userName.setValue("");
-		
-		password.setRequired(true);
-		password.setValue("");
-		
-		verticalLayout.addComponent(userName);
-		verticalLayout.addComponent(password);
-		verticalLayout.addComponent(button);
-		verticalLayout.setMargin(true);
-		
-		setCompositionRoot(verticalLayout);
+
 	}
 	
 	@Override
@@ -72,5 +55,6 @@ public class LoginView extends CustomComponent implements View, Button.ClickList
 			throw new NotYetImplementedException("error handling missing here");
 		}
 	}
+
 
 }

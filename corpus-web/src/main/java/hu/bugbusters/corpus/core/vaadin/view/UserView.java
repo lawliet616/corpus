@@ -27,10 +27,6 @@ public class UserView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		RegisteredUser registeredUser = dao.getUserById(Login.getLoggedInUserId());
-		
-		if(registeredUser.getRole() != Role.USER) {
-			((CorpusUI)getUI()).navigateToViewByRole(registeredUser.getRole());
-		}
+		Login.navigateByRoleIfNeCessary(Role.USER);
 	}
 }

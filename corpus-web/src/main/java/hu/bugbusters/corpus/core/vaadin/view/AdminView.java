@@ -27,11 +27,7 @@ public class AdminView extends CustomComponent implements View{
 	
 	@Override
 	public void enter(ViewChangeEvent event) {
-		RegisteredUser registeredUser = dao.getUserById(Login.getLoggedInUserId());
-		
-		if(registeredUser.getRole() != Role.ADMIN) {
-			((CorpusUI)getUI()).navigateToViewByRole(registeredUser.getRole());
-		}
+		Login.navigateByRoleIfNeCessary(Role.ADMIN);
 	}
 
 }

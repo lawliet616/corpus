@@ -24,7 +24,7 @@ public class CorpusUI extends UI {
 		navigator.addView(AdminView.NAME, new AdminView());
 		
 		if(!Login.loggedIn()) {
-			navigator.navigateTo(LoginView.NAME);
+			navigateToLogin();
 		} else {
 			Login.navigateByRole();
 		}

@@ -6,7 +6,6 @@ import org.hibernate.cfg.NotYetImplementedException;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.VaadinService;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CustomComponent;
@@ -18,7 +17,6 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.util.Login;
-import hu.bugbusters.corpus.core.util.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 public class LoginView extends CustomComponent implements View, Button.ClickListener {

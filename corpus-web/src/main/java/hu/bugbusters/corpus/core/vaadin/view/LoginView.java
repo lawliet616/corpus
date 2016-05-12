@@ -2,6 +2,8 @@ package hu.bugbusters.corpus.core.vaadin.view;
 
 import java.util.List;
 
+import org.hibernate.cfg.NotYetImplementedException;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.VaadinService;
@@ -64,10 +66,12 @@ public class LoginView extends CustomComponent implements View, Button.ClickList
 				
 				((CorpusUI)getUI()).navigateToViewByRole(registeredUser.getRole());
 			} else {
-				
+				//TODO: finish error handling
+				throw new NotYetImplementedException("error handling missing here");
 			}
 		} else {
-			
+			//TODO: finish error handling
+			throw new NotYetImplementedException("error handling missing here");
 		}
 	}
 

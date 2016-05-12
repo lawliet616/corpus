@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import hu.bugbusters.corpus.core.util.Role;
+import hu.bugbusters.corpus.core.util.RoleConverter;
 
 @Entity
 @Table(name = "registereduser")
@@ -33,7 +37,8 @@ public class RegisteredUser implements Serializable {
 	private String password;
 
 	@Column(name = "role")
-	private int role;
+	@Convert(converter = RoleConverter.class)
+	private Role role;
 
 	@Column(name = "fullname")
 	private String fullname;
@@ -72,11 +77,11 @@ public class RegisteredUser implements Serializable {
 		this.password = password;
 	}
 
-	public int getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(int role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

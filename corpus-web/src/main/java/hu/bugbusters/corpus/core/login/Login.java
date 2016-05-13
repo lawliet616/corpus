@@ -1,4 +1,4 @@
-package hu.bugbusters.corpus.core.util;
+package hu.bugbusters.corpus.core.login;
 
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.UI;

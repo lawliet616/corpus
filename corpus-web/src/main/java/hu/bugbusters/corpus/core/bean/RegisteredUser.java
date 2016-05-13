@@ -17,7 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import hu.bugbusters.corpus.core.util.Role;
+import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.util.RoleConverter;
 
 @Entity

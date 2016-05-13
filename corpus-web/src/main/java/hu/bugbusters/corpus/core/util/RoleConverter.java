@@ -2,6 +2,8 @@ package hu.bugbusters.corpus.core.util;
 
 import javax.persistence.AttributeConverter;
 
+import hu.bugbusters.corpus.core.login.Role;
+
 public class RoleConverter implements AttributeConverter<Role, Integer>{
 
 	@Override

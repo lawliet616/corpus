@@ -8,8 +8,8 @@ import com.vaadin.ui.Label;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
-import hu.bugbusters.corpus.core.util.Login;
-import hu.bugbusters.corpus.core.util.Role;
+import hu.bugbusters.corpus.core.login.Login;
+import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 public class UserView extends CustomComponent implements View {

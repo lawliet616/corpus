@@ -1,4 +1,4 @@
-package hu.bugbusters.corpus.core.util;
+package hu.bugbusters.corpus.core.login;
 
 public enum Role {
 	ADMIN,

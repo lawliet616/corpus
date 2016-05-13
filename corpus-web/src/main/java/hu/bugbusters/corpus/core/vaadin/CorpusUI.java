@@ -5,8 +5,8 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
-import hu.bugbusters.corpus.core.util.Login;
-import hu.bugbusters.corpus.core.util.Role;
+import hu.bugbusters.corpus.core.login.Login;
+import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.view.AdminView;
 import hu.bugbusters.corpus.core.vaadin.view.TeacherView;
 import hu.bugbusters.corpus.core.vaadin.view.UserView;

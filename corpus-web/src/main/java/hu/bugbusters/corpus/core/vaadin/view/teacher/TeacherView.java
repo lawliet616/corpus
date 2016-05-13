@@ -1,6 +1,5 @@
-package hu.bugbusters.corpus.core.vaadin.view;
+package hu.bugbusters.corpus.core.vaadin.view.teacher;
 
-import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.Label;
@@ -9,9 +8,12 @@ import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
+import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 
-public class TeacherView extends CustomComponent implements View {
-	public static final String NAME = "Techer";
+@SuppressWarnings("serial")
+public class TeacherView extends CustomComponent implements CorpusView {
+	public static final String NAME = "Teacher";
+	public static final Role ROLE   = Role.TEACHER;
 	
 	private Dao dao;
 	
@@ -25,7 +27,12 @@ public class TeacherView extends CustomComponent implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Login.navigateByRoleIfNecessary(Role.TEACHER);
+		
+	}
+
+	@Override
+	public Role getRole() {
+		return ROLE;
 	}
 
 }

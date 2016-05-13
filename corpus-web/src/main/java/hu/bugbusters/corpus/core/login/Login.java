@@ -19,6 +19,13 @@ public class Login {
 		return (Long) VaadinService.getCurrentRequest().getWrappedSession().getAttribute(SESSION_ATTRIBUTE_NAME);
 	}
 	
+	public static Role getLoggedInUserRole() {
+		Dao dao = new DaoImpl();
+		RegisteredUser registeredUser = dao.getUserById(getLoggedInUserId());
+		
+		return registeredUser.getRole();
+	}
+	
 	public static boolean loggedIn() {
 		if(getLoggedInUserId() != null) {
 			return true;
@@ -29,25 +36,5 @@ public class Login {
 	
 	public static void logOut() {
 		VaadinService.getCurrentRequest().getWrappedSession().invalidate();
-	}
-	
-	public static void navigateByRoleIfNecessary(Role role) {
-		if(loggedIn()) {
-			Dao dao = new DaoImpl();
-			RegisteredUser registeredUser = dao.getUserById(getLoggedInUserId());
-			
-			if(role != registeredUser.getRole()) {
-				((CorpusUI)UI.getCurrent()).navigateToViewByRole(role);
-			}
-		} else {
-			((CorpusUI)UI.getCurrent()).navigateToLogin();
-		}
-	}
-	
-	public static void navigateByRole() {
-		Dao dao = new DaoImpl();
-		RegisteredUser registeredUser = dao.getUserById(getLoggedInUserId());
-		
-		((CorpusUI)UI.getCurrent()).navigateToViewByRole(registeredUser.getRole());
 	}
 }

@@ -2,18 +2,21 @@ package hu.bugbusters.corpus.core.vaadin;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
-import hu.bugbusters.corpus.core.vaadin.view.AdminView;
-import hu.bugbusters.corpus.core.vaadin.view.TeacherView;
-import hu.bugbusters.corpus.core.vaadin.view.UserView;
+import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
+import hu.bugbusters.corpus.core.vaadin.view.admin.AdminView;
+import hu.bugbusters.corpus.core.vaadin.view.teacher.TeacherView;
+import hu.bugbusters.corpus.core.vaadin.view.user.UserView;
 import hu.bugbusters.corpus.core.vaadin.view.login.LoginView;
 
+@SuppressWarnings("serial")
 @Theme("valo")
-public class CorpusUI extends UI {
+public class CorpusUI extends UI implements ViewChangeListener {
 	Navigator navigator;
 	
 	@Override
@@ -21,14 +24,16 @@ public class CorpusUI extends UI {
 		navigator = new Navigator(this, this);
 
 		navigator.addView(LoginView.NAME, LoginView.class);
-		navigator.addView(UserView.NAME, new UserView());
-		navigator.addView(TeacherView.NAME, new TeacherView());
-		navigator.addView(AdminView.NAME, new AdminView());
+		navigator.addView(UserView.NAME, UserView.class);
+		navigator.addView(TeacherView.NAME, TeacherView.class);
+		navigator.addView(AdminView.NAME, AdminView.class);
+		
+		navigator.addViewChangeListener(this);
 		
 		if(!Login.loggedIn()) {
 			navigateToLogin();
 		} else {
-			Login.navigateByRole();
+			navigateToViewByRole(Login.getLoggedInUserRole());
 		}
 	}
 
@@ -50,5 +55,27 @@ public class CorpusUI extends UI {
 
 	public void navigateToLogin() {
 		navigator.navigateTo(LoginView.NAME);
+	}
+
+	@Override
+	public boolean beforeViewChange(ViewChangeEvent event) {
+		if(event.getNewView().getClass() == LoginView.class) {
+			if(Login.loggedIn()) {
+				return false;
+			} else {
+				return true;
+			}
+		} else {
+			if(((CorpusView) event.getNewView()).getRole() == Login.getLoggedInUserRole()) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+	}
+
+	@Override
+	public void afterViewChange(ViewChangeEvent event) {
+		
 	}
 }

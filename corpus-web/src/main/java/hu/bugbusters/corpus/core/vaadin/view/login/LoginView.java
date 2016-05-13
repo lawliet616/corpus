@@ -6,12 +6,6 @@ import org.hibernate.cfg.NotYetImplementedException;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.FormLayout;
-import com.vaadin.ui.Label;
-import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
@@ -21,11 +15,12 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
-public class LoginView extends LoginDesign implements View, ClickListener{
+@SuppressWarnings("serial")
+public class LoginView extends LoginDesign implements View, ClickListener {
 	public static final String NAME = "Login";
 	
 	public LoginView() {
-
+		this.button.addClickListener(this);
 	}
 	
 	@Override
@@ -55,6 +50,4 @@ public class LoginView extends LoginDesign implements View, ClickListener{
 			throw new NotYetImplementedException("error handling missing here");
 		}
 	}
-
-
 }

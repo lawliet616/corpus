@@ -23,7 +23,6 @@ public class UserView extends UserDesign implements CorpusView{
 			@Override
 			public void buttonClick(Button.ClickEvent event) {
 				Login.logOut();
-				((CorpusUI)getUI()).navigateToLogin();
 			}
 		});
 	}

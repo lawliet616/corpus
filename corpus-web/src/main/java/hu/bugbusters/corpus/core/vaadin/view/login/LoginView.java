@@ -2,15 +2,13 @@ package hu.bugbusters.corpus.core.vaadin.view.login;
 
 import java.util.List;
 
-import org.hibernate.cfg.NotYetImplementedException;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification;
 
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
-import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
@@ -20,19 +18,17 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 	public static final String NAME = "Login";
 	
 	public LoginView() {
-		this.button.addClickListener(this);
+		button.addClickListener(this);
 	}
 	
 	@Override
 	public void enter(ViewChangeEvent event) {
-		this.userName.focus();
+		userName.focus();
 	}
 
 	@Override
 	public void buttonClick(ClickEvent event) {
-		Dao dao = new DaoImpl();
-		
-		List<RegisteredUser> registeredUserList = dao.getUserByUserName(userName.getValue());
+		List<RegisteredUser> registeredUserList = new DaoImpl().getUserByUserName(userName.getValue());
 		
 		if(!registeredUserList.isEmpty()) {
 			RegisteredUser registeredUser = registeredUserList.get(0);
@@ -40,14 +36,20 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 			if(registeredUser.getPassword().equals(password.getValue())) {
 				Login.setLoggedInUserId(registeredUser.getId());
 				
-				((CorpusUI)getUI()).navigateToViewByRole(registeredUser.getRole());
+				((CorpusUI)getUI()).navigate();
 			} else {
-				//TODO: finish error handling
-				throw new NotYetImplementedException("error handling missing here");
+				showError();
 			}
 		} else {
-			//TODO: finish error handling
-			throw new NotYetImplementedException("error handling missing here");
+			showError();
 		}
+	}
+
+	private void showError() {
+		Notification notification = new Notification("Hibás jelszó vagy felhasználónév!", Notification.Type.ERROR_MESSAGE);
+		notification.setDelayMsec(1500);
+		notification.show(getUI().getPage());
+		
+		userName.focus();
 	}
 }

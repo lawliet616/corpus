@@ -16,7 +16,7 @@ public class AdminView extends AdminDesign implements CorpusView{
 
 	public AdminView(){
 		dao = new DaoImpl();
-		this.logoutButton.addClickListener(new LogoutClickListener());
+		logoutButton.addClickListener(new LogoutClickListener());
 	}
 
 	@Override

@@ -16,7 +16,7 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 
 	public TeacherView(){
 		dao = new DaoImpl();
-		this.logoutButton.addClickListener(new LogoutClickListener());
+		logoutButton.addClickListener(new LogoutClickListener());
 	}
 
 	@Override

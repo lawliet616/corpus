@@ -30,14 +30,18 @@ public class CorpusUI extends UI implements ViewChangeListener {
 		
 		navigator.addViewChangeListener(this);
 		
+		navigate();
+	}
+	
+	public void navigate() {
 		if(!Login.loggedIn()) {
-			navigateToLogin();
+			navigator.navigateTo(LoginView.NAME);
 		} else {
 			navigateToViewByRole(Login.getLoggedInUser().getRole());
 		}
 	}
 
-	public void navigateToViewByRole(Role role) {
+	private void navigateToViewByRole(Role role) {
 		switch(role) {
 		case ADMIN:
 			navigator.navigateTo(AdminView.NAME);
@@ -51,10 +55,6 @@ public class CorpusUI extends UI implements ViewChangeListener {
 		default:
 			throw new IllegalArgumentException("Unknown view");
 		}
-	}
-
-	public void navigateToLogin() {
-		navigator.navigateTo(LoginView.NAME);
 	}
 
 	@Override

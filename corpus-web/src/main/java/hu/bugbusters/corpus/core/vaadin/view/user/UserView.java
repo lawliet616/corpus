@@ -8,7 +8,7 @@ import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.LogoutClickListener;
 
 @SuppressWarnings("serial")
-public class UserView extends UserDesign implements CorpusView{
+public class UserView extends UserDesign implements CorpusView {
 	public static final String NAME = "User";
 	public static final Role ROLE   = Role.USER;
 
@@ -16,7 +16,7 @@ public class UserView extends UserDesign implements CorpusView{
 
 	public UserView(){
 		dao = new DaoImpl();
-		this.logoutButton.addClickListener(new LogoutClickListener());
+		logoutButton.addClickListener(new LogoutClickListener());
 	}
 
 	@Override

@@ -33,7 +33,7 @@ public class CorpusUI extends UI implements ViewChangeListener {
 		if(!Login.loggedIn()) {
 			navigateToLogin();
 		} else {
-			navigateToViewByRole(Login.getLoggedInUserRole());
+			navigateToViewByRole(Login.getLoggedInUser().getRole());
 		}
 	}
 
@@ -65,12 +65,10 @@ public class CorpusUI extends UI implements ViewChangeListener {
 			} else {
 				return true;
 			}
+		} else if(((CorpusView) event.getNewView()).getRole() == Login.getLoggedInUser().getRole()) {
+			return true;
 		} else {
-			if(((CorpusView) event.getNewView()).getRole() == Login.getLoggedInUserRole()) {
-				return true;
-			} else {
-				return false;
-			}
+			return false;
 		}
 	}
 

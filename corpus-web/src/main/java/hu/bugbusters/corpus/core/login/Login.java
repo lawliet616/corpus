@@ -19,11 +19,8 @@ public class Login {
 		return (Long) VaadinService.getCurrentRequest().getWrappedSession().getAttribute(SESSION_ATTRIBUTE_NAME);
 	}
 	
-	public static Role getLoggedInUserRole() {
-		Dao dao = new DaoImpl();
-		RegisteredUser registeredUser = dao.getUserById(getLoggedInUserId());
-		
-		return registeredUser.getRole();
+	public static RegisteredUser getLoggedInUser() {
+		return new DaoImpl().getUserById(getLoggedInUserId());
 	}
 	
 	public static boolean loggedIn() {
@@ -36,5 +33,6 @@ public class Login {
 	
 	public static void logOut() {
 		VaadinService.getCurrentRequest().getWrappedSession().invalidate();
+		UI.getCurrent().getPage().reload();
 	}
 }

@@ -21,6 +21,8 @@ public class CorpusUI extends UI implements ViewChangeListener {
 	
 	@Override
 	protected void init(final VaadinRequest request) {
+		getPage().setTitle("Corpus");
+		
 		navigator = new Navigator(this, this);
 
 		navigator.addView(LoginView.NAME, LoginView.class);

@@ -1,5 +1,8 @@
 package hu.bugbusters.corpus.core.login;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import com.vaadin.server.VaadinService;
 import com.vaadin.ui.UI;
 
@@ -39,12 +42,24 @@ public class Login {
 	public static boolean passwordVerifiy(String password, RegisteredUser registeredUser) throws CannotPerformOperationException, InvalidHashException {
 		String hash = String.format(
 				"%s:%d:%d:%s",
-				"sha1",
+				PasswordStorage.HASH_ALGORITHM,
 				PasswordStorage.PBKDF2_ITERATIONS,
 				PasswordStorage.HASH_BYTE_SIZE,
 				registeredUser.getPassword()
 		);
 		
 		return PasswordStorage.verifyPassword(password, hash);
+	}
+	
+	public static String hashToDatabaseString(String password) throws CannotPerformOperationException, InvalidHashException {
+		String hash     = PasswordStorage.createHash(password);
+		Pattern pattern = Pattern.compile("(\\p{Alnum}+):(\\d+):(\\d+):(\\p{ASCII}+)");
+		Matcher matcher = pattern.matcher(hash);
+		
+		if(matcher.find()) {
+			return matcher.group(4);
+		} else {
+			throw new InvalidHashException("Hash doesn't match the pattern");
+		}
 	}
 }

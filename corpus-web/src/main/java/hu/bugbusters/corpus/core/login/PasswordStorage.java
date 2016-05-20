@@ -36,6 +36,7 @@ public class PasswordStorage
     }
 
     public static final String PBKDF2_ALGORITHM = "PBKDF2WithHmacSHA1";
+    public static final String HASH_ALGORITHM   = "sha1";
 
     // These constants may be changed without breaking existing hashes.
     public static final int SALT_BYTE_SIZE = 24;
@@ -69,7 +70,7 @@ public class PasswordStorage
         int hashSize = hash.length;
 
         // format: algorithm:iterations:hashSize:salt:hash
-        String parts = "sha1:" +
+        String parts = HASH_ALGORITHM + ":" +
             PBKDF2_ITERATIONS +
             ":" + hashSize +
             ":" +
@@ -97,7 +98,7 @@ public class PasswordStorage
         }
 
         // Currently, Java only supports SHA1.
-        if (!params[HASH_ALGORITHM_INDEX].equals("sha1")) {
+        if (!params[HASH_ALGORITHM_INDEX].equals(HASH_ALGORITHM)) {
             throw new CannotPerformOperationException(
                 "Unsupported hash type."
             );

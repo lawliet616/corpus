@@ -51,7 +51,7 @@ public class Login {
 		return PasswordStorage.verifyPassword(password, hash);
 	}
 	
-	public static String hashToDatabaseString(String password) throws CannotPerformOperationException, InvalidHashException {
+	public static String passwordToDatabaseHash(String password) throws CannotPerformOperationException, InvalidHashException {
 		String hash     = PasswordStorage.createHash(password);
 		Pattern pattern = Pattern.compile("(\\p{Alnum}+):(\\d+):(\\d+):(\\p{ASCII}+)");
 		Matcher matcher = pattern.matcher(hash);

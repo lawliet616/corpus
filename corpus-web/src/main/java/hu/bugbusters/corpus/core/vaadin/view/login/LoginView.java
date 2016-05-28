@@ -51,8 +51,6 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 			}
 
 			registeredUser = registeredUserList.get(0);
-
-			if (Login.passwordVerifiy(password.getValue(), registeredUser)) {
 				Login.setLoggedInUserId(registeredUser.getId());
 				((CorpusUI) getUI()).navigate();
 			} else {

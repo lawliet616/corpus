@@ -4,12 +4,14 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Component;
 
 import hu.bugbusters.corpus.core.login.Role;
-import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.LogoutClickListener;
-import hu.bugbusters.corpus.core.vaadin.view.common.SelfDetailsView;
+import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
+
+
 
 @SuppressWarnings("serial")
 public class AdminView extends AdminDesign implements CorpusView {
@@ -22,15 +24,15 @@ public class AdminView extends AdminDesign implements CorpusView {
 			
 			@Override
 			public void buttonClick(ClickEvent event) {
-					changeConntet(new SelfDetailsView());
+					changeContet(new SelfDetailsView());
 				}
 		});
 	}
 
-	protected void changeConntet(SelfDetailsView selfDetailsView) {
+	protected void changeContet(Component component) {
 		layout.removeAllComponents();
-		layout.addComponent(selfDetailsView);
-		layout.setComponentAlignment(selfDetailsView, Alignment.TOP_LEFT);
+		layout.addComponent(component);
+		layout.setComponentAlignment(component, Alignment.TOP_LEFT);
 		
 	}
 

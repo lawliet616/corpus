@@ -1,4 +1,4 @@
-package hu.bugbusters.corpus.core.vaadin.view.common;
+package hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails;
 
 
 import com.vaadin.navigator.View;

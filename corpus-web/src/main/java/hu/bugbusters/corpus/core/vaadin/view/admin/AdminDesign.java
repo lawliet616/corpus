@@ -6,6 +6,7 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
 
 /** 
@@ -29,6 +30,7 @@ public class AdminDesign extends HorizontalLayout {
 	protected Button userListButton;
 	protected Button settingsButton;
 	protected Button logoutButton;
+	protected VerticalLayout layout;
 
 	public AdminDesign() {
 		Design.read(this);

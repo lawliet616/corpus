@@ -49,8 +49,8 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 			if (registeredUserList.isEmpty()) {
 				throw new WrongUserName("Hibás felhasználónév:" + userName.getValue());
 			}
-
 			registeredUser = registeredUserList.get(0);
+			if (Login.passwordVerify(password.getValue(), registeredUser)) {
 				Login.setLoggedInUserId(registeredUser.getId());
 				((CorpusUI) getUI()).navigate();
 			} else {

@@ -39,7 +39,7 @@ public class Login {
 		UI.getCurrent().getPage().reload();
 	}
 	
-	public static boolean passwordVerifiy(String password, RegisteredUser registeredUser) throws CannotPerformOperationException, InvalidHashException {
+	public static boolean passwordVerify(String password, RegisteredUser registeredUser) throws CannotPerformOperationException, InvalidHashException {
 		String hash = String.format(
 				"%s:%d:%d:%s",
 				PasswordStorage.HASH_ALGORITHM,

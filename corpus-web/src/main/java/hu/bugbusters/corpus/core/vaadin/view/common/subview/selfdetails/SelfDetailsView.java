@@ -1,6 +1,5 @@
 package hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails;
 
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 
@@ -8,13 +7,13 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.login.Login;
 
 @SuppressWarnings("serial")
-public class SelfDetailsView extends SelfDetailsDesign implements View{
+public class SelfDetailsView extends SelfDetailsDesign implements View {
 	public static final String NAME = "SELFDETAILS";
-	
+
 	public SelfDetailsView() {
-		fillTable();		
+		fillTable();
 	}
-	
+
 	@Override
 	public void enter(ViewChangeEvent event) {
 
@@ -25,7 +24,7 @@ public class SelfDetailsView extends SelfDetailsDesign implements View{
 		lblEmail.setValue(user.getEmail());
 		lblName.setValue(user.getFullname());
 		lblUsername.setValue(user.getUsername());
-		
+
 	}
 
 }

@@ -18,23 +18,23 @@ import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 @SuppressWarnings("serial")
 public class LoginView extends LoginDesign implements View, ClickListener {
 	public static final String NAME = "Login";
-	
+
 	public class WrongUserName extends Exception {
 		public WrongUserName(String message) {
-            super(message);
-        }
+			super(message);
+		}
 	}
-	
+
 	public class InvalidPassword extends Exception {
 		public InvalidPassword(String message) {
-            super(message);
-        }
+			super(message);
+		}
 	}
-	
+
 	public LoginView() {
 		button.addClickListener(this);
 	}
-	
+
 	@Override
 	public void enter(ViewChangeEvent event) {
 		userName.focus();
@@ -45,20 +45,20 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 		try {
 			List<RegisteredUser> registeredUserList = new DaoImpl().getUserByUserName(userName.getValue());
 			RegisteredUser registeredUser;
-			
-			if(registeredUserList.isEmpty()) {
+
+			if (registeredUserList.isEmpty()) {
 				throw new WrongUserName("Hibás felhasználónév:" + userName.getValue());
 			}
-			
+
 			registeredUser = registeredUserList.get(0);
-			
-			if(Login.passwordVerifiy(password.getValue(), registeredUser)) {
+
+			if (Login.passwordVerifiy(password.getValue(), registeredUser)) {
 				Login.setLoggedInUserId(registeredUser.getId());
-				((CorpusUI)getUI()).navigate();
+				((CorpusUI) getUI()).navigate();
 			} else {
 				throw new InvalidPassword("Hibás jelszó:" + userName.getValue());
 			}
-		} catch(WrongUserName | InvalidPassword e) {
+		} catch (WrongUserName | InvalidPassword e) {
 			showError();
 		} catch (CannotPerformOperationException | InvalidHashException e) {
 			e.printStackTrace();
@@ -66,10 +66,11 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 	}
 
 	private void showError() {
-		Notification notification = new Notification("Hibás jelszó vagy felhasználónév!", Notification.Type.ERROR_MESSAGE);
+		Notification notification = new Notification("Hibás jelszó vagy felhasználónév!",
+				Notification.Type.ERROR_MESSAGE);
 		notification.setDelayMsec(1500);
 		notification.show(getUI().getPage());
-		
+
 		userName.focus();
 	}
 }

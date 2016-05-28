@@ -5,27 +5,27 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.HorizontalLayout;
 
 import hu.bugbusters.corpus.core.login.Role;
+import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.LogoutClickListener;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
 
-
-
 @SuppressWarnings("serial")
 public class AdminView extends AdminDesign implements CorpusView {
 	public static final String NAME = "Admin";
-	public static final Role ROLE   = Role.ADMIN;
+	public static final Role ROLE = Role.ADMIN;
 
-	public AdminView(){
+	public AdminView() {
 		logoutButton.addClickListener(new LogoutClickListener());
 		userDetailsButton.addClickListener(new ClickListener() {
-			
+
 			@Override
 			public void buttonClick(ClickEvent event) {
-					changeContet(new SelfDetailsView());
-				}
+				((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);
+			}
 		});
 	}
 
@@ -33,12 +33,19 @@ public class AdminView extends AdminDesign implements CorpusView {
 		layout.removeAllComponents();
 		layout.addComponent(component);
 		layout.setComponentAlignment(component, Alignment.TOP_LEFT);
-		
+
 	}
 
 	@Override
 	public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
-
+		Component component = null;
+		String subView = viewChangeEvent.getParameters();
+		if (subView.equals(SelfDetailsView.NAME)) {
+			component = new SelfDetailsView();
+		}
+		if (component != null) {
+			changeContet(component);
+		}
 	}
 
 	@Override
@@ -46,4 +53,3 @@ public class AdminView extends AdminDesign implements CorpusView {
 		return ROLE;
 	}
 }
-

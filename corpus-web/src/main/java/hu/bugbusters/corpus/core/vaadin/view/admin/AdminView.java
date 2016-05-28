@@ -1,6 +1,10 @@
 package hu.bugbusters.corpus.core.vaadin.view.admin;
 
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Window;
+
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Role;

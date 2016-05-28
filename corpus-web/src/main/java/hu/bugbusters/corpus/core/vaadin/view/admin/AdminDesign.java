@@ -6,7 +6,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
 
 /** 
@@ -25,13 +24,11 @@ public class AdminDesign extends HorizontalLayout {
 	protected Label menuTitleLabel;
 	protected Button menuToggle;
 	protected CssLayout menuItems;
-	protected Button userButton;
-	protected Button statusButton;
-	protected Button inboxButton;
-	protected Button archiveButton;
+	protected Button userDetailsButton;
+	protected Button newUserButton;
+	protected Button userListButton;
 	protected Button settingsButton;
 	protected Button logoutButton;
-	protected VerticalLayout content;
 
 	public AdminDesign() {
 		Design.read(this);

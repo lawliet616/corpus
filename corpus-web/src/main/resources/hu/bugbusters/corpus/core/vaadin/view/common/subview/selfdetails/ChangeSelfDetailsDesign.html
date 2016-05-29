@@ -4,16 +4,16 @@
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;valo&quot;}">
  </head> 
  <body> 
-  <vaadin-vertical-layout size-full> 
-   <vaadin-grid-layout caption="Mentés" spacing _id="btnSave"> 
+  <vaadin-vertical-layout caption="Mentés" size-full> 
+   <vaadin-grid-layout spacing> 
     <row> 
      <column> 
-      <vaadin-label size-auto plain-text>
+      <vaadin-label size-auto plain-text :middle>
         Név: 
       </vaadin-label> 
      </column> 
      <column> 
-      <vaadin-label size-auto _id="lblName"></vaadin-label> 
+      <vaadin-text-field _id="txtName"></vaadin-text-field> 
      </column> 
     </row> 
     <row> 
@@ -23,7 +23,7 @@
       </vaadin-label> 
      </column> 
      <column> 
-      <vaadin-label size-auto plain-text _id="lblEmail"></vaadin-label> 
+      <vaadin-text-field _id="txtEmail"></vaadin-text-field> 
      </column> 
     </row> 
     <row> 
@@ -33,13 +33,18 @@
       </vaadin-label> 
      </column> 
      <column> 
-      <vaadin-label size-auto plain-text _id="lblUsername"></vaadin-label> 
+      <vaadin-text-field _id="txtUsername"></vaadin-text-field> 
      </column> 
     </row> 
     <row> 
      <column> 
-      <vaadin-button width="113px" height="30px" plain-text _id="btnChangeDetails">
-        Módosítás 
+      <vaadin-button plain-text _id="btnSave" :middle :center>
+        Mentés 
+      </vaadin-button> 
+     </column> 
+     <column> 
+      <vaadin-button plain-text _id="btnCancel" :middle :center>
+        Mégse 
       </vaadin-button> 
      </column> 
     </row> 

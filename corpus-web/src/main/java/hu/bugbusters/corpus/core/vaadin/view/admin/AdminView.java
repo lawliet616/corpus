@@ -11,6 +11,7 @@ import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.LogoutClickListener;
+import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
 
@@ -45,6 +46,8 @@ public class AdminView extends AdminDesign implements CorpusView {
 			component = new SelfDetailsView();
 		}else if(subView.equals(ChangeSelfDetailsView.NAME)){
 			component = new ChangeSelfDetailsView();
+		}else if(subView.equals(ChangePasswordView.NAME)){
+			component = new ChangePasswordView();
 		}
 		
 		if (component != null) {

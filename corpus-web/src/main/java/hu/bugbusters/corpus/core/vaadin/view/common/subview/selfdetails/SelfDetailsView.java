@@ -22,6 +22,13 @@ public class SelfDetailsView extends SelfDetailsDesign implements View {
 				((CorpusUI) getUI()).navigate(ChangeSelfDetailsView.NAME);
 			}
 		});
+		btnChangePassword.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				((CorpusUI) getUI()).navigate(ChangePasswordView.NAME);				
+			}
+		});
 	}
 
 	@Override

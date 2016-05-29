@@ -33,7 +33,7 @@ public class SelfDetailsView extends SelfDetailsDesign implements View {
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-
+		
 	}
 
 	private void fillTable() {

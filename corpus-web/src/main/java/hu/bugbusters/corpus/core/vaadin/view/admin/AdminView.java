@@ -5,8 +5,6 @@ import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
-import com.vaadin.ui.HorizontalLayout;
-
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;

@@ -21,7 +21,6 @@ import com.vaadin.ui.declarative.Design;
 public class ChangeSelfDetailsDesign extends VerticalLayout {
 	protected TextField txtName;
 	protected TextField txtEmail;
-	protected TextField txtUsername;
 	protected Button btnSave;
 	protected Button btnCancel;
 

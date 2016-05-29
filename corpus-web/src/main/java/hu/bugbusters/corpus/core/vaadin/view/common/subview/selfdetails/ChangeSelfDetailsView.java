@@ -4,21 +4,53 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification;
 
+import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import hu.bugbusters.corpus.core.dao.Dao;
+import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements View {
 	public static final String NAME = "ChangeSelfDetails";
-
+	private Dao dao;
 
 	public ChangeSelfDetailsView() {
+		dao = new DaoImpl();
 		btnCancel.addClickListener(new ClickListener() {
+			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
 				((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);
 			}
 		});
+		btnSave.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				checkNewDetails();
+
+			}
+		});
+	}
+
+	protected void checkNewDetails() {
+		if (txtEmail.getValue().isEmpty() || txtName.getValue().isEmpty()) {
+			Notification.show("Nem töltött ki minden mezőt!", "Hiba!", Notification.Type.ERROR_MESSAGE);
+		} else {
+			updateUser();
+		}
+	}
+
+	private void updateUser() {
+		RegisteredUser registeredUser = Login.getLoggedInUser();
+		registeredUser.setEmail(txtEmail.getValue());
+		registeredUser.setFullname(txtName.getValue());
+		dao.updateEntity(registeredUser);
+		Notification.show("Sikeresen megváltoztatta az adatait!", Notification.Type.HUMANIZED_MESSAGE);
+		((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);
 	}
 
 	@Override

@@ -11,6 +11,7 @@ import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.LogoutClickListener;
+import hu.bugbusters.corpus.core.vaadin.view.admin.userlist.UserListView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
@@ -29,6 +30,13 @@ public class AdminView extends AdminDesign implements CorpusView {
 				((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);
 			}
 		});
+		userListButton.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				((CorpusUI) getUI()).navigate(UserListView.NAME);
+			}
+		});
 	}
 
 	protected void changeContet(Component component) {
@@ -44,12 +52,14 @@ public class AdminView extends AdminDesign implements CorpusView {
 		String subView = viewChangeEvent.getParameters();
 		if (subView.equals(SelfDetailsView.NAME)) {
 			component = new SelfDetailsView();
-		}else if(subView.equals(ChangeSelfDetailsView.NAME)){
+		} else if (subView.equals(ChangeSelfDetailsView.NAME)) {
 			component = new ChangeSelfDetailsView();
-		}else if(subView.equals(ChangePasswordView.NAME)){
+		} else if (subView.equals(ChangePasswordView.NAME)) {
 			component = new ChangePasswordView();
+		} else if (subView.equals(UserListView.NAME)) {
+			component = new UserListView();
 		}
-		
+
 		if (component != null) {
 			changeContet(component);
 		}

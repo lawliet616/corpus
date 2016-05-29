@@ -15,11 +15,12 @@ import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements View {
 	public static final String NAME = "ChangeSelfDetails";
 	private Dao dao;
+	private RegisteredUser registeredUser;
 
 	public ChangeSelfDetailsView() {
-		dao = new DaoImpl();
+		fillTheDetails();
+
 		btnCancel.addClickListener(new ClickListener() {
-			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
@@ -36,16 +37,22 @@ public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements Vi
 		});
 	}
 
+	private void fillTheDetails() {
+		dao = new DaoImpl();
+		registeredUser = Login.getLoggedInUser();
+		txtEmail.setValue(registeredUser.getEmail());
+		txtName.setValue(registeredUser.getFullname());
+	}
+
 	protected void checkNewDetails() {
 		if (txtEmail.getValue().isEmpty() || txtName.getValue().isEmpty()) {
-			Notification.show("Nem töltött ki minden mezőt!", "Hiba!", Notification.Type.ERROR_MESSAGE);
+			Notification.show("Nem töltött ki minden mezőt!", "Hiba!", Notification.Type.WARNING_MESSAGE);
 		} else {
 			updateUser();
 		}
 	}
 
 	private void updateUser() {
-		RegisteredUser registeredUser = Login.getLoggedInUser();
 		registeredUser.setEmail(txtEmail.getValue());
 		registeredUser.setFullname(txtName.getValue());
 		dao.updateEntity(registeredUser);

@@ -12,6 +12,7 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.PasswordStorage.CannotPerformOperationException;
 import hu.bugbusters.corpus.core.login.PasswordStorage.InvalidHashException;
+import hu.bugbusters.corpus.core.password.PasswordChecker;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 public class ChangePasswordView extends ChangePasswordDesign implements View {
@@ -43,7 +44,9 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 		if (checkTextfields()) {
 			if (checkOldPassword()) {
 				if (checkNewPasswords()) {
-					changePassword(txtNewPassword1.getValue());
+					if (isPasswordValid()) {
+						changePassword(txtNewPassword1.getValue());
+					}
 				} else {
 					Notification.show("Nem egyeznek meg az új jelszavak!", Notification.Type.WARNING_MESSAGE);
 				}
@@ -53,6 +56,11 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 		} else {
 			Notification.show("Nincs minden mező kitöltve!", Notification.Type.WARNING_MESSAGE);
 		}
+	}
+
+	private boolean isPasswordValid() {
+		PasswordChecker checker = PasswordChecker.getPasswordChecker();
+		return checker.check(txtNewPassword1.getValue());
 	}
 
 	private boolean checkTextfields() {

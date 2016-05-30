@@ -1,12 +1,16 @@
 package hu.bugbusters.corpus.core.password;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import edu.vt.middleware.password.CharacterCharacteristicsRule;
 import edu.vt.middleware.password.DigitCharacterRule;
 import edu.vt.middleware.password.LengthRule;
 import edu.vt.middleware.password.LowercaseCharacterRule;
+import edu.vt.middleware.password.MessageResolver;
 import edu.vt.middleware.password.Password;
 import edu.vt.middleware.password.PasswordData;
 import edu.vt.middleware.password.PasswordValidator;
@@ -17,29 +21,32 @@ import edu.vt.middleware.password.WhitespaceRule;
 
 public class PasswordChecker {
 	private static PasswordChecker checker;
-	private static PasswordValidator passwordValidator;
-	private static int minLength;
-	private static int maxLength;
-	private static int minDigChar;
-	private static int minUpperChar;
-	private static int minLowerChar;
-	private static int minRules;
-	private static List<Rule> ruleList;
+	private PasswordValidator passwordValidator;
+	private MessageResolver resolver;
+	private RuleResult result;
+	private int minLength;
+	private int maxLength;
+	private int minDigChar;
+	private int minUpperChar;
+	private int minLowerChar;
+	private int minRules;
+	private List<Rule> ruleList;
+	private String propertiesPath;
 
-	private PasswordChecker() {
+	private PasswordChecker() throws IOException {
+		config();
 	}
 
-	public static PasswordChecker getPasswordChecker() {
+	public static PasswordChecker getPasswordChecker() throws IOException {
 		if (checker == null) {
 			checker = new PasswordChecker();
-			config();
 		}
 		return checker;
 	}
 
 	public boolean check(String pass) {
 		PasswordData passwordData = new PasswordData(new Password(pass));
-		RuleResult result = passwordValidator.validate(passwordData);
+		result = passwordValidator.validate(passwordData);
 		if (result.isValid()) {
 			return true;
 		} else {
@@ -47,7 +54,7 @@ public class PasswordChecker {
 		}
 	}
 
-	private static void config() {
+	private void config() throws IOException {
 		ruleList = new ArrayList<>();
 
 		setDefaultSettings();
@@ -64,10 +71,32 @@ public class PasswordChecker {
 		ruleList.add(whitespaceRule);
 		ruleList.add(charRule);
 
-		passwordValidator = new PasswordValidator(ruleList);
+		configErrorMessages();
+		passwordValidator = new PasswordValidator(resolver, ruleList);
 	}
 
-	public static void setDefaultSettings() {
+	private void configErrorMessages() throws IOException {
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream input = classLoader.getResourceAsStream(propertiesPath);
+		Properties properties = new Properties();
+		properties.load(input);
+		resolver = new MessageResolver(properties);
+	}
+
+	public String getErrorMessage() {
+		if (result != null) {
+			String error = "A jelszó ";
+			for (String msg : passwordValidator.getMessages(result)) {
+				error += msg + ", ";
+			}
+			error += ".";
+			return error;
+		}
+		return "Nincs hibaüzenet.";
+	}
+
+	public void setDefaultSettings() {
+		propertiesPath = "hu/bugbusters/corpus/core/password/password.properties";
 		minLength = 8;
 		maxLength = 16;
 		minDigChar = 1;
@@ -76,52 +105,52 @@ public class PasswordChecker {
 		minRules = 3;
 	}
 
-	public static int getMinLength() {
+	public int getMinLength() {
 		return minLength;
 	}
 
-	public static void setMinLength(int minLength) {
-		PasswordChecker.minLength = minLength;
+	public void setMinLength(int minLength) {
+		this.minLength = minLength;
 	}
 
-	public static int getMaxLength() {
+	public int getMaxLength() {
 		return maxLength;
 	}
 
-	public static void setMaxLength(int maxLength) {
-		PasswordChecker.maxLength = maxLength;
+	public void setMaxLength(int maxLength) {
+		this.maxLength = maxLength;
 	}
 
-	public static int getMinDigChar() {
+	public int getMinDigChar() {
 		return minDigChar;
 	}
 
-	public static void setMinDigChar(int minDigChar) {
-		PasswordChecker.minDigChar = minDigChar;
+	public void setMinDigChar(int minDigChar) {
+		this.minDigChar = minDigChar;
 	}
 
-	public static int getMinUpperChar() {
+	public int getMinUpperChar() {
 		return minUpperChar;
 	}
 
-	public static void setMinUpperChar(int minUpperChar) {
-		PasswordChecker.minUpperChar = minUpperChar;
+	public void setMinUpperChar(int minUpperChar) {
+		this.minUpperChar = minUpperChar;
 	}
 
-	public static int getMinLowerChar() {
+	public int getMinLowerChar() {
 		return minLowerChar;
 	}
 
-	public static void setMinLowerChar(int minLowerChar) {
-		PasswordChecker.minLowerChar = minLowerChar;
+	public void setMinLowerChar(int minLowerChar) {
+		this.minLowerChar = minLowerChar;
 	}
 
-	public static int getMinRules() {
+	public int getMinRules() {
 		return minRules;
 	}
 
-	public static void setMinRules(int minRules) {
-		PasswordChecker.minRules = minRules;
+	public void setMinRules(int minRules) {
+		this.minRules = minRules;
 	}
 
 }

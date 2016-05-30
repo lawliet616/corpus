@@ -1,5 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails;
 
+import java.io.IOException;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Notification;
@@ -59,8 +61,20 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 	}
 
 	private boolean isPasswordValid() {
-		PasswordChecker checker = PasswordChecker.getPasswordChecker();
-		return checker.check(txtNewPassword1.getValue());
+		PasswordChecker checker;
+		boolean valid = false;
+		try {
+			checker = PasswordChecker.getPasswordChecker();
+			valid = checker.check(txtNewPassword1.getValue());
+			if (valid) {
+				return true;
+			} else {
+				Notification.show(checker.getErrorMessage(), Notification.Type.WARNING_MESSAGE);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 	private boolean checkTextfields() {

@@ -16,20 +16,20 @@ import edu.vt.middleware.password.UppercaseCharacterRule;
 import edu.vt.middleware.password.WhitespaceRule;
 
 public class PasswordChecker {
-	private PasswordChecker checker;
-	private PasswordValidator passwordValidator;
-	private int minLength;
-	private int maxLength;
-	private int minDigChar;
-	private int minUpperChar;
-	private int minLowerChar;
-	private int minRules;
-	private List<Rule> ruleList;
+	private static PasswordChecker checker;
+	private static PasswordValidator passwordValidator;
+	private static int minLength;
+	private static int maxLength;
+	private static int minDigChar;
+	private static int minUpperChar;
+	private static int minLowerChar;
+	private static int minRules;
+	private static List<Rule> ruleList;
 
 	private PasswordChecker() {
 	}
 
-	public PasswordChecker getPasswordChecker() {
+	public static PasswordChecker getPasswordChecker() {
 		if (checker == null) {
 			checker = new PasswordChecker();
 			config();
@@ -47,7 +47,7 @@ public class PasswordChecker {
 		}
 	}
 
-	private void config() {
+	private static void config() {
 		ruleList = new ArrayList<>();
 
 		setDefaultSettings();
@@ -67,7 +67,7 @@ public class PasswordChecker {
 		passwordValidator = new PasswordValidator(ruleList);
 	}
 
-	public void setDefaultSettings() {
+	public static void setDefaultSettings() {
 		minLength = 8;
 		maxLength = 16;
 		minDigChar = 1;
@@ -76,52 +76,52 @@ public class PasswordChecker {
 		minRules = 3;
 	}
 
-	public int getMinLength() {
+	public static int getMinLength() {
 		return minLength;
 	}
 
-	public void setMinLength(int minLength) {
-		this.minLength = minLength;
+	public static void setMinLength(int minLength) {
+		PasswordChecker.minLength = minLength;
 	}
 
-	public int getMaxLength() {
+	public static int getMaxLength() {
 		return maxLength;
 	}
 
-	public void setMaxLength(int maxLength) {
-		this.maxLength = maxLength;
+	public static void setMaxLength(int maxLength) {
+		PasswordChecker.maxLength = maxLength;
 	}
 
-	public int getMinDigChar() {
+	public static int getMinDigChar() {
 		return minDigChar;
 	}
 
-	public void setMinDigChar(int minDigChar) {
-		this.minDigChar = minDigChar;
+	public static void setMinDigChar(int minDigChar) {
+		PasswordChecker.minDigChar = minDigChar;
 	}
 
-	public int getMinUpperChar() {
+	public static int getMinUpperChar() {
 		return minUpperChar;
 	}
 
-	public void setMinUpperChar(int minUpperChar) {
-		this.minUpperChar = minUpperChar;
+	public static void setMinUpperChar(int minUpperChar) {
+		PasswordChecker.minUpperChar = minUpperChar;
 	}
 
-	public int getMinLowerChar() {
+	public static int getMinLowerChar() {
 		return minLowerChar;
 	}
 
-	public void setMinLowerChar(int minLowerChar) {
-		this.minLowerChar = minLowerChar;
+	public static void setMinLowerChar(int minLowerChar) {
+		PasswordChecker.minLowerChar = minLowerChar;
 	}
 
-	public int getMinRules() {
+	public static int getMinRules() {
 		return minRules;
 	}
 
-	public void setMinRules(int minRules) {
-		this.minRules = minRules;
+	public static void setMinRules(int minRules) {
+		PasswordChecker.minRules = minRules;
 	}
 
 }

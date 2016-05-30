@@ -29,7 +29,7 @@ public class UserListView extends UserListDesign implements View {
 
 	private void createSelectGoup() {
 		for (Role role : Role.values()) {
-			selectGroup.addItem(role.name());
+			selectGroup.addItem(role);
 		}
 		selectGroup.addItem("Egyik sem");
 		selectGroup.addValueChangeListener(new ValueChangeListener() {
@@ -44,11 +44,11 @@ public class UserListView extends UserListDesign implements View {
 
 	protected void selectFilter() {
 		userDataSource.removeAllContainerFilters();
-		if(selectGroup.getValue().toString()==Role.ADMIN.toString()){
+		if(selectGroup.getValue() == Role.ADMIN) {
 			userDataSource.addContainerFilter(adminFilter);
-		}else if(selectGroup.getValue().toString()==Role.TEACHER.toString()){
+		} else if(selectGroup.getValue() == Role.TEACHER) {
 			userDataSource.addContainerFilter(teacherFilter);
-		}else if(selectGroup.getValue().toString()==Role.USER.toString()){
+		} else if(selectGroup.getValue() == Role.USER) {
 			userDataSource.addContainerFilter(userFilter);
 		}
 	}

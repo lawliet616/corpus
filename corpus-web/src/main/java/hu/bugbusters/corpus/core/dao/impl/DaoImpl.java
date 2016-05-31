@@ -9,9 +9,9 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import hu.bugbusters.corpus.core.bean.Course;
+import hu.bugbusters.corpus.core.bean.PasswordSettings;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
-import hu.bugbusters.corpus.core.util.HibernateUtil;
 
 public class DaoImpl implements Dao {
 
@@ -79,6 +79,17 @@ public class DaoImpl implements Dao {
 		session.close();
 		return users;
 	}
+	
+	@Override
+	public PasswordSettings getPasswordSettings() {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		PasswordSettings passwordSettings = session.get(PasswordSettings.class, PASSWORD_SETTINGS_ID);
+		transaction.commit();
+		session.close();
+		
+		return passwordSettings;
+	}
 
 	@Override
 	public <T> void saveEntity(T entity) {
@@ -115,7 +126,7 @@ public class DaoImpl implements Dao {
 		for (int i = 0; i < entities.size(); i++) {
 
 			session.save(entities.get(i));
-			if (i % batchSize == 0) {
+			if (i % BATCH_SIZE == 0) {
 				//flush a batch of inserts and release memory
 				session.flush();
 				session.clear();
@@ -134,7 +145,7 @@ public class DaoImpl implements Dao {
 		for (int i = 0; i < entities.size(); i++) {
 
 			session.update(entities.get(i));
-			if (i % batchSize == 0) {
+			if (i % BATCH_SIZE == 0) {
 				//flush a batch of inserts and release memory
 				session.flush();
 				session.clear();

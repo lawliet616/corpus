@@ -11,7 +11,8 @@
 		<property name="show_sql">true</property>
 		<property name="hibernate.jdbc.batch_size">20</property>
 
-		<mapping class="hu.bugbusters.corpus.core.bean.Course"/>
-		<mapping class="hu.bugbusters.corpus.core.bean.RegisteredUser"/>
+		<mapping class="hu.bugbusters.corpus.core.bean.Course" />
+		<mapping class="hu.bugbusters.corpus.core.bean.RegisteredUser" />
+		<mapping class="hu.bugbusters.corpus.core.bean.PasswordSettings" />
 	</session-factory>
 </hibernate-configuration>

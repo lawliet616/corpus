@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "password_settings")
 public class PasswordSettings implements Serializable {
 	@Id
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "id", nullable = false)
 	private Integer id;
 
 	@Column(name = "min_length", nullable = false)

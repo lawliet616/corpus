@@ -12,6 +12,7 @@ import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.PasswordSettings;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
+import hu.bugbusters.corpus.core.password.PasswordRows;
 
 public class DaoImpl implements Dao {
 
@@ -81,10 +82,10 @@ public class DaoImpl implements Dao {
 	}
 	
 	@Override
-	public PasswordSettings getPasswordSettings() {
+	public PasswordSettings getPasswordSettings(PasswordRows row) {
 		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
-		PasswordSettings passwordSettings = session.get(PasswordSettings.class, PASSWORD_SETTINGS_ID);
+		PasswordSettings passwordSettings = session.get(PasswordSettings.class, row.toInteger());
 		transaction.commit();
 		session.close();
 		

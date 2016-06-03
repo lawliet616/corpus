@@ -1,9 +1,11 @@
 package hu.bugbusters.corpus.core.login;
 
+import hu.bugbusters.corpus.core.global.Global;
+
 public enum Role {
-	ADMIN("Rendszergazda"),
-	TEACHER("Tanár"),
-	USER("Diák");
+	ADMIN(Global.ROLE_ADMIN_NAME),
+	TEACHER(Global.ROLE_TEACHER_NAME),
+	USER(Global.ROLE_USER_NAME);
 	
 	private String roleAsText;
 	

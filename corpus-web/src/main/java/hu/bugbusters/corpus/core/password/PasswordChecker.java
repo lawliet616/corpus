@@ -18,12 +18,18 @@ import edu.vt.middleware.password.Rule;
 import edu.vt.middleware.password.RuleResult;
 import edu.vt.middleware.password.UppercaseCharacterRule;
 import edu.vt.middleware.password.WhitespaceRule;
+import hu.bugbusters.corpus.core.bean.PasswordSettings;
+import hu.bugbusters.corpus.core.dao.Dao;
+import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.global.Global;
 
 public class PasswordChecker {
 	private static PasswordChecker checker;
 	private PasswordValidator passwordValidator;
 	private MessageResolver resolver;
 	private RuleResult result;
+	private Dao dao;
+	private PasswordSettings settings;
 	private int minLength;
 	private int maxLength;
 	private int minDigChar;
@@ -56,8 +62,10 @@ public class PasswordChecker {
 
 	private void config() throws IOException {
 		ruleList = new ArrayList<>();
+		dao = new DaoImpl();
+		propertiesPath = Global.PASSWORD_ERROR_MESSAGE_PATH;
 
-		setDefaultSettings();
+		setCustomSettings();
 
 		LengthRule lengthRule = new LengthRule(minLength, maxLength);
 		WhitespaceRule whitespaceRule = new WhitespaceRule();
@@ -73,6 +81,29 @@ public class PasswordChecker {
 
 		configErrorMessages();
 		passwordValidator = new PasswordValidator(resolver, ruleList);
+	}
+
+	private void setCustomSettings() {
+		settings = dao.getPasswordSettings(PasswordRows.CUSTOM);
+		if (settings == null) {
+			setDefaultSettings();
+		} else {
+			setValues();
+		}
+	}
+
+	public void setDefaultSettings() {
+		settings = dao.getPasswordSettings(PasswordRows.DEFAULT);
+		setValues();
+	}
+
+	private void setValues() {
+		minLength = settings.getMinLength();
+		maxLength = settings.getMaxLength();
+		minDigChar = settings.getMinDigChar();
+		minUpperChar = settings.getMinUpperChar();
+		minLowerChar = settings.getMinLowerChar();
+		minRules = settings.getMinRules();
 	}
 
 	private void configErrorMessages() throws IOException {
@@ -93,16 +124,6 @@ public class PasswordChecker {
 			return error;
 		}
 		return "Nincs hibaüzenet.";
-	}
-
-	public void setDefaultSettings() {
-		propertiesPath = "hu/bugbusters/corpus/core/password/password.properties";
-		minLength = 8;
-		maxLength = 16;
-		minDigChar = 1;
-		minUpperChar = 1;
-		minLowerChar = 1;
-		minRules = 3;
 	}
 
 	public int getMinLength() {

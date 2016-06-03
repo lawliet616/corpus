@@ -8,4 +8,6 @@ public class Global {
 	public static final String ROLE_ADMIN_NAME              = "Rendszergazda";
 	public static final String ROLE_TEACHER_NAME            = "Tanár";
 	public static final String ROLE_USER_NAME               = "Diák";
+	
+	public static final String PASSWORD_ERROR_MESSAGE_PATH   = "hu/bugbusters/corpus/core/resources/password.properties";
 }

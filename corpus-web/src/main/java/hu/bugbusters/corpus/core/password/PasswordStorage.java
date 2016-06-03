@@ -1,4 +1,4 @@
-package hu.bugbusters.corpus.core.login;
+package hu.bugbusters.corpus.core.password;
 
 import java.security.SecureRandom;
 import javax.crypto.spec.PBEKeySpec;

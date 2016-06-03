@@ -11,8 +11,9 @@ import com.vaadin.ui.Notification;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
-import hu.bugbusters.corpus.core.login.PasswordStorage.CannotPerformOperationException;
-import hu.bugbusters.corpus.core.login.PasswordStorage.InvalidHashException;
+import hu.bugbusters.corpus.core.password.Password;
+import hu.bugbusters.corpus.core.password.PasswordStorage.CannotPerformOperationException;
+import hu.bugbusters.corpus.core.password.PasswordStorage.InvalidHashException;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 @SuppressWarnings("serial")
@@ -51,7 +52,7 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 			}
 			registeredUser = registeredUserList.get(0);
 
-			if (Login.passwordVerify(password.getValue(), registeredUser)) {
+			if (Password.verify(password.getValue(), registeredUser)) {
 				Login.setLoggedInUserId(registeredUser.getId());
 				((CorpusUI) getUI()).navigate();
 			} else {

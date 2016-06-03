@@ -12,11 +12,13 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
-import hu.bugbusters.corpus.core.login.PasswordStorage.CannotPerformOperationException;
-import hu.bugbusters.corpus.core.login.PasswordStorage.InvalidHashException;
+import hu.bugbusters.corpus.core.password.PasswordStorage.CannotPerformOperationException;
+import hu.bugbusters.corpus.core.password.PasswordStorage.InvalidHashException;
+import hu.bugbusters.corpus.core.password.Password;
 import hu.bugbusters.corpus.core.password.PasswordChecker;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
+@SuppressWarnings("serial")
 public class ChangePasswordView extends ChangePasswordDesign implements View {
 	public static final String NAME = "ChangePassword";
 	private Dao dao;
@@ -84,7 +86,7 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 
 	private void changePassword(String password) {
 		try {
-			registeredUser.setPassword(Login.passwordToDatabaseHash(password));
+			registeredUser.setPassword(Password.toDatabaseHash(password));
 			dao.updateEntity(registeredUser);
 			Notification.show("Sikeresen megváltoztatta a jelszavát!", Notification.Type.HUMANIZED_MESSAGE);
 			((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);
@@ -102,7 +104,7 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 	private boolean checkOldPassword() {
 		try {
 			String password = txtOldPassword.getValue();
-			return Login.passwordVerify(password, registeredUser);
+			return Password.verify(password, registeredUser);
 		} catch (CannotPerformOperationException e) {
 			e.printStackTrace();
 		} catch (InvalidHashException e) {

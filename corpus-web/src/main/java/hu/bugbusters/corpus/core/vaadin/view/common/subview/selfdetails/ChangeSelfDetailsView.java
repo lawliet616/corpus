@@ -12,6 +12,7 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
+@SuppressWarnings("serial")
 public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements View {
 	public static final String NAME = "ChangeSelfDetails";
 	private Dao dao;

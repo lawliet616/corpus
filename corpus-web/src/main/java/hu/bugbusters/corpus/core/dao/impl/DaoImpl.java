@@ -14,6 +14,7 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.password.PasswordRows;
 
+@SuppressWarnings("unchecked")
 public class DaoImpl implements Dao {
 
 	@Override
@@ -21,6 +22,7 @@ public class DaoImpl implements Dao {
 		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
 		Criteria crit = session.createCriteria(Course.class);
+
 		List<Course> courses = crit.list();
 		transaction.commit();
 		session.close();
@@ -80,7 +82,7 @@ public class DaoImpl implements Dao {
 		session.close();
 		return users;
 	}
-	
+
 	@Override
 	public PasswordSettings getPasswordSettings(PasswordRows row) {
 		Session session = SESSION_FACTORY.openSession();
@@ -88,7 +90,7 @@ public class DaoImpl implements Dao {
 		PasswordSettings passwordSettings = session.get(PasswordSettings.class, row.toInteger());
 		transaction.commit();
 		session.close();
-		
+
 		return passwordSettings;
 	}
 
@@ -128,7 +130,7 @@ public class DaoImpl implements Dao {
 
 			session.save(entities.get(i));
 			if (i % BATCH_SIZE == 0) {
-				//flush a batch of inserts and release memory
+				// flush a batch of inserts and release memory
 				session.flush();
 				session.clear();
 			}
@@ -147,7 +149,7 @@ public class DaoImpl implements Dao {
 
 			session.update(entities.get(i));
 			if (i % BATCH_SIZE == 0) {
-				//flush a batch of inserts and release memory
+				// flush a batch of inserts and release memory
 				session.flush();
 				session.clear();
 			}

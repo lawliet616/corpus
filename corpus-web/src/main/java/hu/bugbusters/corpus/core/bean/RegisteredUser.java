@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.util.RoleConverter;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "registereduser")
 public class RegisteredUser implements Serializable {

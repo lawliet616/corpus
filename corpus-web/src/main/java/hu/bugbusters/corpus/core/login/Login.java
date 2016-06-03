@@ -5,9 +5,10 @@ import com.vaadin.ui.UI;
 
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.global.Global;
 
 public class Login {
-	public static final String SESSION_ATTRIBUTE_NAME = "userId";
+	public static final String SESSION_ATTRIBUTE_NAME = Global.LOGIN_SESSION_ATTRIBUTE_NAME;
 	
 	public static void setLoggedInUserId(Long id) {
 		VaadinService.getCurrentRequest().getWrappedSession().setAttribute(SESSION_ATTRIBUTE_NAME, id);

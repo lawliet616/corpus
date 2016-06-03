@@ -5,13 +5,14 @@ import java.util.List;
 import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.PasswordSettings;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import hu.bugbusters.corpus.core.global.Global;
 import hu.bugbusters.corpus.core.password.PasswordRows;
 import hu.bugbusters.corpus.core.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
 public interface Dao {
 	public static final SessionFactory SESSION_FACTORY = HibernateUtil.getSessionFactory();
-	public static final int BATCH_SIZE                 = 20;
+	public static final int BATCH_SIZE                 = Global.DAO_BATCH_SIZE;
 
 	List<Course> listAllCourses();
 	List<RegisteredUser> listAllUsers();

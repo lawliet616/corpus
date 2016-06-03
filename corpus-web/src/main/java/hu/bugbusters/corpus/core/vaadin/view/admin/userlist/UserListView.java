@@ -12,6 +12,7 @@ import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Role;
 
+@SuppressWarnings("serial")
 public class UserListView extends UserListDesign implements View {
 	public static final String NAME = "UserList";
 	private BeanContainer<Long, RegisteredUser> userDataSource;

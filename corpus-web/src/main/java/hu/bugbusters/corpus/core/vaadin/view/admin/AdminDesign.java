@@ -23,7 +23,6 @@ import com.vaadin.ui.declarative.Design;
 public class AdminDesign extends HorizontalLayout {
 	protected HorizontalLayout menuTitle;
 	protected Label menuTitleLabel;
-	protected Button menuToggle;
 	protected CssLayout menuItems;
 	protected Button userDetailsButton;
 	protected Button newUserButton;

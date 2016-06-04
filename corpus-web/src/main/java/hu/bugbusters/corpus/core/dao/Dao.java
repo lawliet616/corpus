@@ -5,6 +5,7 @@ import java.util.List;
 import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.PasswordSettings;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.global.Global;
 import hu.bugbusters.corpus.core.password.PasswordRows;
 import hu.bugbusters.corpus.core.util.HibernateUtil;
@@ -21,7 +22,7 @@ public interface Dao {
 	Course getCourseByName(String name);
 
 	RegisteredUser getUserById(Long id);
-	List<RegisteredUser> getUserByUserName(String name);
+	RegisteredUser getUserByUserName(String name) throws UserNotFoundException;
 	
 	PasswordSettings getPasswordSettings(PasswordRows row);
 

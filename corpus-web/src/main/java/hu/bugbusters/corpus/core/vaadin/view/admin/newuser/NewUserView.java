@@ -8,12 +8,13 @@ import com.vaadin.ui.Button.ClickListener;
 
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.exceptions.CannotPerformOperationException;
+import hu.bugbusters.corpus.core.exceptions.InvalidHashException;
 import hu.bugbusters.corpus.core.factories.UserFactory;
 import hu.bugbusters.corpus.core.login.Role;
-import hu.bugbusters.corpus.core.password.PasswordStorage.CannotPerformOperationException;
-import hu.bugbusters.corpus.core.password.PasswordStorage.InvalidHashException;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
+@SuppressWarnings("serial")
 public class NewUserView extends NewUserDesign implements View {
 	public static final String NAME = "NewUser";
 

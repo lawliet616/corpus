@@ -4,11 +4,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
-import hu.bugbusters.corpus.core.password.PasswordStorage.CannotPerformOperationException;
-import hu.bugbusters.corpus.core.password.PasswordStorage.InvalidHashException;
+import hu.bugbusters.corpus.core.exceptions.CannotPerformOperationException;
+import hu.bugbusters.corpus.core.exceptions.InvalidHashException;
+import hu.bugbusters.corpus.core.exceptions.InvalidPasswordException;
 
 public class Password {
-	public static boolean verify(String password, RegisteredUser registeredUser) throws CannotPerformOperationException, InvalidHashException {
+	public static void verify(String password, RegisteredUser registeredUser) throws CannotPerformOperationException, InvalidHashException, InvalidPasswordException {
 		String hash = String.format(
 				"%s:%d:%d:%s",
 				PasswordStorage.HASH_ALGORITHM,
@@ -17,7 +18,9 @@ public class Password {
 				registeredUser.getPassword()
 		);
 		
-		return PasswordStorage.verifyPassword(password, hash);
+		if(!PasswordStorage.verifyPassword(password, hash)) {
+			throw new InvalidPasswordException();
+		}
 	}
 	
 	public static String toDatabaseHash(String password) throws CannotPerformOperationException, InvalidHashException {

@@ -11,9 +11,13 @@ import com.vaadin.ui.Button.ClickListener;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.exceptions.CannotPerformOperationException;
+import hu.bugbusters.corpus.core.exceptions.EmptyFieldException;
+import hu.bugbusters.corpus.core.exceptions.InvalidHashException;
+import hu.bugbusters.corpus.core.exceptions.InvalidPasswordException;
+import hu.bugbusters.corpus.core.exceptions.InvalidPasswordFormatException;
+import hu.bugbusters.corpus.core.exceptions.NewPasswordNotMatchException;
 import hu.bugbusters.corpus.core.login.Login;
-import hu.bugbusters.corpus.core.password.PasswordStorage.CannotPerformOperationException;
-import hu.bugbusters.corpus.core.password.PasswordStorage.InvalidHashException;
 import hu.bugbusters.corpus.core.password.Password;
 import hu.bugbusters.corpus.core.password.PasswordChecker;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
@@ -45,73 +49,57 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 	}
 
 	protected void checkDetails() {
-		if (checkTextfields()) {
-			if (checkOldPassword()) {
-				if (checkNewPasswords()) {
-					if (isPasswordValid()) {
-						changePassword(txtNewPassword1.getValue());
-					}
-				} else {
-					Notification.show("Nem egyeznek meg az új jelszavak!", Notification.Type.WARNING_MESSAGE);
-				}
-			} else {
-				Notification.show("Nem sikerült az azonosítás!", Notification.Type.WARNING_MESSAGE);
-			}
-		} else {
+		try {
+			checkTextfields();
+			checkOldPassword();
+			checkNewPasswords();
+			isPasswordValid();
+			changePassword(txtNewPassword1.getValue());
+		} catch(EmptyFieldException e) {
 			Notification.show("Nincs minden mező kitöltve!", Notification.Type.WARNING_MESSAGE);
-		}
-	}
-
-	private boolean isPasswordValid() {
-		PasswordChecker checker;
-		boolean valid = false;
-		try {
-			checker = PasswordChecker.getPasswordChecker();
-			valid = checker.check(txtNewPassword1.getValue());
-			if (valid) {
-				return true;
-			} else {
-				Notification.show(checker.getErrorMessage(), Notification.Type.WARNING_MESSAGE);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return false;
-	}
-
-	private boolean checkTextfields() {
-		return !(txtNewPassword1.getValue().isEmpty() || txtNewPassword2.getValue().isEmpty()
-				|| txtOldPassword.getValue().isEmpty());
-	}
-
-	private void changePassword(String password) {
-		try {
-			registeredUser.setPassword(Password.toDatabaseHash(password));
-			dao.updateEntity(registeredUser);
-			Notification.show("Sikeresen megváltoztatta a jelszavát!", Notification.Type.HUMANIZED_MESSAGE);
-			((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);
-		} catch (CannotPerformOperationException e) {
-			e.printStackTrace();
-		} catch (InvalidHashException e) {
+		} catch(InvalidPasswordException e) {
+			Notification.show("Nem sikerült az azonosítás!", Notification.Type.WARNING_MESSAGE);
+		} catch(NewPasswordNotMatchException e) {
+			Notification.show("Nem egyeznek meg az új jelszavak!", Notification.Type.WARNING_MESSAGE);
+		} catch (InvalidPasswordFormatException e) {
+			Notification.show(e.getMessage(), Notification.Type.WARNING_MESSAGE);
+		} catch (CannotPerformOperationException | InvalidHashException | IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private boolean checkNewPasswords() {
-		return txtNewPassword1.getValue().compareTo(txtNewPassword2.getValue()) == 0;
+	private void isPasswordValid() throws IOException, InvalidPasswordFormatException {
+		PasswordChecker checker = PasswordChecker.getPasswordChecker();
+		boolean valid = checker.check(txtNewPassword1.getValue());
+		if (!valid) {
+			//Notification.show(checker.getErrorMessage(), Notification.Type.WARNING_MESSAGE);
+			
+			throw new InvalidPasswordFormatException(checker.getErrorMessage());
+		}
 	}
 
-	private boolean checkOldPassword() {
-		try {
-			String password = txtOldPassword.getValue();
-			return Password.verify(password, registeredUser);
-		} catch (CannotPerformOperationException e) {
-			e.printStackTrace();
-		} catch (InvalidHashException e) {
-			e.printStackTrace();
+	private void checkTextfields() throws EmptyFieldException {
+		if(txtNewPassword1.getValue().isEmpty() || txtNewPassword2.getValue().isEmpty() || txtOldPassword.getValue().isEmpty()) {
+			throw new EmptyFieldException();
 		}
-		return true;
+	}
 
+	private void changePassword(String password) throws CannotPerformOperationException, InvalidHashException {
+		registeredUser.setPassword(Password.toDatabaseHash(password));
+		dao.updateEntity(registeredUser);
+		Notification.show("Sikeresen megváltoztatta a jelszavát!", Notification.Type.HUMANIZED_MESSAGE);
+		((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);
+	}
+
+	private void checkNewPasswords() throws NewPasswordNotMatchException {
+		if(txtNewPassword1.getValue().compareTo(txtNewPassword2.getValue()) != 0) {
+			throw new NewPasswordNotMatchException();
+		}
+	}
+
+	private void checkOldPassword() throws CannotPerformOperationException, InvalidHashException, InvalidPasswordException  {
+		String password = txtOldPassword.getValue();
+		Password.verify(password, registeredUser);
 	}
 
 	@Override

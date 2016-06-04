@@ -1,7 +1,9 @@
 package hu.bugbusters.corpus.core.vaadin.view.login;
 
+import java.io.Console;
 import java.util.List;
 
+import com.google.gwt.i18n.server.Message;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
@@ -34,6 +36,7 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 
 	public LoginView() {
 		button.addClickListener(this);
+		//System.out.println(this.getPrimaryStyleName());
 	}
 
 	@Override

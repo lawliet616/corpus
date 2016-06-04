@@ -53,9 +53,32 @@ $v-font-size: 18px;
   @include valo;
 
   // Insert your own theme rules here
-    .v-ui{
+    .v-login{
       background-image: url(wp.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
   }
+    .v-menuitem{
+        background-color : #b6b6b6;
+        border-radius: 0px 0px 10px 10px;
+        border-width: 0px 2px 2px 2px;
+        border-style: inset;
+    }
+
+    .v-menutitle{
+        background-color: #069ed2;
+        border-style: inset;
+        border-width: 2px 2px 0px 2px;
+        padding: 0px;
+        border-radius: 10px 10px 0px 0px;
+        color:##cacaca;
+    }
+
+    .valo-menu-item{
+        
+    }
+
+    .v-horizontallayout{
+        //background: #6ccfff;
+    }
 }

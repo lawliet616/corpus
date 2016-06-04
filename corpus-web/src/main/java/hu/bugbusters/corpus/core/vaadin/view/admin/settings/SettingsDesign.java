@@ -26,6 +26,7 @@ public class SettingsDesign extends VerticalLayout {
 	protected TextField txtMinLowerChar;
 	protected TextField txtMinRules;
 	protected Button btnSave;
+	protected Button btnReset;
 
 	public SettingsDesign() {
 		Design.read(this);

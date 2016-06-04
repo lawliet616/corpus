@@ -14,65 +14,73 @@
        </vaadin-label> 
       </column> 
       <column> 
-       <vaadin-text-field _id="txtMinLength"></vaadin-text-field> 
+       <vaadin-text-field width="253px" _id="txtMinLength" :middle></vaadin-text-field> 
       </column> 
      </row> 
      <row> 
       <column> 
-       <vaadin-label size-auto plain-text>
+       <vaadin-label size-auto plain-text :middle>
          Maximum hossz: 
        </vaadin-label> 
       </column> 
       <column> 
-       <vaadin-text-field _id="txtMaxLength"></vaadin-text-field> 
+       <vaadin-text-field width="253px" _id="txtMaxLength" :middle></vaadin-text-field> 
       </column> 
      </row> 
      <row> 
       <column> 
-       <vaadin-label size-auto plain-text>
+       <vaadin-label size-auto plain-text :middle>
          Legalább ennyi számot kell tartalmaznia: 
        </vaadin-label> 
       </column> 
       <column> 
-       <vaadin-text-field _id="txtMinDigChar"></vaadin-text-field> 
+       <vaadin-text-field width="253px" _id="txtMinDigChar" :middle></vaadin-text-field> 
       </column> 
      </row> 
      <row> 
       <column> 
-       <vaadin-label size-auto plain-text>
+       <vaadin-label size-auto plain-text :middle>
          Legalább ennyi nagybetűt kell tartalmaznia: 
        </vaadin-label> 
       </column> 
       <column> 
-       <vaadin-text-field _id="txtMinUpperChar" :middle :center></vaadin-text-field> 
+       <vaadin-text-field width="253px" _id="txtMinUpperChar" :middle></vaadin-text-field> 
       </column> 
      </row> 
      <row> 
       <column> 
-       <vaadin-label size-auto plain-text>
+       <vaadin-label size-auto plain-text :middle>
          Legalább ennyi kisbetűt kell tartalmaznia: 
        </vaadin-label> 
       </column> 
       <column> 
-       <vaadin-text-field _id="txtMinLowerChar"></vaadin-text-field> 
+       <vaadin-text-field width="253px" _id="txtMinLowerChar" :middle></vaadin-text-field> 
       </column> 
      </row> 
      <row> 
       <column> 
-       <vaadin-label size-auto plain-text>
+       <vaadin-label size-auto plain-text :middle>
          A karakterszabályok közül ennyit kell teljesíteni: 
        </vaadin-label> 
       </column> 
       <column> 
-       <vaadin-text-field _id="txtMinRules"></vaadin-text-field> 
+       <vaadin-text-field width="253px" _id="txtMinRules" :middle></vaadin-text-field> 
+      </column> 
+     </row> 
+     <row> 
+      <column> 
+       <vaadin-button plain-text _id="btnSave" :middle :center>
+         Mentés 
+       </vaadin-button> 
+      </column> 
+      <column> 
+       <vaadin-button plain-text _id="btnReset" :middle :center>
+         Visszaállítás alapértelmezetre 
+       </vaadin-button> 
       </column> 
      </row> 
     </vaadin-grid-layout> 
    </vaadin-vertical-layout> 
-   <vaadin-vertical-layout size-auto></vaadin-vertical-layout> 
-   <vaadin-button plain-text _id="btnSave" :middle :center>
-     Mentés 
-   </vaadin-button> 
   </vaadin-vertical-layout>  
  </body>
 </html>

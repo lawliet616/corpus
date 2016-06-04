@@ -26,6 +26,7 @@ public class SettingsView extends SettingsDesign implements View {
 
 	public SettingsView() {
 		dao = new DaoImpl();
+		setCurrentValues();
 
 		btnSave.addClickListener(new ClickListener() {
 
@@ -34,10 +35,25 @@ public class SettingsView extends SettingsDesign implements View {
 				CheckValues();
 			}
 		});
-		setOriginalValues();
+
+		btnReset.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				resetToDefaultValues();
+			}
+		});
+
 	}
 
-	private void setOriginalValues() {
+	protected void resetToDefaultValues() {
+		settings.setId(PasswordRows.CUSTOM.toInteger());
+		dao.deleteEntity(settings);
+		setCurrentValues();
+		Notification.show("Sikeresen visszaállította az alapértékeket.", Notification.Type.HUMANIZED_MESSAGE);
+	}
+
+	private void setCurrentValues() {
 		settings = dao.getPasswordSettings(PasswordRows.CUSTOM);
 		if (settings == null) {
 			settings = dao.getPasswordSettings(PasswordRows.DEFAULT);
@@ -96,13 +112,13 @@ public class SettingsView extends SettingsDesign implements View {
 		settings.setMinRules(minRules);
 		settings.setMinUpperChar(minUpperChar);
 		settings.setId(PasswordRows.CUSTOM.toInteger());
-		
+
 		if (dao.getPasswordSettings(PasswordRows.CUSTOM) == null) {
 			dao.saveEntity(settings);
 		} else {
 			dao.updateEntity(settings);
 		}
-		Notification.show("A mentés sikeres volt.",Notification.Type.HUMANIZED_MESSAGE);
+		Notification.show("A mentés sikeres volt.", Notification.Type.HUMANIZED_MESSAGE);
 	}
 
 	private boolean isAnyValueNegative(int maxLength, int minDigChar, int minLegth, int minLowerChar, int minRules,

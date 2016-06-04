@@ -1,12 +1,12 @@
-DROP TABLE JAVA_A_GYAKORLATBAN.registereduser cascade constraints;
-DROP TABLE JAVA_A_GYAKORLATBAN.registereduser_course cascade constraints;
-DROP TABLE JAVA_A_GYAKORLATBAN.course cascade constraints;
-DROP TABLE JAVA_A_GYAKORLATBAN.password_settings cascade constraints;
+DROP TABLE CORPUS.registereduser cascade constraints;
+DROP TABLE CORPUS.registereduser_course cascade constraints;
+DROP TABLE CORPUS.course cascade constraints;
+DROP TABLE CORPUS.password_settings cascade constraints;
 
-DROP SEQUENCE JAVA_A_GYAKORLATBAN.registereduser_seq;
-DROP SEQUENCE JAVA_A_GYAKORLATBAN.course_seq;
+DROP SEQUENCE CORPUS.registereduser_seq;
+DROP SEQUENCE CORPUS.course_seq;
 
-CREATE TABLE JAVA_A_GYAKORLATBAN.registereduser (
+CREATE TABLE CORPUS.registereduser (
 	id number(19,0) not null,
 	username varchar2(255 char) not null,
 	password varchar2(255 char) not null,
@@ -17,7 +17,7 @@ CREATE TABLE JAVA_A_GYAKORLATBAN.registereduser (
 	unique (username, email)
 );
 	
-CREATE TABLE JAVA_A_GYAKORLATBAN.course (
+CREATE TABLE CORPUS.course (
 	id number(19,0) not null,
 	name varchar2(255 char) not null,
 	room int,
@@ -27,15 +27,15 @@ CREATE TABLE JAVA_A_GYAKORLATBAN.course (
 	unique (name)
 );
 	
-CREATE TABLE JAVA_A_GYAKORLATBAN.registereduser_course (
+CREATE TABLE CORPUS.registereduser_course (
 	r_id number(19,0) not null,
 	c_id number(19,0) not null,
 	primary key(r_id, c_id),
-	constraint fk_course foreign key (r_id) references JAVA_A_GYAKORLATBAN.registereduser(id),
-	constraint fk_user foreign key (c_id) references JAVA_A_GYAKORLATBAN.course(id)
+	constraint fk_course foreign key (r_id) references CORPUS.registereduser(id),
+	constraint fk_user foreign key (c_id) references CORPUS.course(id)
 );
 
-CREATE TABLE JAVA_A_GYAKORLATBAN.password_settings (
+CREATE TABLE CORPUS.password_settings (
 	id int default(1) not null,
 	min_length int default(8) not null,
 	max_length int default(16) not null,
@@ -47,14 +47,14 @@ CREATE TABLE JAVA_A_GYAKORLATBAN.password_settings (
 	constraint chk_lock check(id = 1 or id = 2)
 );
 
-CREATE SEQUENCE JAVA_A_GYAKORLATBAN.registereduser_seq;
-CREATE SEQUENCE JAVA_A_GYAKORLATBAN.course_seq;
+CREATE SEQUENCE CORPUS.registereduser_seq;
+CREATE SEQUENCE CORPUS.course_seq;
 
-INSERT INTO JAVA_A_GYAKORLATBAN.password_settings(id) VALUES(1);
+INSERT INTO CORPUS.password_settings(id) VALUES(1);
 COMMIT;
 
-CREATE OR REPLACE TRIGGER JAVA_A_GYAKORLATBAN.UPDATE_PASSWORD_TRIGGER
-	BEFORE DELETE OR INSERT OR UPDATE ON JAVA_A_GYAKORLATBAN.PASSWORD_SETTINGS
+CREATE OR REPLACE TRIGGER CORPUS.UPDATE_PASSWORD_TRIGGER
+	BEFORE DELETE OR INSERT OR UPDATE ON CORPUS.PASSWORD_SETTINGS
 	FOR EACH ROW
 WHEN (NEW.id = 1)
 BEGIN

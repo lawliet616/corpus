@@ -14,7 +14,7 @@ import hu.bugbusters.corpus.core.vaadin.view.login.LoginView;
 import hu.bugbusters.corpus.core.vaadin.view.teacher.TeacherView;
 import hu.bugbusters.corpus.core.vaadin.view.user.UserView;
 
-@Theme("valo")
+@Theme("CorpusTheme")
 @SuppressWarnings("serial")
 public class CorpusUI extends UI implements ViewChangeListener {
 	Navigator navigator;

@@ -5,7 +5,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="hibernate.connection.datasource">java:/jndi/corpusDatasource</property>
-		<property name="hibernate.default_schema">JAVA_A_GYAKORLATBAN</property>
+		<property name="hibernate.default_schema">CORPUS</property>
 		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
 		<property name="hibernate.id.new_generator_mappings">false</property>
 		<property name="show_sql">true</property>

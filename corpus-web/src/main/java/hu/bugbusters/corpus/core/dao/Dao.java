@@ -11,8 +11,8 @@ import hu.bugbusters.corpus.core.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
 public interface Dao {
-	public static final SessionFactory SESSION_FACTORY = HibernateUtil.getSessionFactory();
-	public static final int BATCH_SIZE                 = Global.DAO_BATCH_SIZE;
+	SessionFactory SESSION_FACTORY = HibernateUtil.getSessionFactory();
+	int BATCH_SIZE                 = Global.DAO_BATCH_SIZE;
 
 	List<Course> listAllCourses();
 	List<RegisteredUser> listAllUsers();

@@ -62,7 +62,7 @@ public class NewUserView extends NewUserDesign implements View {
 	}
 
 	private boolean isValidValues() {
-		if (txtName.getValue() != "" && txtEmail.getValue() != "" && cmbRoles.getValue() != "") {
+		if (txtName.getValue() != "" && txtEmail.getValue() != "" && cmbRoles.getValue() != null) {
 			return true;
 		}
 		return false;

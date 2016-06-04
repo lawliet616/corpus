@@ -107,8 +107,23 @@
 			<artifactId>javax.mail-api</artifactId>
 			<version>1.5.5</version>
 		</dependency>
-        
+
+		<dependency>
+			<groupId>org.vaadin.addons</groupId>
+			<artifactId>digitalclock</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
 	</dependencies>
+
+	<repositories>
+
+		<repository>
+			<id>vaadin-addons</id>
+			<url>http://maven.vaadin.com/vaadin-addons</url>
+		</repository>
+
+	</repositories>
 
 	<build>
 

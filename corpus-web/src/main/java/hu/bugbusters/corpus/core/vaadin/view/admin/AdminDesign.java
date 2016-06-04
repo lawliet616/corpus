@@ -24,6 +24,7 @@ public class AdminDesign extends HorizontalLayout {
 	protected HorizontalLayout menuTitle;
 	protected Label menuTitleLabel;
 	protected CssLayout menuItems;
+	protected Button homepageSButton;
 	protected Button userDetailsButton;
 	protected Button newUserButton;
 	protected Button userListButton;

@@ -9,6 +9,7 @@ import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.LogoutClickListener;
+import hu.bugbusters.corpus.core.vaadin.view.admin.homepage.AdminHomepageView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.newuser.NewUserView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.settings.SettingsView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.userlist.UserListView;
@@ -51,6 +52,13 @@ public class AdminView extends AdminDesign implements CorpusView {
 				((CorpusUI) getUI()).navigate(SettingsView.NAME);
 			}
 		});
+		homepageSButton.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				((CorpusUI) getUI()).navigate(AdminHomepageView.Name);
+			}
+		});
 	}
 
 	protected void changeContet(Component component) {
@@ -76,6 +84,8 @@ public class AdminView extends AdminDesign implements CorpusView {
 			component = new NewUserView();
 		} else if (subView.equals(SettingsView.NAME)) {
 			component = new SettingsView();
+		}else{
+			component = new AdminHomepageView();
 		}
 
 		if (component != null) {

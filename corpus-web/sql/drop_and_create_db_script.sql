@@ -2,6 +2,9 @@ DROP TABLE CORPUS.registereduser cascade constraints;
 DROP TABLE CORPUS.registereduser_course cascade constraints;
 DROP TABLE CORPUS.course cascade constraints;
 DROP TABLE CORPUS.password_settings cascade constraints;
+DROP TABLE CORPUS.message cascade constraints;
+DROP TABLE CORPUS.sent cascade constraints;
+DROP TABLE CORPUS.inbox cascade constraints;
 
 DROP SEQUENCE CORPUS.registereduser_seq;
 DROP SEQUENCE CORPUS.course_seq;
@@ -31,8 +34,8 @@ CREATE TABLE CORPUS.registereduser_course (
 	r_id number(19,0) not null,
 	c_id number(19,0) not null,
 	primary key(r_id, c_id),
-	constraint fk_course foreign key (r_id) references CORPUS.registereduser(id),
-	constraint fk_user foreign key (c_id) references CORPUS.course(id)
+	constraint fk_registereduser foreign key (r_id) references CORPUS.registereduser(id),
+	constraint fk_course foreign key (c_id) references CORPUS.course(id)
 );
 
 CREATE TABLE CORPUS.password_settings (
@@ -45,6 +48,30 @@ CREATE TABLE CORPUS.password_settings (
 	min_rules int default(3) not null,
 	primary key(id),
 	constraint chk_lock check(id = 1 or id = 2)
+);
+
+CREATE TABLE CORPUS.message (
+	id number(19,0) not null,
+	subject varchar2(255 char) not null,
+  message varchar2(4000 char) not null,
+	primary key (id)
+);
+
+CREATE TABLE CORPUS.sent (
+	r_id number(19,0) not null,
+	m_id number(19,0) not null,
+	primary key(r_id, m_id),
+	constraint fk_registereduser2 foreign key (r_id) references CORPUS.registereduser(id),
+	constraint fk_message foreign key (m_id) references CORPUS.message(id)
+);
+
+CREATE TABLE CORPUS.inbox (
+	r_id number(19,0) not null,
+	m_id number(19,0) not null,
+  seen char(1)  not null check (seen in ( 'Y', 'N' )),
+	primary key(r_id, m_id),
+	constraint fk_registereduser3 foreign key (r_id) references CORPUS.registereduser(id),
+	constraint fk_message2 foreign key (m_id) references CORPUS.message(id)
 );
 
 CREATE SEQUENCE CORPUS.registereduser_seq;

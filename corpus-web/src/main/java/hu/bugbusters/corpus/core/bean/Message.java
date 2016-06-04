@@ -1,21 +1,16 @@
 package hu.bugbusters.corpus.core.bean;
 
 import java.io.Serializable;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "registereduser")
+@Table(name = "message")
 public class Message implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
@@ -27,11 +22,21 @@ public class Message implements Serializable {
 	
 	@Getter
 	@Setter
-	@Column(name = "subject")
+	@Column(name = "subject", nullable = false)
 	private String subject;
 	
 	@Getter
 	@Setter
-	@Column(name = "message")
+	@Column(name = "message", nullable = false)
 	private String message;
+
+	@Getter
+	@Setter
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "sentMails")
+	private Set<RegisteredUser> registeredUserSent;
+
+	@Getter
+	@Setter
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.message")
+	private Set<RegisteredUser> registeredUserInbox;
 }

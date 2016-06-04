@@ -3,19 +3,7 @@ package hu.bugbusters.corpus.core.bean;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.util.RoleConverter;
@@ -68,4 +56,18 @@ public class RegisteredUser implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name = "c_id",
 					nullable = false, updatable = false)})
 	private Set<Course> courses;
+
+	@Getter
+	@Setter
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "sent", joinColumns = {
+			@JoinColumn(name = "r_id", nullable = false, updatable = false)},
+			inverseJoinColumns = {@JoinColumn(name = "m_id",
+					nullable = false, updatable = false)})
+	private Set<Message> sentMails;
+
+	@Getter
+	@Setter
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registereduser", cascade=CascadeType.ALL)
+	private Set<Message> receivedMails;
 }

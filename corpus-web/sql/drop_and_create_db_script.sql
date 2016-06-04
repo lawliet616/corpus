@@ -14,7 +14,7 @@ CREATE TABLE JAVA_A_GYAKORLATBAN.registereduser (
 	email varchar2(255 char),
 	role int not null,
 	primary key (id),
-	unique (id, username, email)
+	unique (username, email)
 );
 	
 CREATE TABLE JAVA_A_GYAKORLATBAN.course (
@@ -24,7 +24,7 @@ CREATE TABLE JAVA_A_GYAKORLATBAN.course (
 	credit int not null,
 	professor varchar2(255 char),
 	primary key (id),
-	unique (id, name)
+	unique (name)
 );
 	
 CREATE TABLE JAVA_A_GYAKORLATBAN.registereduser_course (

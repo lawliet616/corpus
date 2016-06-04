@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;valo&quot;}">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout size-full margin> 
+   <vaadin-grid-layout caption="Új felhasználó felvétele:" spacing> 
+    <row> 
+     <column> 
+      <vaadin-label size-auto plain-text :middle>
+        Név: 
+      </vaadin-label> 
+     </column> 
+     <column> 
+      <vaadin-text-field _id="txtName" :middle :center></vaadin-text-field> 
+     </column> 
+    </row> 
+    <row> 
+     <column> 
+      <vaadin-label size-auto plain-text :middle>
+        E-mail cím: 
+      </vaadin-label> 
+     </column> 
+     <column> 
+      <vaadin-text-field _id="txtEmail" :middle :center></vaadin-text-field> 
+     </column> 
+    </row> 
+    <row> 
+     <column> 
+      <vaadin-label size-auto plain-text :middle>
+        Jogosultság: 
+      </vaadin-label> 
+     </column> 
+     <column> 
+      <vaadin-combo-box item-caption-mode="id" _id="cmbRoles" :middle :center> 
+       <option>Option 1 </option> 
+       <option>Option 2 </option> 
+       <option>Option 3</option> 
+      </vaadin-combo-box> 
+     </column> 
+    </row> 
+    <row> 
+     <column> 
+      <vaadin-button plain-text _id="btnSave" :middle :center>
+        Mentés 
+      </vaadin-button> 
+     </column> 
+     <column> 
+      <vaadin-button plain-text _id="btnCancel" :middle :center>
+        Mégse 
+      </vaadin-button> 
+     </column> 
+    </row> 
+   </vaadin-grid-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

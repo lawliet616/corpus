@@ -18,8 +18,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import hu.bugbusters.corpus.core.login.Role;
-import hu.bugbusters.corpus.core.password.Password;
-import hu.bugbusters.corpus.core.password.PasswordStorage;
 import hu.bugbusters.corpus.core.util.RoleConverter;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;valo&quot;}">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout size-full margin> 
+   <vaadin-vertical-layout size-auto> 
+    <vaadin-grid-layout caption="Jelszó követelmény beállítása" spacing :middle :center> 
+     <row> 
+      <column> 
+       <vaadin-label size-auto plain-text :middle>
+         Minimum hossz: 
+       </vaadin-label> 
+      </column> 
+      <column> 
+       <vaadin-text-field width="253px" _id="txtMinLength" :middle></vaadin-text-field> 
+      </column> 
+     </row> 
+     <row> 
+      <column> 
+       <vaadin-label size-auto plain-text :middle>
+         Maximum hossz: 
+       </vaadin-label> 
+      </column> 
+      <column> 
+       <vaadin-text-field width="253px" _id="txtMaxLength" :middle></vaadin-text-field> 
+      </column> 
+     </row> 
+     <row> 
+      <column> 
+       <vaadin-label size-auto plain-text :middle>
+         Legalább ennyi számot kell tartalmaznia: 
+       </vaadin-label> 
+      </column> 
+      <column> 
+       <vaadin-text-field width="253px" _id="txtMinDigChar" :middle></vaadin-text-field> 
+      </column> 
+     </row> 
+     <row> 
+      <column> 
+       <vaadin-label size-auto plain-text :middle>
+         Legalább ennyi nagybetűt kell tartalmaznia: 
+       </vaadin-label> 
+      </column> 
+      <column> 
+       <vaadin-text-field width="253px" _id="txtMinUpperChar" :middle></vaadin-text-field> 
+      </column> 
+     </row> 
+     <row> 
+      <column> 
+       <vaadin-label size-auto plain-text :middle>
+         Legalább ennyi kisbetűt kell tartalmaznia: 
+       </vaadin-label> 
+      </column> 
+      <column> 
+       <vaadin-text-field width="253px" _id="txtMinLowerChar" :middle></vaadin-text-field> 
+      </column> 
+     </row> 
+     <row> 
+      <column> 
+       <vaadin-label size-auto plain-text :middle>
+         A karakterszabályok közül ennyit kell teljesíteni: 
+       </vaadin-label> 
+      </column> 
+      <column> 
+       <vaadin-text-field width="253px" _id="txtMinRules" :middle></vaadin-text-field> 
+      </column> 
+     </row> 
+     <row> 
+      <column> 
+       <vaadin-button plain-text _id="btnSave" :middle :center>
+         Mentés 
+       </vaadin-button> 
+      </column> 
+      <column> 
+       <vaadin-button plain-text _id="btnReset" :middle :center>
+         Visszaállítás alapértelmezetre 
+       </vaadin-button> 
+      </column> 
+     </row> 
+    </vaadin-grid-layout> 
+   </vaadin-vertical-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

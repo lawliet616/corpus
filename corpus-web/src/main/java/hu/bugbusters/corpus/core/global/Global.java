@@ -13,4 +13,8 @@ public class Global {
 
 	public static final int FULLNAMELENGTH_IN_USERNAME       = 3;
 	public static final char ADDITIONALCHARACTER_IN_USERNAME = 'A';
+	
+	public static final int MIN_PASSWORD_LENGTH              = 5;
+	public static final int MAX_PASSWORD_LENGTH              = 30;
+	public static final int NUMBER_OF_PASSWORD_RULES         = 3;
 }

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -44,5 +45,5 @@ public class Course implements Serializable {
 	@Getter
 	@Setter
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "courses")
-	private Set<RegisteredUser> students;
+	private Set<RegisteredUser> students = new HashSet<>();
 }

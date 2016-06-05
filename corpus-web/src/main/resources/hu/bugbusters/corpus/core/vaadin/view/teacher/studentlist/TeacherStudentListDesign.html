@@ -5,13 +5,11 @@
   <meta charset="UTF-8" name="package-mapping" content="com_vaadin_addon_calendar_ui:com.vaadin.addon.calendar.ui">
  </head> 
  <body> 
-  <vaadin-vertical-split-panel locked split-position="26.566416%"> 
-   <vaadin-option-group item-caption-mode="id" _id="selectGroup"> 
-    <option>Option 1</option> 
-    <option>Option 2</option> 
-    <option>Option 3</option> 
-   </vaadin-option-group> 
-   <vaadin-grid size-full _id="studentTable"></vaadin-grid> 
-  </vaadin-vertical-split-panel>  
+  <vaadin-horizontal-layout spacing size-full margin> 
+   <vaadin-horizontal-layout size-full _id="layout" :middle :center> 
+    <vaadin-option-group caption="Szűrés kurzus szerint" item-caption-mode="id" _id="selectGroup"></vaadin-option-group> 
+    <vaadin-grid size-full _id="grid" :right></vaadin-grid> 
+   </vaadin-horizontal-layout> 
+  </vaadin-horizontal-layout>  
  </body>
 </html>

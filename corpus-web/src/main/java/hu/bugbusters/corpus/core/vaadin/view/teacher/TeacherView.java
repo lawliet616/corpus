@@ -46,7 +46,7 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				((CorpusUI) getUI()).navigate(SettingsView.NAME);
+				((CorpusUI) getUI()).navigate(ChangePasswordView.NAME);
 			}
 		});
 		homepageSButton.addClickListener(new ClickListener() {
@@ -61,7 +61,7 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 	protected void changeContet(Component component) {
 		content.removeAllComponents();
 		content.addComponent(component);
-		content.setComponentAlignment(component, Alignment.TOP_LEFT);
+		content.setComponentAlignment(component, Alignment.MIDDLE_CENTER);
 
 	}
 
@@ -77,8 +77,6 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 			component = new ChangePasswordView();
 		} else if (subView.equals(TeacherStudentListView.NAME)) {
 			component = new TeacherStudentListView();
-		} else if (subView.equals(SettingsView.NAME)) {
-			component = new SettingsView();
 		}else{
 			component = new AdminHomepageView();
 		}

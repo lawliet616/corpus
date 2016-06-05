@@ -5,6 +5,7 @@ import com.vaadin.ui.UI;
 
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.global.Global;
 
 public class Login {
@@ -19,7 +20,12 @@ public class Login {
 	}
 	
 	public static RegisteredUser getLoggedInUser() {
-		return new DaoImpl().getUserById(getLoggedInUserId());
+		try {
+			return new DaoImpl().getUserById(getLoggedInUserId());
+		} catch (UserNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	public static boolean loggedIn() {

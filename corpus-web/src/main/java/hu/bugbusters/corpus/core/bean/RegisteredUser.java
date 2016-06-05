@@ -6,6 +6,7 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import hu.bugbusters.corpus.core.bean.join.Inbox;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.util.RoleConverter;
 import lombok.Getter;

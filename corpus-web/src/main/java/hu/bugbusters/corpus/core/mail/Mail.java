@@ -1,7 +1,11 @@
 package hu.bugbusters.corpus.core.mail;
 
+import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import hu.bugbusters.corpus.core.bean.join.Inbox;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
+import hu.bugbusters.corpus.core.factories.MessageFactory;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -10,15 +14,17 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 public class Mail {
     private static final String from = "corpus.message@gmail.com";
     private static final String password = "a1s2d3!%";
     private static final String host = "smtp.gmail.com";
     private static final int port = 465;
-
+    private static final Dao dao = new DaoImpl();
     private static Session getSession() {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.host", host);
@@ -33,42 +39,62 @@ public class Mail {
         });
     }
 
-    private static void send(String senderName, InternetAddress[] addresses, String subject, String text, boolean containsHtml)
-            throws MessagingException {
-        MimeMessage message = new MimeMessage(getSession());
-        message.setFrom(new InternetAddress(from));
-        message.setSubject(subject);
-        message.addRecipients(Message.RecipientType.TO, addresses);
+    private static void send(Long senderId, InternetAddress[] addresses, String subject, String message, boolean containsHtml)
+            throws MessagingException, UserNotFoundException {
+
+        RegisteredUser sender = dao.getUserById(senderId);
+
+        MimeMessage msg = new MimeMessage(getSession());
+        msg.setFrom(new InternetAddress(from));
+        msg.setSubject(subject);
+        msg.addRecipients(Message.RecipientType.TO, addresses);
         if(containsHtml){
-            message.setText(text);
+            msg.setText(message);
         } else {
-            message.setContent(text,"text/html");
+            msg.setContent(message,"text/html");
         }
-        Transport.send(message);
+        Transport.send(msg);
 
-        store(senderName, subject, text, containsHtml);
+        store(sender, addresses, subject, message);
     }
 
-    private static void store(String senderName, String subject, String text, boolean containsHtml) {
-        Dao dao = new DaoImpl();
+    private static void store(RegisteredUser sender, InternetAddress[] addresses, String subject, String message) {
+        hu.bugbusters.corpus.core.bean.Message msg = MessageFactory.createMessage(subject, message);
+        // Store for the sender as sentMail
+        sender.getSentMails().add(msg);
+        dao.updateEntity(sender);
 
+        //Store for the receivers as receivedMail
+        RegisteredUser receiver;
+        for (InternetAddress ia : addresses){
+            try {
+                receiver = dao.getUserByEmail(ia.getAddress());
+                Inbox inbox = new Inbox();
+                inbox.setRegisteredUser(receiver);
+                inbox.setMessage(msg);
+                receiver.getReceivedMails().add(inbox);
+                dao.updateEntity(receiver);
+            } catch (UserNotFoundException e) {
+                System.out.print("Invalid email address: " + ia.getAddress());
+            }
+        }
     }
 
-    public static void sendMail(String senderName, String to, String subject, String text, boolean containsHtml)
-            throws MessagingException {
+    public static void sendMail(Long senderId, String to, String subject, String message, boolean containsHtml)
+            throws MessagingException, UserNotFoundException {
         InternetAddress[] addresses = new InternetAddress[1];
         addresses[0] = new InternetAddress(to);
 
-        send(senderName, addresses, subject, text, containsHtml);
+        send(senderId, addresses, subject, message, containsHtml);
     }
 
-    public static void sendMail(String senderName, List<String> toList, String subject, String text, boolean containsHtml)
-            throws MessagingException {
+    public static void sendMail(Long senderId, List<String> toList, String subject, String message, boolean containsHtml)
+            throws MessagingException, UserNotFoundException {
         InternetAddress[] addresses = new InternetAddress[toList.size()];
         for (int i = 0; i < toList.size(); i++) {
             addresses[i] = new InternetAddress(toList.get(i));
         }
 
-        send(senderName, addresses, subject, text, containsHtml);
+        send(senderId, addresses, subject, message, containsHtml);
     }
 }

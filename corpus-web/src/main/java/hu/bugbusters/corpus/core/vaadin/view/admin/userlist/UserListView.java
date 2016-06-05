@@ -77,5 +77,4 @@ public class UserListView extends UserListDesign implements View {
 	public void enter(ViewChangeEvent event) {
 
 	}
-
 }

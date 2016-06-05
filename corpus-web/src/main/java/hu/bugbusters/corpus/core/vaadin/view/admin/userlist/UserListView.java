@@ -65,10 +65,10 @@ public class UserListView extends UserListDesign implements View {
 		userDataSource.setBeanIdProperty("id");
 		userDataSource.addAll(dao.listAllUsers());
 		registeredUserTable.setContainerDataSource(userDataSource);
-		registeredUserTable.setVisibleColumns("username", "role", "fullname", "email");
+		registeredUserTable.setVisibleColumns("username", "role", "fullName", "email");
 		registeredUserTable.setColumnHeader("username", "Felhasználónév");
 		registeredUserTable.setColumnHeader("role", "Jogosultság");
-		registeredUserTable.setColumnHeader("fullname", "Név");
+		registeredUserTable.setColumnHeader("fullName", "Név");
 		registeredUserTable.setColumnHeader("email", "E-mail cím");
 	}
 
@@ -76,5 +76,4 @@ public class UserListView extends UserListDesign implements View {
 	public void enter(ViewChangeEvent event) {
 
 	}
-
 }

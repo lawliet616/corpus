@@ -1,7 +1,7 @@
 package hu.bugbusters.corpus.core.util;
 
 import hu.bugbusters.corpus.core.bean.Course;
-import hu.bugbusters.corpus.core.bean.Inbox;
+import hu.bugbusters.corpus.core.bean.join.Inbox;
 import hu.bugbusters.corpus.core.bean.Message;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;

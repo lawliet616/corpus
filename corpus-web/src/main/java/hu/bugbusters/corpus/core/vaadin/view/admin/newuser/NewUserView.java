@@ -45,24 +45,39 @@ public class NewUserView extends NewUserDesign implements View {
 			String name = txtName.getValue();
 			String email = txtEmail.getValue();
 			Role role = (Role) cmbRoles.getValue();
-			UserFactory factory = UserFactory.getUserFactory();
-			try {
-				RegisteredUser user = factory.createRegisteredUser(name, email, role);
-				new DaoImpl().saveEntity(user);
-				Notification.show("Sikeres mentés.", Notification.Type.HUMANIZED_MESSAGE);
-				txtName.clear();
-				txtEmail.clear();
-				txtName.focus();
-			} catch (CannotPerformOperationException | InvalidHashException e) {
-				Notification.show("Hiba a felhasználó létrehozása közben!", Notification.Type.WARNING_MESSAGE);
-				e.printStackTrace();
-			} catch (EmailAlreadyExistException e) {
-				Notification.show("Ez az e-mail cím már használatban van.", Notification.Type.WARNING_MESSAGE);
+			if (isNameReal(name)) {
+				UserFactory factory = UserFactory.getUserFactory();
+				try {
+					RegisteredUser user = factory.createRegisteredUser(name, email, role);
+					new DaoImpl().saveEntity(user);
+					Notification.show("Sikeres mentés.", Notification.Type.HUMANIZED_MESSAGE);
+					txtName.clear();
+					txtEmail.clear();
+					txtName.focus();
+				} catch (CannotPerformOperationException | InvalidHashException e) {
+					Notification.show("Hiba a felhasználó létrehozása közben!", Notification.Type.WARNING_MESSAGE);
+					e.printStackTrace();
+				} catch (EmailAlreadyExistException e) {
+					Notification.show("Ez az e-mail cím már használatban van.", Notification.Type.WARNING_MESSAGE);
+					e.printStackTrace();
+				}
+			} else {
+				Notification.show("Ez nem valódi név.", Notification.Type.WARNING_MESSAGE);
 			}
 		} else {
 			Notification.show("Nem töltött ki minden adatot, vagy nem választott jogosultságot!",
 					Notification.Type.WARNING_MESSAGE);
 		}
+	}
+
+	private boolean isNameReal(String name) {
+		char[] array = name.toCharArray();
+		for (char c : array) {
+			if(Character.isDigit(c)){
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private boolean isValidValues() {

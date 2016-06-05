@@ -39,7 +39,7 @@ public class SelfDetailsView extends SelfDetailsDesign implements View {
 	private void fillTable() {
 		RegisteredUser user = Login.getLoggedInUser();
 		lblEmail.setValue(user.getEmail());
-		lblName.setValue(user.getFullname());
+		lblName.setValue(user.getFullName());
 		lblUsername.setValue(user.getUsername());
 
 	}

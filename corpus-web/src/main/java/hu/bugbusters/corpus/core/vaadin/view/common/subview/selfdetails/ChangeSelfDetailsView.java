@@ -42,7 +42,7 @@ public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements Vi
 		dao = new DaoImpl();
 		registeredUser = Login.getLoggedInUser();
 		txtEmail.setValue(registeredUser.getEmail());
-		txtName.setValue(registeredUser.getFullname());
+		txtName.setValue(registeredUser.getFullName());
 	}
 
 	protected void checkNewDetails() {
@@ -55,7 +55,7 @@ public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements Vi
 
 	private void updateUser() {
 		registeredUser.setEmail(txtEmail.getValue());
-		registeredUser.setFullname(txtName.getValue());
+		registeredUser.setFullName(txtName.getValue());
 		dao.updateEntity(registeredUser);
 		Notification.show("Sikeresen megváltoztatta az adatait!", Notification.Type.HUMANIZED_MESSAGE);
 		((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);

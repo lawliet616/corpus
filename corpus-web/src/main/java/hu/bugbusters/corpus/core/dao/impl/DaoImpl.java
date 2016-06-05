@@ -192,4 +192,56 @@ public class DaoImpl implements Dao {
 		session.close();
 	}
 
+
+	@Override
+	public <T> void saveEntities(T... entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx  = session.beginTransaction();
+
+		for (int i = 0; i < entities.length; i++) {
+
+			session.save(entities[i]);
+			if (i % BATCH_SIZE == 0) {
+				// flush a batch of inserts and release memory
+				session.flush();
+				session.clear();
+			}
+		}
+
+		tx.commit();
+		session.close();
+	}
+
+	@Override
+	public <T> void updateEntities(T... entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx  = session.beginTransaction();
+
+		for (int i = 0; i < entities.length; i++) {
+
+			session.update(entities[i]);
+			if (i % BATCH_SIZE == 0) {
+				// flush a batch of inserts and release memory
+				session.flush();
+				session.clear();
+			}
+		}
+
+		tx.commit();
+		session.close();
+	}
+
+	@Override
+	public <T> void deleteEntities(T... entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx  = session.beginTransaction();
+
+		for (int i = 0; i < entities.length; i++) {
+			session.delete(entities[i]);
+		}
+
+		tx.commit();
+		session.close();
+	}
+
 }

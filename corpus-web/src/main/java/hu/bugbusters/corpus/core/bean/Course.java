@@ -6,19 +6,12 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "course")
+@Table(name = "course", catalog = "CORPUS", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "name")})
 public class Course implements Serializable {
 	@Getter
 	@Setter
@@ -36,7 +29,7 @@ public class Course implements Serializable {
 	@Getter
 	@Setter
 	@Column(name = "room")
-	private int room;
+	private String room;
 
 	@Getter
 	@Setter
@@ -45,8 +38,8 @@ public class Course implements Serializable {
 
 	@Getter
 	@Setter
-	@Column(name = "professor")
-	private String professor;
+	@Column(name = "teacher")
+	private String teacher;
 
 	@Getter
 	@Setter

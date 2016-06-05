@@ -33,4 +33,8 @@ public interface Dao {
 	<T> void saveEntities(List<T> entities);
 	<T> void updateEntities(List<T> entities);
 	<T> void deleteEntities(List<T> entities);
+
+	<T> void saveEntities(T... entities);
+	<T> void updateEntities(T... entities);
+	<T> void deleteEntities(T... entities);
 }

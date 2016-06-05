@@ -23,7 +23,7 @@ public class UserFactory {
 	public RegisteredUser createRegisteredUser(String name, String email, Role role)
 			throws CannotPerformOperationException, InvalidHashException {
 		registeredUser = new RegisteredUser();
-		registeredUser.setFullname(name);
+		registeredUser.setFullName(name);
 		registeredUser.setEmail(email);
 		registeredUser.setRole(role);
 		registeredUser.setUsername(createUsername(name));

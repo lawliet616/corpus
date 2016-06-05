@@ -1,6 +1,7 @@
 package hu.bugbusters.corpus.core.bean;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -10,14 +11,14 @@ import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "message")
+@Table(name = "message", catalog = "CORPUS")
 public class Message implements Serializable {
+	@Getter
+	@Setter
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "message_seq", allocationSize = 1)
 	@Column(name = "id", nullable = false)
-	@Getter
-	@Setter
 	private Long id;
 	
 	@Getter
@@ -33,10 +34,10 @@ public class Message implements Serializable {
 	@Getter
 	@Setter
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "sentMails")
-	private Set<RegisteredUser> registeredUserSent;
+	private Set<RegisteredUser> sentMessages = new HashSet<>();
 
 	@Getter
 	@Setter
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.message")
-	private Set<RegisteredUser> registeredUserInbox;
+	private Set<Inbox> receivedMessages = new HashSet<>();
 }

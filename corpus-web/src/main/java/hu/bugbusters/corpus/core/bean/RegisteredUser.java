@@ -1,6 +1,7 @@
 package hu.bugbusters.corpus.core.bean;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -12,11 +13,13 @@ import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "registereduser")
+@Table(name = "registered_user", catalog = "CORPUS", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "username"),
+		@UniqueConstraint(columnNames = "email") })
 public class RegisteredUser implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
-	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "registereduser_seq", allocationSize = 1)
+	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "registered_user_seq", allocationSize = 1)
 	@Column(name = "id", nullable = false)
 	@Getter
 	@Setter
@@ -40,8 +43,8 @@ public class RegisteredUser implements Serializable {
 
 	@Getter
 	@Setter
-	@Column(name = "fullname")
-	private String fullname;
+	@Column(name = "full_name")
+	private String fullName;
 
 	@Getter
 	@Setter
@@ -51,23 +54,23 @@ public class RegisteredUser implements Serializable {
 	@Getter
 	@Setter
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "registereduser_course", joinColumns = {
+	@JoinTable(name = "registered_user_course", catalog = "CORPUS", joinColumns = {
 			@JoinColumn(name = "r_id", nullable = false, updatable = false)},
 			inverseJoinColumns = {@JoinColumn(name = "c_id",
 					nullable = false, updatable = false)})
-	private Set<Course> courses;
+	private Set<Course> courses = new HashSet<>();
 
 	@Getter
 	@Setter
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "sent", joinColumns = {
+	@JoinTable(name = "sent", catalog = "CORPUS", joinColumns = {
 			@JoinColumn(name = "r_id", nullable = false, updatable = false)},
 			inverseJoinColumns = {@JoinColumn(name = "m_id",
 					nullable = false, updatable = false)})
-	private Set<Message> sentMails;
+	private Set<Message> sentMails = new HashSet<>();
 
 	@Getter
 	@Setter
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registereduser", cascade=CascadeType.ALL)
-	private Set<Message> receivedMails;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registered_user", cascade=CascadeType.ALL)
+	private Set<Inbox> receivedMails = new HashSet<>();
 }

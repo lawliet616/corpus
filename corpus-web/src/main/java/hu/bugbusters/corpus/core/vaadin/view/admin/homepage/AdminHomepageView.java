@@ -12,7 +12,7 @@ public class AdminHomepageView extends AdminHomepageDesign implements View {
 	
 	public AdminHomepageView() {
 		user = Login.getLoggedInUser();
-		lblWelcome.setValue("Üdvözöllek "+user.getFullname()+"! Jó munkát!");
+		lblWelcome.setValue("Üdvözöllek "+user.getFullName()+"! Jó munkát!");
 	}
 
 	@Override

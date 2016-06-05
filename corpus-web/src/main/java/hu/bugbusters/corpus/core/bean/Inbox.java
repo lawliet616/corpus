@@ -6,9 +6,9 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "inbox")
+@Table(name = "inbox", catalog="CORPUS")
 @AssociationOverrides({
-        @AssociationOverride(name = "pk.registereduser",
+        @AssociationOverride(name = "pk.registered_user",
                 joinColumns = @JoinColumn(name = "r_id")),
         @AssociationOverride(name = "pk.message",
                 joinColumns = @JoinColumn(name = "m_id")) })
@@ -21,7 +21,7 @@ public class Inbox implements java.io.Serializable {
     @Getter
     @Setter
     @Column(name = "seen", nullable = false)
-    private boolean seen;
+    private char seen;
 
     @Transient
     public RegisteredUser getRegisteredUser() {

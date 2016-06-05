@@ -21,6 +21,7 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 	public static final String NAME = "Login";
 
 	public LoginView() {
+		this.addComponents();
 		button.addClickListener(this);
 	}
 

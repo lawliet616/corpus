@@ -18,6 +18,7 @@ import com.vaadin.ui.Table.ColumnGenerator;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
 
 @SuppressWarnings("serial")
@@ -72,7 +73,7 @@ public class UserListView extends UserListDesign implements View {
 	private void fillUserTable() {
 		userDataSource = new BeanContainer<Long, RegisteredUser>(RegisteredUser.class);
 		userDataSource.setBeanIdProperty("id");
-		userDataSource.addAll(dao.listAllUsers());
+		refillTable();
 		registeredUserTable.setContainerDataSource(userDataSource);
 		registeredUserTable.addGeneratedColumn("delete", new ColumnGenerator() {
 
@@ -99,9 +100,19 @@ public class UserListView extends UserListDesign implements View {
 		registeredUserTable.setColumnHeader("delete", "Törlés");
 	}
 
+	private void refillTable() {
+		userDataSource.removeAllItems();
+		userDataSource.addAll(dao.listAllUsers());
+	}
+
 	private void deleteElement(RegisteredUser user) {
-		dao.deleteEntity(user);
-		Notification.show("Sikeres törlés.", Notification.Type.HUMANIZED_MESSAGE);
+		if (user.getId() != Login.getLoggedInUserId()) {
+			dao.deleteEntity(user);
+			Notification.show("Sikeresen törölte a felhasználót!", Notification.Type.HUMANIZED_MESSAGE);
+			refillTable();
+		} else {
+			Notification.show("Saját magadat nem törölheted ki.", Notification.Type.WARNING_MESSAGE);
+		}
 	}
 
 	@Override

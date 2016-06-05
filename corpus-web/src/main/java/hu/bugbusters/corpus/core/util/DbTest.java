@@ -6,6 +6,8 @@ import hu.bugbusters.corpus.core.bean.Message;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
+import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.factories.CourseFactory;
 import hu.bugbusters.corpus.core.factories.MessageFactory;
 import hu.bugbusters.corpus.core.factories.UserFactory;
@@ -127,6 +129,24 @@ public class DbTest {
             dao.saveEntities(inbox, inbox2, inbox3, inbox4);
             dao.updateEntities(user1, user2);
 
+
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    public static void testDb(){
+        Dao dao = new DaoImpl();
+
+        try {
+            RegisteredUser user1 = dao.getUserByUserName("US12016A");
+            RegisteredUser user2 = dao.getUserByUserName("US22016A");
+            RegisteredUser teacher1 = dao.getUserByUserName("TEA2016A");
+
+            Course course1 = dao.getCourseByName("course1");
+            Course course2 = dao.getCourseByName("course2");
+
             System.out.println("user1 kurzusainak száma (2): " + user1.getCourses().size());
             System.out.println("user2 kurzusainak száma (2): " + user2.getCourses().size());
             System.out.println("teacher1 kurzusainak száma (2): " + teacher1.getCourses().size());
@@ -138,8 +158,9 @@ public class DbTest {
             System.out.println("course1 diákjainak száma (3): " + course1.getStudents().size());
             System.out.println("course2 diákjainak száma (3): " + course2.getStudents().size());
 
-        } catch (Exception ex){
-            ex.printStackTrace();
+        } catch (UserNotFoundException | CourseNotFoundException e) {
+            e.printStackTrace();
         }
+
     }
 }

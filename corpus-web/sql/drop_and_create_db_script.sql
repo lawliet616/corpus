@@ -58,6 +58,7 @@ CREATE TABLE CORPUS.message (
 	id number(19,0) not null,
 	subject varchar2(255 char) not null,
   message varchar2(4000 char) not null,
+  time timestamp default current_timestamp,
 	primary key (id)
 );
 
@@ -74,7 +75,7 @@ CREATE TABLE CORPUS.sent (
 CREATE TABLE CORPUS.inbox (
 	r_id number(19,0) not null,
 	m_id number(19,0) not null,
-  seen char(1)  not null check (seen in ( 'Y', 'N' )),
+  seen char(1) not null check (seen in ( 'Y', 'N' )),
 	primary key(r_id, m_id),
 	constraint fk_registered_user3 foreign key (r_id) 
     references CORPUS.registered_user(id) ON DELETE CASCADE,

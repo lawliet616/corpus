@@ -33,6 +33,11 @@ public class Message implements Serializable {
 
 	@Getter
 	@Setter
+	@Column(name = "time")
+	private String time;
+
+	@Getter
+	@Setter
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "sentMails")
 	private Set<RegisteredUser> sentMessages = new HashSet<>();
 

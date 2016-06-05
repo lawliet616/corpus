@@ -71,6 +71,6 @@ public class RegisteredUser implements Serializable {
 
 	@Getter
 	@Setter
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registered_user", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registeredUser", cascade=CascadeType.ALL)
 	private Set<Inbox> receivedMails = new HashSet<>();
 }

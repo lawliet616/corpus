@@ -14,6 +14,7 @@ import hu.bugbusters.corpus.core.exceptions.InvalidPasswordException;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.password.Password;
+import hu.bugbusters.corpus.core.util.DbTest;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 @SuppressWarnings("serial")
@@ -21,7 +22,6 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 	public static final String NAME = "Login";
 
 	public LoginView() {
-		this.addComponents();
 		button.addClickListener(this);
 	}
 

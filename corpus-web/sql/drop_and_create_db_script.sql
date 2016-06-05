@@ -8,6 +8,7 @@ DROP TABLE CORPUS.inbox cascade constraints;
 
 DROP SEQUENCE CORPUS.registered_user_seq;
 DROP SEQUENCE CORPUS.course_seq;
+DROP SEQUENCE CORPUS.message_seq;
 
 CREATE TABLE CORPUS.registered_user (
 	id number(19,0) not null,
@@ -77,6 +78,7 @@ CREATE TABLE CORPUS.inbox (
 
 CREATE SEQUENCE CORPUS.registered_user_seq;
 CREATE SEQUENCE CORPUS.course_seq;
+CREATE SEQUENCE CORPUS.message_seq;
 
 INSERT INTO CORPUS.password_settings(id) VALUES(1);
 COMMIT;

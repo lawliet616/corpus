@@ -32,10 +32,10 @@ public class DbTest {
             admin.setPassword(Password.toDatabaseHash("admin"));
             admin.setEmail("admin@admin.com");
 
-            RegisteredUser teacher1 = factory.createRegisteredUser("teacher1", "teacher1@ggmail.com", Role.TEACHER);
+            RegisteredUser teacher1 = factory.createRegisteredUser("teacher1", "teacher1@gmail.com", Role.TEACHER);
 
-            RegisteredUser user1 = factory.createRegisteredUser("user1", "user1@ggmail.com", Role.USER);
-            RegisteredUser user2 = factory.createRegisteredUser("user1", "user1@ggmail.com", Role.USER);
+            RegisteredUser user1 = factory.createRegisteredUser("us1", "user1@gmail.com", Role.USER);
+            RegisteredUser user2 = factory.createRegisteredUser("us2", "user2@gmail.com", Role.USER);
 
             Course course1 = CourseFactory.createCourse("course1","001",1,"teacher1");
             Course course2 = CourseFactory.createCourse("course2","002",2,"teacher1");
@@ -83,25 +83,31 @@ public class DbTest {
             messages.add(msg1);
             messages.add(msg2);
             teacher1.setSentMails(messages);
-
+            dao.updateEntity(teacher1);
+            
             //userek fogadják
             Inbox inbox = new Inbox();
             inbox.setSeen('N');
             inbox.setMessage(msg1);
-            // első evél eső srácnak
             inbox.setRegisteredUser(user1);
-            user1.getReceivedMails().add(inbox);
-            // majd másodiknak
-            inbox.setRegisteredUser(user2);
-            user2.getReceivedMails().add(inbox);
-            // második levél másodiknak
-            inbox.setMessage(msg2);
-            user2.getReceivedMails().add(inbox);
-            // majd elsőnek
-            inbox.setRegisteredUser(user1);
-            user1.getReceivedMails().add(inbox);
-
-            dao.updateEntities(teacher1, user1, user2);
+      
+            Inbox inbox2 = new Inbox();
+            inbox2.setSeen('N');
+            inbox2.setMessage(msg2);
+            inbox2.setRegisteredUser(user1);
+           
+            Inbox inbox3 = new Inbox();
+            inbox3.setSeen('N');
+            inbox3.setMessage(msg1);
+            inbox3.setRegisteredUser(user2);
+            
+            Inbox inbox4 = new Inbox();
+            inbox4.setSeen('N');
+            inbox4.setMessage(msg2);
+            inbox4.setRegisteredUser(user2);
+          
+            dao.saveEntities(inbox, inbox2, inbox3, inbox4);
+            
         } catch (Exception ex){
             ex.printStackTrace();
         }

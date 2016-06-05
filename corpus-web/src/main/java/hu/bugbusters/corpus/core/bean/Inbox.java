@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "inbox", catalog="CORPUS")
 @AssociationOverrides({
-        @AssociationOverride(name = "pk.registered_user",
+        @AssociationOverride(name = "pk.registeredUser",
                 joinColumns = @JoinColumn(name = "r_id")),
         @AssociationOverride(name = "pk.message",
                 joinColumns = @JoinColumn(name = "m_id")) })

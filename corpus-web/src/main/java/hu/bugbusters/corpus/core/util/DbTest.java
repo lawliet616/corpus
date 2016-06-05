@@ -32,15 +32,12 @@ public class DbTest {
             admin.setPassword(Password.toDatabaseHash("admin"));
             admin.setEmail("admin@admin.com");
 
-            RegisteredUser teacher1 = factory.createRegisteredUser("teacher1", "teacher1@gmail.com", Role.TEACHER);
-
-            RegisteredUser user1 = factory.createRegisteredUser("us1", "user1@gmail.com", Role.USER);
-            RegisteredUser user2 = factory.createRegisteredUser("us2", "user2@gmail.com", Role.USER);
-
-            Course course1 = CourseFactory.createCourse("course1","001",1,"teacher1");
-            Course course2 = CourseFactory.createCourse("course2","002",2,"teacher1");
-
-            dao.saveEntities(admin, teacher1, user1, user2, course1, course2);
+            RegisteredUser teacher1 = factory.createAndSaveRegisteredUser("teacher1", "teacher1@gmail.com", Role.TEACHER);
+            RegisteredUser user1 = factory.createAndSaveRegisteredUser("us1", "user1@gmail.com", Role.USER);
+            RegisteredUser user2 = factory.createAndSaveRegisteredUser("us2", "user2@gmail.com", Role.USER);
+            
+            Course course1 = CourseFactory.createAndSaveCourse("course1","001",1,"teacher1");
+            Course course2 = CourseFactory.createAndSaveCourse("course2","002",2,"teacher1");
 
             /*
                 Kapcsolatok létrehozása Userek és Course-ok között
@@ -68,10 +65,8 @@ public class DbTest {
                 Message létrehozása.
              */
 
-            Message msg1 = MessageFactory.createMessage("subject1","message1");
-            Message msg2 = MessageFactory.createMessage("subject2","message2");
-
-            dao.saveEntities(msg1, msg2);
+            Message msg1 = MessageFactory.createAndSaveMessage("subject1","message1");
+            Message msg2 = MessageFactory.createAndSaveMessage("subject2","message2");
 
             /*
                 message-k kiküldése

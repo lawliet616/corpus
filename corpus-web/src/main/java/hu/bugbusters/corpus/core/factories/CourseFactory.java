@@ -5,16 +5,7 @@ import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 
 public class CourseFactory {
-    private static CourseFactory ourInstance = new CourseFactory();
-    private Dao dao;
-
-    public static CourseFactory getInstance() {
-        return ourInstance;
-    }
-
-    private CourseFactory() {
-        this.dao = new DaoImpl();
-    }
+    private static Dao dao = new DaoImpl();
 
     public static Course createCourse(String name, String room, int credit, String teacher){
         Course course = new Course();
@@ -25,4 +16,9 @@ public class CourseFactory {
         return course;
     }
 
+    public static Course createAndSaveCourse(String name, String room, int credit, String teacher){
+        Course course = createCourse(name, room, credit, teacher);
+        dao.saveEntity(course);
+        return course;
+    }
 }

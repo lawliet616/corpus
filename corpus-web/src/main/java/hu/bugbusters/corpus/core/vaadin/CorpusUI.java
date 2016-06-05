@@ -8,6 +8,7 @@ import com.vaadin.ui.UI;
 
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
+import hu.bugbusters.corpus.core.util.DbTest;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.AdminView;
 import hu.bugbusters.corpus.core.vaadin.view.login.LoginView;
@@ -33,6 +34,7 @@ public class CorpusUI extends UI implements ViewChangeListener {
 		navigator.addViewChangeListener(this);
 		
 		navigate();
+		
 	}
 	
 	public void navigate() {

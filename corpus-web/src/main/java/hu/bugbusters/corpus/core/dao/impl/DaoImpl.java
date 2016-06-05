@@ -7,6 +7,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
 
 import hu.bugbusters.corpus.core.bean.Course;
@@ -54,7 +55,7 @@ public class DaoImpl implements Dao {
         transaction.commit();
         session.close();
 
-        if(course == null) throw new CourseNotFoundException();
+        if (course == null) throw new CourseNotFoundException();
 
         return course;
     }
@@ -85,7 +86,7 @@ public class DaoImpl implements Dao {
         transaction.commit();
         session.close();
 
-        if(user == null) throw  new UserNotFoundException();
+        if (user == null) throw new UserNotFoundException();
 
         return user;
     }
@@ -161,7 +162,8 @@ public class DaoImpl implements Dao {
         Session session = SESSION_FACTORY.openSession();
         Transaction transaction = session.beginTransaction();
 
-        session.delete(entity);
+        deletePersistentEntity(session, entity);
+
         transaction.commit();
         session.close();
     }
@@ -210,7 +212,7 @@ public class DaoImpl implements Dao {
         Transaction tx = session.beginTransaction();
 
         for (T entity : entities) {
-            session.delete(entity);
+            deletePersistentEntity(session, entity);
         }
 
         tx.commit();
@@ -261,11 +263,19 @@ public class DaoImpl implements Dao {
         Transaction tx = session.beginTransaction();
 
         for (T entity : entities) {
-            session.delete(entity);
+            deletePersistentEntity(session, entity);
         }
 
         tx.commit();
         session.close();
     }
 
+    private <T> void deletePersistentEntity(Session session, T entity) {
+        Object persistentInstance = session.createCriteria(entity.getClass()).add(Example.create(entity)).uniqueResult();
+        if (persistentInstance != null) {
+            session.delete(persistentInstance);
+        } else {
+            System.out.println("Entity not found in database.");
+        }
+    }
 }

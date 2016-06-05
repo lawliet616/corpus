@@ -1,7 +1,6 @@
-package hu.bugbusters.corpus.core.bean.join;
+package hu.bugbusters.corpus.core.bean;
 
-import hu.bugbusters.corpus.core.bean.Message;
-import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import hu.bugbusters.corpus.core.bean.join.InboxId;
 import lombok.Getter;
 import lombok.Setter;
 

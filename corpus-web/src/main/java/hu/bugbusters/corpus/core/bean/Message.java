@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import hu.bugbusters.corpus.core.bean.join.Inbox;
 import lombok.Getter;
 import lombok.Setter;
 

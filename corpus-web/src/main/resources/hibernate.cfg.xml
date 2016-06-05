@@ -15,7 +15,7 @@
 		<mapping class="hu.bugbusters.corpus.core.bean.RegisteredUser" />
 		<mapping class="hu.bugbusters.corpus.core.bean.PasswordSettings" />
 		<mapping class="hu.bugbusters.corpus.core.bean.Message" />
-		<mapping class="hu.bugbusters.corpus.core.bean.join.Inbox" />
+		<mapping class="hu.bugbusters.corpus.core.bean.Inbox" />
 		<mapping class="hu.bugbusters.corpus.core.bean.join.InboxId" />
 	</session-factory>
 </hibernate-configuration>

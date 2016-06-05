@@ -5,8 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-import hu.bugbusters.corpus.core.bean.join.Inbox;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.util.RoleConverter;
 import lombok.Getter;
@@ -54,7 +55,7 @@ public class RegisteredUser implements Serializable {
 
 	@Getter
 	@Setter
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "registered_user_course", catalog = "CORPUS", joinColumns = {
 			@JoinColumn(name = "r_id", nullable = false, updatable = false)},
 			inverseJoinColumns = {@JoinColumn(name = "c_id",
@@ -63,7 +64,7 @@ public class RegisteredUser implements Serializable {
 
 	@Getter
 	@Setter
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "sent", catalog = "CORPUS", joinColumns = {
 			@JoinColumn(name = "r_id", nullable = false, updatable = false)},
 			inverseJoinColumns = {@JoinColumn(name = "m_id",
@@ -72,6 +73,6 @@ public class RegisteredUser implements Serializable {
 
 	@Getter
 	@Setter
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registeredUser", cascade=CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registeredUser")
 	private Set<Inbox> receivedMails = new HashSet<>();
 }

@@ -1,7 +1,7 @@
 package hu.bugbusters.corpus.core.util;
 
 import hu.bugbusters.corpus.core.bean.Course;
-import hu.bugbusters.corpus.core.bean.join.Inbox;
+import hu.bugbusters.corpus.core.bean.Inbox;
 import hu.bugbusters.corpus.core.bean.Message;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
@@ -31,6 +31,7 @@ public class DbTest {
             admin.setRole(Role.ADMIN);
             admin.setPassword(Password.toDatabaseHash("admin"));
             admin.setEmail("admin@admin.com");
+            dao.saveEntity(admin);
 
             RegisteredUser teacher1 = factory.createAndSaveRegisteredUser("teacher1", "teacher1@gmail.com", Role.TEACHER);
             RegisteredUser user1 = factory.createAndSaveRegisteredUser("us1", "user1@gmail.com", Role.USER);

@@ -33,6 +33,7 @@ public class UserListView extends UserListDesign implements View {
 			selectGroup.addItem(role);
 		}
 		selectGroup.addItem("Egyik sem");
+		selectGroup.setValue("Egyik sem");
 		selectGroup.addValueChangeListener(new ValueChangeListener() {
 
 			@Override
@@ -65,10 +66,10 @@ public class UserListView extends UserListDesign implements View {
 		userDataSource.setBeanIdProperty("id");
 		userDataSource.addAll(dao.listAllUsers());
 		registeredUserTable.setContainerDataSource(userDataSource);
-		registeredUserTable.setVisibleColumns("username", "role", "fullname", "email");
+		registeredUserTable.setVisibleColumns("username", "role", "fullName", "email");
 		registeredUserTable.setColumnHeader("username", "Felhasználónév");
 		registeredUserTable.setColumnHeader("role", "Jogosultság");
-		registeredUserTable.setColumnHeader("fullname", "Név");
+		registeredUserTable.setColumnHeader("fullName", "Név");
 		registeredUserTable.setColumnHeader("email", "E-mail cím");
 	}
 

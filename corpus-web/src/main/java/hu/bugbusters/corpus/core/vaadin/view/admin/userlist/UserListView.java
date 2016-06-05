@@ -4,9 +4,17 @@ import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanContainer;
+import com.vaadin.data.util.BeanItem;
 import com.vaadin.data.util.filter.SimpleStringFilter;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Table;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Table.ColumnGenerator;
+
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
@@ -46,11 +54,11 @@ public class UserListView extends UserListDesign implements View {
 
 	protected void selectFilter() {
 		userDataSource.removeAllContainerFilters();
-		if(selectGroup.getValue() == Role.ADMIN) {
+		if (selectGroup.getValue() == Role.ADMIN) {
 			userDataSource.addContainerFilter(adminFilter);
-		} else if(selectGroup.getValue() == Role.TEACHER) {
+		} else if (selectGroup.getValue() == Role.TEACHER) {
 			userDataSource.addContainerFilter(teacherFilter);
-		} else if(selectGroup.getValue() == Role.USER) {
+		} else if (selectGroup.getValue() == Role.USER) {
 			userDataSource.addContainerFilter(userFilter);
 		}
 	}
@@ -66,11 +74,34 @@ public class UserListView extends UserListDesign implements View {
 		userDataSource.setBeanIdProperty("id");
 		userDataSource.addAll(dao.listAllUsers());
 		registeredUserTable.setContainerDataSource(userDataSource);
-		registeredUserTable.setVisibleColumns("username", "role", "fullName", "email");
+		registeredUserTable.addGeneratedColumn("delete", new ColumnGenerator() {
+
+			@Override
+			public Object generateCell(final Table source, final Object itemId, Object columnId) {
+				Button btnDelete = new Button("Töröl");
+				btnDelete.addClickListener(new ClickListener() {
+
+					@Override
+					public void buttonClick(ClickEvent event) {
+						BeanItem<RegisteredUser> selectedBean = (BeanItem<RegisteredUser>) source.getItem(itemId);
+						deleteElement(selectedBean.getBean());
+					}
+				});
+
+				return btnDelete;
+			}
+		});
+		registeredUserTable.setVisibleColumns("username", "role", "fullName", "email", "delete");
 		registeredUserTable.setColumnHeader("username", "Felhasználónév");
 		registeredUserTable.setColumnHeader("role", "Jogosultság");
 		registeredUserTable.setColumnHeader("fullName", "Név");
 		registeredUserTable.setColumnHeader("email", "E-mail cím");
+		registeredUserTable.setColumnHeader("delete", "Törlés");
+	}
+
+	private void deleteElement(RegisteredUser user) {
+		dao.deleteEntity(user);
+		Notification.show("Sikeres törlés.", Notification.Type.HUMANIZED_MESSAGE);
 	}
 
 	@Override

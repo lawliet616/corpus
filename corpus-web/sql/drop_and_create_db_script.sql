@@ -36,8 +36,10 @@ CREATE TABLE CORPUS.registered_user_course (
 	r_id number(19,0) not null,
 	c_id number(19,0) not null,
 	primary key(r_id, c_id),
-	constraint fk_registered_user foreign key (r_id) references CORPUS.registered_user(id),
-	constraint fk_course foreign key (c_id) references CORPUS.course(id)
+	constraint fk_registered_user foreign key (r_id) 
+    references CORPUS.registered_user(id) ON DELETE CASCADE,
+	constraint fk_course foreign key (c_id) 
+    references CORPUS.course(id) ON DELETE CASCADE
 );
 
 CREATE TABLE CORPUS.password_settings (
@@ -56,6 +58,7 @@ CREATE TABLE CORPUS.message (
 	id number(19,0) not null,
 	subject varchar2(255 char) not null,
   message varchar2(4000 char) not null,
+  time timestamp default current_timestamp,
 	primary key (id)
 );
 
@@ -63,17 +66,21 @@ CREATE TABLE CORPUS.sent (
 	r_id number(19,0) not null,
 	m_id number(19,0) not null,
 	primary key(r_id, m_id),
-	constraint fk_registered_user2 foreign key (r_id) references CORPUS.registered_user(id),
-	constraint fk_message foreign key (m_id) references CORPUS.message(id)
+	constraint fk_registered_user2 foreign key (r_id) 
+    references CORPUS.registered_user(id) ON DELETE CASCADE,
+	constraint fk_message foreign key (m_id) 
+    references CORPUS.message(id) ON DELETE CASCADE
 );
 
 CREATE TABLE CORPUS.inbox (
 	r_id number(19,0) not null,
 	m_id number(19,0) not null,
-  seen char(1)  not null check (seen in ( 'Y', 'N' )),
+  seen char(1) not null check (seen in ( 'Y', 'N' )),
 	primary key(r_id, m_id),
-	constraint fk_registered_user3 foreign key (r_id) references CORPUS.registered_user(id),
-	constraint fk_message2 foreign key (m_id) references CORPUS.message(id)
+	constraint fk_registered_user3 foreign key (r_id) 
+    references CORPUS.registered_user(id) ON DELETE CASCADE,
+	constraint fk_message2 foreign key (m_id) 
+    references CORPUS.message(id) ON DELETE CASCADE
 );
 
 CREATE SEQUENCE CORPUS.registered_user_seq;

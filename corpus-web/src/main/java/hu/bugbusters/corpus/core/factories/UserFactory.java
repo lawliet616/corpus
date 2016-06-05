@@ -43,6 +43,14 @@ public class UserFactory {
 		return registeredUser;
 	}
 
+	public RegisteredUser createAndSaveRegisteredUser(String name, String email, Role role)
+			throws CannotPerformOperationException, InvalidHashException, EmailAlreadyExistException {
+		RegisteredUser registeredUser = createRegisteredUser(name, email, role);
+		dao.saveEntity(registeredUser);
+
+		return registeredUser;
+	}
+
 	private boolean isEmailUnique(String email) {
 		try {
 			dao.getUserByEmail(email);

@@ -6,7 +6,6 @@ import java.util.Set;
 
 import javax.persistence.*;
 
-import hu.bugbusters.corpus.core.bean.join.Inbox;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,6 +30,11 @@ public class Message implements Serializable {
 	@Setter
 	@Column(name = "message", nullable = false)
 	private String message;
+
+	@Getter
+	@Setter
+	@Column(name = "time")
+	private String time;
 
 	@Getter
 	@Setter

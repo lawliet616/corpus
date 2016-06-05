@@ -58,7 +58,7 @@ CREATE TABLE CORPUS.message (
 	id number(19,0) not null,
 	subject varchar2(255 char) not null,
   message varchar2(4000 char) not null,
-  time timestamp default current_timestamp,
+  time timestamp not null,
 	primary key (id)
 );
 

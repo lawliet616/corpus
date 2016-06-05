@@ -4,6 +4,8 @@ import hu.bugbusters.corpus.core.bean.Message;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 
+import java.sql.Timestamp;
+
 public class MessageFactory {
     private static Dao dao = new DaoImpl();
 
@@ -11,6 +13,7 @@ public class MessageFactory {
         Message msg = new Message();
         msg.setSubject(subject);
         msg.setMessage(message);
+        msg.setTime(new Timestamp(System.currentTimeMillis()));
         return msg;
     }
 

@@ -1,6 +1,7 @@
 package hu.bugbusters.corpus.core.bean;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class Message implements Serializable {
 	@Getter
 	@Setter
 	@Column(name = "time")
-	private String time;
+	private Timestamp time;
 
 	@Getter
 	@Setter

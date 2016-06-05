@@ -9,6 +9,7 @@ import com.vaadin.ui.Button.ClickListener;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.CannotPerformOperationException;
+import hu.bugbusters.corpus.core.exceptions.EmailAlreadyExistException;
 import hu.bugbusters.corpus.core.exceptions.InvalidHashException;
 import hu.bugbusters.corpus.core.factories.UserFactory;
 import hu.bugbusters.corpus.core.login.Role;
@@ -44,17 +45,19 @@ public class NewUserView extends NewUserDesign implements View {
 			String name = txtName.getValue();
 			String email = txtEmail.getValue();
 			Role role = (Role) cmbRoles.getValue();
-			UserFactory factory = new UserFactory();
+			UserFactory factory = UserFactory.getUserFactory();
 			try {
 				RegisteredUser user = factory.createRegisteredUser(name, email, role);
 				new DaoImpl().saveEntity(user);
-				Notification.show("Sikeres mentés.",Notification.Type.HUMANIZED_MESSAGE);
+				Notification.show("Sikeres mentés.", Notification.Type.HUMANIZED_MESSAGE);
 				txtName.clear();
 				txtEmail.clear();
 				txtName.focus();
 			} catch (CannotPerformOperationException | InvalidHashException e) {
 				Notification.show("Hiba a felhasználó létrehozása közben!", Notification.Type.WARNING_MESSAGE);
 				e.printStackTrace();
+			} catch (EmailAlreadyExistException e) {
+				Notification.show("Ez az e-mail cím már használatban van.", Notification.Type.WARNING_MESSAGE);
 			}
 		} else {
 			Notification.show("Nem töltött ki minden adatot, vagy nem választott jogosultságot!",

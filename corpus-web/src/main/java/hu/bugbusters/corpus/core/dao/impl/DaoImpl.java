@@ -15,6 +15,10 @@ import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.password.PasswordRows;
 
+/**
+ * @author Bálint
+ *
+ */
 @SuppressWarnings("unchecked")
 public class DaoImpl implements Dao {
 
@@ -99,6 +103,25 @@ public class DaoImpl implements Dao {
 		return users.get(0);
 	}
 
+	@Override
+	public RegisteredUser getUserByEmail(String email) throws UserNotFoundException{
+		Session session         = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		Criteria crit           = session.createCriteria(RegisteredUser.class);
+		Criterion userNameCrit  = Restrictions.eq("email", email);
+		crit.add(userNameCrit);
+		List<RegisteredUser> users = crit.list();
+		
+		transaction.commit();
+		session.close();
+		
+		if(users.isEmpty()) {
+			throw new UserNotFoundException();
+		}
+		
+		return users.get(0);
+	}
+	
 	@Override
 	public PasswordSettings getPasswordSettings(PasswordRows row) {
 		Session session                   = SESSION_FACTORY.openSession();

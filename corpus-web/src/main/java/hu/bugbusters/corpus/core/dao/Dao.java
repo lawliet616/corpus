@@ -23,6 +23,7 @@ public interface Dao {
 
 	RegisteredUser getUserById(Long id);
 	RegisteredUser getUserByUserName(String name) throws UserNotFoundException;
+	RegisteredUser getUserByEmail(String email) throws UserNotFoundException;
 	
 	PasswordSettings getPasswordSettings(PasswordRows row);
 

@@ -18,7 +18,7 @@ import java.util.Set;
 public class DbTest {
     public static void fillDb(){
         try{
-            UserFactory factory = new UserFactory();
+        	UserFactory factory = UserFactory.getUserFactory();
             Dao dao = new DaoImpl();
 
             /*

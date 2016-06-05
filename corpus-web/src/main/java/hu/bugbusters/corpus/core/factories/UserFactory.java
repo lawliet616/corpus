@@ -6,6 +6,7 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.CannotPerformOperationException;
+import hu.bugbusters.corpus.core.exceptions.EmailAlreadyExistException;
 import hu.bugbusters.corpus.core.exceptions.InvalidHashException;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.global.Global;
@@ -13,40 +14,60 @@ import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.password.Password;
 
 public class UserFactory {
-	private RegisteredUser registeredUser;
+	private static UserFactory factory;
 	private Dao dao;
 
-	public UserFactory() {
+	private UserFactory() {
 		dao = new DaoImpl();
 	}
 
+	public static UserFactory getUserFactory() {
+		if (factory == null) {
+			factory = new UserFactory();
+		}
+		return factory;
+	}
+
 	public RegisteredUser createRegisteredUser(String name, String email, Role role)
-			throws CannotPerformOperationException, InvalidHashException {
-		registeredUser = new RegisteredUser();
+			throws CannotPerformOperationException, InvalidHashException, EmailAlreadyExistException {
+		if(!isEmailUnique(email)) {
+			throw new EmailAlreadyExistException();
+		}
+		RegisteredUser registeredUser = new RegisteredUser();
 		registeredUser.setFullName(name);
 		registeredUser.setEmail(email);
 		registeredUser.setRole(role);
 		registeredUser.setUsername(createUsername(name));
-		registeredUser.setPassword(generatePassword());
+		registeredUser.setPassword(generatePassword(registeredUser));
 
 		return registeredUser;
 	}
 
-	private String generatePassword() throws CannotPerformOperationException, InvalidHashException {
+	private boolean isEmailUnique(String email) {
+		try {
+			dao.getUserByEmail(email);
+			return false;
+		} catch (UserNotFoundException e) {
+			return true;
+		}
+	}
+
+	private String generatePassword(RegisteredUser  registeredUser) throws CannotPerformOperationException, InvalidHashException {
 		String password = Password.toDatabaseHash(registeredUser.getUsername());
-		/* Generate a valid password.
+		/*
+		 * Generate a valid password.
 		 * 
 		 * PasswordGenerator generator = new PasswordGenerator();
-		 * PasswordSettings settings = dao.getPasswordSettings(PasswordRows.CUSTOM);
+		 * PasswordSettings settings =
+		 * dao.getPasswordSettings(PasswordRows.CUSTOM);
 		 * 
-		 * if (settings == null) { 
-		 * 		settings = dao.getPasswordSettings(PasswordRows.DEFAULT);
-		 * }
+		 * if (settings == null) { settings =
+		 * dao.getPasswordSettings(PasswordRows.DEFAULT); }
 		 * 
-		 * List<CharacterRule> rules = new ArrayList<>();
-		 * rules.add(new DigitCharacterRule(settings.getMinDigChar()));
-		 * rules.add(new UppercaseCharacterRule(settings.getMinUpperChar()));
-		 * rules.add(new LowercaseCharacterRule(settings.getMinLowerChar()));
+		 * List<CharacterRule> rules = new ArrayList<>(); rules.add(new
+		 * DigitCharacterRule(settings.getMinDigChar())); rules.add(new
+		 * UppercaseCharacterRule(settings.getMinUpperChar())); rules.add(new
+		 * LowercaseCharacterRule(settings.getMinLowerChar()));
 		 * 
 		 * password = generator.generatePassword(settings.getMaxLength(),
 		 * rules); password = Password.toDatabaseHash(password);
@@ -84,7 +105,7 @@ public class UserFactory {
 	private boolean isUsernameUnique(String username, char lastCharacter) {
 		try {
 			dao.getUserByUserName(username + lastCharacter);
-			
+
 			return false;
 		} catch (UserNotFoundException e) {
 			return true;

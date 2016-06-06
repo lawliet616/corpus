@@ -2227,6 +2227,110 @@ div.v-layout.v-horizontal.v-widget {
  * @group valo-menu
  */
 
+.CorpusTheme .stepper {
+	position: relative;
+}
+
+.CorpusTheme .stepper input[type=text] {
+	line-height: 1.55;
+	font-size: 18px;
+	width: inherit;
+}
+
+.CorpusTheme .stepper.v-has-width input[type=text] {
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.CorpusTheme .stepper.v-disabled {
+	opacity: 0.5;
+}
+
+.CorpusTheme .stepper .stepper-updown {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+
+.CorpusTheme .stepper .stepper-up, .CorpusTheme .stepper .stepper-down {
+	display: block;
+	outline: none;
+	font-size: 18px;
+	line-height: 0.775;
+}
+
+.v-gecko .CorpusTheme .stepper .stepper-updown {
+	top: 4px !important;
+}
+
+.v-trident .CorpusTheme .stepper .stepper-updown {
+	top: 5px !important;
+}
+
+.v-trident .CorpusTheme .stepper .stepper-up, .v-trident .CorpusTheme .stepper .stepper-down {
+	font-size: 14px !important;
+	line-height: 0.5 !important;
+}
+
+.v-sa .CorpusTheme .stepper .stepper-updown {
+	top: 4px;
+	right: 4px;
+}
+
+.CorpusTheme .stepper {
+	position: relative;
+}
+
+.CorpusTheme .stepper input[type=text] {
+	line-height: 1.55;
+	font-size: 18px;
+	width: inherit;
+}
+
+.CorpusTheme .stepper.v-has-width input[type=text] {
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.CorpusTheme .stepper.v-disabled {
+	opacity: 0.5;
+}
+
+.CorpusTheme .stepper .stepper-updown {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+
+.CorpusTheme .stepper .stepper-up, .CorpusTheme .stepper .stepper-down {
+	display: block;
+	outline: none;
+	font-size: 18px;
+	line-height: 0.775;
+}
+
+.v-gecko .CorpusTheme .stepper .stepper-updown {
+	top: 4px !important;
+}
+
+.v-trident .CorpusTheme .stepper .stepper-updown {
+	top: 5px !important;
+}
+
+.v-trident .CorpusTheme .stepper .stepper-up, .v-trident .CorpusTheme .stepper .stepper-down {
+	font-size: 14px !important;
+	line-height: 0.5 !important;
+}
+
+.v-sa .CorpusTheme .stepper .stepper-updown {
+	top: 4px;
+	right: 4px;
+}
+
 .CorpusTheme.v-app, .CorpusTheme.v-app-loading {
 	font: 300 18px/1.55 sans-serif;
 	color: #c1d3e9;

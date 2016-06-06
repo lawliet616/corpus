@@ -1,5 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails;
 
+import org.vaadin.resetbuttonfortextfield.ResetButtonForTextField;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
@@ -19,6 +21,8 @@ public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements Vi
 	private RegisteredUser registeredUser;
 
 	public ChangeSelfDetailsView() {
+		ResetButtonForTextField.extend(txtEmail);
+		ResetButtonForTextField.extend(txtName);
 		fillTheDetails();
 
 		btnCancel.addClickListener(new ClickListener() {

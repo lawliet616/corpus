@@ -7,8 +7,6 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import java.sql.Timestamp;
 
 public class MessageFactory {
-    private static Dao dao = new DaoImpl();
-
     public static Message createMessage(String subject, String message){
         Message msg = new Message();
         msg.setSubject(subject);
@@ -17,7 +15,7 @@ public class MessageFactory {
         return msg;
     }
 
-    public static Message createAndSaveMessage(String subject, String message){
+    public static Message createAndSaveMessage(Dao dao, String subject, String message){
         Message msg = createMessage(subject, message);
         dao.saveEntity(msg);
         return msg;

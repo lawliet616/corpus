@@ -23,6 +23,7 @@ public class Mail {
     private static final String host = "smtp.gmail.com";
     private static final int port = 465;
     private static final Dao dao = new DaoImpl();
+    
     private static Session getSession() {
         Properties properties = System.getProperties();
         properties.put("mail.smtp.host", host);
@@ -42,7 +43,7 @@ public class Mail {
 
         RegisteredUser sender = dao.getUserById(senderId);
 
-        MimeMessage msg = new MimeMessage(getSession());
+        /*MimeMessage msg = new MimeMessage(getSession());
         msg.setFrom(new InternetAddress(from));
         msg.setSubject(subject);
         msg.addRecipients(Message.RecipientType.TO, addresses);
@@ -51,13 +52,16 @@ public class Mail {
         } else {
             msg.setContent(message,"text/html");
         }
-        Transport.send(msg);
+
+        Transport.send(msg);*/
 
         store(sender, addresses, subject, message);
     }
 
     private static void store(RegisteredUser sender, InternetAddress[] addresses, String subject, String message) {
-        hu.bugbusters.corpus.core.bean.Message msg = MessageFactory.createMessage(subject, message);
+        // Store the message
+        hu.bugbusters.corpus.core.bean.Message msg = MessageFactory.createAndSaveMessage(dao, subject, message);
+
         // Store for the sender as sentMail
         sender.getSentMails().add(msg);
         dao.updateEntity(sender);
@@ -68,10 +72,11 @@ public class Mail {
             try {
                 receiver = dao.getUserByEmail(ia.getAddress());
                 Inbox inbox = new Inbox();
+                inbox.setSeen('N');
                 inbox.setRegisteredUser(receiver);
                 inbox.setMessage(msg);
                 receiver.getReceivedMails().add(inbox);
-                dao.updateEntity(receiver);
+                dao.saveEntity(inbox);
             } catch (UserNotFoundException e) {
                 System.out.print("Invalid email address: " + ia.getAddress());
             }

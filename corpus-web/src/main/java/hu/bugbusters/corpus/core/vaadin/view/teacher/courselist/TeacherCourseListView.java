@@ -15,6 +15,7 @@ import com.vaadin.event.SelectionEvent;
 import com.vaadin.event.SelectionEvent.SelectionListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.shared.data.sort.SortDirection;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
@@ -79,6 +80,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 		courseList.setContainerDataSource(gpc);
 		courseList.setSelectionMode(SelectionMode.SINGLE);
 		courseList.setColumns("name", "room", "credit", "delete");
+		courseList.sort("name", SortDirection.ASCENDING);
 		
 		RendererClickListener listener = new RendererClickListener() {
 

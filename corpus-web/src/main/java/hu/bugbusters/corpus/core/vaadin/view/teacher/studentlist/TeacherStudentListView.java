@@ -14,6 +14,7 @@ import com.vaadin.event.SelectionEvent;
 import com.vaadin.event.SelectionEvent.SelectionListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.shared.data.sort.SortDirection;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.HorizontalLayout;
@@ -33,7 +34,7 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	private Dao dao = DaoImpl.getInstance();
 	private Set<RegisteredUser> users = new HashSet<>();
 	private List<RegisteredUser> currentList = new ArrayList<>();
-	private List<RegisteredUser> allStudentList = new ArrayList<>();
+	private List<RegisteredUser> ownStudentList = new ArrayList<>();
 	private List<Course> allCourse = new ArrayList<>();
 	
 	public TeacherStudentListView() {
@@ -44,9 +45,20 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	}
 	
 	private void studentList() {
+		
+		Set<Course> courses = new HashSet<>();
+		
 		for (RegisteredUser user : dao.listAllUsers()) {
-			if(user.getRole() == Role.USER){
-				allStudentList.add(user);
+			
+			courses = user.getCourses();
+			
+			for (Course course : courses) {
+				if(course.getTeacher().equals(Login.getLoggedInUser().getFullName())){
+					if(user.getRole() == Role.USER ){
+						ownStudentList.add(user);
+					}
+					break;
+				}
 			}
 		}
 		
@@ -86,8 +98,8 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 		currentList.clear();
 		
 		if(radio.equals("Egyik sem")){
-			userDataSource.addAll(allStudentList);
-			currentList.addAll(allStudentList);
+			userDataSource.addAll(ownStudentList);
+			currentList.addAll(ownStudentList);
 		}
 		else{
 			for (Course course : allCourse) {
@@ -106,24 +118,18 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 			userDataSource.addAll(currentList);
 		}
 		
-		
-		//System.out.println(users.size());
-		//System.out.println(selectGroup.getValue());
-		
-		
-		/*if(users == null){
-			users = (Set<RegisteredUser>) dao.listAllUsers(); //list to set
-		}*/
+		grid.sort("username", SortDirection.ASCENDING);
 		
 	}
 
 	private void fillUserTable() {
 		userDataSource.setBeanIdProperty("id");
-		userDataSource.addAll(allStudentList);
+		userDataSource.addAll(ownStudentList);
 		
 		grid.setContainerDataSource(userDataSource);
 		grid.setSelectionMode(SelectionMode.MULTI);
 		grid.setColumns("username", "role", "fullName", "email");
+		grid.sort("username", SortDirection.ASCENDING);
 		
 		headerNameSetting();
 

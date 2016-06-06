@@ -23,15 +23,13 @@ import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
 
 @SuppressWarnings("serial")
 public class TeacherStudentListView extends TeacherStudentListDesign implements View {
 	public static final String NAME = "TeacherStudentList";
 	private BeanContainer<Long, RegisteredUser> userDataSource = new BeanContainer<Long, RegisteredUser>(RegisteredUser.class);
-	private Filter userFilter;
-	private Filter adminFilter;
-	private Filter teacherFilter;
 	private Dao dao = DaoImpl.getInstance();
 	private Set<RegisteredUser> users = new HashSet<>();
 	private List<RegisteredUser> currentList = new ArrayList<>();
@@ -55,8 +53,17 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	}
 
 	private void createSelectGoup() {
+		/*																						Majd a végén kikell szedni!
 		for (Course course : dao.listAllCourses()) {
 			selectGroup.addItem(course.getName());
+		}*/
+		
+		for (Course course : dao.listAllCourses()) {
+			for (RegisteredUser user : course.getStudents()) {
+				if(user.getId() == Login.getLoggedInUserId()){
+					selectGroup.addItem(course.getName());
+				}
+			}
 		}
 		selectGroup.addItem("Egyik sem");
 		selectGroup.setValue("Egyik sem");
@@ -125,7 +132,6 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 				
 			}
 		});
-		//grid.setColumnOrder("username", "role", "fullName", "email");
 
 	}
 	

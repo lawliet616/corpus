@@ -19,6 +19,7 @@ import hu.bugbusters.corpus.core.vaadin.view.admin.userlist.UserListView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
+import hu.bugbusters.corpus.core.vaadin.view.teacher.courselist.TeacherCourseListView;
 import hu.bugbusters.corpus.core.vaadin.view.teacher.studentlist.TeacherStudentListView;
 
 @SuppressWarnings("serial")
@@ -56,6 +57,13 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 				((CorpusUI) getUI()).navigate(AdminHomepageView.Name);
 			}
 		});
+		courseListButton.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				((CorpusUI) getUI()).navigate(TeacherCourseListView.NAME);
+			}
+		});
 	}
 	
 	protected void changeContet(Component component) {
@@ -77,6 +85,8 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 			component = new ChangePasswordView();
 		} else if (subView.equals(TeacherStudentListView.NAME)) {
 			component = new TeacherStudentListView();
+		}else if (subView.equals(TeacherCourseListView.NAME)) {
+			component = new TeacherCourseListView();
 		}else{
 			component = new AdminHomepageView();
 		}

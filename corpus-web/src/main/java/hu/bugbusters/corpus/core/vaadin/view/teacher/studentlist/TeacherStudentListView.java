@@ -28,21 +28,33 @@ import hu.bugbusters.corpus.core.login.Role;
 @SuppressWarnings("serial")
 public class TeacherStudentListView extends TeacherStudentListDesign implements View {
 	public static final String NAME = "TeacherStudentList";
-	private BeanContainer<Long, RegisteredUser> userDataSource;
+	private BeanContainer<Long, RegisteredUser> userDataSource = new BeanContainer<Long, RegisteredUser>(RegisteredUser.class);
 	private Filter userFilter;
 	private Filter adminFilter;
 	private Filter teacherFilter;
 	private Dao dao;
 	private Set<RegisteredUser> users = new HashSet<>();
-	private List<RegisteredUser> list = new ArrayList<>();
+	private List<RegisteredUser> currentList = new ArrayList<>();
+	private List<RegisteredUser> allStudentList = new ArrayList<>();
+	private List<Course> allCourse = new ArrayList<>();
 	
 	public TeacherStudentListView() {
 		dao = new DaoImpl();
-		createFilters();
+		allCourse = dao.listAllCourses();
+		studentList();
 		fillUserTable();
 		createSelectGoup();
 	}
 	
+	private void studentList() {
+		for (RegisteredUser user : dao.listAllUsers()) {
+			if(user.getRole() == Role.USER){
+				allStudentList.add(user);
+			}
+		}
+		
+	}
+
 	private void createSelectGoup() {
 		for (Course course : dao.listAllCourses()) {
 			selectGroup.addItem(course.getName());
@@ -61,40 +73,47 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	}
 
 	protected void selectFilter() {
-		userDataSource.removeAllContainerFilters();
-		if(selectGroup.getValue() == Role.ADMIN) {
-			userDataSource.addContainerFilter(adminFilter);
-		} else if(selectGroup.getValue() == Role.TEACHER) {
-			userDataSource.addContainerFilter(teacherFilter);
-		} else if(selectGroup.getValue() == Role.USER) {
-			userDataSource.addContainerFilter(userFilter);
+		String radio = selectGroup.getValue().toString();
+		
+		List<RegisteredUser> temp = new ArrayList<>();
+		userDataSource.removeAllItems();
+		currentList.clear();
+		
+		if(radio.equals("Egyik sem")){
+			userDataSource.addAll(allStudentList);
+			currentList.addAll(allStudentList);
 		}
-		
-		
-		for (Course course : dao.listAllCourses()) {
-			if(selectGroup.getValue() == course.getName()){
-				users = course.getStudents();
+		else{
+			for (Course course : allCourse) {
+				if(radio.equals(course.getName())){
+					users = course.getStudents();
+				}
 			}
+			temp.addAll(users);
+			
+			for (RegisteredUser user : temp) {
+				if(user.getRole() != Role.TEACHER){
+					currentList.add(user);
+				}
+			}
+			
+			userDataSource.addAll(currentList);
 		}
-		System.out.println(users.size());
-		System.out.println(selectGroup.getValue());
+		
+		
+		//System.out.println(users.size());
+		//System.out.println(selectGroup.getValue());
+		
+		
 		/*if(users == null){
 			users = (Set<RegisteredUser>) dao.listAllUsers(); //list to set
 		}*/
 		
 	}
 
-	private void createFilters() {
-		userFilter = new SimpleStringFilter("role", Role.USER.toString(), true, false);
-		adminFilter = new SimpleStringFilter("role", Role.ADMIN.toString(), true, false);
-		teacherFilter = new SimpleStringFilter("role", Role.TEACHER.toString(), true, false);
-	}
-
 	private void fillUserTable() {
-		list.addAll(users);
-		userDataSource = new BeanContainer<Long, RegisteredUser>(RegisteredUser.class);
 		userDataSource.setBeanIdProperty("id");
-		userDataSource.addAll(list);
+		userDataSource.addAll(allStudentList);
 		
 		grid.setContainerDataSource(userDataSource);
 		grid.setSelectionMode(SelectionMode.MULTI);
@@ -107,7 +126,7 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 				
 			}
 		});
-		grid.setColumnOrder("username", "role", "fullName", "email");
+		//grid.setColumnOrder("username", "role", "fullName", "email");
 
 	}
 	

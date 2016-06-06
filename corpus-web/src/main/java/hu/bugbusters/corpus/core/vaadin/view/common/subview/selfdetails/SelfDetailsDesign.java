@@ -22,8 +22,8 @@ public class SelfDetailsDesign extends VerticalLayout {
 	protected Label lblName;
 	protected Label lblEmail;
 	protected Label lblUsername;
-	protected Button btnChangeDetails;
 	protected Button btnChangePassword;
+	protected Button btnChangeDetails;
 
 	public SelfDetailsDesign() {
 		Design.read(this);

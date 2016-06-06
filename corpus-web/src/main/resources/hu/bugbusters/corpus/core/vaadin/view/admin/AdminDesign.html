@@ -1,51 +1,43 @@
 <!doctype html>
 <html>
  <head>
-  <style>
-// Workaround for a https://dev.vaadin.com/ticket/19170 to get hidden icons in some environments to show
-#responsive-application-template.valo-menu-responsive .valo-menu-part .valo-menu-item span.v-icon {
-	opacity: 1.0;
-}
- </style>
-  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:11,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;valo&quot;}">
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:11,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
   <meta charset="UTF-8" name="package-mapping" content="hu_bugbusters_corpus_core_vaadin_view_admin:hu.bugbusters.corpus.core.vaadin.view.admin">
   <meta charset="UTF-8" name="package-mapping" content="hu_bugbusters_corpus_core_vaadin_view_common:hu.bugbusters.corpus.core.vaadin.view.common">
   <meta charset="UTF-8" name="package-mapping" content="hu_bugbusters_corpus_core_vaadin_view_login:hu.bugbusters.corpus.core.vaadin.view.login">
  </head> 
  <body> 
-  <vaadin-horizontal-layout> 
-   <vaadin-horizontal-layout> 
-    <vaadin-css-layout style-name="valo-menu" height-full> 
-     <vaadin-css-layout style-name="valo-menu-part" width="216px" height="979px"> 
-      <vaadin-horizontal-layout style-name="valo-menu-title" width-full _id="menuTitle"> 
-       <vaadin-label size-auto _id="menuTitleLabel" :middle :expand> 
-        <strong>Corpus Admin</strong> 
-       </vaadin-label> 
-      </vaadin-horizontal-layout> 
-      <vaadin-css-layout style-name="valo-menuitems" _id="menuItems"> 
-       <vaadin-button icon="fonticon://FontAwesome/f015" primary-style-name="valo-menu-item" _id="homepageSButton">
-         Kezdőlap 
-       </vaadin-button> 
-       <vaadin-button icon="fonticon://FontAwesome/f007" primary-style-name="valo-menu-item" width-full plain-text _id="userDetailsButton">
-         Saját adatok 
-       </vaadin-button> 
-       <vaadin-button icon="fonticon://FontAwesome/f183" primary-style-name="valo-menu-item" _id="newUserButton">
-         Új felhasználó 
-       </vaadin-button> 
-       <vaadin-button icon="fonticon://FontAwesome/f03a" primary-style-name="valo-menu-item" _id="userListButton">
-         Felhasználó lista 
-       </vaadin-button> 
-       <vaadin-button icon="fonticon://FontAwesome/f1de" primary-style-name="valo-menu-item" _id="settingsButton">
-         Beállítások 
-       </vaadin-button> 
-       <vaadin-button icon="fonticon://FontAwesome/f08b" primary-style-name="valo-menu-item" plain-text _id="logoutButton">
-         Kijelentkezés 
-       </vaadin-button> 
-      </vaadin-css-layout> 
+  <vaadin-horizontal-split-panel locked split-position="223px"> 
+   <vaadin-css-layout style-name="valo-menu" height-full> 
+    <vaadin-css-layout style-name="valo-menu-part" width="216px" height="979px"> 
+     <vaadin-horizontal-layout style-name="valo-menu-title" width-full _id="menuTitle"> 
+      <vaadin-label size-auto _id="menuTitleLabel" :middle :expand> 
+       <strong>Corpus Admin</strong> 
+      </vaadin-label> 
+     </vaadin-horizontal-layout> 
+     <vaadin-css-layout style-name="valo-menuitems" _id="menuItems"> 
+      <vaadin-button icon="fonticon://FontAwesome/f015" primary-style-name="valo-menu-item" _id="homepageSButton">
+        Kezdőlap 
+      </vaadin-button> 
+      <vaadin-button icon="fonticon://FontAwesome/f007" primary-style-name="valo-menu-item" width-full plain-text _id="userDetailsButton">
+        Saját adatok 
+      </vaadin-button> 
+      <vaadin-button icon="fonticon://FontAwesome/f183" primary-style-name="valo-menu-item" _id="newUserButton">
+        Új felhasználó 
+      </vaadin-button> 
+      <vaadin-button icon="fonticon://FontAwesome/f03a" primary-style-name="valo-menu-item" _id="userListButton">
+        Felhasználó lista 
+      </vaadin-button> 
+      <vaadin-button icon="fonticon://FontAwesome/f1de" primary-style-name="valo-menu-item" _id="settingsButton">
+        Beállítások 
+      </vaadin-button> 
+      <vaadin-button icon="fonticon://FontAwesome/f08b" primary-style-name="valo-menu-item" plain-text _id="logoutButton">
+        Kijelentkezés 
+      </vaadin-button> 
      </vaadin-css-layout> 
     </vaadin-css-layout> 
-   </vaadin-horizontal-layout> 
-   <vaadin-vertical-layout size-auto _id="layout"></vaadin-vertical-layout> 
-  </vaadin-horizontal-layout>  
+   </vaadin-css-layout> 
+   <vaadin-vertical-layout size-full _id="layout"></vaadin-vertical-layout> 
+  </vaadin-horizontal-split-panel>  
  </body>
 </html>

@@ -1,44 +1,24 @@
 <!doctype html>
 <html>
  <head>
-  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;valo&quot;}">
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
  </head> 
  <body> 
   <vaadin-vertical-layout size-full margin> 
-   <vaadin-grid-layout caption="Adatok módosítása" spacing> 
-    <row> 
-     <column> 
-      <vaadin-label size-auto plain-text :middle>
-        Név: 
-      </vaadin-label> 
-     </column> 
-     <column> 
-      <vaadin-text-field _id="txtName"></vaadin-text-field> 
-     </column> 
-    </row> 
-    <row> 
-     <column> 
-      <vaadin-label size-auto plain-text>
-        E-mail cím: 
-      </vaadin-label> 
-     </column> 
-     <column> 
-      <vaadin-text-field _id="txtEmail"></vaadin-text-field> 
-     </column> 
-    </row> 
-    <row> 
-     <column> 
+   <vaadin-panel caption="Adatok módosítása" width="405px" height="300px" :middle :center> 
+    <vaadin-form-layout size-full margin> 
+     <vaadin-text-field caption="Név:" _id="txtName"></vaadin-text-field> 
+     <vaadin-text-field caption="E-mail cím:" _id="txtEmail"></vaadin-text-field> 
+     <vaadin-horizontal-layout spacing> 
       <vaadin-button plain-text _id="btnSave" :bottom :center>
         Mentés 
       </vaadin-button> 
-     </column> 
-     <column> 
-      <vaadin-button plain-text _id="btnCancel" :middle :center>
+      <vaadin-button plain-text _id="btnCancel">
         Mégse 
       </vaadin-button> 
-     </column> 
-    </row> 
-   </vaadin-grid-layout> 
+     </vaadin-horizontal-layout> 
+    </vaadin-form-layout> 
+   </vaadin-panel> 
   </vaadin-vertical-layout>  
  </body>
 </html>

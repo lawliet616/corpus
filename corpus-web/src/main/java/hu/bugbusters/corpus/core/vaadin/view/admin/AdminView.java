@@ -64,7 +64,7 @@ public class AdminView extends AdminDesign implements CorpusView {
 	protected void changeContet(Component component) {
 		layout.removeAllComponents();
 		layout.addComponent(component);
-		layout.setComponentAlignment(component, Alignment.TOP_LEFT);
+		layout.setComponentAlignment(component, Alignment.MIDDLE_CENTER);
 
 	}
 

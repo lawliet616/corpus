@@ -14,9 +14,9 @@ public class CourseFactory {
         return course;
     }
 
-    public static Course createAndSaveCourse(Dao dao, String name, String room, int credit, String teacher){
+    public static Course createAndSaveCourse(String name, String room, int credit, String teacher){
         Course course = createCourse(name, room, credit, teacher);
-        dao.saveEntity(course);
+        DaoImpl.getInstance().saveEntity(course);
         return course;
     }
 }

@@ -15,9 +15,9 @@ public class MessageFactory {
         return msg;
     }
 
-    public static Message createAndSaveMessage(Dao dao, String subject, String message){
+    public static Message createAndSaveMessage(String subject, String message){
         Message msg = createMessage(subject, message);
-        dao.saveEntity(msg);
+        DaoImpl.getInstance().saveEntity(msg);
         return msg;
     }
 }

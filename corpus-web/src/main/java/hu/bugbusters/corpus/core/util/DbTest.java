@@ -24,8 +24,7 @@ public class DbTest {
     public static void fillDb(){
         try{
         	UserFactory factory = UserFactory.getUserFactory();
-            Dao dao = new DaoImpl();
-
+            Dao dao = DaoImpl.getInstance();
             /*
              * RegisteredUser create and save
              * Course create and save
@@ -46,11 +45,11 @@ public class DbTest {
              * This block will cause 3 insert into CORPUS.registered_user
              *                       2 inesrt into CORPUS.course
              */
-            RegisteredUser teacher1 = factory.createAndSaveRegisteredUser(dao, "teacher1", "teacher1@gmail.com", Role.TEACHER);
-            RegisteredUser user1 = factory.createAndSaveRegisteredUser(dao, "us1", "user1@gmail.com", Role.USER);
-            RegisteredUser user2 = factory.createAndSaveRegisteredUser(dao, "us2", "user2@gmail.com", Role.USER);
-            Course course1 = CourseFactory.createAndSaveCourse(dao, "course1","001",1,"teacher1");
-            Course course2 = CourseFactory.createAndSaveCourse(dao, "course2","002",2,"teacher1");
+            RegisteredUser teacher1 = factory.createAndSaveRegisteredUser("teacher1", "teacher1@gmail.com", Role.TEACHER);
+            RegisteredUser user1 = factory.createAndSaveRegisteredUser("us1", "user1@gmail.com", Role.USER);
+            RegisteredUser user2 = factory.createAndSaveRegisteredUser("us2", "user2@gmail.com", Role.USER);
+            Course course1 = CourseFactory.createAndSaveCourse("course1","001",1,"teacher1");
+            Course course2 = CourseFactory.createAndSaveCourse("course2","002",2,"teacher1");
 
             /*
              *	Creating connection between existing users and courses
@@ -104,7 +103,7 @@ public class DbTest {
     }
 
     public static void testDb(){
-        Dao dao = new DaoImpl();
+        Dao dao = DaoImpl.getInstance();
 
         try {
             RegisteredUser user1 = dao.getUserByUserName("US12016A");

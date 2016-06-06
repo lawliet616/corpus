@@ -32,12 +32,11 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	private Filter userFilter;
 	private Filter adminFilter;
 	private Filter teacherFilter;
-	private Dao dao;
+	private Dao dao = DaoImpl.getInstance();
 	private Set<RegisteredUser> users = new HashSet<>();
 	private List<RegisteredUser> list = new ArrayList<>();
 	
 	public TeacherStudentListView() {
-		dao = new DaoImpl();
 		createFilters();
 		fillUserTable();
 		createSelectGoup();

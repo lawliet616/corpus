@@ -49,7 +49,7 @@ public class NewUserView extends NewUserDesign implements View {
 				UserFactory factory = UserFactory.getUserFactory();
 				try {
 					RegisteredUser user = factory.createRegisteredUser(name, email, role);
-					new DaoImpl().saveEntity(user);
+					DaoImpl.getInstance().saveEntity(user);
 					Notification.show("Sikeres mentés.", Notification.Type.HUMANIZED_MESSAGE);
 					txtName.clear();
 					txtEmail.clear();

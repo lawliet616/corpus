@@ -15,7 +15,7 @@ import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 @SuppressWarnings("serial")
 public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements View {
 	public static final String NAME = "ChangeSelfDetails";
-	private Dao dao;
+	private Dao dao = DaoImpl.getInstance();
 	private RegisteredUser registeredUser;
 
 	public ChangeSelfDetailsView() {
@@ -39,7 +39,6 @@ public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements Vi
 	}
 
 	private void fillTheDetails() {
-		dao = new DaoImpl();
 		registeredUser = Login.getLoggedInUser();
 		txtEmail.setValue(registeredUser.getEmail());
 		txtName.setValue(registeredUser.getFullName());

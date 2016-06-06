@@ -21,7 +21,7 @@ public class Login {
 	
 	public static RegisteredUser getLoggedInUser() {
 		try {
-			return new DaoImpl().getUserById(getLoggedInUserId());
+			return DaoImpl.getInstance().getUserById(getLoggedInUserId());
 		} catch (UserNotFoundException e) {
 			e.printStackTrace();
 			return null;

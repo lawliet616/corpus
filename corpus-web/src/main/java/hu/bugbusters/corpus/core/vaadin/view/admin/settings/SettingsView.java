@@ -15,7 +15,7 @@ import com.vaadin.ui.Button.ClickListener;
 
 public class SettingsView extends SettingsDesign implements View {
 	public static final String NAME = "Settings";
-	private Dao dao;
+	private Dao dao = DaoImpl.getInstance();
 	private PasswordSettings settings;
 	private int maxLength;
 	private int minDigChar;
@@ -25,7 +25,6 @@ public class SettingsView extends SettingsDesign implements View {
 	private int minUpperChar;
 
 	public SettingsView() {
-		dao = new DaoImpl();
 		setCurrentValues();
 
 		btnSave.addClickListener(new ClickListener() {

@@ -15,10 +15,9 @@ import hu.bugbusters.corpus.core.password.Password;
 
 public class UserFactory {
 	private static UserFactory factory;
-	private Dao dao;
+	private Dao dao = DaoImpl.getInstance();
 
 	private UserFactory() {
-		dao = new DaoImpl();
 	}
 
 	public static UserFactory getUserFactory() {
@@ -43,7 +42,7 @@ public class UserFactory {
 		return registeredUser;
 	}
 
-	public RegisteredUser createAndSaveRegisteredUser(Dao dao, String name, String email, Role role)
+	public RegisteredUser createAndSaveRegisteredUser(String name, String email, Role role)
 			throws CannotPerformOperationException, InvalidHashException, EmailAlreadyExistException {
 		RegisteredUser registeredUser = createRegisteredUser(name, email, role);
 		dao.saveEntity(registeredUser);

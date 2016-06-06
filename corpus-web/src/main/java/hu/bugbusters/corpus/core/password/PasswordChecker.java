@@ -28,7 +28,7 @@ public class PasswordChecker {
 	private PasswordValidator passwordValidator;
 	private MessageResolver resolver;
 	private RuleResult result;
-	private Dao dao;
+	private Dao dao = DaoImpl.getInstance();
 	private PasswordSettings settings;
 	private int minLength;
 	private int maxLength;
@@ -62,7 +62,6 @@ public class PasswordChecker {
 
 	private void config() throws IOException {
 		ruleList = new ArrayList<>();
-		dao = new DaoImpl();
 		propertiesPath = Global.PASSWORD_ERROR_MESSAGE_PATH;
 
 		setCustomSettings();

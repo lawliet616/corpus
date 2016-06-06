@@ -22,7 +22,7 @@ public class Mail {
     private static final String password = "a1s2d3!%";
     private static final String host = "smtp.gmail.com";
     private static final int port = 465;
-    private static final Dao dao = new DaoImpl();
+    private static final Dao dao = DaoImpl.getInstance();
     
     private static Session getSession() {
         Properties properties = System.getProperties();
@@ -60,7 +60,7 @@ public class Mail {
 
     private static void store(RegisteredUser sender, InternetAddress[] addresses, String subject, String message) {
         // Store the message
-        hu.bugbusters.corpus.core.bean.Message msg = MessageFactory.createAndSaveMessage(dao, subject, message);
+        hu.bugbusters.corpus.core.bean.Message msg = MessageFactory.createAndSaveMessage(subject, message);
 
         // Store for the sender as sentMail
         sender.getSentMails().add(msg);

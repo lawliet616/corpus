@@ -28,10 +28,9 @@ public class UserListView extends UserListDesign implements View {
 	private Filter userFilter;
 	private Filter adminFilter;
 	private Filter teacherFilter;
-	private Dao dao;
+	private Dao dao = DaoImpl.getInstance();
 
 	public UserListView() {
-		dao = new DaoImpl();
 		createFilters();
 		fillUserTable();
 		createSelectGoup();

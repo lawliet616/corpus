@@ -12,20 +12,22 @@ import hu.bugbusters.corpus.core.factories.CourseFactory;
 import hu.bugbusters.corpus.core.factories.MessageFactory;
 import hu.bugbusters.corpus.core.factories.UserFactory;
 import hu.bugbusters.corpus.core.login.Role;
+import hu.bugbusters.corpus.core.mail.Mail;
 import hu.bugbusters.corpus.core.password.Password;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class DbTest {
     public static void fillDb(){
         try{
         	UserFactory factory = UserFactory.getUserFactory();
-            Dao dao = new DaoImpl();
-
+            Dao dao = DaoImpl.getInstance();
             /*
-                RegisteredUser és Course létrehozása és lementése
-                1 admin, 1 teacher, 2 user, 2 course
+             * RegisteredUser create and save
+             * Course create and save
              */
             RegisteredUser admin = new RegisteredUser();
             admin.setUsername("admin");
@@ -33,103 +35,67 @@ public class DbTest {
             admin.setRole(Role.ADMIN);
             admin.setPassword(Password.toDatabaseHash("admin"));
             admin.setEmail("admin@admin.com");
+            /*
+             * During dao.saveEntity(admin); hibernate will insert data 
+             * into CORPUS.registered_user
+             */
             dao.saveEntity(admin);
 
+            /*
+             * This block will cause 3 insert into CORPUS.registered_user
+             *                       2 inesrt into CORPUS.course
+             */
             RegisteredUser teacher1 = factory.createAndSaveRegisteredUser("teacher1", "teacher1@gmail.com", Role.TEACHER);
             RegisteredUser user1 = factory.createAndSaveRegisteredUser("us1", "user1@gmail.com", Role.USER);
             RegisteredUser user2 = factory.createAndSaveRegisteredUser("us2", "user2@gmail.com", Role.USER);
-            
             Course course1 = CourseFactory.createAndSaveCourse("course1","001",1,"teacher1");
             Course course2 = CourseFactory.createAndSaveCourse("course2","002",2,"teacher1");
 
             /*
-                Kapcsolatok létrehozása Userek és Course-ok között
-
-                ezek után a két kurzus student listájában benne van a user1,user2 és teacher1
-                és a userek courses listájában bent van mindkét kurzus
-
+             *	Creating connection between existing users and courses
              */
             Set<Course> courseSet = new HashSet<>();
             courseSet.add(course1);
             courseSet.add(course2);
 
-            Set<RegisteredUser> studentSet = new HashSet<>();
-            studentSet.add(user1);
-            studentSet.add(user2);
-            studentSet.add(teacher1);
-
             user1.setCourses(courseSet);
             user2.setCourses(courseSet);
             teacher1.setCourses(courseSet);
-
-            course1.setStudents(studentSet);
-            course2.setStudents(studentSet);
             /*
-                Így is lehetne ha már nem üres
-                teacher1.getCourses().add(course1);
-                teacher1.getCourses().add(course2);
+             *  Another way to fill the users' course set
+             *  teacher1.getCourses().add(course1);
+             *  teacher1.getCourses().add(course2);
              */
-
-            dao.updateEntities(user1, user2, teacher1, course1, course2);
-
+            
             /*
-                Message létrehozása.
+             * During dao.updateEntities(user1, user2, teacher1) hibernate 
+             * will insert data into CORPUS.registered_user_course
              */
-
-            Message msg1 = MessageFactory.createAndSaveMessage("subject1","message1");
-            Message msg2 = MessageFactory.createAndSaveMessage("subject2","message2");
+            dao.updateEntities(user1, user2, teacher1);
 
             /*
-                message-k kiküldése
-                a teacher1 fogja mindkét levelet kiküldeni a user1 és user2nek
+             * Sending and receiving messages
+             * Teacher1 sends 2 mail to user1 and user2
+             *
+             * With Mail.java
+             *
+             * Mail.sendMail handles the creating and storing of the Message
+             *
+             * It will cause one insert into CORPUS.message
+             *               one insert into CORPUS.sent
+             *               multiple insert into CORPUS.inbox based on the addresses
+             *
+             * !!!Caution!!!
+             * This method tries to send the email through an SMTP server.
+             * To not spam the whole internet with test messages I disable the real sending during development.
              */
+            Long senderId = teacher1.getId();
+            List<String> addresses = new ArrayList<>();
+            addresses.add(user1.getEmail());
+            addresses.add(user2.getEmail());
 
-            // tanár kiküldi
-            Set<Message> sentMessages = new HashSet<>();
-            sentMessages.add(msg1);
-            sentMessages.add(msg2);
-            teacher1.setSentMails(sentMessages);
-            dao.updateEntity(teacher1);
-
-            //userek fogadják
-            Set<Inbox> recievedMessages = new HashSet<>();
-
-            Inbox inbox = new Inbox();
-            inbox.setSeen('N');
-            inbox.setMessage(msg1);
-            inbox.setRegisteredUser(user1);
-
-            Inbox inbox2 = new Inbox();
-            inbox2.setSeen('N');
-            inbox2.setMessage(msg2);
-            inbox2.setRegisteredUser(user1);
-
-            recievedMessages.add(inbox);
-            recievedMessages.add(inbox2);
-
-            user1.setReceivedMails(recievedMessages);
-
-            Set<Inbox> recievedMessages2 = new HashSet<>();
-
-            Inbox inbox3 = new Inbox();
-            inbox3.setSeen('N');
-            inbox3.setMessage(msg1);
-            inbox3.setRegisteredUser(user2);
-
-            Inbox inbox4 = new Inbox();
-            inbox4.setSeen('N');
-            inbox4.setMessage(msg2);
-            inbox4.setRegisteredUser(user2);
-
-            recievedMessages2.add(inbox3);
-            recievedMessages2.add(inbox4);
-
-            user2.setReceivedMails(recievedMessages2);
-
-            dao.saveEntities(inbox, inbox2, inbox3, inbox4);
-            dao.updateEntities(user1, user2);
-
-
+            Mail.sendMail(senderId, addresses, "Mail", "sendMail", false);
+            Mail.sendMail(senderId, addresses, "Mail", "sendMail <b>htmlText<b>", true);
 
         } catch (Exception ex){
             ex.printStackTrace();
@@ -137,7 +103,7 @@ public class DbTest {
     }
 
     public static void testDb(){
-        Dao dao = new DaoImpl();
+        Dao dao = DaoImpl.getInstance();
 
         try {
             RegisteredUser user1 = dao.getUserByUserName("US12016A");

@@ -16,9 +16,19 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.password.PasswordRows;
+import sun.security.jca.GetInstance;
 
 @SuppressWarnings("unchecked")
 public class DaoImpl implements Dao {
+
+    private static DaoImpl ourInstance = new DaoImpl();
+
+    public static DaoImpl getInstance() {
+        return ourInstance;
+    }
+
+    private DaoImpl() {
+    }
 
     @Override
     public List<Course> listAllCourses() {

@@ -15,10 +15,9 @@ import hu.bugbusters.corpus.core.password.Password;
 
 public class UserFactory {
 	private static UserFactory factory;
-	private Dao dao;
+	private Dao dao = DaoImpl.getInstance();
 
 	private UserFactory() {
-		dao = new DaoImpl();
 	}
 
 	public static UserFactory getUserFactory() {

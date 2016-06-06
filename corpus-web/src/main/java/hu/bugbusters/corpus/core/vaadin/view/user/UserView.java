@@ -12,10 +12,7 @@ public class UserView extends UserDesign implements CorpusView {
 	public static final String NAME = "User";
 	public static final Role ROLE   = Role.USER;
 
-	private Dao dao;
-
 	public UserView(){
-		dao = new DaoImpl();
 		logoutButton.addClickListener(new LogoutClickListener());
 	}
 

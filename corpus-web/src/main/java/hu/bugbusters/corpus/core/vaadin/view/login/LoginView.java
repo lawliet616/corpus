@@ -33,7 +33,7 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 	@Override
 	public void buttonClick(ClickEvent event) {
 		try {
-			RegisteredUser registeredUser = new DaoImpl().getUserByUserName(userName.getValue());
+			RegisteredUser registeredUser = DaoImpl.getInstance().getUserByUserName(userName.getValue());
 			
 			Password.verify(password.getValue(), registeredUser);
 			

@@ -25,11 +25,10 @@ import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 @SuppressWarnings("serial")
 public class ChangePasswordView extends ChangePasswordDesign implements View {
 	public static final String NAME = "ChangePassword";
-	private Dao dao;
+	private Dao dao = DaoImpl.getInstance();
 	private RegisteredUser registeredUser;
 
 	public ChangePasswordView() {
-		dao = new DaoImpl();
 		registeredUser = Login.getLoggedInUser();
 		lblName.setValue(registeredUser.getUsername());
 		btnCancel.addClickListener(new ClickListener() {

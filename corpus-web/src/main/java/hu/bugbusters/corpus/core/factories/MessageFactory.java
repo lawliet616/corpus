@@ -4,19 +4,20 @@ import hu.bugbusters.corpus.core.bean.Message;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 
-public class MessageFactory {
-    private static Dao dao = new DaoImpl();
+import java.sql.Timestamp;
 
+public class MessageFactory {
     public static Message createMessage(String subject, String message){
         Message msg = new Message();
         msg.setSubject(subject);
         msg.setMessage(message);
+        msg.setTime(new Timestamp(System.currentTimeMillis()));
         return msg;
     }
 
     public static Message createAndSaveMessage(String subject, String message){
         Message msg = createMessage(subject, message);
-        dao.saveEntity(msg);
+        DaoImpl.getInstance().saveEntity(msg);
         return msg;
     }
 }

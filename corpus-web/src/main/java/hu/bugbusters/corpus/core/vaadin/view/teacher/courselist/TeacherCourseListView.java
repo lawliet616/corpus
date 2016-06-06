@@ -31,6 +31,7 @@ import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
@@ -42,7 +43,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 	public static final String NAME = "TeacherCourseList";
 	private BeanContainer<Long, Course> userDataSource = new BeanContainer<Long, Course>(Course.class);
 	private Dao dao = DaoImpl.getInstance();
-	private Set<Course> users = new HashSet<>();
+	private Set<Course> course = new HashSet<>();
 	private List<Course> ownCourse = new ArrayList<>();
 	
 	public TeacherCourseListView() {
@@ -68,7 +69,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 		gpc.addGeneratedProperty("delete",new PropertyValueGenerator<String>(){
 		    private static final long serialVersionUID=-8571003699455731586L;
 		    @Override public String getValue(    Item item,    Object itemId,    Object propertyId){
-		      return "Delete";
+		      return "Kurzus leadása";
 		    }
 		    @Override public Class<String> getType(){
 		      return String.class;
@@ -85,29 +86,56 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 			public void click(RendererClickEvent event) {
 				courseList.getContainerDataSource().removeItem(event.getItemId());
 				
+				Set<Course> courses = new HashSet<>();
+				Set<Course> tmp = Login.getLoggedInUser().getCourses();
+				
+				for (Course course : tmp) {
+					if(course.getId() != event.getItemId()){
+						courses.add(course);
+					}
+				}
+				RegisteredUser teacher = Login.getLoggedInUser();
+				
+				teacher.setCourses(courses);
+				
+				dao.updateEntity(teacher);
+				
+				Long id = (long) event.getItemId();
+				try {
+					Course course = dao.getCourseById(id);
+					course.setTeacher("Nincs tanár jelnleg");
+					dao.updateEntity(course);
+				} catch (CourseNotFoundException e) {
+					e.printStackTrace();
+				}
+				
+				
+				
+				
 			}
 		};
 		
 		courseList.getColumn("delete").setRenderer(new ButtonRenderer(listener));
 		
-		
-		headerNameSetting();
-		cellSettings();
+		headerNameSetting();;
 		
 		courseList.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void select(SelectionEvent event) {
-				Notification.show("Select row: "+ courseList.getSelectedRows());
+				
+				String selectedCourse = null;
+				
+				for (Course course : ownCourse) {
+					if(course.getId() == courseList.getSelectedRow()){
+						selectedCourse = course.getName();
+					}
+				}
+				
+				Notification.show("Kiválasztva: " + selectedCourse);
 				
 			}
 		});		
-	}
-
-	private void cellSettings() {
-		
-		
-		
 	}
 
 	private void headerNameSetting() {
@@ -115,6 +143,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 		courseList.getColumn("name").setHeaderCaption("Név");
 		courseList.getColumn("room").setHeaderCaption("Terem");
 		courseList.getColumn("credit").setHeaderCaption("Kredit");
+		courseList.getColumn("delete").setHeaderCaption("Kurzus leadás");
 		
 		
 		

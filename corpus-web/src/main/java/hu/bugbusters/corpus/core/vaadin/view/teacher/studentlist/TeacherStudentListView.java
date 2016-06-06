@@ -126,15 +126,6 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 		grid.setColumns("username", "role", "fullName", "email");
 		
 		headerNameSetting();
-		
-		grid.addSelectionListener(new SelectionListener() {
-			
-			@Override
-			public void select(SelectionEvent event) {
-				Notification.show("Select row: "+ grid.getSelectedRows());
-				
-			}
-		});
 
 	}
 	

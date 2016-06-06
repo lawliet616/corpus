@@ -124,6 +124,9 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 		grid.setContainerDataSource(userDataSource);
 		grid.setSelectionMode(SelectionMode.MULTI);
 		grid.setColumns("username", "role", "fullName", "email");
+		
+		headerNameSetting();
+		
 		grid.addSelectionListener(new SelectionListener() {
 			
 			@Override
@@ -133,6 +136,19 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 			}
 		});
 
+	}
+	
+
+	private void headerNameSetting() {
+		
+		grid.getColumn("username").setHeaderCaption("Név");
+		grid.getColumn("role").setHeaderCaption("Jogosultság");
+		grid.getColumn("fullName").setHeaderCaption("Teljes név");
+		grid.getColumn("email").setHeaderCaption("E-mail");
+		
+		
+		
+		
 	}
 	
 	

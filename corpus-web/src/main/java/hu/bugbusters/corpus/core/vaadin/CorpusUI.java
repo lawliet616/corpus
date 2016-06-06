@@ -22,6 +22,7 @@ public class CorpusUI extends UI implements ViewChangeListener {
 	
 	@Override
 	protected void init(final VaadinRequest request) {
+		DbTest.run();
 		getPage().setTitle("Corpus");
 		
 		navigator = new Navigator(this, this);

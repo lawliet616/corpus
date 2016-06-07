@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
  <head>
-  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:true,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
  </head> 
  <body> 
   <vaadin-vertical-layout style-name="valo-menu-responsive" size-full> 
@@ -10,7 +10,7 @@
      <vaadin-button icon="fonticon://FontAwesome/f044" style-name="newEmailButton valo-menu-item borderless" size-full plain-text _id="newEmailButton">
        Új levél 
      </vaadin-button> 
-     <vaadin-button icon="fonticon://FontAwesome/f01c" style-name="bicon valo-menu-item borderless" size-full _id="emailsButton">
+     <vaadin-button icon="fonticon://FontAwesome/f01c" style-name="bicon valo-menu-item borderless" size-full _id="inboxButton">
        Beérkezett üzenetek &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
       <span class="”valo-menu-badge”"> 99+</span> 
      </vaadin-button> 
@@ -22,6 +22,7 @@
      </vaadin-button> 
     </vaadin-horizontal-layout> 
    </vaadin-css-layout> 
+   <vaadin-vertical-layout size-full _id="content" :expand></vaadin-vertical-layout> 
   </vaadin-vertical-layout>  
  </body>
 </html>

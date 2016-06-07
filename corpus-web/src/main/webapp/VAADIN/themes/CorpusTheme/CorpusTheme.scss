@@ -46,7 +46,6 @@ $v-textfield-background-color: $v-background-color;
 $v-font-family: sans-serif;
 $v-font-size: 18px;
 $valo-menu-background-color: #433;
-$v-border-radius: 10px;
 
 @import "../valo/valo";
 @import "../valo/valo.scss";
@@ -148,6 +147,10 @@ $v-border-radius: 10px;
                 opacity: 1;
             }
         }
+    }
+    
+    .subWindow{
+        background-color: #a0a0a0;
     }
     /*.v-menuitem{
         background-color : #b6b6b6;

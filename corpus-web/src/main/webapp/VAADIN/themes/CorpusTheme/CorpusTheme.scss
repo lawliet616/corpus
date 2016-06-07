@@ -28,6 +28,7 @@
 // Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
 
 $v-app-loading-text: "Loading";
+$v-app-loading-border-radius: 100px;
 $v-background-color: #1a61b7;
 $v-focus-color: #fff;
 $v-panel-background-color: $v-background-color;
@@ -150,7 +151,11 @@ $valo-menu-background-color: #433;
     }
     
     .subWindow{
-        background-color: #a0a0a0;
+        background-color: #fff;
+    }
+
+    .v-app-loading:before{
+        border-radius: 100px;
     }
     /*.v-menuitem{
         background-color : #b6b6b6;

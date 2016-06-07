@@ -48,30 +48,12 @@ public class emailView extends emailDesign implements View{
 				}
 			});
 		
-		newEmailButton.addClickListener(new ClickListener() {
-			
-			@Override
-			public void buttonClick(ClickEvent event) {
-				Window newMail = new Window("Új e-mail");
-				newMail.setContent(new newMailView());
-				newMail.setStyleName("subWindow");
-				
-				newMail.setWidth("70%");
-				newMail.setHeight("60%");
-				newMail.center();
-				newMail.setDraggable(false);
-				
-				((CorpusUI) getUI()).addWindow(newMail);
-				
-			}
-		});
+		newMailSetting();
 	}
-
-	
-
 	public emailView(String name) {
 		
 		emailSettings();
+		newMailSetting();
 		
 		if(name.equals(inboxEmailView.NAME)){
 			changeContet(new inboxEmailView());
@@ -86,13 +68,33 @@ public class emailView extends emailDesign implements View{
 			if(msg.getSeen() == 'N'){
 				newMsg++;
 			}
-			System.out.println(msg.getSeen());
 		}
 		
 		String inboxText = "Beérkezett üzenetek &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class=”valo-menu-badge”>" + newMsg +"</span>";
 		
 		inboxButton.setCaption(inboxText);
 		
+	}
+	
+	private void newMailSetting() {
+		newEmailButton.addClickListener(new ClickListener() {
+					
+					@Override
+					public void buttonClick(ClickEvent event) {
+						Window newMail = new Window("Új e-mail");
+						newMail.setContent(new newMailView(newMail));
+						newMail.setStyleName("subWindow");
+						
+						newMail.setResizable(false);
+						newMail.setWidth("75%");
+						newMail.setHeight("70%");
+						newMail.center();
+						newMail.setDraggable(false);
+						newMail.setModal(true);
+						
+						((CorpusUI) getUI()).addWindow(newMail);	
+				}
+		});
 	}
 
 	@Override

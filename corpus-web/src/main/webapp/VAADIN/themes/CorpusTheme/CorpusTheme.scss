@@ -45,6 +45,8 @@ $v-border: 1px solid (v-tint 1.5);
 $v-textfield-background-color: $v-background-color;
 $v-font-family: sans-serif;
 $v-font-size: 18px;
+$valo-menu-background-color: #433;
+$v-border-radius: 10px;
 
 @import "../valo/valo";
 @import "../valo/valo.scss";
@@ -58,6 +60,95 @@ $v-font-size: 18px;
       background-repeat: no-repeat;
       background-size: 100% 100%;
   }
+
+    .valo-email-menu{
+        border-bottom: 1px solid #ccc;
+        border-right: none;
+        width: 100%;
+        height: 49px;
+        padding-bottom: 0px;
+    }
+
+    .valo-menu-part-email{
+        padding-bottom: 20px;
+        padding-right: 40px;
+    }
+
+    .valo-email{
+        display: inline-block;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .newEmailButton{
+
+        font-size: 21px;
+
+        .v-icon{
+            font-size: 49px;
+        }
+
+        &:hover{
+            color: white;
+            .v-icon{
+                color: white;
+            }
+        }
+    }
+
+    .bicon{
+        .v-icon{
+            font-size: 25px;
+        }
+    }
+
+    .emailHeader{
+        height: 20px;
+        border-bottom: 1px solid #ccc;
+        padding: 25px 30px 25px 30px;
+    }
+
+    .notSeen{
+        border: 0px;
+        .v-icon{
+            color: #4cff00;
+
+            &:hover{
+                border: 0px;
+            }
+            &:focus{
+                border: 0px;
+            }
+            &:after{
+                border: 0px;
+            }
+            &:active{
+                border: 0px;
+                opacity: 1;
+            }
+        }
+    }
+
+    .seen{
+        border: 0px;
+        .v-icon{
+            opacity: 0;
+
+            &:hover{
+                border: 0px;
+            }
+            &:focus{
+                border: 0px;
+            }
+            &:after{
+                border: 0px;
+            }
+            &:active{
+                border: 0px;
+                opacity: 1;
+            }
+        }
+    }
     /*.v-menuitem{
         background-color : #b6b6b6;
         border-radius: 0px 0px 10px 10px;

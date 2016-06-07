@@ -2227,6 +2227,110 @@ div.v-layout.v-horizontal.v-widget {
  * @group valo-menu
  */
 
+.CorpusTheme .stepper {
+	position: relative;
+}
+
+.CorpusTheme .stepper input[type=text] {
+	line-height: 1.55;
+	font-size: 18px;
+	width: inherit;
+}
+
+.CorpusTheme .stepper.v-has-width input[type=text] {
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.CorpusTheme .stepper.v-disabled {
+	opacity: 0.5;
+}
+
+.CorpusTheme .stepper .stepper-updown {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+
+.CorpusTheme .stepper .stepper-up, .CorpusTheme .stepper .stepper-down {
+	display: block;
+	outline: none;
+	font-size: 18px;
+	line-height: 0.775;
+}
+
+.v-gecko .CorpusTheme .stepper .stepper-updown {
+	top: 4px !important;
+}
+
+.v-trident .CorpusTheme .stepper .stepper-updown {
+	top: 5px !important;
+}
+
+.v-trident .CorpusTheme .stepper .stepper-up, .v-trident .CorpusTheme .stepper .stepper-down {
+	font-size: 14px !important;
+	line-height: 0.5 !important;
+}
+
+.v-sa .CorpusTheme .stepper .stepper-updown {
+	top: 4px;
+	right: 4px;
+}
+
+.CorpusTheme .stepper {
+	position: relative;
+}
+
+.CorpusTheme .stepper input[type=text] {
+	line-height: 1.55;
+	font-size: 18px;
+	width: inherit;
+}
+
+.CorpusTheme .stepper.v-has-width input[type=text] {
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.CorpusTheme .stepper.v-disabled {
+	opacity: 0.5;
+}
+
+.CorpusTheme .stepper .stepper-updown {
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+
+.CorpusTheme .stepper .stepper-up, .CorpusTheme .stepper .stepper-down {
+	display: block;
+	outline: none;
+	font-size: 18px;
+	line-height: 0.775;
+}
+
+.v-gecko .CorpusTheme .stepper .stepper-updown {
+	top: 4px !important;
+}
+
+.v-trident .CorpusTheme .stepper .stepper-updown {
+	top: 5px !important;
+}
+
+.v-trident .CorpusTheme .stepper .stepper-up, .v-trident .CorpusTheme .stepper .stepper-down {
+	font-size: 14px !important;
+	line-height: 0.5 !important;
+}
+
+.v-sa .CorpusTheme .stepper .stepper-updown {
+	top: 4px;
+	right: 4px;
+}
+
 .CorpusTheme.v-app, .CorpusTheme.v-app-loading {
 	font: 300 18px/1.55 sans-serif;
 	color: #c1d3e9;
@@ -2256,7 +2360,7 @@ div.v-layout.v-horizontal.v-widget {
 	margin-top: -25px;
 	margin-left: -25px;
 	background: #fff url(../valo/shared/img/spinner.gif) no-repeat 50%;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-app-loading:after {
@@ -2328,7 +2432,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 28px;
 	padding: 10px;
 	background: #fff url(../valo/shared/img/spinner.gif) no-repeat 50%;
-	border-radius: 4px;
+	border-radius: 10px;
 	top: 10px;
 	right: 10px;
 	left: auto;
@@ -2355,7 +2459,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 16px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
-	padding-left: 1px;
+	padding-left: 3px;
 }
 
 .CorpusTheme .v-caption-on-left .v-caption, .CorpusTheme .v-caption-on-right .v-caption {
@@ -2393,7 +2497,7 @@ div.v-layout.v-horizontal.v-widget {
 	line-height: inherit;
 	padding: 5px;
 	margin: 0;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	color: #c1d3e9;
@@ -2439,7 +2543,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #c1d3e9;
 	-webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-	border-radius: 4px;
+	border-radius: 10px;
 	overflow: hidden;
 	opacity: 0.5;
 	filter: alpha(opacity=50) ;
@@ -2452,7 +2556,7 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 	color: black;
 	padding: 5px 10px;
-	border-radius: 3px;
+	border-radius: 9px;
 	max-width: 35em;
 	overflow: hidden !important;
 	font-size: 15px;
@@ -2494,7 +2598,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-contextmenu {
 	padding: 5px 5px;
-	border-radius: 4px;
+	border-radius: 10px;
 	background-color: #1a61b7;
 	color: #c1d3e9;
 	-webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -2526,7 +2630,7 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	line-height: 30px;
 	padding: 0 22px 0 11px;
-	border-radius: 3px;
+	border-radius: 9px;
 	font-weight: 400;
 	white-space: nowrap;
 	position: relative;
@@ -2599,7 +2703,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .v-ie8 .CorpusTheme .v-reconnect-dialog .spinner, .v-ie9 .CorpusTheme .v-reconnect-dialog .spinner {
 	border: none;
-	border-radius: 4px;
+	border-radius: 10px;
 	background: #fff url(../valo/shared/img/spinner.gif) no-repeat 50% 50%;
 	background-size: 80%;
 }
@@ -2657,7 +2761,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #bfd1e8;
 	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset false;
 	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset false;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 }
 
@@ -2686,7 +2790,7 @@ div.v-layout.v-horizontal.v-widget {
 .CorpusTheme .v-verticallayout-card, .CorpusTheme .v-horizontallayout-card {
 	background: #1a61b7;
 	color: #c1d3e9;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #6292cd;
 	
 	
@@ -2729,12 +2833,12 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-touch-callout: none;
 	cursor: pointer;
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -2817,12 +2921,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-button-primary {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #1a1a1a;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #fff;
 	
@@ -2860,12 +2964,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-button-friendly {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaf4e9;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #2c9720;
 	
@@ -2896,12 +3000,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-button-danger {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #f9f0ef;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #ed473b;
 	
@@ -3031,12 +3135,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-button-tiny {
 	height: 31px;
-	padding: 0 14px;
+	padding: 0 16px;
 	
 	
 	font-size: 14px;
 	
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-button-tiny:after {
@@ -3049,12 +3153,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-button-small {
 	height: 35px;
-	padding: 0 16px;
+	padding: 0 18px;
 	
 	
 	font-size: 16px;
 	
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-button-small:after {
@@ -3067,12 +3171,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-button-large {
 	height: 49px;
-	padding: 0 21px;
+	padding: 0 23px;
 	
 	
 	font-size: 22px;
 	
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-button-large:after {
@@ -3085,12 +3189,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-button-huge {
 	height: 66px;
-	padding: 0 28px;
+	padding: 0 30px;
 	
 	
 	font-size: 29px;
 	
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-button-huge:after {
@@ -3209,19 +3313,19 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-radius: 4px;
+	border-radius: 7px;
 	font-size: 14px;
 	text-align: center;
 }
 
 :root .CorpusTheme .v-checkbox > input ~ label:before {
 	height: 20.5px;
-	padding: 0 10px;
+	padding: 0 11px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 7px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -3334,19 +3438,19 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-radius: 4px;
+	border-radius: 6px;
 	font-size: 12px;
 	text-align: center;
 }
 
 :root .CorpusTheme .v-checkbox-small > input ~ label:before {
 	height: 17.5px;
-	padding: 0 8px;
+	padding: 0 9px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 6px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -3459,19 +3563,19 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-radius: 4px;
+	border-radius: 8px;
 	font-size: 17px;
 	text-align: center;
 }
 
 :root .CorpusTheme .v-checkbox-large > input ~ label:before {
 	height: 24.5px;
-	padding: 0 11px;
+	padding: 0 13px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 8px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -3538,7 +3642,7 @@ div.v-layout.v-horizontal.v-widget {
 	position: relative;
 	width: 205px;
 	height: 41px;
-	border-radius: 4px;
+	border-radius: 10px;
 	white-space: nowrap;
 }
 
@@ -3561,8 +3665,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 41px;
-	border-radius: 4px;
-	padding: 5px 9px;
+	border-radius: 10px;
+	padding: 5px 11px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	color: #c1d3e9;
@@ -3609,7 +3713,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-filterselect img.v-icon {
 	max-height: 41px;
-	margin-left: 9px;
+	margin-left: 11px;
 }
 
 .CorpusTheme .v-filterselect span.v-icon {
@@ -3634,7 +3738,7 @@ div.v-layout.v-horizontal.v-widget {
 	bottom: 1px;
 	border-left: 1px solid #4d84c7;
 	color: #6d9ad0;
-	border-radius: 0 3px 3px 0;
+	border-radius: 0 9px 9px 0;
 }
 
 .v-ie8 .CorpusTheme .v-filterselect [class$="button"] {
@@ -3733,7 +3837,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-filterselect-suggestpopup [class$="suggestmenu"] {
 	padding: 5px 5px;
-	border-radius: 4px;
+	border-radius: 10px;
 	background-color: #1a61b7;
 	color: #c1d3e9;
 	-webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -3764,7 +3868,7 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	line-height: 30px;
 	padding: 0 22px 0 11px;
-	border-radius: 3px;
+	border-radius: 9px;
 	font-weight: 400;
 	white-space: nowrap;
 	position: relative;
@@ -3798,10 +3902,10 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-filterselect-suggestpopup [class$="status"] {
 	position: absolute;
-	right: 4px;
+	right: 10px;
 	background: rgba(22, 82, 156, 0.9);
 	color: #bacee7;
-	border-radius: 0 0 4px 4px;
+	border-radius: 0 0 10px 10px;
 	height: 25px;
 	bottom: -25px;
 	font-size: 14px;
@@ -3881,7 +3985,7 @@ div.v-layout.v-horizontal.v-widget {
 	-ms-transform-origin: 100% 0%;
 	-o-transform-origin: 100% 0%;
 	transform-origin: 100% 0%;
-	border-radius: 0 4px 0 4px;
+	border-radius: 0 10px 0 10px;
 }
 
 .CorpusTheme .v-filterselect-suggestpopup div[class*="prev"]:before {
@@ -3895,7 +3999,7 @@ div.v-layout.v-horizontal.v-widget {
 	-ms-transform-origin: 100% 100%;
 	-o-transform-origin: 100% 100%;
 	transform-origin: 100% 100%;
-	border-radius: 4px 0 4px 0;
+	border-radius: 10px 0 10px 0;
 }
 
 .CorpusTheme .v-filterselect-suggestpopup div[class*="next"]:before {
@@ -4052,7 +4156,7 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	position: absolute;
 	width: 31px;
-	border-radius: 0 4px 4px 0;
+	border-radius: 0 10px 10px 0;
 }
 
 .CorpusTheme .v-filterselect-tiny [class$="button"]:before {
@@ -4179,7 +4283,7 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	position: absolute;
 	width: 35px;
-	border-radius: 0 4px 4px 0;
+	border-radius: 0 10px 10px 0;
 }
 
 .CorpusTheme .v-filterselect-compact [class$="button"]:before, .CorpusTheme .v-filterselect-small [class$="button"]:before {
@@ -4311,7 +4415,7 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	position: absolute;
 	width: 49px;
-	border-radius: 0 4px 4px 0;
+	border-radius: 0 10px 10px 0;
 }
 
 .CorpusTheme .v-filterselect-large [class$="button"]:before {
@@ -4439,7 +4543,7 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	position: absolute;
 	width: 66px;
-	border-radius: 0 4px 4px 0;
+	border-radius: 0 10px 10px 0;
 }
 
 .CorpusTheme .v-filterselect-huge [class$="button"]:before {
@@ -4506,7 +4610,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #bfd1e8;
 	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset false;
 	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset false;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 }
 
@@ -4535,7 +4639,7 @@ div.v-layout.v-horizontal.v-widget {
 .CorpusTheme .v-csslayout-card {
 	background: #1a61b7;
 	color: #c1d3e9;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #6292cd;
 	
 	
@@ -4577,11 +4681,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-csslayout-v-component-group .v-widget ~ .v-widget.first.first {
-	border-radius: 4px 0 0 4px;
+	border-radius: 10px 0 0 10px;
 }
 
 .CorpusTheme .v-csslayout-v-component-group .v-widget ~ .v-widget.last.last {
-	border-radius: 0 4px 4px 0;
+	border-radius: 0 10px 10px 0;
 }
 
 .CorpusTheme .v-csslayout-v-component-group .v-widget {
@@ -5651,8 +5755,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 41px;
-	border-radius: 4px;
-	padding: 5px 9px;
+	border-radius: 10px;
+	padding: 5px 11px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	color: #c1d3e9;
@@ -5744,8 +5848,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 31px;
-	border-radius: 4px;
-	padding: 3px 8px;
+	border-radius: 10px;
+	padding: 3px 10px;
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -5776,8 +5880,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 35px;
-	border-radius: 4px;
-	padding: 4px 8px;
+	border-radius: 10px;
+	padding: 4px 10px;
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -5811,8 +5915,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 49px;
-	border-radius: 4px;
-	padding: 5px 11px;
+	border-radius: 10px;
+	padding: 5px 13px;
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -5843,8 +5947,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 66px;
-	border-radius: 4px;
-	padding: 7px 13px;
+	border-radius: 10px;
+	padding: 7px 15px;
 	
 	
 	-webkit-transition: box-shadow 180ms, border 180ms;
@@ -5871,7 +5975,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 16px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
-	padding-left: 1px;
+	padding-left: 3px;
 	margin: 0;
 }
 
@@ -5910,7 +6014,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 16px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
-	padding-left: 1px;
+	padding-left: 3px;
 	margin: 0;
 }
 
@@ -5949,7 +6053,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 16px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
-	padding-left: 1px;
+	padding-left: 3px;
 	margin: 0;
 }
 
@@ -5988,7 +6092,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 16px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
-	padding-left: 1px;
+	padding-left: 3px;
 	margin: 0;
 }
 
@@ -6027,7 +6131,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 16px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
-	padding-left: 1px;
+	padding-left: 3px;
 	margin: 0;
 }
 
@@ -6066,7 +6170,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 16px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
-	padding-left: 1px;
+	padding-left: 3px;
 	margin: 0;
 }
 
@@ -6117,7 +6221,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 41px;
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 7px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
@@ -6219,7 +6323,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 31px;
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 7px;
 	
 	
@@ -6261,7 +6365,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 35px;
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 7px;
 	
 	
@@ -6303,7 +6407,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 49px;
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 7px;
 	
 	
@@ -6345,7 +6449,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 66px;
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 7px;
 	
 	
@@ -6383,7 +6487,7 @@ div.v-layout.v-horizontal.v-widget {
 	position: relative;
 	width: 205px;
 	height: 41px;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-datefield [class*="textfield"] {
@@ -6405,8 +6509,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 41px;
-	border-radius: 4px;
-	padding: 5px 9px;
+	border-radius: 10px;
+	padding: 5px 11px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	color: #c1d3e9;
@@ -6472,7 +6576,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: none;
 	border-right: 1px solid #4d84c7;
 	color: #6d9ad0;
-	border-radius: 3px 0 0 3px;
+	border-radius: 9px 0 0 9px;
 }
 
 .CorpusTheme .v-datefield [class*="button"]:hover {
@@ -6562,7 +6666,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-datefield-popup {
 	padding: 5px 5px;
-	border-radius: 4px;
+	border-radius: 10px;
 	background-color: #1a61b7;
 	color: #c1d3e9;
 	-webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -6620,7 +6724,7 @@ div.v-layout.v-horizontal.v-widget {
 	text-align: center;
 	font-size: 16px;
 	background: #1a61b7;
-	border-radius: 2px;
+	border-radius: 5px;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
 	transition: color 200ms;
@@ -6775,8 +6879,8 @@ div.v-layout.v-horizontal.v-widget {
 	width: 39px;
 	border-top: 1px solid #3876c0;
 	border-right: 1px solid #3876c0;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 	background: #1a61b7;
 }
 
@@ -6811,7 +6915,7 @@ div.v-layout.v-horizontal.v-widget {
 	text-align: center;
 	font-size: 16px;
 	background: #1a61b7;
-	border-radius: 2px;
+	border-radius: 5px;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
 	transition: color 200ms;
@@ -6966,8 +7070,8 @@ div.v-layout.v-horizontal.v-widget {
 	width: 39px;
 	border-top: 1px solid #3876c0;
 	border-right: 1px solid #3876c0;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 	background: #1a61b7;
 }
 
@@ -7019,7 +7123,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-datefield-tiny {
 	height: 31px;
-	border-radius: 4px;
+	border-radius: 10px;
 	font-size: 14px;
 }
 
@@ -7042,8 +7146,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 31px;
-	border-radius: 4px;
-	padding: 3px 8px;
+	border-radius: 10px;
+	padding: 3px 10px;
 	
 	
 	
@@ -7077,7 +7181,7 @@ div.v-layout.v-horizontal.v-widget {
 	font: inherit;
 	outline: none;
 	margin: 0;
-	border-radius: 4px 0 0 4px;
+	border-radius: 10px 0 0 10px;
 }
 
 .CorpusTheme .v-datefield-tiny [class*="button"]:before {
@@ -7135,7 +7239,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-datefield-compact, .CorpusTheme .v-datefield-small {
 	height: 35px;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-datefield-compact [class*="textfield"], .CorpusTheme .v-datefield-small [class*="textfield"] {
@@ -7157,8 +7261,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 35px;
-	border-radius: 4px;
-	padding: 4px 8px;
+	border-radius: 10px;
+	padding: 4px 10px;
 	
 	
 	
@@ -7192,7 +7296,7 @@ div.v-layout.v-horizontal.v-widget {
 	font: inherit;
 	outline: none;
 	margin: 0;
-	border-radius: 4px 0 0 4px;
+	border-radius: 10px 0 0 10px;
 }
 
 .CorpusTheme .v-datefield-compact [class*="button"]:before, .CorpusTheme .v-datefield-small [class*="button"]:before {
@@ -7254,7 +7358,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-datefield-large {
 	height: 49px;
-	border-radius: 4px;
+	border-radius: 10px;
 	font-size: 22px;
 }
 
@@ -7277,8 +7381,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 49px;
-	border-radius: 4px;
-	padding: 5px 11px;
+	border-radius: 10px;
+	padding: 5px 13px;
 	
 	
 	
@@ -7312,7 +7416,7 @@ div.v-layout.v-horizontal.v-widget {
 	font: inherit;
 	outline: none;
 	margin: 0;
-	border-radius: 4px 0 0 4px;
+	border-radius: 10px 0 0 10px;
 }
 
 .CorpusTheme .v-datefield-large [class*="button"]:before {
@@ -7370,7 +7474,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-datefield-huge {
 	height: 66px;
-	border-radius: 4px;
+	border-radius: 10px;
 	font-size: 29px;
 }
 
@@ -7393,8 +7497,8 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 66px;
-	border-radius: 4px;
-	padding: 7px 13px;
+	border-radius: 10px;
+	padding: 7px 15px;
 	
 	
 	
@@ -7428,7 +7532,7 @@ div.v-layout.v-horizontal.v-widget {
 	font: inherit;
 	outline: none;
 	margin: 0;
-	border-radius: 4px 0 0 4px;
+	border-radius: 10px 0 0 10px;
 }
 
 .CorpusTheme .v-datefield-huge [class*="button"]:before {
@@ -7504,7 +7608,7 @@ div.v-layout.v-horizontal.v-widget {
 	text-align: center;
 	font-size: 16px;
 	background: #1a61b7;
-	border-radius: 2px;
+	border-radius: 5px;
 	-webkit-transition: color 200ms;
 	-moz-transition: color 200ms;
 	transition: color 200ms;
@@ -7659,8 +7763,8 @@ div.v-layout.v-horizontal.v-widget {
 	width: 39px;
 	border-top: 1px solid #3876c0;
 	border-right: 1px solid #3876c0;
-	border-top-right-radius: 4px;
-	border-bottom-left-radius: 4px;
+	border-top-right-radius: 10px;
+	border-bottom-left-radius: 10px;
 	background: #1a61b7;
 }
 
@@ -7711,12 +7815,12 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-touch-callout: none;
 	cursor: pointer;
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	cursor: default;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -7811,16 +7915,16 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-menubar > .v-menubar-menuitem:first-child {
 	border-left-width: 0;
-	border-radius: 3px 0 0 3px;
+	border-radius: 9px 0 0 9px;
 }
 
 .CorpusTheme .v-menubar > .v-menubar-menuitem:last-child {
-	border-radius: 0 3px 3px 0;
+	border-radius: 0 9px 9px 0;
 	border-right-width: 0;
 }
 
 .CorpusTheme .v-menubar > .v-menubar-menuitem:first-child:last-child {
-	border-radius: 3px;
+	border-radius: 9px;
 }
 
 .CorpusTheme .v-menubar > .v-menubar-menuitem:before {
@@ -7921,7 +8025,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-menubar-popup {
 	padding: 5px 5px;
-	border-radius: 4px;
+	border-radius: 10px;
 	background-color: #1a61b7;
 	color: #c1d3e9;
 	-webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -7955,7 +8059,7 @@ div.v-layout.v-horizontal.v-widget {
 	cursor: pointer;
 	line-height: 30px;
 	padding: 0 22px 0 11px;
-	border-radius: 3px;
+	border-radius: 9px;
 	font-weight: 400;
 	white-space: nowrap;
 	position: relative;
@@ -8027,12 +8131,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-menubar-small {
 	height: 35px;
-	padding: 0 16px;
+	padding: 0 18px;
 	
 	font-weight: 400;
 	
 	cursor: default;
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 0;
 	text-align: left;
 	line-height: 33px;
@@ -8075,7 +8179,7 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: none;
 	border: none;
 	margin-right: 1px;
-	border-radius: 4px;
+	border-radius: 10px;
 	color: #fff;
 	padding: 0 14px;
 	-webkit-transition: color 140ms;
@@ -8084,7 +8188,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-menubar-borderless .v-menubar-menuitem:first-child, .CorpusTheme .v-menubar-borderless .v-menubar-menuitem:last-child, .CorpusTheme .v-menubar-borderless .v-menubar-menuitem:first-child:last-child {
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-menubar-borderless .v-menubar-menuitem:before {
@@ -8171,19 +8275,19 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-radius: 4px;
+	border-radius: 7px;
 	font-size: 14px;
 	text-align: center;
 }
 
 :root .CorpusTheme .v-radiobutton > input ~ label:before {
 	height: 20.5px;
-	padding: 0 10px;
+	padding: 0 11px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 7px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -8329,19 +8433,19 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-radius: 4px;
+	border-radius: 6px;
 	font-size: 12px;
 	text-align: center;
 }
 
 :root .CorpusTheme .v-select-optiongroup-small .v-checkbox > input ~ label:before {
 	height: 17.5px;
-	padding: 0 8px;
+	padding: 0 9px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 6px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -8453,19 +8557,19 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-radius: 4px;
+	border-radius: 6px;
 	font-size: 12px;
 	text-align: center;
 }
 
 :root .CorpusTheme .v-select-optiongroup-small .v-radiobutton > input ~ label:before {
 	height: 17.5px;
-	padding: 0 8px;
+	padding: 0 9px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 6px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -8611,19 +8715,19 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-radius: 4px;
+	border-radius: 8px;
 	font-size: 17px;
 	text-align: center;
 }
 
 :root .CorpusTheme .v-select-optiongroup-large .v-checkbox > input ~ label:before {
 	height: 24.5px;
-	padding: 0 11px;
+	padding: 0 13px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 8px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -8735,19 +8839,19 @@ div.v-layout.v-horizontal.v-widget {
 	position: absolute;
 	top: 0;
 	left: 0;
-	border-radius: 4px;
+	border-radius: 8px;
 	font-size: 17px;
 	text-align: center;
 }
 
 :root .CorpusTheme .v-select-optiongroup-large .v-radiobutton > input ~ label:before {
 	height: 24.5px;
-	padding: 0 11px;
+	padding: 0 13px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 8px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -8898,7 +9002,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-window {
 	padding: 5px 5px;
-	border-radius: 4px;
+	border-radius: 10px;
 	background-color: #1a61b7;
 	color: #c1d3e9;
 	-webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -9047,7 +9151,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-window-closebox {
 	padding-right: 5px;
-	border-radius: 0 4px 0 4px;
+	border-radius: 0 10px 0 10px;
 }
 
 .CorpusTheme .v-window-closebox:before {
@@ -9057,7 +9161,7 @@ div.v-layout.v-horizontal.v-widget {
 .CorpusTheme .v-window-maximizebox, .CorpusTheme .v-window-restorebox {
 	right: 36px;
 	padding-left: 5px;
-	border-radius: 0 0 0 4px;
+	border-radius: 0 0 0 10px;
 }
 
 .CorpusTheme .v-window-maximizebox  + .v-window-closebox, .CorpusTheme .v-window-restorebox  + .v-window-closebox {
@@ -9071,7 +9175,7 @@ div.v-layout.v-horizontal.v-widget {
 .CorpusTheme .v-window-closebox-disabled  + .v-window-closebox, .CorpusTheme .v-window-resizebox-disabled  + .v-window-closebox, .CorpusTheme .v-window-restorebox-disabled  + .v-window-closebox, .CorpusTheme .v-window-maximizebox-disabled  + .v-window-closebox {
 	width: 41px;
 	padding-right: 0;
-	border-bottom-left-radius: 4px;
+	border-bottom-left-radius: 10px;
 }
 
 .CorpusTheme .v-window-maximizebox:before {
@@ -9090,7 +9194,7 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	border-radius: 4px;
+	border-radius: 10px;
 	margin-top: 0 !important;
 }
 
@@ -9227,7 +9331,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: -webkit-linear-gradient(top, #1a61b7 0, #1a61b7 4px);
 	background-image: linear-gradient(to bottom,#1a61b7 0, #1a61b7 4px);
 	border-top: 1px solid #4d84c7;
-	border-radius: 0 0 4px 4px;
+	border-radius: 0 0 10px 10px;
 }
 
 .CorpusTheme .v-margin-left.v-margin-right.v-margin-top .v-window-top-toolbar.v-layout {
@@ -9346,7 +9450,7 @@ div.v-layout.v-horizontal.v-widget {
 	margin-top: -32px;
 	width: 100%;
 	height: 32px;
-	border-radius: 4px;
+	border-radius: 10px;
 	opacity: 0;
 	-webkit-transition: opacity 120ms;
 	-moz-transition: opacity 120ms;
@@ -9436,7 +9540,7 @@ div.v-layout.v-horizontal.v-widget {
 	-webkit-box-shadow: 0 0 0 2px #fff;
 	box-shadow: 0 0 0 2px #fff;
 	position: relative;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .v-ie8 .CorpusTheme .v-tree-node-caption-drag-center {
@@ -9690,12 +9794,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-table-column-selector {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -9710,7 +9814,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 0;
 	border-top-width: 0;
 	border-right-width: 0;
-	border-radius: 0 0 0 4px;
+	border-radius: 0 0 0 10px;
 	cursor: pointer;
 	text-align: center;
 	opacity: 0;
@@ -9800,7 +9904,7 @@ div.v-layout.v-horizontal.v-widget {
 	
 	-webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-	border-radius: 4px;
+	border-radius: 10px;
 	overflow: hidden;
 	opacity: 0.5;
 	filter: alpha(opacity=50) ;
@@ -10053,12 +10157,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-splitpanel-horizontal  > div > .v-splitpanel-hsplitter div:before {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	-webkit-box-shadow: none;
@@ -10106,12 +10210,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-splitpanel-vertical  > div > .v-splitpanel-vsplitter div:before {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	-webkit-box-shadow: none;
@@ -10154,12 +10258,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-splitpanel-horizontal.large  > div > .v-splitpanel-hsplitter div:before {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	-webkit-box-shadow: none;
@@ -10221,12 +10325,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-splitpanel-vertical.large  > div > .v-splitpanel-vsplitter div:before {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	-webkit-box-shadow: none;
@@ -10273,7 +10377,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-progressbar-wrapper {
-	border-radius: 4px;
+	border-radius: 10px;
 	height: 10px;
 	background: #205392;
 	-webkit-box-sizing: border-box;
@@ -10283,7 +10387,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-progressbar-indicator {
-	border-radius: 4px;
+	border-radius: 10px;
 	height: inherit;
 	background: #fff;
 	
@@ -10293,7 +10397,7 @@ div.v-layout.v-horizontal.v-widget {
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 	max-width: 100%;
-	min-width: 8px;
+	min-width: 20px;
 	-webkit-transition: width 160ms;
 	-moz-transition: width 160ms;
 	transition: width 160ms;
@@ -10311,7 +10415,7 @@ div.v-layout.v-horizontal.v-widget {
 .CorpusTheme .v-progressbar-point .v-progressbar-indicator:before {
 	content: "";
 	display: inline-block;
-	border-radius: 4px;
+	border-radius: 10px;
 	height: inherit;
 	background: #fff;
 	
@@ -10343,7 +10447,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .v-ie8 .CorpusTheme .v-progressbar-indeterminate, .v-ie9 .CorpusTheme .v-progressbar-indeterminate {
 	border: none;
-	border-radius: 4px;
+	border-radius: 10px;
 	background: #fff url(../valo/shared/img/spinner.gif) no-repeat 50% 50%;
 	background-size: 80%;
 }
@@ -10379,7 +10483,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-slider-base {
-	border-radius: 4px;
+	border-radius: 10px;
 	height: 10px;
 	background: #205392;
 	-webkit-box-sizing: border-box;
@@ -10399,13 +10503,13 @@ div.v-layout.v-horizontal.v-widget {
 	top: 18px;
 	bottom: 18px;
 	left: 12px;
-	width: 8px;
-	border-radius: 4px;
+	width: 20px;
+	border-radius: 10px;
 	border-left: 1px solid #81a8d7;
 }
 
 .CorpusTheme .v-slider-base:after {
-	border-radius: 4px;
+	border-radius: 10px;
 	height: inherit;
 	background: #fff;
 	
@@ -10440,12 +10544,12 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-slider-handle:before {
 	height: 41px;
-	padding: 0 18px;
+	padding: 0 20px;
 	color: #eaeff6;
 	font-weight: 400;
 	
 	
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
 	
@@ -10511,7 +10615,7 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 	color: black;
 	padding: 5px 10px;
-	border-radius: 3px;
+	border-radius: 9px;
 	max-width: 35em;
 	overflow: hidden !important;
 	font-size: 15px;
@@ -10536,7 +10640,7 @@ div.v-layout.v-horizontal.v-widget {
 	left: 18px;
 	right: 18px;
 	width: auto;
-	height: 8px;
+	height: 20px;
 	border-left: none;
 	border-bottom: 1px solid #81a8d7;
 }
@@ -10684,7 +10788,7 @@ div.v-layout.v-horizontal.v-widget {
 	line-height: 20px;
 	width: 20px;
 	text-align: center;
-	border-radius: 2px;
+	border-radius: 5px;
 	color: #6ea0db;
 }
 
@@ -10824,7 +10928,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .v-ie8 .CorpusTheme .v-tabsheet-deco, .v-ie9 .CorpusTheme .v-tabsheet-deco {
 	border: none;
-	border-radius: 4px;
+	border-radius: 10px;
 	background: #fff url(../valo/shared/img/spinner.gif) no-repeat 50% 50%;
 	background-size: 80%;
 }
@@ -10862,7 +10966,7 @@ div.v-layout.v-horizontal.v-widget {
 	background-color: #1a61b7;
 	border: 1px solid transparent;
 	line-height: 40px;
-	border-radius: 4px 4px 0 0;
+	border-radius: 10px 10px 0 0;
 	font-weight: 400;
 	-webkit-transition: background-color 160ms;
 	-moz-transition: background-color 160ms;
@@ -11085,7 +11189,7 @@ div.v-layout.v-horizontal.v-widget {
 	right: 7px;
 	bottom: 7px;
 	left: 7px;
-	border-radius: 3px;
+	border-radius: 9px;
 	border: 1px solid rgba(0, 0, 0, 0.5);
 	max-width: 25px;
 }
@@ -11114,7 +11218,7 @@ div.v-layout.v-horizontal.v-widget {
 .CorpusTheme .v-panel {
 	background: #1a61b7;
 	color: #c1d3e9;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #6292cd;
 	
 	
@@ -11137,7 +11241,7 @@ div.v-layout.v-horizontal.v-widget {
 	
 	
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.05);
-	border-radius: 3px 3px 0 0;
+	border-radius: 9px 9px 0 0;
 }
 
 .CorpusTheme .v-panel-content {
@@ -11188,7 +11292,7 @@ div.v-layout.v-horizontal.v-widget {
 	color: #bfd1e8;
 	-webkit-box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset false;
 	box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05), inset false;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #81a8d7;
 }
 
@@ -11241,7 +11345,7 @@ div.v-layout.v-horizontal.v-widget {
 .CorpusTheme .v-accordion {
 	background: #1a61b7;
 	color: #c1d3e9;
-	border-radius: 4px;
+	border-radius: 10px;
 	border: 1px solid #6292cd;
 	
 	
@@ -11256,13 +11360,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-accordion-item:first-child {
-	border-top-left-radius: 3px;
-	border-top-right-radius: 3px;
+	border-top-left-radius: 9px;
+	border-top-right-radius: 9px;
 }
 
 .CorpusTheme .v-accordion-item:last-child {
-	border-bottom-left-radius: 3px;
-	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 9px;
+	border-bottom-right-radius: 9px;
 }
 
 .CorpusTheme .v-accordion-item:last-child [class*="item-content"] {
@@ -11394,7 +11498,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 16px;
 	font-weight: 400;
 	padding-bottom: 0.3em;
-	padding-left: 1px;
+	padding-left: 3px;
 }
 
 .CorpusTheme .v-select-twincol-buttons {
@@ -11434,11 +11538,11 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-select-twincol-buttons .v-button:first-child {
-	border-radius: 4px 4px 0 0;
+	border-radius: 10px 10px 0 0;
 }
 
 .CorpusTheme .v-select-twincol-buttons .v-button:last-child {
-	border-radius: 0 0 4px 4px;
+	border-radius: 0 0 10px 10px;
 }
 
 .CorpusTheme .v-select-twincol-buttons .v-button-wrap:before {
@@ -11696,7 +11800,7 @@ div.v-layout.v-horizontal.v-widget {
 	background: #fff;
 	opacity: 0.5;
 	filter: alpha(opacity=50) ;
-	border-radius: 4px 4px 0 0;
+	border-radius: 10px 10px 0 0;
 }
 
 .CorpusTheme .v-calendar .v-daterange  + .v-daterange {
@@ -11712,7 +11816,7 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 	cursor: pointer;
 	outline: none;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-calendar-event:focus {
@@ -11771,14 +11875,14 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-calendar-event-start {
-	border-top-left-radius: 4px;
-	border-bottom-left-radius: 4px;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 	margin-left: 5px;
 }
 
 .CorpusTheme .v-calendar-event-end {
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 	margin-right: 5px;
 }
 
@@ -11805,7 +11909,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-calendar-week-wrapper .v-calendar-event-content {
 	margin-top: -1px;
-	border-radius: 5px;
+	border-radius: 11px;
 	border: 1px solid #1a61b7;
 	padding-top: 3px;
 	margin-right: 5px;
@@ -12033,7 +12137,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .v-ie8 .CorpusTheme .v-label-spinner, .v-ie9 .CorpusTheme .v-label-spinner {
 	border: none;
-	border-radius: 4px;
+	border-radius: 10px;
 	background: #fff url(../valo/shared/img/spinner.gif) no-repeat 50% 50%;
 	background-size: 80%;
 }
@@ -12047,7 +12151,7 @@ div.v-layout.v-horizontal.v-widget {
 	background: #1a61b7;
 	color: #c1d3e9;
 	border: 2px solid #2c9720;
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 8px 21px 8px 41px;
 	font-weight: 400;
 	font-size: 17px;
@@ -12112,7 +12216,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .no-vertical-drag-hints .v-ddwrapper-over-top:after, .CorpusTheme .no-vertical-drag-hints.v-ddwrapper-over-top:after {
 	border-width: 2px;
-	border-radius: 4px;
+	border-radius: 10px;
 	opacity: 0.3;
 	filter: alpha(opacity=30.0) ;
 	background: gray;
@@ -12124,7 +12228,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .no-vertical-drag-hints .v-ddwrapper-over-bottom:after, .CorpusTheme .no-vertical-drag-hints.v-ddwrapper-over-bottom:after {
 	border-width: 2px;
-	border-radius: 4px;
+	border-radius: 10px;
 	opacity: 0.3;
 	filter: alpha(opacity=30.0) ;
 	background: gray;
@@ -12136,7 +12240,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .no-horizontal-drag-hints.v-ddwrapper-over-left:after, .CorpusTheme .no-horizontal-drag-hints .v-ddwrapper-over-left:after {
 	border-width: 2px;
-	border-radius: 4px;
+	border-radius: 10px;
 	opacity: 0.3;
 	filter: alpha(opacity=30.0) ;
 	background: gray;
@@ -12148,7 +12252,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .no-horizontal-drag-hints.v-ddwrapper-over-right:after, .CorpusTheme .no-horizontal-drag-hints .v-ddwrapper-over-right:after {
 	border-width: 2px;
-	border-radius: 4px;
+	border-radius: 10px;
 	opacity: 0.3;
 	filter: alpha(opacity=30.0) ;
 	background: gray;
@@ -12156,7 +12260,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-ddwrapper-over-middle:after, .CorpusTheme .v-ddwrapper-over-center:after {
 	border-width: 2px;
-	border-radius: 4px;
+	border-radius: 10px;
 	opacity: 0.3;
 	filter: alpha(opacity=30.0) ;
 	background: gray;
@@ -12218,7 +12322,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .v-popupview-popup {
 	padding: 5px 5px;
-	border-radius: 4px;
+	border-radius: 10px;
 	background-color: #1a61b7;
 	color: #c1d3e9;
 	-webkit-box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
@@ -12276,7 +12380,7 @@ div.v-layout.v-horizontal.v-widget {
 
 .v-ie8 .CorpusTheme .v-popupview-loading, .v-ie9 .CorpusTheme .v-popupview-loading {
 	border: none;
-	border-radius: 4px;
+	border-radius: 10px;
 	background: #fff url(../valo/shared/img/spinner.gif) no-repeat 50% 50%;
 	background-size: 80%;
 }
@@ -12302,7 +12406,7 @@ div.v-layout.v-horizontal.v-widget {
 	font-weight: 400;
 	line-height: normal;
 	height: 41px;
-	border-radius: 4px;
+	border-radius: 10px;
 	padding: 0;
 	border: 1px solid #81a8d7;
 	background: #1a61b7;
@@ -12530,7 +12634,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-Notification {
-	border-radius: 4px;
+	border-radius: 10px;
 	text-align: center;
 	position: fixed !important;
 	-webkit-backface-visibility: hidden;
@@ -12851,13 +12955,13 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .valo-menu {
 	height: 100%;
-	background-color: #1a61b7;
-	background-image: -webkit-linear-gradient(right, #1a61b7 0%, #1a61b7 10px);
-	background-image: linear-gradient(to left,#1a61b7 0%, #1a61b7 10px);
-	color: #89b0de;
+	background-color: #433;
+	background-image: -webkit-linear-gradient(right, #443333 0%, #433 10px);
+	background-image: linear-gradient(to left,#443333 0%, #433 10px);
+	color: #a89393;
 	font-size: 16px;
 	line-height: 33px;
-	border-right: 1px solid #81a8d7;
+	border-right: 1px solid #988e8e;
 	white-space: nowrap;
 }
 
@@ -12871,7 +12975,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-part {
-	border-left: 1px solid #578bca;
+	border-left: 1px solid #766a6a;
 	height: 100%;
 	padding-bottom: 41px;
 	overflow: auto;
@@ -12956,7 +13060,7 @@ div.v-layout.v-horizontal.v-widget {
 	box-shadow: none;
 	border: none;
 	margin-right: 1px;
-	border-radius: 4px;
+	border-radius: 10px;
 	color: #fff;
 	padding: 0 14px;
 	-webkit-transition: color 140ms;
@@ -12965,7 +13069,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-menubar-user-menu .v-menubar-menuitem:first-child, .CorpusTheme .v-menubar-user-menu .v-menubar-menuitem:last-child, .CorpusTheme .v-menubar-user-menu .v-menubar-menuitem:first-child:last-child {
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .v-menubar-user-menu .v-menubar-menuitem:before {
@@ -13032,13 +13136,13 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-subtitle {
-	color: #5b94d9;
+	color: #8b6d6d;
 	margin: 8px 0 8px 21px;
-	border-bottom: 1px solid #3c78c1;
+	border-bottom: 1px solid #605151;
 }
 
 .CorpusTheme .valo-menu-subtitle [class*="badge"] {
-	color: #e0e9f4;
+	color: #e6e1e1;
 }
 
 .CorpusTheme .valo-menuitems {
@@ -13073,7 +13177,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-item.selected {
-	background: #185aaa;
+	background: #3b2c2c;
 }
 
 .CorpusTheme .valo-menu-item.selected .v-icon {
@@ -13101,7 +13205,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-item [class*="badge"] {
-	background-color: #1d6dcd;
+	background-color: #533e3e;
 	-webkit-transition: background-color 300ms;
 	-moz-transition: background-color 300ms;
 	transition: background-color 300ms;
@@ -13110,11 +13214,11 @@ div.v-layout.v-horizontal.v-widget {
 	min-width: 12px;
 	text-align: center;
 	top: 3.5px;
-	border-radius: 4px;
+	border-radius: 10px;
 }
 
 .CorpusTheme .valo-menu-part.large-icons {
-	background-color: #1a61b7;
+	background-color: #433;
 	min-width: 82px;
 	max-width: 123px;
 }
@@ -13145,7 +13249,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: none;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	background: #16539c;
+	background: #332626;
 	font-size: 14px;
 	
 }
@@ -13164,7 +13268,7 @@ div.v-layout.v-horizontal.v-widget {
 	line-height: 1;
 	padding: 14px;
 	text-align: center;
-	border-top: 1px solid #276abb;
+	border-top: 1px solid #4f3f3f;
 }
 
 .CorpusTheme .valo-menu-part.large-icons .valo-menu-item:first-child {
@@ -13189,7 +13293,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-part.large-icons .valo-menu-item.selected {
-	background: #185aaa;
+	background: #3b2c2c;
 }
 
 .CorpusTheme .valo-menu-part.large-icons .valo-menu-item.selected .v-icon {
@@ -13197,7 +13301,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-part.large-icons .valo-menu-item.selected [class*="badge"] {
-	border-color: #185aaa;
+	border-color: #3b2c2c;
 }
 
 .CorpusTheme .valo-menu-part.large-icons .valo-menu-item [class*="badge"] {
@@ -13205,7 +13309,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding-right: 5px;
 	top: 8px;
 	right: 8px;
-	border: 2px solid #1a61b7;
+	border: 2px solid #433;
 }
 
 .CorpusTheme .valo-menu-logo {
@@ -13213,7 +13317,7 @@ div.v-layout.v-horizontal.v-widget {
 	overflow: hidden;
 	width: 49px !important;
 	height: 49px;
-	border-radius: 4px;
+	border-radius: 10px;
 	text-align: center;
 	background: #fff;
 	color: black;
@@ -13229,7 +13333,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part {
-	background-color: #1a61b7;
+	background-color: #433;
 	min-width: 82px;
 	max-width: 123px;
 }
@@ -13260,7 +13364,7 @@ div.v-layout.v-horizontal.v-widget {
 	border: none;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	background: #16539c;
+	background: #332626;
 	font-size: 14px;
 	
 }
@@ -13279,7 +13383,7 @@ div.v-layout.v-horizontal.v-widget {
 	line-height: 1;
 	padding: 14px;
 	text-align: center;
-	border-top: 1px solid #276abb;
+	border-top: 1px solid #4f3f3f;
 }
 
 .CorpusTheme .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .valo-menu-item:first-child {
@@ -13304,7 +13408,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .valo-menu-item.selected {
-	background: #185aaa;
+	background: #3b2c2c;
 }
 
 .CorpusTheme .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .valo-menu-item.selected .v-icon {
@@ -13312,7 +13416,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .valo-menu-item.selected [class*="badge"] {
-	border-color: #185aaa;
+	border-color: #3b2c2c;
 }
 
 .CorpusTheme .valo-menu-responsive[width-range~="801px-1100px"] .valo-menu-part .valo-menu-item [class*="badge"] {
@@ -13320,7 +13424,7 @@ div.v-layout.v-horizontal.v-widget {
 	padding-right: 5px;
 	top: 8px;
 	right: 8px;
-	border: 2px solid #1a61b7;
+	border: 2px solid #433;
 }
 
 .CorpusTheme .valo-menu-responsive[width-range~="0-800px"] {
@@ -13390,13 +13494,13 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .valo-menu-responsive[width-range~="0-800px"] .valo-menuitems {
 	height: 100%;
-	background-color: #1a61b7;
-	background-image: -webkit-linear-gradient(right, #1a61b7 0%, #1a61b7 10px);
-	background-image: linear-gradient(to left,#1a61b7 0%, #1a61b7 10px);
-	color: #89b0de;
+	background-color: #433;
+	background-image: -webkit-linear-gradient(right, #443333 0%, #433 10px);
+	background-image: linear-gradient(to left,#443333 0%, #433 10px);
+	color: #a89393;
 	font-size: 16px;
 	line-height: 33px;
-	border-right: 1px solid #81a8d7;
+	border-right: 1px solid #988e8e;
 	white-space: nowrap;
 	position: fixed;
 	z-index: 9000;
@@ -13438,4 +13542,99 @@ div.v-layout.v-horizontal.v-widget {
 	background-image: url(wp.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+}
+
+.CorpusTheme .valo-email-menu {
+	border-bottom: 1px solid #ccc;
+	border-right: none;
+	width: 100%;
+	height: 49px;
+	padding-bottom: 0px;
+}
+
+.CorpusTheme .valo-menu-part-email {
+	padding-bottom: 20px;
+	padding-right: 40px;
+}
+
+.CorpusTheme .valo-email {
+	display: inline-block;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+.CorpusTheme .newEmailButton {
+	font-size: 21px;
+}
+
+.CorpusTheme .newEmailButton .v-icon {
+	font-size: 49px;
+}
+
+.CorpusTheme .newEmailButton:hover {
+	color: white;
+}
+
+.CorpusTheme .newEmailButton:hover .v-icon {
+	color: white;
+}
+
+.CorpusTheme .bicon .v-icon {
+	font-size: 25px;
+}
+
+.CorpusTheme .emailHeader {
+	height: 20px;
+	border-bottom: 1px solid #ccc;
+	padding: 25px 30px 25px 30px;
+}
+
+.CorpusTheme .notSeen {
+	border: 0px;
+}
+
+.CorpusTheme .notSeen .v-icon {
+	color: #4cff00;
+}
+
+.CorpusTheme .notSeen .v-icon:hover {
+	border: 0px;
+}
+
+.CorpusTheme .notSeen .v-icon:focus {
+	border: 0px;
+}
+
+.CorpusTheme .notSeen .v-icon:after {
+	border: 0px;
+}
+
+.CorpusTheme .notSeen .v-icon:active {
+	border: 0px;
+	opacity: 1;
+}
+
+.CorpusTheme .seen {
+	border: 0px;
+}
+
+.CorpusTheme .seen .v-icon {
+	opacity: 0;
+}
+
+.CorpusTheme .seen .v-icon:hover {
+	border: 0px;
+}
+
+.CorpusTheme .seen .v-icon:focus {
+	border: 0px;
+}
+
+.CorpusTheme .seen .v-icon:after {
+	border: 0px;
+}
+
+.CorpusTheme .seen .v-icon:active {
+	border: 0px;
+	opacity: 1;
 }

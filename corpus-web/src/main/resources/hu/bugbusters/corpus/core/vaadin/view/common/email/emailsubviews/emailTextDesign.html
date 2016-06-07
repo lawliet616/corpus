@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
+ </head> 
+ <body> 
+  <vaadin-horizontal-layout style-name="message-layout" width-full height="125px"> 
+   <vaadin-button icon="fonticon://FontAwesome/f111" style-name="borderless" plain-text _id="seenButton"></vaadin-button> 
+   <vaadin-vertical-layout style-name="email" size-full margin-right :expand> 
+    <vaadin-label style-name="bold" plain-text _id="senderNameLabel">
+      Küldő neve 
+    </vaadin-label> 
+    <vaadin-label caption="Tárgy" size-full plain-text _id="messageLabel" :expand>
+      Üzenet tartalma 
+    </vaadin-label> 
+   </vaadin-vertical-layout> 
+  </vaadin-horizontal-layout>  
+ </body>
+</html>

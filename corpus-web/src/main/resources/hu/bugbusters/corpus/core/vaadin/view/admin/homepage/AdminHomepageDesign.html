@@ -3,13 +3,19 @@
  <head>
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
   <meta charset="UTF-8" name="package-mapping" content="com_askvikrant_digitalclock:com.askvikrant.digitalclock">
+  <meta charset="UTF-8" name="package-mapping" content="com_vaadin_addon_calendar_ui:com.vaadin.addon.calendar.ui">
+  <meta charset="UTF-8" name="package-mapping" content="org_vaadin_sliderpanel:org.vaadin.sliderpanel">
  </head> 
  <body> 
-  <vaadin-vertical-layout spacing size-full margin> 
-   <vaadin-label size-auto plain-text _id="lblWelcome" :middle :center>
-     Label 
-   </vaadin-label> 
-   <com_askvikrant_digitalclock-digital-clock caption="Pontos idő" _id="clock" :middle :center></com_askvikrant_digitalclock-digital-clock> 
-  </vaadin-vertical-layout>  
+  <vaadin-horizontal-layout size-full> 
+   <vaadin-horizontal-layout size-full margin-top margin-bottom _id="lay" :middle :center :expand> 
+    <vaadin-vertical-layout size-full _id="layout" :middle :center> 
+     <vaadin-label size-auto plain-text _id="lblWelcome" :middle :center>
+       Label 
+     </vaadin-label> 
+     <com_askvikrant_digitalclock-digital-clock _id="clock" :middle :center></com_askvikrant_digitalclock-digital-clock> 
+    </vaadin-vertical-layout> 
+   </vaadin-horizontal-layout> 
+  </vaadin-horizontal-layout>  
  </body>
 </html>

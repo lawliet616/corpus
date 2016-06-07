@@ -7,6 +7,7 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
@@ -21,6 +22,7 @@ import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.homepage.AdminHomepageView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.inboxEmailView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.newMailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
@@ -45,6 +47,24 @@ public class emailView extends emailDesign implements View{
 					((CorpusUI) getUI()).navigate(inboxEmailView.NAME);
 				}
 			});
+		
+		newEmailButton.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				Window newMail = new Window("Új e-mail");
+				newMail.setContent(new newMailView());
+				newMail.setStyleName("subWindow");
+				
+				newMail.setWidth("70%");
+				newMail.setHeight("60%");
+				newMail.center();
+				newMail.setDraggable(false);
+				
+				((CorpusUI) getUI()).addWindow(newMail);
+				
+			}
+		});
 	}
 
 	

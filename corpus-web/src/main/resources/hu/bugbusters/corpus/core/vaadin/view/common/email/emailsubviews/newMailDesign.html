@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout size-full> 
+   <vaadin-text-field caption="Címzett:" width-full _id="targetTxt"></vaadin-text-field> 
+   <vaadin-text-field caption="Tárgy:" width-full _id="subjectTxt" :center></vaadin-text-field> 
+   <vaadin-text-area caption="Üzenet:" size-full _id="messageTxt" :expand></vaadin-text-area> 
+   <vaadin-horizontal-layout spacing width="200px" :right> 
+    <vaadin-button plain-text _id="senButton" :right>
+      Küldés 
+    </vaadin-button> 
+    <vaadin-button plain-text _id="cancelButton" :right>
+      Mégse 
+    </vaadin-button> 
+   </vaadin-horizontal-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

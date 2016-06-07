@@ -42,7 +42,6 @@ public class emailTextView extends emailTextDesign implements View {
 				for (Inbox receivedMessage : receivedMessages){
 					if(receivedMessage.getMessage().getId() == message.getId()){
 						receivedMessage.setSeen('Y');
-						
 					}
 				}
 				

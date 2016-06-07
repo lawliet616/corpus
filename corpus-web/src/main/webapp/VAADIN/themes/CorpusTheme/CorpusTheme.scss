@@ -28,7 +28,6 @@
 // Example variants can be copy/pasted from https://vaadin.com/wiki/-/wiki/Main/Valo+Examples
 
 $v-app-loading-text: "Loading";
-$v-app-loading-border-radius: 100px;
 $v-background-color: #1a61b7;
 $v-focus-color: #fff;
 $v-panel-background-color: $v-background-color;
@@ -154,9 +153,32 @@ $valo-menu-background-color: #433;
         background-color: #fff;
     }
 
-    .v-app-loading:before{
-        border-radius: 100px;
+    .v-app-loading{
+        height: 100%; 
+	    width: 100%;
     }
+    .v-app {
+        height: 100%;
+        width: 100%;
+        
+    } 
+
+    .v-app-loading:before{
+        background: #1a61b7 url(load.gif) no-repeat 50%;
+        background-size: 70px;
+	    border-radius: 4px;
+        width: 70px;
+	    height: 70px;
+        content: "";
+	    position: fixed;
+	    z-index: 100;
+	    top: 45%;
+	    left: 50%;
+	    padding: 0px;
+	    margin-top: -35px;
+	    margin-left: -35px;
+    }
+
     /*.v-menuitem{
         background-color : #b6b6b6;
         border-radius: 0px 0px 10px 10px;

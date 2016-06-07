@@ -13642,3 +13642,29 @@ div.v-layout.v-horizontal.v-widget {
 .CorpusTheme .subWindow {
 	background-color: #fff;
 }
+
+.CorpusTheme .v-app-loading {
+	height: 100%;
+	width: 100%;
+}
+
+.CorpusTheme .v-app {
+	height: 100%;
+	width: 100%;
+}
+
+.CorpusTheme .v-app-loading:before {
+	background: #1a61b7 url(load.gif) no-repeat 50%;
+	background-size: 70px;
+	border-radius: 4px;
+	width: 70px;
+	height: 70px;
+	content: "";
+	position: fixed;
+	z-index: 100;
+	top: 45%;
+	left: 45%;
+	padding: 0px;
+	margin-top: -25px;
+	margin-left: -25px;
+}

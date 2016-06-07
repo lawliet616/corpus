@@ -11,6 +11,7 @@
 		<property name="show_sql">true</property>
 		<property name="hibernate.jdbc.batch_size">20</property>
 		<property name="hibernate.enable_lazy_load_no_trans">true</property>
+		<property name="hibernate.physical_naming_strategy">hu.bugbusters.corpus.core.util.PhysicalNamingStrategyImpl</property>
 
 		<mapping class="hu.bugbusters.corpus.core.bean.Course" />
 		<mapping class="hu.bugbusters.corpus.core.bean.RegisteredUser" />

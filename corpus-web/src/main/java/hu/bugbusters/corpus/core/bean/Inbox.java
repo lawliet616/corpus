@@ -21,7 +21,6 @@ public class Inbox implements java.io.Serializable {
 
     @Getter
     @Setter
-    @Column(name = "seen", nullable = false)
     private char seen;
 
     @Transient

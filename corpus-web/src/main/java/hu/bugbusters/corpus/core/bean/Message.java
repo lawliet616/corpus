@@ -20,27 +20,22 @@ public class Message implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "message_seq", allocationSize = 1)
-	@Column(name = "id", nullable = false)
 	private Long id;
 
 	@Getter
 	@Setter
-	@Column(name = "creator_id", nullable = false)
 	private Long creatorId;
 
 	@Getter
 	@Setter
-	@Column(name = "subject", nullable = false)
 	private String subject;
 	
 	@Getter
 	@Setter
-	@Column(name = "message", nullable = false)
 	private String message;
 
 	@Getter
 	@Setter
-	@Column(name = "time")
 	private Timestamp time;
 
 	@Getter

@@ -19,38 +19,32 @@ import lombok.Setter;
 		@UniqueConstraint(columnNames = "username"),
 		@UniqueConstraint(columnNames = "email") })
 public class RegisteredUser implements Serializable {
+	@Getter
+	@Setter
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "registered_user_seq", allocationSize = 1)
-	@Column(name = "id", nullable = false)
-	@Getter
-	@Setter
 	private Long id;
 
 	@Getter
 	@Setter
-	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 
 	@Getter
 	@Setter
-	@Column(name = "password", nullable = false)
 	private String password;
 
 	@Getter
 	@Setter
-	@Column(name = "role", nullable = false)
 	@Convert(converter = RoleConverter.class)
 	private Role role;
 
 	@Getter
 	@Setter
-	@Column(name = "full_name")
 	private String fullName;
 
 	@Getter
 	@Setter
-	@Column(name = "email", unique = true, nullable = false)
 	private String email;
 
 	@Getter

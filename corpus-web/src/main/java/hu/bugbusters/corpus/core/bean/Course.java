@@ -19,27 +19,22 @@ public class Course implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "course_seq", allocationSize = 1)
-	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 
 	@Getter
 	@Setter
-	@Column(name = "name", unique = true, nullable = false)
 	private String name;
 
 	@Getter
 	@Setter
-	@Column(name = "room")
 	private String room;
 
 	@Getter
 	@Setter
-	@Column(name = "credit")
 	private int credit;
 
 	@Getter
 	@Setter
-	@Column(name = "teacher")
 	private String teacher;
 
 	@Getter

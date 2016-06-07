@@ -15,9 +15,6 @@ import lombok.Setter;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "registered_user", catalog = "CORPUS", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "username"),
-		@UniqueConstraint(columnNames = "email") })
 public class RegisteredUser implements Serializable {
 	@Getter
 	@Setter

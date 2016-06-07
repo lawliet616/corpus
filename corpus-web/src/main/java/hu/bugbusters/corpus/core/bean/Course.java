@@ -11,8 +11,6 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "course", catalog = "CORPUS", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "name")})
 public class Course implements Serializable {
 	@Getter
 	@Setter

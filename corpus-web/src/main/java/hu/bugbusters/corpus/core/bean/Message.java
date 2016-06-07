@@ -13,7 +13,6 @@ import lombok.Setter;
 
 @SuppressWarnings({"serial", "MismatchedQueryAndUpdateOfCollection"})
 @Entity
-@Table(name = "message", catalog = "CORPUS")
 public class Message implements Serializable {
 	@Getter
 	@Setter

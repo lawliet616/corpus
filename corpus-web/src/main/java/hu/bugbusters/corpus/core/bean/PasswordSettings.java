@@ -12,7 +12,6 @@ import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "password_settings")
 public class PasswordSettings implements Serializable {
 	@Getter
 	@Setter

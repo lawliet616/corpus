@@ -25,7 +25,7 @@ public class Message implements Serializable {
 
 	@Getter
 	@Setter
-	@Column(name = "creatorId", nullable = false)
+	@Column(name = "creator_id", nullable = false)
 	private Long creatorId;
 
 	@Getter

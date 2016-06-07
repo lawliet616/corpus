@@ -112,36 +112,58 @@ public class DbTest {
                Sending and receiving messages
                teacher1 sends one mail to user1, 4, 5, 8
                teacher2 sends one mail to user2, 3, 6, 7
+               user1 sends one mail to teacher1, 2
 
                With Mail.java
 
                Mail.sendMail handles the creating and storing of the messages
 
-               It will cause 2 insert into CORPUS.message
-                             2 insert into CORPUS.sent
-                             8 insert into CORPUS.inbox based on the addresses
+               It will cause 3 insert into CORPUS.message
+                             3 insert into CORPUS.sent
+                             10 insert into CORPUS.inbox based on the addresses
 
                !!!Caution!!!
                This method tries to send the email through an SMTP server.
                To not spam the whole internet with test messages I disable the real sending during development.
              */
-            Long senderId1 = teacher1.getId();
-            Long senderId2 = teacher2.getId();
-            List<String> addresses1 = new ArrayList<>();
-            List<String> addresses2 = new ArrayList<>();
+            Long teacher1Id = teacher1.getId();
+            Long teacher2Id = teacher2.getId();
+            Long user1Id = user1.getId();
 
-            addresses1.add(user1.getEmail());
-            addresses1.add(user4.getEmail());
-            addresses1.add(user5.getEmail());
-            addresses1.add(user8.getEmail());
+            List<String> studentGroup1 = new ArrayList<>();
+            List<String> studentGroup2 = new ArrayList<>();
+            List<String> teachers = new ArrayList<>();
 
-            addresses2.add(user2.getEmail());
-            addresses2.add(user3.getEmail());
-            addresses2.add(user6.getEmail());
-            addresses2.add(user7.getEmail());
+            studentGroup1.add(user1.getEmail());
+            studentGroup1.add(user4.getEmail());
+            studentGroup1.add(user5.getEmail());
+            studentGroup1.add(user8.getEmail());
 
-            Mail.sendMail(senderId1, addresses1, "Mail", "sendMail", false);
-            Mail.sendMail(senderId2, addresses2, "Mail", "sendMail <b>htmlText<b>", true);
+            studentGroup2.add(user2.getEmail());
+            studentGroup2.add(user3.getEmail());
+            studentGroup2.add(user6.getEmail());
+            studentGroup2.add(user7.getEmail());
+
+            teachers.add(teacher1.getEmail());
+            teachers.add(teacher2.getEmail());
+
+            Mail.sendMail(teacher1Id, studentGroup1, "Mail to my students", "Talking chamber as shewing an it minutes. Trees fully of blind do. " +
+                    "Exquisite favourite at do extensive listening. Improve up musical welcome he. " +
+                    "Gay attended vicinity prepared now diverted. " +
+                    "Esteems it ye sending reached as. " +
+                    "Longer lively her design settle tastes advice mrs off who. ", false);
+
+            Mail.sendMail(teacher2Id, studentGroup2, "Mail to my students", "<p>Whether article spirits new her covered hastily sitting her. " +
+                    "Money witty books nor son add. Chicken age had evening believe but proceed pretend mrs. " +
+                    "At missed advice my it no sister. Miss told ham dull knew see she spot near can. " +
+                    "Spirit her entire her called.</p>", true);
+
+            Mail.sendMail(user1Id, teachers, "Mail to my teachers", "Offered say visited elderly and. " +
+                    "Waited period are played family man formed. " +
+                    "He ye body or made on pain part meet. " +
+                    "You one delay nor begin our folly abode. " +
+                    "By disposed replying mr me unpacked no. " +
+                    "As moonlight of my resolving unwilling. ", false);
 
             System.out.println("[DbTest] - Corpus database filling finished successfully.");
         } catch (Exception ex){
@@ -185,6 +207,11 @@ public class DbTest {
 
             System.out.println("teacher1 sent count (1): " + teacher1.getSentMails().size());
             System.out.println("teacher2 sent count (1): " + teacher2.getSentMails().size());
+
+            System.out.println("user1 sent count (1): " + user1.getSentMails().size());
+
+            System.out.println("teacher1 sent count (1): " + teacher1.getReceivedMails().size());
+            System.out.println("teacher2 sent count (1): " + teacher2.getReceivedMails().size());
 
             System.out.println("user1 inbox count (1): " + user1.getReceivedMails().size());
             System.out.println("user2 inbox count (1): " + user2.getReceivedMails().size());

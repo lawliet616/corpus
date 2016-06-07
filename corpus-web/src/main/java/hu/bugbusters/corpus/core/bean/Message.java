@@ -3,6 +3,7 @@ package hu.bugbusters.corpus.core.bean;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "MismatchedQueryAndUpdateOfCollection"})
 @Entity
 @Table(name = "message", catalog = "CORPUS")
 public class Message implements Serializable {
@@ -21,7 +22,12 @@ public class Message implements Serializable {
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "message_seq", allocationSize = 1)
 	@Column(name = "id", nullable = false)
 	private Long id;
-	
+
+	@Getter
+	@Setter
+	@Column(name = "creatorId", nullable = false)
+	private Long creatorId;
+
 	@Getter
 	@Setter
 	@Column(name = "subject", nullable = false)
@@ -46,4 +52,13 @@ public class Message implements Serializable {
 	@Setter
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.message")
 	private Set<Inbox> receivedMessages = new HashSet<>();
+
+	public Inbox getInboxByMesssageId(Long id){
+		for (Inbox receivedMessage : receivedMessages){
+			if(Objects.equals(receivedMessage.getMessage().getId(), id)){
+				return receivedMessage;
+			}
+		}
+		return null;
+	}
 }

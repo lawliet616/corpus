@@ -56,6 +56,7 @@ CREATE TABLE CORPUS.password_settings (
 
 CREATE TABLE CORPUS.message (
 	id number(19,0) not null,
+  creator_id number(19,0) not null,
 	subject varchar2(255 char) not null,
   message varchar2(4000 char) not null,
   time timestamp not null,

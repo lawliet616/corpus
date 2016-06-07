@@ -21,7 +21,6 @@ public class emailDesign extends VerticalLayout {
 	protected Button newEmailButton;
 	protected Button inboxButton;
 	protected Button sentEmailsButton;
-	protected Button trashButton;
 	protected VerticalLayout content;
 
 	public emailDesign() {

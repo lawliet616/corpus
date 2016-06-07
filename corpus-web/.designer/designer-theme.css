@@ -13589,12 +13589,37 @@ div.v-layout.v-horizontal.v-widget {
 	padding: 25px 30px 25px 30px;
 }
 
+.CorpusTheme .notSeen {
+	border: 0px;
+}
+
+.CorpusTheme .notSeen .v-icon {
+	color: #4cff00;
+}
+
+.CorpusTheme .notSeen .v-icon:hover {
+	border: 0px;
+}
+
+.CorpusTheme .notSeen .v-icon:focus {
+	border: 0px;
+}
+
+.CorpusTheme .notSeen .v-icon:after {
+	border: 0px;
+}
+
+.CorpusTheme .notSeen .v-icon:active {
+	border: 0px;
+	opacity: 1;
+}
+
 .CorpusTheme .seen {
 	border: 0px;
 }
 
 .CorpusTheme .seen .v-icon {
-	color: #1a61b7;
+	opacity: 0;
 }
 
 .CorpusTheme .seen .v-icon:hover {
@@ -13611,12 +13636,5 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .seen .v-icon:active {
 	border: 0px;
-}
-
-.CorpusTheme .notSeen {
-	border: 0px;
-}
-
-.CorpusTheme .notSeen .v-icon {
-	opacity: 0;
+	opacity: 1;
 }

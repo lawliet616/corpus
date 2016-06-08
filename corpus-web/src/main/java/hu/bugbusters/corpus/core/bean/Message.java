@@ -11,7 +11,7 @@ import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@SuppressWarnings({"serial", "MismatchedQueryAndUpdateOfCollection"})
+@SuppressWarnings("serial")
 @Entity
 public class Message implements Serializable {
 	@Getter
@@ -20,10 +20,6 @@ public class Message implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_GEN")
 	@SequenceGenerator(name = "SEQ_GEN", sequenceName = "message_seq", allocationSize = 1)
 	private Long id;
-
-	@Getter
-	@Setter
-	private Long creatorId;
 
 	@Getter
 	@Setter
@@ -39,20 +35,13 @@ public class Message implements Serializable {
 
 	@Getter
 	@Setter
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "sentMails")
-	private Set<RegisteredUser> sentMessages = new HashSet<>();
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "creator_id")
+	private RegisteredUser sentBy;
 
 	@Getter
 	@Setter
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.message")
-	private Set<Inbox> receivedMessages = new HashSet<>();
+	private Set<Inbox> receivedBy = new HashSet<>();
 
-	public Inbox getInboxByMesssageId(Long id){
-		for (Inbox receivedMessage : receivedMessages){
-			if(Objects.equals(receivedMessage.getMessage().getId(), id)){
-				return receivedMessage;
-			}
-		}
-		return null;
-	}
 }

@@ -77,13 +77,8 @@ public class inboxEmailView extends inboxEmailDesign implements View {
 
 			@Override
 			public int compare(Inbox o1, Inbox o2) {
-				try {
-					return dao.getUserById(o1.getMessage().getCreatorId()).getFullName().compareTo
-							(dao.getUserById(o2.getMessage().getCreatorId()).getFullName());
-				} catch (UserNotFoundException e) {
-					e.printStackTrace();
-				}
-				return 0;
+				return o1.getMessage().getSentBy().getFullName().compareTo
+						(o2.getMessage().getSentBy().getFullName());
 			}
 			
 		});

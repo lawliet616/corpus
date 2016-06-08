@@ -78,13 +78,8 @@ public class SentEmailsView extends sentEmailsDesign implements View {
 
 			@Override
 			public int compare(Message o1, Message o2) {
-				try {
-					return dao.getUserById(o1.getCreatorId()).getFullName().compareTo
-							(dao.getUserById(o2.getCreatorId()).getFullName());
-				} catch (UserNotFoundException e) {
-					e.printStackTrace();
-				}
-				return 0;
+				return o1.getSentBy().getFullName().compareTo
+							(o2.getSentBy().getFullName());
 			}
 			
 		});

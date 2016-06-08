@@ -3,7 +3,6 @@ DROP TABLE CORPUS.registered_user_course cascade constraints;
 DROP TABLE CORPUS.course cascade constraints;
 DROP TABLE CORPUS.password_settings cascade constraints;
 DROP TABLE CORPUS.message cascade constraints;
-DROP TABLE CORPUS.sent cascade constraints;
 DROP TABLE CORPUS.inbox cascade constraints;
 
 DROP SEQUENCE CORPUS.registered_user_seq;
@@ -60,17 +59,9 @@ CREATE TABLE CORPUS.message (
 	subject varchar2(255 char) not null,
   message varchar2(4000 char) not null,
   time timestamp not null,
-	primary key (id)
-);
-
-CREATE TABLE CORPUS.sent (
-	r_id number(19,0) not null,
-	m_id number(19,0) not null,
-	primary key(r_id, m_id),
-	constraint fk_registered_user2 foreign key (r_id) 
-    references CORPUS.registered_user(id) ON DELETE CASCADE,
-	constraint fk_message foreign key (m_id) 
-    references CORPUS.message(id) ON DELETE CASCADE
+	primary key (id),
+  constraint fk_registered_user2 foreign key (creator_id) 
+    references CORPUS.registered_user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE CORPUS.inbox (
@@ -80,7 +71,7 @@ CREATE TABLE CORPUS.inbox (
 	primary key(r_id, m_id),
 	constraint fk_registered_user3 foreign key (r_id) 
     references CORPUS.registered_user(id) ON DELETE CASCADE,
-	constraint fk_message2 foreign key (m_id) 
+	constraint fk_message foreign key (m_id) 
     references CORPUS.message(id) ON DELETE CASCADE
 );
 

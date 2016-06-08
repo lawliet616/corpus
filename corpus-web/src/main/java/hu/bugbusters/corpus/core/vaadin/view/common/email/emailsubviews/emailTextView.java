@@ -47,13 +47,9 @@ public class emailTextView extends emailTextDesign implements View {
 			seenButton.setEnabled(false);
 		}
 
-		try {
-			sender = dao.getUserById(message.getCreatorId()).getFullName();
-			senderNameLabel.setValue(sender);
-		} catch (UserNotFoundException e) {
-			senderNameLabel.setValue("NOT_FOUND");
-		}
-        
+		sender = message.getSentBy().getFullName();
+		senderNameLabel.setValue(sender);
+
 		messageLabel.setCaption(message.getSubject());
 		messageLabel.setValue(StringUtils.createPreviewFromMessage(message.getMessage()));
 
@@ -101,7 +97,7 @@ public class emailTextView extends emailTextDesign implements View {
 			seenButton.setEnabled(false);
 		}
 			
-			sendMailContacts.addAll(message.getReceivedMessages());
+			sendMailContacts.addAll(message.getReceivedBy());
 			
 			for (Inbox user : sendMailContacts) {
 				sendMailContactNames.add(user.getRegisteredUser().getFullName());

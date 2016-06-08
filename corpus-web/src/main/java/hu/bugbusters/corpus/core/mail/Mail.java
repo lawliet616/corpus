@@ -60,7 +60,7 @@ public class Mail {
 
     private static void store(RegisteredUser sender, InternetAddress[] addresses, String subject, String message) {
         // Store the message
-        hu.bugbusters.corpus.core.bean.Message msg = MessageFactory.createAndSaveMessage(sender.getId(), subject, message);
+        hu.bugbusters.corpus.core.bean.Message msg = MessageFactory.createAndSaveMessage(sender, subject, message);
 
         // Store for the sender as sentMail
         sender.getSentMails().add(msg);

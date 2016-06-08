@@ -167,8 +167,8 @@ public class DbTest {
 
             System.out.println("[DbTest] - Corpus database filling finished successfully.");
         } catch (Exception ex){
-            ex.printStackTrace();
             System.out.println("[DbTest] - Corpus database filling failed.");
+            ex.printStackTrace();
         }
     }
 
@@ -230,8 +230,8 @@ public class DbTest {
             System.out.println("[DbTest] - Test finished successfully.");
 
         } catch (UserNotFoundException | CourseNotFoundException e) {
-            e.printStackTrace();
             System.out.println("[DbTest] - Test failed.");
+            e.printStackTrace();
         }
     }
 }

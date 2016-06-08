@@ -61,10 +61,11 @@ public class DbTest {
             RegisteredUser user7 = factory.createAndSaveRegisteredUser("Kia Brittan",     "kia.britten@gmail.com",      Role.USER);
             RegisteredUser user8 = factory.createAndSaveRegisteredUser("Jamaal Hathaway", "jamaal.hathaway@gmail.com",  Role.USER);
 
-            Course course1 = CourseFactory.createAndSaveCourse("Classical Archaeology and Ancient History", "001",3,teacher1.getFullName());
-            Course course2 = CourseFactory.createAndSaveCourse("Fine Art",                                  "002",2,teacher1.getFullName());
-            Course course3 = CourseFactory.createAndSaveCourse("Mathematics and Computer Science",          "003",4,teacher2.getFullName());
-            Course course4 = CourseFactory.createAndSaveCourse("Physics",                                   "004",5,teacher2.getFullName());
+            CourseFactory courseFactory = CourseFactory.getCourseFactory();
+            Course course1 = courseFactory.createAndSaveCourse("Classical Archaeology and Ancient History", "001",3,teacher1.getFullName());
+            Course course2 = courseFactory.createAndSaveCourse("Fine Art",                                  "002",2,teacher1.getFullName());
+            Course course3 = courseFactory.createAndSaveCourse("Mathematics and Computer Science",          "003",4,teacher2.getFullName());
+            Course course4 = courseFactory.createAndSaveCourse("Physics",                                   "004",5,teacher2.getFullName());
 
             /*
              	Creating connection between existing users and courses

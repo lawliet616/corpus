@@ -46,8 +46,8 @@ public class NewCourseView extends NewCourseDesign implements View {
 	protected void saveCourse() {
 		if (checkValues()) {
 			try {
-				CourseFactory factory = new CourseFactory();
-				Course course = CourseFactory.createAndSaveCourse(txtName.getValue(), txtRoom.getValue(),
+				CourseFactory factory = CourseFactory.getCourseFactory();
+				Course course = factory.createAndSaveCourse(txtName.getValue(), txtRoom.getValue(),
 						Integer.parseInt(txtCredit.getValue()), cmbTeachers.getValue().toString());
 
 				RegisteredUser teacher = dao.getUserByFullName(cmbTeachers.getValue().toString());

@@ -2,12 +2,10 @@ package hu.bugbusters.corpus.core.vaadin.view.admin.newuser;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification;
 
-import hu.bugbusters.corpus.core.bean.RegisteredUser;
-import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.CannotPerformOperationException;
 import hu.bugbusters.corpus.core.exceptions.EmailAlreadyExistException;
 import hu.bugbusters.corpus.core.exceptions.InvalidHashException;
@@ -48,8 +46,7 @@ public class NewUserView extends NewUserDesign implements View {
 			if (isNameReal(name)) {
 				UserFactory factory = UserFactory.getUserFactory();
 				try {
-					RegisteredUser user = factory.createRegisteredUser(name, email, role);
-					DaoImpl.getInstance().saveEntity(user);
+					factory.createAndSaveRegisteredUser(name, email, role);
 					Notification.show("Sikeres mentés.", Notification.Type.HUMANIZED_MESSAGE);
 					txtName.clear();
 					txtEmail.clear();
@@ -73,7 +70,7 @@ public class NewUserView extends NewUserDesign implements View {
 	private boolean isNameReal(String name) {
 		char[] array = name.toCharArray();
 		for (char c : array) {
-			if(Character.isDigit(c)){
+			if (Character.isDigit(c)) {
 				return false;
 			}
 		}

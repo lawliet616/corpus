@@ -26,7 +26,7 @@ public class UserFactory {
 		}
 		return factory;
 	}
-
+	
 	public RegisteredUser createRegisteredUser(String name, String email, Role role)
 			throws CannotPerformOperationException, InvalidHashException, EmailAlreadyExistException {
 		if(!isEmailUnique(email)) {

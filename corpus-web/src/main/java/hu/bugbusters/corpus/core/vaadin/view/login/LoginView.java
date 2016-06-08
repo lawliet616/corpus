@@ -1,7 +1,6 @@
 package hu.bugbusters.corpus.core.vaadin.view.login;
 
-import com.vaadin.event.Action;
-import com.vaadin.event.ShortcutAction;
+import com.vaadin.event.ShortcutAction.KeyCode;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
@@ -16,8 +15,6 @@ import hu.bugbusters.corpus.core.exceptions.InvalidPasswordException;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.password.Password;
-import hu.bugbusters.corpus.core.util.DbTest;
-import hu.bugbusters.corpus.core.util.OnEnterKeyHandler;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 @SuppressWarnings("serial")
@@ -26,21 +23,7 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 
 	public LoginView() {
 		button.addClickListener(this);
-		keyCheck();
-	}
-
-	private void keyCheck() {
-		
-		OnEnterKeyHandler enterKey = new OnEnterKeyHandler() {
-			
-			@Override
-			public void onEnterKeyPressed() {
-				implement();
-			}
-		};
-		
-		enterKey.installOn(password);
-		
+		button.setClickShortcut(KeyCode.ENTER);
 	}
 
 	@Override
@@ -50,10 +33,6 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 
 	@Override
 	public void buttonClick(ClickEvent event) {
-		implement();
-	}
-
-	private void implement() {
 		try {
 			RegisteredUser registeredUser = DaoImpl.getInstance().getUserByUserName(userName.getValue());
 			
@@ -67,7 +46,6 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 		} catch (CannotPerformOperationException | InvalidHashException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	private void showError() {

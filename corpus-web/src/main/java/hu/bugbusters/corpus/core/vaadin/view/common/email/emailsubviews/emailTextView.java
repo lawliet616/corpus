@@ -1,5 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ import com.vaadin.ui.Window;
 
 import hu.bugbusters.corpus.core.bean.Inbox;
 import hu.bugbusters.corpus.core.bean.Message;
+import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
@@ -28,6 +31,9 @@ public class emailTextView extends emailTextDesign implements View {
 	private static final String STYLE_SEEN = "seen";
 	private static final String STYLE_NOT_SEEN = "notSeen";
 	private Dao dao = DaoImpl.getInstance();
+	private List<RegisteredUser> sendMailContacts = new ArrayList<>();
+	private List<String> sendMailContactNames = new ArrayList<>();
+	private String names = "";
 	
 	private String sender;
 
@@ -92,13 +98,19 @@ public class emailTextView extends emailTextDesign implements View {
 			seenButton.setStyleName(STYLE_SEEN);
 			seenButton.setEnabled(false);
 		}
-
-		try {
-			sender = dao.getUserById(message.getCreatorId()).getFullName();
-			senderNameLabel.setValue(sender);
-		} catch (UserNotFoundException e) {
-			senderNameLabel.setValue("NOT_FOUND");
-		}
+			
+			sendMailContacts.addAll(message.getSentMessages());
+			
+			for (RegisteredUser user : sendMailContacts) {
+				sendMailContactNames.add(user.getFullName());
+				System.out.println(user.getFullName());
+			}
+			
+			for (String name : sendMailContactNames) {
+				names += name + "; ";
+			}
+			
+			senderNameLabel.setValue(names);
         
 		messageLabel.setCaption(message.getSubject());
 		messageLabel.setValue(StringUtils.createPreviewFromMessage(message.getMessage()));

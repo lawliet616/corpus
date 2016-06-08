@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
+ </head> 
+ <body> 
+  <vaadin-vertical-layout size-full> 
+   <vaadin-grid-layout caption="Új kurzus" spacing :middle :center> 
+    <row> 
+     <column> 
+      <vaadin-label size-auto plain-text :middle>
+        Cím: 
+      </vaadin-label> 
+     </column> 
+     <column> 
+      <vaadin-text-field _id="txtName" :middle :center></vaadin-text-field> 
+     </column> 
+    </row> 
+    <row> 
+     <column> 
+      <vaadin-label width="44px" plain-text :middle>
+        Terem: 
+      </vaadin-label> 
+     </column> 
+     <column> 
+      <vaadin-text-field _id="txtRoom" :middle :center></vaadin-text-field> 
+     </column> 
+    </row> 
+    <row> 
+     <column> 
+      <vaadin-label size-auto plain-text :middle>
+        Kredit: 
+      </vaadin-label> 
+     </column> 
+     <column> 
+      <vaadin-text-field _id="txtCredit" :middle :center></vaadin-text-field> 
+     </column> 
+    </row> 
+    <row> 
+     <column> 
+      <vaadin-label size-auto plain-text :middle>
+        Előadó: 
+      </vaadin-label> 
+     </column> 
+     <column> 
+      <vaadin-combo-box item-caption-mode="id" _id="cmbTeachers" :middle :center></vaadin-combo-box> 
+     </column> 
+    </row> 
+    <row> 
+     <column></column> 
+     <column> 
+      <vaadin-button width-full plain-text _id="btnSave">
+        Mentés 
+      </vaadin-button> 
+     </column> 
+    </row> 
+   </vaadin-grid-layout> 
+  </vaadin-vertical-layout>  
+ </body>
+</html>

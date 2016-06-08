@@ -1,24 +1,21 @@
 package hu.bugbusters.corpus.core.util;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import hu.bugbusters.corpus.core.bean.Course;
-import hu.bugbusters.corpus.core.bean.Inbox;
-import hu.bugbusters.corpus.core.bean.Message;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.factories.CourseFactory;
-import hu.bugbusters.corpus.core.factories.MessageFactory;
 import hu.bugbusters.corpus.core.factories.UserFactory;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.mail.Mail;
 import hu.bugbusters.corpus.core.password.Password;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class DbTest {
     private static final Dao dao = DaoImpl.getInstance();

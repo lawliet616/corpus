@@ -58,20 +58,7 @@ public class emailTextView extends emailTextDesign implements View {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				seenButton.setStyleName(STYLE_SEEN);
-				seenButton.setEnabled(false);
-
-				Set<Inbox> receivedMessages = Login.getLoggedInUser().getReceivedMails();
-
-				for (Inbox receivedMessage : receivedMessages) {
-					if (Objects.equals(receivedMessage.getMessage().getId(), message.getId())) {
-						receivedMessage.setSeen('Y');
-						dao.updateEntity(receivedMessage);
-						break;
-					}
-				}
-
-				
+				seenSetting(message);
 			}
 		});
 		
@@ -81,11 +68,28 @@ public class emailTextView extends emailTextDesign implements View {
 			@Override
 			public void layoutClick(LayoutClickEvent event) {
 				createMessageWindow(sender, message.getSubject(), message.getMessage());
+				seenSetting(message);
 				
 			}
 		};
 		
 		textContent.addLayoutClickListener(openMessageListener);
+		
+	}
+	
+	private void seenSetting(Message message) {
+		seenButton.setStyleName(STYLE_SEEN);
+		seenButton.setEnabled(false);
+
+		Set<Inbox> receivedMessages = Login.getLoggedInUser().getReceivedMails();
+
+		for (Inbox receivedMessage : receivedMessages) {
+			if (Objects.equals(receivedMessage.getMessage().getId(), message.getId())) {
+				receivedMessage.setSeen('Y');
+				dao.updateEntity(receivedMessage);
+				break;
+			}
+		}
 		
 	}
 

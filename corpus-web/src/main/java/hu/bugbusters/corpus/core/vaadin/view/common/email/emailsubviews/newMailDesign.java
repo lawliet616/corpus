@@ -23,7 +23,7 @@ public class newMailDesign extends VerticalLayout {
 	protected TextField targetTxt;
 	protected TextField subjectTxt;
 	protected TextArea messageTxt;
-	protected Button senButton;
+	protected Button sendButton;
 	protected Button cancelButton;
 
 	public newMailDesign() {

@@ -62,10 +62,12 @@ public class emailTextView extends emailTextDesign implements View {
 				for (Inbox receivedMessage : receivedMessages) {
 					if (Objects.equals(receivedMessage.getMessage().getId(), message.getId())) {
 						receivedMessage.setSeen('Y');
+						dao.updateEntity(receivedMessage);
+						break;
 					}
 				}
 
-				dao.updateEntity(receivedMessages);
+				
 			}
 		});
 		
@@ -81,6 +83,40 @@ public class emailTextView extends emailTextDesign implements View {
 		
 		textContent.addLayoutClickListener(openMessageListener);
 		
+	}
+
+	public emailTextView(final Message message, char seen, String send) {
+		if (seen == 'N') {
+			seenButton.setStyleName(STYLE_NOT_SEEN);
+		} else {
+			seenButton.setStyleName(STYLE_SEEN);
+			seenButton.setEnabled(false);
+		}
+
+		try {
+			sender = dao.getUserById(message.getCreatorId()).getFullName();
+			senderNameLabel.setValue(sender);
+		} catch (UserNotFoundException e) {
+			senderNameLabel.setValue("NOT_FOUND");
+		}
+        
+		messageLabel.setCaption(message.getSubject());
+		messageLabel.setValue(StringUtils.createPreviewFromMessage(message.getMessage()));
+
+
+		seenButton.setEnabled(false);
+		
+				
+		LayoutClickListener openMessageListener = new LayoutClickListener() {
+			
+			@Override
+			public void layoutClick(LayoutClickEvent event) {
+				createMessageWindow(sender, message.getSubject(), message.getMessage());
+				
+			}
+		};
+		
+		textContent.addLayoutClickListener(openMessageListener);
 	}
 
 	private void createMessageWindow(String sender, String subject, String msg) {

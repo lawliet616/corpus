@@ -13668,3 +13668,8 @@ div.v-layout.v-horizontal.v-widget {
 	margin-top: -300px;
 	margin-left: -300px;
 }
+
+.CorpusTheme .bold {
+	font-size: 26px;
+	font-weight: bold;
+}

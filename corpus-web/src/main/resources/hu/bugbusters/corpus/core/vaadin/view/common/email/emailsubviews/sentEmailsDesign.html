@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body><vaadin-vertical-layout size-full> 
+ <vaadin-vertical-layout _id="header"> 
+  <vaadin-horizontal-layout style-name="emailHeader" spacing width-full margin> 
+   <vaadin-label size-auto plain-text _id="sortbyLabel" :middle>
+     Sorrend: 
+   </vaadin-label> 
+   <vaadin-combo-box item-caption-mode="id" width="150px" _id="cmbBoxSort" :expand></vaadin-combo-box> 
+   <vaadin-css-layout style-name="v-component-group"> 
+    <vaadin-button icon="fonticon://FontAwesome/f112" plain-text _id="replyButton"></vaadin-button> 
+    <vaadin-button icon="fonticon://FontAwesome/f064" plain-text _id="forwardButton"></vaadin-button> 
+   </vaadin-css-layout> 
+  </vaadin-horizontal-layout> 
+ </vaadin-vertical-layout> 
+ <vaadin-panel style-name="borderless" size-full _id="content" :expand> 
+  <vaadin-vertical-layout _id="messageList"></vaadin-vertical-layout> 
+ </vaadin-panel> 
+</vaadin-vertical-layout></body>
+</html>

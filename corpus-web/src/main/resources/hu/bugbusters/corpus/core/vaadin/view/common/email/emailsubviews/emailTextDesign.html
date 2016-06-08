@@ -7,9 +7,14 @@
   <vaadin-horizontal-layout style-name="message-layout" width-full height="125px"> 
    <vaadin-button icon="fonticon://FontAwesome/f111" style-name="borderless" plain-text _id="seenButton"></vaadin-button> 
    <vaadin-vertical-layout style-name="email" size-full margin-right _id="textContent" :expand> 
-    <vaadin-label style-name="bold" plain-text _id="senderNameLabel">
-      Küldő neve 
-    </vaadin-label> 
+    <vaadin-horizontal-layout spacing width-full> 
+     <vaadin-label size-auto plain-text :middle>
+       Feladó: 
+     </vaadin-label> 
+     <vaadin-label style-name="bold" plain-text _id="senderNameLabel" :expand>
+       Küldő neve 
+     </vaadin-label> 
+    </vaadin-horizontal-layout> 
     <vaadin-label caption="Tárgy" size-full plain-text _id="messageLabel" :expand>
       Üzenet tartalma 
     </vaadin-label> 

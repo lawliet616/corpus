@@ -21,6 +21,7 @@ import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.homepage.AdminHomepageView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.SentEmailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.inboxEmailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.newMailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
@@ -40,23 +41,38 @@ public class emailView extends emailDesign implements View{
 		
 		emailSettings();
 		
-		inboxButton.addClickListener(new ClickListener() {
-						
+		buttonsettings();
+		
+		newMailSetting();
+	}
+	private void buttonsettings() {
+			inboxButton.addClickListener(new ClickListener() {
+				
 				@Override
 				public void buttonClick(ClickEvent event) {
 					((CorpusUI) getUI()).navigate(inboxEmailView.NAME);
 				}
 			});
 		
-		newMailSetting();
+		sentEmailsButton.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				((CorpusUI) getUI()).navigate(SentEmailsView.NAME);
+			}
+		});
+		
 	}
 	public emailView(String name) {
 		
 		emailSettings();
 		newMailSetting();
+		buttonsettings();
 		
 		if(name.equals(inboxEmailView.NAME)){
 			changeContet(new inboxEmailView());
+		}else if(name.equals(SentEmailsView.NAME)){
+			changeContet(new SentEmailsView());
 		}
 	}
 	

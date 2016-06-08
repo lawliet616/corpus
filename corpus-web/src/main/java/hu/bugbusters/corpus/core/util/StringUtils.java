@@ -1,7 +1,7 @@
 package hu.bugbusters.corpus.core.util;
 
 public class StringUtils {
-    private static final int PREVIEW_MAX_LENGTH = 50;
+    private static final int PREVIEW_MAX_LENGTH = 100;
 
     public static String createPreviewFromMessage(String message){
         if(message.length() < PREVIEW_MAX_LENGTH){

@@ -16,7 +16,6 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.password.PasswordRows;
-import sun.security.jca.GetInstance;
 
 @SuppressWarnings("unchecked")
 public class DaoImpl implements Dao {
@@ -124,6 +123,23 @@ public class DaoImpl implements Dao {
         Transaction transaction = session.beginTransaction();
         Criteria crit = session.createCriteria(RegisteredUser.class);
         Criterion emailCrit = Restrictions.eq("email", address);
+        crit.add(emailCrit);
+        RegisteredUser user = (RegisteredUser) crit.uniqueResult();
+
+        transaction.commit();
+        session.close();
+
+        if (user == null) throw new UserNotFoundException();
+
+        return user;
+    }
+    
+    @Override
+    public RegisteredUser getUserByFullName(String name) throws UserNotFoundException {
+        Session session = SESSION_FACTORY.openSession();
+        Transaction transaction = session.beginTransaction();
+        Criteria crit = session.createCriteria(RegisteredUser.class);
+        Criterion emailCrit = Restrictions.eq("fullName", name);
         crit.add(emailCrit);
         RegisteredUser user = (RegisteredUser) crit.uniqueResult();
 

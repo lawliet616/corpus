@@ -1,6 +1,8 @@
 package hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -104,6 +106,14 @@ public class emailTextView extends emailTextDesign implements View {
 			for (Inbox user : sendMailContacts) {
 				sendMailContactNames.add(user.getRegisteredUser().getFullName());
 			}
+			
+			Collections.sort(sendMailContactNames, new Comparator<String>() {
+
+				@Override
+				public int compare(String o1, String o2) {
+					return o1.compareTo(o2);
+				}
+			});
 			
 			for (String name : sendMailContactNames) {
 				names += name + "; ";

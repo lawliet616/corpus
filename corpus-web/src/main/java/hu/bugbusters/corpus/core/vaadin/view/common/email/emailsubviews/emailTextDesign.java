@@ -22,6 +22,7 @@ import com.vaadin.ui.declarative.Design;
 public class emailTextDesign extends HorizontalLayout {
 	protected Button seenButton;
 	protected VerticalLayout textContent;
+	protected Label labelHeader;
 	protected Label senderNameLabel;
 	protected Label messageLabel;
 

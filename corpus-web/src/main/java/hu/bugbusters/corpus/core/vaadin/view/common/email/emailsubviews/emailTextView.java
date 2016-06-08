@@ -31,7 +31,7 @@ public class emailTextView extends emailTextDesign implements View {
 	private static final String STYLE_SEEN = "seen";
 	private static final String STYLE_NOT_SEEN = "notSeen";
 	private Dao dao = DaoImpl.getInstance();
-	private List<RegisteredUser> sendMailContacts = new ArrayList<>();
+	private List<Inbox> sendMailContacts = new ArrayList<>();
 	private List<String> sendMailContactNames = new ArrayList<>();
 	private String names = "";
 	
@@ -99,11 +99,10 @@ public class emailTextView extends emailTextDesign implements View {
 			seenButton.setEnabled(false);
 		}
 			
-			sendMailContacts.addAll(message.getSentMessages());
+			sendMailContacts.addAll(message.getReceivedMessages());
 			
-			for (RegisteredUser user : sendMailContacts) {
-				sendMailContactNames.add(user.getFullName());
-				System.out.println(user.getFullName());
+			for (Inbox user : sendMailContacts) {
+				sendMailContactNames.add(user.getRegisteredUser().getFullName());
 			}
 			
 			for (String name : sendMailContactNames) {
@@ -111,6 +110,8 @@ public class emailTextView extends emailTextDesign implements View {
 			}
 			
 			senderNameLabel.setValue(names);
+			
+			labelHeader.setValue("Címzett:");
         
 		messageLabel.setCaption(message.getSubject());
 		messageLabel.setValue(StringUtils.createPreviewFromMessage(message.getMessage()));

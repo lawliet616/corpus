@@ -7,7 +7,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 
 @SuppressWarnings("serial")
-public class EmailReadView extends emailReadDesign implements View {
+public class EmailReadView extends EmailReadDesign implements View {
 
 	public EmailReadView(String subject, String msg, final Window messageWindow) {
 		labelSubject.setValue(subject);

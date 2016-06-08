@@ -13,9 +13,9 @@ import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.mail.Mail;
 
 @SuppressWarnings("serial")
-public class newMailView extends newMailDesign implements View {
+public class NewMailView extends NewMailDesign implements View {
 	
-	public newMailView(final Window newMail) {
+	public NewMailView(final Window newMail) {
 		
 		cancelButton.addClickListener(new ClickListener() {
 			

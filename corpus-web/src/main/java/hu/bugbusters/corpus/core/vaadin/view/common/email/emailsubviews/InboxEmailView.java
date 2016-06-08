@@ -18,13 +18,13 @@ import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 
 @SuppressWarnings("serial")
-public class inboxEmailView extends inboxEmailDesign implements View {
+public class InboxEmailView extends InboxEmailDesign implements View {
 	public static final String NAME = "Inbox";
 	private Dao dao = DaoImpl.getInstance();
 	private List<Inbox> sortedListByName = new ArrayList<>();
 	private List<Inbox> sortedListByDate = new ArrayList<>();
 	
-	public inboxEmailView() {
+	public InboxEmailView() {
 		fillWithEmails();
 		sorting();
 		comboBoxFill();
@@ -48,14 +48,14 @@ public class inboxEmailView extends inboxEmailDesign implements View {
 				if(cmbBoxSort.getValue().equals("Név")){
 					messageList.removeAllComponents();
 					for (Inbox mail : sortedListByName) {
-						messageList.addComponent(new emailTextView(mail.getMessage(), mail.getSeen()));
+						messageList.addComponent(new EmailTextView(mail.getMessage(), mail.getSeen()));
 					}
 					
 				}
 				else{
 					for (Inbox mail : sortedListByDate) {
 						messageList.removeAllComponents();
-						messageList.addComponent(new emailTextView(mail.getMessage(), mail.getSeen()));
+						messageList.addComponent(new EmailTextView(mail.getMessage(), mail.getSeen()));
 					}
 				}
 			}
@@ -66,7 +66,7 @@ public class inboxEmailView extends inboxEmailDesign implements View {
 	private void fillWithEmails() {
 		
 		for (Inbox email : Login.getLoggedInUser().getReceivedMails()) {
-			messageList.addComponent(new emailTextView(email.getMessage(), email.getSeen()));
+			messageList.addComponent(new EmailTextView(email.getMessage(), email.getSeen()));
 		}
 		
 	}

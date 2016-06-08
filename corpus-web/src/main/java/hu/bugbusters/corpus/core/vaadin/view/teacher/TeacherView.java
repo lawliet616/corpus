@@ -18,7 +18,7 @@ import hu.bugbusters.corpus.core.vaadin.view.admin.settings.SettingsView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.userlist.UserListView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.EmailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.SentEmailsView;
-import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.inboxEmailView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.InboxEmailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
@@ -100,8 +100,8 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 			component = new TeacherCourseListView();
 		}else if (subView.equals(EmailView.NAME)) {
 			component = new EmailView();
-		}else if (subView.equals(inboxEmailView.NAME)) {
-			component = new EmailView(inboxEmailView.NAME);
+		}else if (subView.equals(InboxEmailView.NAME)) {
+			component = new EmailView(InboxEmailView.NAME);
 		}else if (subView.equals(SentEmailsView.NAME)) {
 			component = new EmailView(SentEmailsView.NAME);
 		}else{

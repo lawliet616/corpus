@@ -19,7 +19,7 @@ import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 
 @SuppressWarnings("serial")
-public class SentEmailsView extends sentEmailsDesign implements View {
+public class SentEmailsView extends SentEmailsDesign implements View {
 	public static final String NAME = "SentMails";
 	private Dao dao = DaoImpl.getInstance();
 	private List<Message> sortedListByName = new ArrayList<>();
@@ -47,14 +47,14 @@ public class SentEmailsView extends sentEmailsDesign implements View {
 				if(cmbBoxSort.getValue().equals("Név")){
 					messageList.removeAllComponents();
 					for (Message mail : sortedListByName) {
-						messageList.addComponent(new emailTextView(mail, 'Y'));
+						messageList.addComponent(new EmailTextView(mail, 'Y'));
 					}
 					
 				}
 				else{
 					for (Message mail : sortedListByDate) {
 						messageList.removeAllComponents();
-						messageList.addComponent(new emailTextView(mail, 'Y'));
+						messageList.addComponent(new EmailTextView(mail, 'Y'));
 					}
 				}
 			}
@@ -67,7 +67,7 @@ public class SentEmailsView extends sentEmailsDesign implements View {
 		String send = "";
 		
 		for (Message msg : Login.getLoggedInUser().getSentMails()) {
-			messageList.addComponent(new emailTextView(msg, 'Y', send));
+			messageList.addComponent(new EmailTextView(msg, 'Y', send));
 		}
 		
 	}

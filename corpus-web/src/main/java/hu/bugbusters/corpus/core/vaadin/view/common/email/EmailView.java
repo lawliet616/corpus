@@ -22,8 +22,8 @@ import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.homepage.AdminHomepageView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.SentEmailsView;
-import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.inboxEmailView;
-import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.newMailView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.InboxEmailView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.NewMailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
@@ -50,7 +50,7 @@ public class EmailView extends EmailDesign implements View{
 				
 				@Override
 				public void buttonClick(ClickEvent event) {
-					((CorpusUI) getUI()).navigate(inboxEmailView.NAME);
+					((CorpusUI) getUI()).navigate(InboxEmailView.NAME);
 				}
 			});
 		
@@ -69,8 +69,8 @@ public class EmailView extends EmailDesign implements View{
 		newMailSetting();
 		buttonsettings();
 		
-		if(name.equals(inboxEmailView.NAME)){
-			changeContet(new inboxEmailView());
+		if(name.equals(InboxEmailView.NAME)){
+			changeContet(new InboxEmailView());
 		}else if(name.equals(SentEmailsView.NAME)){
 			changeContet(new SentEmailsView());
 		}
@@ -98,7 +98,7 @@ public class EmailView extends EmailDesign implements View{
 					@Override
 					public void buttonClick(ClickEvent event) {
 						Window newMail = new Window("Új e-mail");
-						newMail.setContent(new newMailView(newMail));
+						newMail.setContent(new NewMailView(newMail));
 						newMail.setStyleName("subWindow");
 						
 						newMail.setResizable(false);

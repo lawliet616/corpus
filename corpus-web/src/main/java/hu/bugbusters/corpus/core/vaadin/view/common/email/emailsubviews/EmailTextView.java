@@ -29,7 +29,7 @@ import hu.bugbusters.corpus.core.util.StringUtils;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 @SuppressWarnings("serial")
-public class emailTextView extends emailTextDesign implements View {
+public class EmailTextView extends EmailTextDesign implements View {
 	private static final String STYLE_SEEN = "seen";
 	private static final String STYLE_NOT_SEEN = "notSeen";
 	private Dao dao = DaoImpl.getInstance();
@@ -39,7 +39,7 @@ public class emailTextView extends emailTextDesign implements View {
 	
 	private String sender;
 
-	public emailTextView(final Message message, char seen) {
+	public EmailTextView(final Message message, char seen) {
 		if (seen == 'N') {
 			seenButton.setStyleName(STYLE_NOT_SEEN);
 		} else {
@@ -93,7 +93,7 @@ public class emailTextView extends emailTextDesign implements View {
 		
 	}
 
-	public emailTextView(final Message message, char seen, String send) {
+	public EmailTextView(final Message message, char seen, String send) {
 		if (seen == 'N') {
 			seenButton.setStyleName(STYLE_NOT_SEEN);
 		} else {

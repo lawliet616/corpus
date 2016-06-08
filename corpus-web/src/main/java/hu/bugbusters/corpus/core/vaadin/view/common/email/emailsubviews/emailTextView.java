@@ -119,6 +119,8 @@ public class emailTextView extends emailTextDesign implements View {
 
 		seenButton.setEnabled(false);
 		
+		sender = names;
+		
 				
 		LayoutClickListener openMessageListener = new LayoutClickListener() {
 			

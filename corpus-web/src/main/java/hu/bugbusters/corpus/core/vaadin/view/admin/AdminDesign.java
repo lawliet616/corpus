@@ -31,6 +31,7 @@ public class AdminDesign extends HorizontalSplitPanel {
 	protected Button newCourseButton;
 	protected Button userListButton;
 	protected Button courseListButton;
+	protected Button emailButton;
 	protected Button settingsButton;
 	protected Button logoutButton;
 	protected VerticalLayout layout;

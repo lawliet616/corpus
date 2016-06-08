@@ -16,6 +16,9 @@ import hu.bugbusters.corpus.core.vaadin.view.admin.newcourse.NewCourseView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.newuser.NewUserView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.settings.SettingsView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.userlist.UserListView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.EmailView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.SentEmailsView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.inboxEmailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
@@ -76,6 +79,13 @@ public class AdminView extends AdminDesign implements CorpusView {
 				((CorpusUI) getUI()).navigate(NewCourseView.NAME);
 			}
 		});
+		emailButton.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				((CorpusUI) getUI()).navigate(EmailView.NAME);
+			}
+		});
 	}
 
 	protected void changeContet(Component component) {
@@ -105,13 +115,17 @@ public class AdminView extends AdminDesign implements CorpusView {
 			component = new AdminCourseListView();
 		} else if (subView.equals(NewCourseView.NAME)) {
 			component = new NewCourseView();
+		} else if (subView.equals(EmailView.NAME)) {
+			component = new EmailView();
+		} else if (subView.equals(inboxEmailView.NAME)) {
+			component = new EmailView(inboxEmailView.NAME);
+		} else if (subView.equals(SentEmailsView.NAME)) {
+			component = new EmailView(SentEmailsView.NAME);
 		} else {
 			component = new AdminHomepageView();
 		}
 
-		if (component != null)
-
-		{
+		if (component != null) {
 			changeContet(component);
 		}
 	}

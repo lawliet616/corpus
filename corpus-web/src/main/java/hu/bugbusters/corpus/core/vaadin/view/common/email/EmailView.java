@@ -31,13 +31,13 @@ import hu.bugbusters.corpus.core.vaadin.view.teacher.courselist.TeacherCourseLis
 import hu.bugbusters.corpus.core.vaadin.view.teacher.studentlist.TeacherStudentListView;
 
 @SuppressWarnings("serial")
-public class emailView extends emailDesign implements View{
+public class EmailView extends EmailDesign implements View{
 	public static final String NAME = "Email";
 	
 	private Set<Inbox> reveivedMails = Login.getLoggedInUser().getReceivedMails();
 	
 	
-	public emailView() {
+	public EmailView() {
 		
 		emailSettings();
 		
@@ -63,7 +63,7 @@ public class emailView extends emailDesign implements View{
 		});
 		
 	}
-	public emailView(String name) {
+	public EmailView(String name) {
 		
 		emailSettings();
 		newMailSetting();

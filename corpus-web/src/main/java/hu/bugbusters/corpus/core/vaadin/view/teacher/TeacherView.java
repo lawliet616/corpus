@@ -16,7 +16,7 @@ import hu.bugbusters.corpus.core.vaadin.view.admin.homepage.AdminHomepageView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.newuser.NewUserView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.settings.SettingsView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.userlist.UserListView;
-import hu.bugbusters.corpus.core.vaadin.view.common.email.emailView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.EmailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.SentEmailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.inboxEmailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
@@ -72,7 +72,7 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				((CorpusUI) getUI()).navigate(emailView.NAME);
+				((CorpusUI) getUI()).navigate(EmailView.NAME);
 			}
 		});
 	}
@@ -98,12 +98,12 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 			component = new TeacherStudentListView();
 		}else if (subView.equals(TeacherCourseListView.NAME)) {
 			component = new TeacherCourseListView();
-		}else if (subView.equals(emailView.NAME)) {
-			component = new emailView();
+		}else if (subView.equals(EmailView.NAME)) {
+			component = new EmailView();
 		}else if (subView.equals(inboxEmailView.NAME)) {
-			component = new emailView(inboxEmailView.NAME);
+			component = new EmailView(inboxEmailView.NAME);
 		}else if (subView.equals(SentEmailsView.NAME)) {
-			component = new emailView(SentEmailsView.NAME);
+			component = new EmailView(SentEmailsView.NAME);
 		}else{
 			component = new AdminHomepageView();
 		}

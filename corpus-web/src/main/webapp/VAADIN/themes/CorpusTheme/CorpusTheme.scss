@@ -164,19 +164,19 @@ $valo-menu-background-color: #433;
     } 
 
     .v-app-loading:before{
-        background: #1a61b7 url(load.gif) no-repeat 50%;
-        background-size: 70px;
+        background: #1a61b7 url(fun.gif) no-repeat 50%;
+        background-size: 600px;
 	    border-radius: 4px;
-        width: 70px;
-	    height: 70px;
+        width: 600px;
+	    height: 600px;
         content: "";
 	    position: fixed;
 	    z-index: 100;
-	    top: 45%;
+	    top: 35%;
 	    left: 50%;
 	    padding: 0px;
-	    margin-top: -35px;
-	    margin-left: -35px;
+	    margin-top: -300px;
+	    margin-left: -300px;
     }
 
     /*.v-menuitem{

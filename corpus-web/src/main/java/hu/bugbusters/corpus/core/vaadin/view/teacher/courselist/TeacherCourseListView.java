@@ -96,17 +96,39 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 						courses.add(course);
 					}
 				}
-				RegisteredUser teacher = Login.getLoggedInUser();
+				RegisteredUser loggedInUser = Login.getLoggedInUser();
 				
-				teacher.setCourses(courses);
+				loggedInUser.setCourses(courses);
 				
-				dao.updateEntity(teacher);
+				dao.updateEntity(loggedInUser);
 				
 				Long id = (long) event.getItemId();
 				try {
+					
 					Course course = dao.getCourseById(id);
-					course.setTeacher("Nincs tanár jelnleg");
-					dao.updateEntity(course);
+					
+					if(Login.getLoggedInUser().getRole() == Role.TEACHER){
+						
+						course.setTeacher("Nincs tanár jelnleg");
+						
+						
+					}else if(Login.getLoggedInUser().getRole() == Role.USER){
+						
+						Set<RegisteredUser> courseStudents = new HashSet<>();
+						Set<RegisteredUser> tmpStudents = course.getStudents();
+						
+						for (RegisteredUser registeredUser : tmpStudents) {
+							if(registeredUser.getId() != Login.getLoggedInUserId()){
+								courseStudents.add(registeredUser);
+							}
+						}
+						
+						course.setStudents(courseStudents);
+						
+					}
+					
+					dao.updateEntity(course);	
+					
 				} catch (CourseNotFoundException e) {
 					e.printStackTrace();
 				}
@@ -119,7 +141,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 		
 		courseList.getColumn("delete").setRenderer(new ButtonRenderer(listener));
 		
-		headerNameSetting();;
+		headerNameSetting();
 		
 		courseList.addSelectionListener(new SelectionListener() {
 			

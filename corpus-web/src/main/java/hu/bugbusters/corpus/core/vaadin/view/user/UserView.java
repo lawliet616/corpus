@@ -21,6 +21,7 @@ import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSe
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.teacher.courselist.TeacherCourseListView;
 import hu.bugbusters.corpus.core.vaadin.view.teacher.studentlist.TeacherStudentListView;
+import hu.bugbusters.corpus.core.vaadin.view.user.AllCourseList.AllCourseListView;
 
 @SuppressWarnings("serial")
 public class UserView extends UserDesign implements CorpusView {
@@ -65,6 +66,14 @@ public class UserView extends UserDesign implements CorpusView {
 				((CorpusUI) getUI()).navigate(EmailView.NAME);
 			}
 		});
+		
+		allCourseListButton.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				((CorpusUI) getUI()).navigate(AllCourseListView.NAME);
+			}
+		});
 	}
 	
 	protected void changeContet(Component component) {
@@ -93,6 +102,8 @@ public class UserView extends UserDesign implements CorpusView {
 				component = new EmailView(InboxEmailView.NAME);
 			}else if (subView.equals(SentEmailsView.NAME)) {
 				component = new EmailView(SentEmailsView.NAME);
+			}else if (subView.equals(AllCourseListView.NAME)) {
+				component = new AllCourseListView();
 			}else{
 				component = new AdminHomepageView();
 			}

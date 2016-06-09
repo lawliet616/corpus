@@ -28,6 +28,7 @@ public class UserDesign extends HorizontalSplitPanel {
 	protected Button homepageSButton;
 	protected Button userDetailsButton;
 	protected Button courseListButton;
+	protected Button allCourseListButton;
 	protected Button emailButton;
 	protected Button settingsButton2;
 	protected Button logoutButton;

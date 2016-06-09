@@ -12,6 +12,7 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
+import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 @SuppressWarnings("serial")
@@ -21,9 +22,18 @@ public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements Vi
 	private RegisteredUser registeredUser;
 
 	public ChangeSelfDetailsView() {
-		ResetButtonForTextField.extend(txtEmail);
-		ResetButtonForTextField.extend(txtName);
+		
 		fillTheDetails();
+		
+		if(Login.getLoggedInUser().getRole() == Role.USER){
+			ResetButtonForTextField.extend(txtEmail);
+			txtName.setReadOnly(true);
+			
+		}else{
+			ResetButtonForTextField.extend(txtEmail);
+			ResetButtonForTextField.extend(txtName);
+		}
+		
 
 		btnCancel.addClickListener(new ClickListener() {
 

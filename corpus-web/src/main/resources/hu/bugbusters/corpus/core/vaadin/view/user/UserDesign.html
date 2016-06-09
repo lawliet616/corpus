@@ -1,50 +1,40 @@
 <!doctype html>
 <html>
  <head>
-  <style>
-// Workaround for a https://dev.vaadin.com/ticket/19170 to get hidden icons in some environments to show
-#responsive-application-template.valo-menu-responsive .valo-menu-part .valo-menu-item span.v-icon {
-	opacity: 1.0;
-}
- </style>
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;valo&quot;}">
  </head> 
  <body> 
-  <vaadin-horizontal-layout style-name="valo-menu-responsive" responsive id="responsive-application-template" size-full> 
-   <vaadin-css-layout style-name="valo-menu"> 
-    <vaadin-css-layout style-name="valo-menu-part"> 
-     <vaadin-horizontal-layout style-name="valo-menu-title" width-full _id="menuTitle"> 
-      <vaadin-label size-auto _id="menuTitleLabel" :middle :expand> 
-       <strong>Corpus Student</strong> 
+  <vaadin-horizontal-split-panel locked split-position="223px"> 
+   <vaadin-css-layout style-name="valo-menu" width="223px" height-full> 
+    <vaadin-css-layout style-name="valo-menu-part" size-full> 
+     <vaadin-horizontal-layout style-name="valo-menu-title" width-full _id="menuTitle2"> 
+      <vaadin-label size-auto _id="menuTitleLabel2" :middle :center :expand> 
+       <strong>Corpus Hallgató</strong> 
       </vaadin-label> 
      </vaadin-horizontal-layout> 
-     <vaadin-button icon="fonticon://FontAwesome/f03a" style-name="primary small valo-menu-toggle" plain-text _id="menuToggle">
-       Menu 
-     </vaadin-button> 
-     <vaadin-css-layout style-name="valo-menuitems" _id="menuItems"> 
-      <vaadin-button icon="fonticon://FontAwesome/f007" primary-style-name="valo-menu-item" width-full plain-text _id="userButton">
-        User 
+     <vaadin-css-layout style-name="valo-menuitems" _id="menuItems2"> 
+      <vaadin-button icon="fonticon://FontAwesome/f015" primary-style-name="valo-menu-item" _id="homepageSButton">
+        Kezdőlap 
       </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f080" primary-style-name="valo-menu-item" _id="statusButton">
-        Status 
+      <vaadin-button icon="fonticon://FontAwesome/f007" primary-style-name="valo-menu-item" width-full plain-text _id="userDetailsButton">
+        Saját adatok 
       </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f01c" primary-style-name="valo-menu-item" _id="inboxButton">
-        Inbox 
-       <span class="valo-menu-badge">7</span> 
+      <vaadin-button icon="fonticon://FontAwesome/f03a" primary-style-name="valo-menu-item" _id="courseListButton">
+        Kurzusaim 
       </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f187" primary-style-name="valo-menu-item" _id="archiveButton">
-        Archive 
+      <vaadin-button icon="fonticon://FontAwesome/f064" primary-style-name="valo-menu-item" _id="emailButton">
+        E-mail 
       </vaadin-button> 
-      <vaadin-button icon="fonticon://FontAwesome/f1de" primary-style-name="valo-menu-item" _id="settingsButton">
-        Settings 
+      <vaadin-button icon="fonticon://FontAwesome/f1de" primary-style-name="valo-menu-item" _id="settingsButton2">
+        Beállítások 
       </vaadin-button> 
       <vaadin-button icon="fonticon://FontAwesome/f08b" primary-style-name="valo-menu-item" plain-text _id="logoutButton">
-        Logout 
+        Kijelentkezés 
       </vaadin-button> 
      </vaadin-css-layout> 
     </vaadin-css-layout> 
    </vaadin-css-layout> 
-   <vaadin-vertical-layout spacing margin _id="content" :expand></vaadin-vertical-layout> 
-  </vaadin-horizontal-layout>  
+   <vaadin-vertical-layout size-full _id="content"></vaadin-vertical-layout> 
+  </vaadin-horizontal-split-panel>  
  </body>
 </html>

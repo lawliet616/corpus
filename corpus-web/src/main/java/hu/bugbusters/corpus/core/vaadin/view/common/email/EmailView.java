@@ -1,5 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.common.email;
 
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Set;
 
 import com.vaadin.navigator.View;
@@ -10,6 +12,7 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Calendar;
 
 import hu.bugbusters.corpus.core.bean.Inbox;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
@@ -39,12 +42,17 @@ public class EmailView extends EmailDesign implements View{
 	
 	public EmailView() {
 		
+		
 		emailSettings();
 		
 		buttonsettings();
 		
 		newMailSetting();
+		
 	}
+	
+	
+
 	private void buttonsettings() {
 			inboxButton.addClickListener(new ClickListener() {
 				

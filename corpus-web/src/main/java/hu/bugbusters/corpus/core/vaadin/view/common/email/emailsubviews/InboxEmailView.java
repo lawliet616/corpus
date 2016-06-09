@@ -88,7 +88,7 @@ public class InboxEmailView extends InboxEmailDesign implements View {
 
 			@Override
 			public int compare(Inbox o1, Inbox o2) {
-					return o1.getMessage().getTime().compareTo(o2.getMessage().getTime());
+					return o2.getMessage().getTime().compareTo(o1.getMessage().getTime());
 			}
 		});
 		

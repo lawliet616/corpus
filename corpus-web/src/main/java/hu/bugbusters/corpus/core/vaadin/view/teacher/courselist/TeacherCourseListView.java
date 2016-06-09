@@ -19,6 +19,7 @@ import com.vaadin.shared.data.sort.SortDirection;
 import com.vaadin.ui.Grid;
 import com.vaadin.ui.Layout;
 import com.vaadin.ui.Notification;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.renderers.ButtonRenderer;
@@ -36,6 +37,7 @@ import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.NewMailView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.teacher.studentlist.TeacherStudentListDesign;
 
@@ -46,6 +48,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 	private Dao dao = DaoImpl.getInstance();
 	private Set<Course> course = new HashSet<>();
 	private List<Course> ownCourse = new ArrayList<>();
+	private RendererClickListener listener, listenerMail;
 	
 	public TeacherCourseListView() {
 		fillTable();
@@ -67,22 +70,75 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 		
 		
 		GeneratedPropertyContainer gpc=new GeneratedPropertyContainer(userDataSource);
-		gpc.addGeneratedProperty("delete",new PropertyValueGenerator<String>(){
-		    private static final long serialVersionUID=-8571003699455731586L;
-		    @Override public String getValue(    Item item,    Object itemId,    Object propertyId){
-		      return "Kurzus leadása";
-		    }
-		    @Override public Class<String> getType(){
-		      return String.class;
-		    }
-		  }
-		);
-		courseList.setContainerDataSource(gpc);
-		courseList.setSelectionMode(SelectionMode.SINGLE);
-		courseList.setColumns("name", "room", "credit", "delete");
-		courseList.sort("name", SortDirection.ASCENDING);
 		
-		RendererClickListener listener = new RendererClickListener() {
+		if(Login.getLoggedInUser().getRole() == Role.TEACHER){
+			
+			gpc.addGeneratedProperty("courseMail",new PropertyValueGenerator<String>(){
+			    private static final long serialVersionUID=-8571003699455731586L;
+			    @Override public String getValue(    Item item,    Object itemId,    Object propertyId){
+			      return "Kurzusmail küldése";
+			    }
+			    @Override public Class<String> getType(){
+			      return String.class;
+			    }
+			  }
+			);
+			
+			courseList.setContainerDataSource(gpc);
+			courseList.setSelectionMode(SelectionMode.SINGLE);
+			courseList.setColumns("name", "room", "credit", "courseMail");
+			courseList.sort("name", SortDirection.ASCENDING);
+			
+		}else{
+			gpc.addGeneratedProperty("delete",new PropertyValueGenerator<String>(){
+			    private static final long serialVersionUID=-8571003699455731586L;
+			    @Override public String getValue(    Item item,    Object itemId,    Object propertyId){
+			      return "Kurzus leadása";
+			    }
+			    @Override public Class<String> getType(){
+			      return String.class;
+			    }
+			  }
+			);
+			
+			courseList.setContainerDataSource(gpc);
+			courseList.setSelectionMode(SelectionMode.SINGLE);
+			courseList.setColumns("name", "room", "credit", "delete");
+			courseList.sort("name", SortDirection.ASCENDING);
+		}
+		
+		defineListener();
+		
+		if(Login.getLoggedInUser().getRole() == Role.TEACHER){
+			courseList.getColumn("courseMail").setRenderer(new ButtonRenderer(listenerMail));
+		}else{
+			courseList.getColumn("delete").setRenderer(new ButtonRenderer(listener));
+		}
+		
+		headerNameSetting();
+		
+		courseList.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void select(SelectionEvent event) {
+				
+				String selectedCourse = null;
+				
+				for (Course course : ownCourse) {
+					if(course.getId() == courseList.getSelectedRow()){
+						selectedCourse = course.getName();
+					}
+				}
+				
+				Notification.show("Kiválasztva: " + selectedCourse);
+				
+			}
+		});		
+	}
+
+	private void defineListener() {
+		
+		listener = new RendererClickListener() {
 
 			@Override
 			public void click(RendererClickEvent event) {
@@ -132,42 +188,57 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 				} catch (CourseNotFoundException e) {
 					e.printStackTrace();
 				}
+			}
+		};
+		
+		listenerMail = new RendererClickListener() {
+
+			@Override
+			public void click(RendererClickEvent event) {
 				
+				Course course = null;
+				try {
+					course = dao.getCourseById((Long) event.getItemId());
+				} catch (CourseNotFoundException e) {
+					e.printStackTrace();
+				}
 				
+				Set<RegisteredUser> courseStudents = course.getStudents();
 				
+				Window newMail = new Window("Új e-mail");
+				newMail.setContent(new NewMailView(newMail, courseStudents));
+				newMail.setStyleName("subWindow");
+				
+				newMail.setResizable(false);
+				newMail.setWidth("75%");
+				newMail.setHeight("70%");
+				newMail.center();
+				newMail.setDraggable(false);
+				newMail.setModal(true);
+				
+				((CorpusUI) getUI()).addWindow(newMail);
 				
 			}
 		};
 		
-		courseList.getColumn("delete").setRenderer(new ButtonRenderer(listener));
-		
-		headerNameSetting();
-		
-		courseList.addSelectionListener(new SelectionListener() {
-			
-			@Override
-			public void select(SelectionEvent event) {
-				
-				String selectedCourse = null;
-				
-				for (Course course : ownCourse) {
-					if(course.getId() == courseList.getSelectedRow()){
-						selectedCourse = course.getName();
-					}
-				}
-				
-				Notification.show("Kiválasztva: " + selectedCourse);
-				
-			}
-		});		
 	}
 
 	private void headerNameSetting() {
 		
-		courseList.getColumn("name").setHeaderCaption("Név");
-		courseList.getColumn("room").setHeaderCaption("Terem");
-		courseList.getColumn("credit").setHeaderCaption("Kredit");
-		courseList.getColumn("delete").setHeaderCaption("Kurzus leadás");
+		if(Login.getLoggedInUser().getRole() == Role.TEACHER){
+			courseList.getColumn("name").setHeaderCaption("Név");
+			courseList.getColumn("room").setHeaderCaption("Terem");
+			courseList.getColumn("credit").setHeaderCaption("Kredit");
+			courseList.getColumn("courseMail").setHeaderCaption("Kurzusmail");
+			
+		}else{
+			courseList.getColumn("name").setHeaderCaption("Név");
+			courseList.getColumn("room").setHeaderCaption("Terem");
+			courseList.getColumn("credit").setHeaderCaption("Kredit");
+			courseList.getColumn("delete").setHeaderCaption("Kurzus leadás");
+		}
+		
+		
 		
 		
 		

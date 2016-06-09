@@ -23,7 +23,7 @@ public class SentEmailsView extends SentEmailsDesign implements View {
 	public static final String NAME = "SentMails";
 	private Dao dao = DaoImpl.getInstance();
 	private List<Message> sortedListByName = new ArrayList<>();
-	private List<Message> sortedListByDate = new ArrayList<>();
+	private String send = "";
 	
 	public SentEmailsView() {
 		fillWithEmails();
@@ -34,7 +34,6 @@ public class SentEmailsView extends SentEmailsDesign implements View {
 	private void comboBoxFill() {
 
 		cmbBoxSort.addItem("Név");
-		cmbBoxSort.addItem("Év");
 		cmbBoxSort.setValue("Név");
 		cmbBoxSort.setNullSelectionAllowed(false);
 		cmbBoxSort.setTextInputAllowed(false);
@@ -47,15 +46,9 @@ public class SentEmailsView extends SentEmailsDesign implements View {
 				if(cmbBoxSort.getValue().equals("Név")){
 					messageList.removeAllComponents();
 					for (Message mail : sortedListByName) {
-						messageList.addComponent(new EmailTextView(mail, 'Y'));
+						messageList.addComponent(new EmailTextView(mail, 'Y', send));
 					}
 					
-				}
-				else{
-					for (Message mail : sortedListByDate) {
-						messageList.removeAllComponents();
-						messageList.addComponent(new EmailTextView(mail, 'Y'));
-					}
 				}
 			}
 		});
@@ -82,15 +75,6 @@ public class SentEmailsView extends SentEmailsDesign implements View {
 							(o2.getSentBy().getFullName());
 			}
 			
-		});
-		
-		sortedListByDate.addAll(Login.getLoggedInUser().getSentMails());
-		Collections.sort(sortedListByDate, new Comparator<Message>() {
-
-			@Override
-			public int compare(Message o1, Message o2) {
-					return o1.getTime().compareTo(o2.getTime());
-			}
 		});
 		
 	}

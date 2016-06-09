@@ -53,8 +53,8 @@ public class InboxEmailView extends InboxEmailDesign implements View {
 					
 				}
 				else{
+					messageList.removeAllComponents();
 					for (Inbox mail : sortedListByDate) {
-						messageList.removeAllComponents();
 						messageList.addComponent(new EmailTextView(mail.getMessage(), mail.getSeen()));
 					}
 				}

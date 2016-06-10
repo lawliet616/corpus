@@ -65,10 +65,6 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	}
 
 	private void createSelectGoup() {
-		/*																						Majd a végén kikell szedni!
-		for (Course course : dao.listAllCourses()) {
-			selectGroup.addItem(course.getName());
-		}*/
 		
 		for (Course course : dao.listAllCourses()) {
 			for (RegisteredUser user : course.getStudents()) {
@@ -77,8 +73,8 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 				}
 			}
 		}
-		selectGroup.addItem("Egyik sem");
-		selectGroup.setValue("Egyik sem");
+		selectGroup.addItem("Mindegyik");
+		selectGroup.setValue("Mindegyik");
 		selectGroup.addValueChangeListener(new ValueChangeListener() {
 
 			@Override

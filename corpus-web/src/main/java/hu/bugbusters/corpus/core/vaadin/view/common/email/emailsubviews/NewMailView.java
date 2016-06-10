@@ -82,6 +82,9 @@ public class NewMailView extends NewMailDesign implements View {
 
 	public NewMailView(final Window newMail, Set<RegisteredUser> courseStudents) {
 		
+		addTargetButton.setEnabled(false);
+		addTargetButton.setVisible(false);
+		
 		final List<String> targets = new ArrayList<>();
 		
 		String names = "";

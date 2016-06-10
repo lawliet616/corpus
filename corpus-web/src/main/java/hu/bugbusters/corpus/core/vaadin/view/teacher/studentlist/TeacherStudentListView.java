@@ -5,20 +5,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanContainer;
-import com.vaadin.data.util.filter.SimpleStringFilter;
-import com.vaadin.event.SelectionEvent;
-import com.vaadin.event.SelectionEvent.SelectionListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.data.sort.SortDirection;
-import com.vaadin.ui.Grid;
 import com.vaadin.ui.Grid.SelectionMode;
-import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Notification;
 
 import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;

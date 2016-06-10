@@ -7,23 +7,18 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import com.vaadin.event.ContextClickEvent;
-import com.vaadin.event.ContextClickEvent.ContextClickListener;
 import com.vaadin.event.LayoutEvents.LayoutClickEvent;
 import com.vaadin.event.LayoutEvents.LayoutClickListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Notification;
 import com.vaadin.ui.Window;
 
 import hu.bugbusters.corpus.core.bean.Inbox;
 import hu.bugbusters.corpus.core.bean.Message;
-import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
-import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.util.StringUtils;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;

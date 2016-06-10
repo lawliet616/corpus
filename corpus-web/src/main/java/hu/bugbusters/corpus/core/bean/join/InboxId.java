@@ -9,6 +9,7 @@ import lombok.Setter;
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
+@SuppressWarnings("serial")
 @Embeddable
 public class InboxId implements java.io.Serializable {
     @Getter

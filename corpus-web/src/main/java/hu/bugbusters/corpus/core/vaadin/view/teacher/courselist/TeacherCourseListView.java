@@ -5,8 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.mail.Header;
-
 import com.vaadin.data.Item;
 import com.vaadin.data.util.BeanContainer;
 import com.vaadin.data.util.GeneratedPropertyContainer;
@@ -16,18 +14,12 @@ import com.vaadin.event.SelectionEvent.SelectionListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.data.sort.SortDirection;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.Layout;
+import com.vaadin.ui.Grid.SelectionMode;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.renderers.ButtonRenderer;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
-import com.vaadin.ui.Grid.HeaderCell;
-import com.vaadin.ui.Grid.HeaderRow;
-import com.vaadin.ui.Grid.SelectionMode;
 
 import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
@@ -38,8 +30,6 @@ import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.NewMailView;
-import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
-import hu.bugbusters.corpus.core.vaadin.view.teacher.studentlist.TeacherStudentListDesign;
 
 @SuppressWarnings("serial")
 public class TeacherCourseListView extends TeacherCourseListDesign implements View {

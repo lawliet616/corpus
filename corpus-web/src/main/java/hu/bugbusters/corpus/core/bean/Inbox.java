@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @AssociationOverrides({
         @AssociationOverride(name = "pk.registeredUser",

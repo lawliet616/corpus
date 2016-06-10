@@ -2,12 +2,10 @@ package hu.bugbusters.corpus.core.vaadin.view.user;
 
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Component;
 
-import hu.bugbusters.corpus.core.dao.Dao;
-import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
@@ -20,7 +18,6 @@ import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePa
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.teacher.courselist.TeacherCourseListView;
-import hu.bugbusters.corpus.core.vaadin.view.teacher.studentlist.TeacherStudentListView;
 import hu.bugbusters.corpus.core.vaadin.view.user.AllCourseList.AllCourseListView;
 
 @SuppressWarnings("serial")

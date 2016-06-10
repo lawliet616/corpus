@@ -18,6 +18,7 @@ import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.factories.CourseFactory;
 import hu.bugbusters.corpus.core.login.Role;
 
+@SuppressWarnings("serial")
 public class NewCourseView extends NewCourseDesign implements View {
 	public static final String NAME = "NewCourse";
 	private Dao dao;

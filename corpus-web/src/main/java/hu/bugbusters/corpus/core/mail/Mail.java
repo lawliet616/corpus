@@ -1,21 +1,19 @@
 package hu.bugbusters.corpus.core.mail;
 
-import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import java.util.List;
+import java.util.Properties;
+
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+
 import hu.bugbusters.corpus.core.bean.Inbox;
+import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.factories.MessageFactory;
-
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.util.List;
-import java.util.Properties;
 
 public class Mail {
     private static final String from = "corpus.message@gmail.com";

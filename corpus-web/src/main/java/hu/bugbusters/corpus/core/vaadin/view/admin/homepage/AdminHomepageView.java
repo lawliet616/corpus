@@ -1,8 +1,5 @@
 package hu.bugbusters.corpus.core.vaadin.view.admin.homepage;
 
-import javax.swing.plaf.metal.MetalBorders.TextFieldBorder;
-
-import org.apache.logging.log4j.core.util.DummyNanoClock;
 import org.vaadin.sliderpanel.SliderPanel;
 import org.vaadin.sliderpanel.SliderPanelBuilder;
 import org.vaadin.sliderpanel.SliderPanelStyles;
@@ -12,13 +9,12 @@ import org.vaadin.sliderpanel.client.SliderTabPosition;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Table;
 import com.vaadin.ui.TextArea;
-import com.vaadin.ui.VerticalLayout;
 
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.login.Login;
 
+@SuppressWarnings("serial")
 public class AdminHomepageView extends AdminHomepageDesign implements View {
 	public static final String Name="Homepage";
 	private RegisteredUser user;

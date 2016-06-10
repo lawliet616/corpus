@@ -1,7 +1,6 @@
 package hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -14,7 +13,6 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import hu.bugbusters.corpus.core.bean.Inbox;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
-import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 
 @SuppressWarnings("serial")

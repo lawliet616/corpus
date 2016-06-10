@@ -2,23 +2,18 @@ package hu.bugbusters.corpus.core.vaadin.view.teacher;
 
 import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Component;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Component;
 
-import hu.bugbusters.corpus.core.dao.Dao;
-import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.LogoutClickListener;
 import hu.bugbusters.corpus.core.vaadin.view.admin.homepage.AdminHomepageView;
-import hu.bugbusters.corpus.core.vaadin.view.admin.newuser.NewUserView;
-import hu.bugbusters.corpus.core.vaadin.view.admin.settings.SettingsView;
-import hu.bugbusters.corpus.core.vaadin.view.admin.userlist.UserListView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.EmailView;
-import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.SentEmailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.InboxEmailView;
+import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.SentEmailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangePasswordView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.ChangeSelfDetailsView;
 import hu.bugbusters.corpus.core.vaadin.view.common.subview.selfdetails.SelfDetailsView;

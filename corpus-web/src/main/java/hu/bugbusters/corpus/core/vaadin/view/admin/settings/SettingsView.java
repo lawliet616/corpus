@@ -2,6 +2,8 @@ package hu.bugbusters.corpus.core.vaadin.view.admin.settings;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 
 import hu.bugbusters.corpus.core.bean.PasswordSettings;
@@ -10,9 +12,7 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.global.Global;
 import hu.bugbusters.corpus.core.password.PasswordRows;
 
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
-
+@SuppressWarnings("serial")
 public class SettingsView extends SettingsDesign implements View {
 	public static final String NAME = "Settings";
 	private Dao dao = DaoImpl.getInstance();

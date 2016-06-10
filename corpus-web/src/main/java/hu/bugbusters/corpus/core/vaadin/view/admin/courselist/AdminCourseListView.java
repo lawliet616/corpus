@@ -8,6 +8,7 @@ import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 
+@SuppressWarnings("serial")
 public class AdminCourseListView extends AdminCourseListDesign implements View {
 	public final static String NAME = "AdminCourseList";
 	private Dao dao;

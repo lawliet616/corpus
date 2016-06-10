@@ -25,8 +25,8 @@ public class InboxEmailView extends InboxEmailDesign implements View {
 	private List<Inbox> sortedListByDate = new ArrayList<>();
 	
 	public InboxEmailView() {
-		fillWithEmails();
 		sorting();
+		fillWithEmails();
 		comboBoxFill();
 	}
 
@@ -36,7 +36,7 @@ public class InboxEmailView extends InboxEmailDesign implements View {
 		
 		cmbBoxSort.addItem("Név");
 		cmbBoxSort.addItem("Év");
-		cmbBoxSort.setValue("Név");
+		cmbBoxSort.setValue("Év");
 		cmbBoxSort.setNullSelectionAllowed(false);
 		cmbBoxSort.setTextInputAllowed(false);
 		
@@ -65,7 +65,7 @@ public class InboxEmailView extends InboxEmailDesign implements View {
 
 	private void fillWithEmails() {
 		
-		for (Inbox email : Login.getLoggedInUser().getReceivedMails()) {
+		for (Inbox email : sortedListByDate) {
 			messageList.addComponent(new EmailTextView(email.getMessage(), email.getSeen()));
 		}
 		

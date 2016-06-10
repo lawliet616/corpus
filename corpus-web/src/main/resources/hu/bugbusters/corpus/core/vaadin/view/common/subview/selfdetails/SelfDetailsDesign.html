@@ -5,19 +5,21 @@
  </head> 
  <body> 
   <vaadin-vertical-layout size-full margin> 
-   <vaadin-form-layout caption="Saját adatok" size-auto :middle :center> 
-    <vaadin-label caption="Név:" size-auto _id="lblName"></vaadin-label> 
-    <vaadin-label caption="E-mail cím:" size-auto plain-text _id="lblEmail"></vaadin-label> 
-    <vaadin-label caption="Felhasználónév:" size-auto plain-text _id="lblUsername"></vaadin-label> 
-    <vaadin-horizontal-layout spacing> 
-     <vaadin-button width="167px" height="30px" plain-text _id="btnChangePassword">
-       Jelszó módosítás 
-     </vaadin-button> 
-     <vaadin-button width="113px" height="30px" plain-text _id="btnChangeDetails">
-       Módosítás 
-     </vaadin-button> 
-    </vaadin-horizontal-layout> 
-   </vaadin-form-layout> 
+   <vaadin-panel caption="Saját adatok" style-name="panelTitle" width="500px" height="350px" :middle :center :expand> 
+    <vaadin-form-layout caption="Saját adatok" style-name="panelTitle" size-full margin> 
+     <vaadin-label caption="Név:" size-auto _id="lblName"></vaadin-label> 
+     <vaadin-label caption="E-mail cím:" size-auto plain-text _id="lblEmail"></vaadin-label> 
+     <vaadin-label caption="Felhasználónév:" size-auto plain-text _id="lblUsername"></vaadin-label> 
+     <vaadin-horizontal-layout spacing> 
+      <vaadin-button width="167px" height="30px" plain-text _id="btnChangePassword">
+        Jelszó módosítás 
+      </vaadin-button> 
+      <vaadin-button width="113px" height="30px" plain-text _id="btnChangeDetails">
+        Módosítás 
+      </vaadin-button> 
+     </vaadin-horizontal-layout> 
+    </vaadin-form-layout> 
+   </vaadin-panel> 
   </vaadin-vertical-layout>  
  </body>
 </html>

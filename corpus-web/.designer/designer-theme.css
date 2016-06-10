@@ -13934,6 +13934,14 @@ div.v-layout.v-horizontal.v-widget {
 	height: 50px;
 }
 
+.CorpusTheme .title {
+	font-size: 24px;
+}
+
+.CorpusTheme .panelTitle .v-panel-caption {
+	font-size: 24px;
+}
+
 .CorpusTheme .loginText .v-caption {
 	font-size: 20px;
 	color: white;

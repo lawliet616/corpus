@@ -57,7 +57,7 @@ $v-selection-item-border-radius: 0;
 
   // Insert your own theme rules here
     .v-login{
-      background-image: url(wpCorpus.png);
+      background-image: url(corpusLogin.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
   }
@@ -219,14 +219,14 @@ $v-selection-item-border-radius: 0;
     }
     
     .menubar{
-    	background: url(corpusMenu.png) no-repeat;
+    	background: url(corpusM.png) no-repeat;
     	background-size: 100% 100%;
     	padding-left: 5px;
     	padding-right: 5px;
     }
     
     .homepage{
-    	background: url(courpusBg.jpg) no-repeat;
+    	background: url(courpusAppBG.jpg) no-repeat;
     	background-size: 100% 100%;
     }
     
@@ -253,6 +253,16 @@ $v-selection-item-border-radius: 0;
     	font-size: 40px;
     	padding-bottom: 0;
     	height: 50px;
+    }
+    
+    .title{
+    	font-size: 24px;
+    }
+    
+    .panelTitle{
+	    .v-panel-caption{
+			    font-size: 24px;
+		    }
     }
     
     .loginText{

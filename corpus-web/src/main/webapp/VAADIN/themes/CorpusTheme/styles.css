@@ -13731,7 +13731,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-login {
-	background-image: url(wpCorpus.png);
+	background-image: url(corpusLogin.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
@@ -13898,14 +13898,14 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .menubar {
-	background: url(corpusMenu.png) no-repeat;
+	background: url(corpusM.png) no-repeat;
 	background-size: 100% 100%;
 	padding-left: 5px;
 	padding-right: 5px;
 }
 
 .CorpusTheme .homepage {
-	background: url(courpusBg.jpg) no-repeat;
+	background: url(courpusAppBG.jpg) no-repeat;
 	background-size: 100% 100%;
 }
 
@@ -13932,6 +13932,14 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 40px;
 	padding-bottom: 0;
 	height: 50px;
+}
+
+.CorpusTheme .title {
+	font-size: 24px;
+}
+
+.CorpusTheme .panelTitle .v-panel-caption {
+	font-size: 24px;
 }
 
 .CorpusTheme .loginText .v-caption {

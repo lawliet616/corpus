@@ -63,12 +63,12 @@ public class UserFactory {
 			throws CannotPerformOperationException, InvalidHashException {
 		String password = Password.toDatabaseHash(registeredUser.getUsername());
 		/*
-		 * Generate a valid password.
+		 * @formatter:off Generate a valid password.
 		 * 
 		 * PasswordGenerator generator = new PasswordGenerator();
 		 * PasswordSettings settings = dao.getPasswordSettings(PasswordRows.CUSTOM);
 		 * 
-		 * if (settings == null) { 
+		 * if (settings == null) {
 		 * 		settings = dao.getPasswordSettings(PasswordRows.DEFAULT);
 		 * }
 		 * 
@@ -77,8 +77,10 @@ public class UserFactory {
 		 * rules.add(new UppercaseCharacterRule(settings.getMinUpperChar()));
 		 * rules.add(new LowercaseCharacterRule(settings.getMinLowerChar()));
 		 * 
-		 * password = generator.generatePassword(settings.getMaxLength(),
-		 * rules); password = Password.toDatabaseHash(password);
+		 * password = generator.generatePassword(settings.getMaxLength(),rules);
+		 * password = Password.toDatabaseHash(password);
+		 * 
+		 * @formatter:on
 		 */
 		return password;
 	}

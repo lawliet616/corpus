@@ -1,5 +1,6 @@
 package hu.bugbusters.corpus.core.password;
 
+//@formatter:off
 public enum PasswordRows {
 	DEFAULT(1),
 	CUSTOM(2);

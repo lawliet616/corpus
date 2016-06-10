@@ -17,6 +17,7 @@ import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.mail.Mail;
 import hu.bugbusters.corpus.core.password.Password;
 
+//@formatter:off
 public class DbTest {
     private static final Dao dao = DaoImpl.getInstance();
 

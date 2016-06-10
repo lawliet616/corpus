@@ -1,5 +1,6 @@
 package hu.bugbusters.corpus.core.global;
 
+//@formatter:off
 public class Global {
 	public static final int DAO_BATCH_SIZE                   = 20;
 	

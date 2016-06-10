@@ -1,6 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +18,7 @@ import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.mail.Mail;
+import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 
 @SuppressWarnings("serial")
 public class NewMailView extends NewMailDesign implements View {
@@ -37,8 +39,16 @@ public class NewMailView extends NewMailDesign implements View {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				
+				String[] targetString = targetTxt.getValue().split(";");
+				
+				List<String> targets = Arrays.asList(targetString);
+				
 				try {
-					Mail.sendMail(Login.getLoggedInUserId(), targetTxt.getValue(), subjectTxt.getValue(), messageTxt.getValue(),
+					for (String t : targets) {
+						System.out.println(t);
+					}
+					
+					Mail.sendMail(Login.getLoggedInUserId(), targets, subjectTxt.getValue(), messageTxt.getValue(),
 							false);
 				} catch (MessagingException e) {
 					e.printStackTrace();
@@ -46,6 +56,26 @@ public class NewMailView extends NewMailDesign implements View {
 					e.printStackTrace();
 				}
 				newMail.close();
+			}
+		});
+		
+		addTargetButton.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				Window newMail = new Window("Felhasználók");
+				newMail.setContent(new EmailTargetWindowView(newMail, targetTxt));
+				newMail.setStyleName("subWindow");
+				
+				newMail.setResizable(false);
+				newMail.setWidth("40%");
+				newMail.setHeight("70%");
+				newMail.center();
+				newMail.setDraggable(false);
+				newMail.setModal(true);
+				
+				((CorpusUI) getUI()).addWindow(newMail);	
+				
 			}
 		});
 	}

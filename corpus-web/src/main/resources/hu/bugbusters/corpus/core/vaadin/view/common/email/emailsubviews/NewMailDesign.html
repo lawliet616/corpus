@@ -4,8 +4,11 @@
   <meta charset="UTF-8" name="design-properties" content="{&quot;RULERS_VISIBLE&quot;:true,&quot;GUIDELINES_VISIBLE&quot;:false,&quot;SNAP_TO_OBJECTS&quot;:true,&quot;SNAP_TO_GRID&quot;:true,&quot;SNAPPING_DISTANCE&quot;:10,&quot;JAVA_SOURCES_ROOT&quot;:&quot;src/main/java&quot;,&quot;THEME&quot;:&quot;CorpusTheme&quot;}">
  </head> 
  <body> 
-  <vaadin-vertical-layout style-name="newMail" spacing size-full margin> 
-   <vaadin-text-field caption="Címzett:" width-full _id="targetTxt"></vaadin-text-field> 
+  <vaadin-vertical-layout style-name="newMail" spacing width="99%" height="95%" margin> 
+   <vaadin-horizontal-layout spacing width-full> 
+    <vaadin-text-field caption="Címzett:" width-full _id="targetTxt" :expand></vaadin-text-field> 
+    <vaadin-button icon="fonticon://FontAwesome/f067" plain-text _id="addTargetButton" :bottom :center></vaadin-button> 
+   </vaadin-horizontal-layout> 
    <vaadin-text-field caption="Tárgy:" width-full _id="subjectTxt" :center></vaadin-text-field> 
    <vaadin-text-area caption="Üzenet:" size-full _id="messageTxt" :expand></vaadin-text-area> 
    <vaadin-horizontal-layout spacing width="200px" :right> 

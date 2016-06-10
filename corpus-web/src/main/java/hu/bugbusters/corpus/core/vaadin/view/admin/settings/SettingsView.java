@@ -14,6 +14,7 @@ import hu.bugbusters.corpus.core.password.PasswordRows;
 
 @SuppressWarnings("serial")
 public class SettingsView extends SettingsDesign implements View {
+	private static final long serialVersionUID = -8573576790437312010L;
 	public static final String NAME = "Settings";
 	private Dao dao = DaoImpl.getInstance();
 	private PasswordSettings settings;
@@ -28,6 +29,7 @@ public class SettingsView extends SettingsDesign implements View {
 		setCurrentValues();
 
 		btnSave.addClickListener(new ClickListener() {
+			private static final long serialVersionUID = 8685233072820285365L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
@@ -36,6 +38,7 @@ public class SettingsView extends SettingsDesign implements View {
 		});
 
 		btnReset.addClickListener(new ClickListener() {
+			private static final long serialVersionUID = -3409693691719407919L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {

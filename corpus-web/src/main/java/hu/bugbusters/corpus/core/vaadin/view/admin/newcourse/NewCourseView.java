@@ -20,6 +20,7 @@ import hu.bugbusters.corpus.core.login.Role;
 
 @SuppressWarnings("serial")
 public class NewCourseView extends NewCourseDesign implements View {
+	private static final long serialVersionUID = -5564777106849244090L;
 	public static final String NAME = "NewCourse";
 	private Dao dao;
 
@@ -27,6 +28,7 @@ public class NewCourseView extends NewCourseDesign implements View {
 		dao = DaoImpl.getInstance();
 		fillCombobox();
 		btnSave.addClickListener(new ClickListener() {
+			private static final long serialVersionUID = -1904494345888185504L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {

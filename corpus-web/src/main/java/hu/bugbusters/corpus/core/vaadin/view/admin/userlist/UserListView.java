@@ -40,8 +40,8 @@ public class UserListView extends UserListDesign implements View {
 		for (Role role : Role.values()) {
 			selectGroup.addItem(role);
 		}
-		selectGroup.addItem("Egyik sem");
-		selectGroup.setValue("Egyik sem");
+		selectGroup.addItem("Mindegyik");
+		selectGroup.setValue("Mindegyik");
 		selectGroup.addValueChangeListener(new ValueChangeListener() {
 
 			@Override

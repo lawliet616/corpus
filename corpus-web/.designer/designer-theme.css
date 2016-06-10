@@ -13731,7 +13731,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .v-login {
-	background-image: url(wp.png);
+	background-image: url(wpCorpus.png);
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
 }
@@ -13932,4 +13932,9 @@ div.v-layout.v-horizontal.v-widget {
 	font-size: 40px;
 	padding-bottom: 0;
 	height: 50px;
+}
+
+.CorpusTheme .loginText .v-caption {
+	font-size: 20px;
+	color: white;
 }

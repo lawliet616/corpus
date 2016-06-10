@@ -57,7 +57,7 @@ $v-selection-item-border-radius: 0;
 
   // Insert your own theme rules here
     .v-login{
-      background-image: url(wp.png);
+      background-image: url(wpCorpus.png);
       background-repeat: no-repeat;
       background-size: 100% 100%;
   }
@@ -254,6 +254,14 @@ $v-selection-item-border-radius: 0;
     	padding-bottom: 0;
     	height: 50px;
     }
+    
+    .loginText{
+	    .v-caption{
+		    font-size: 20px;
+		  	color: white;
+	    }
+    }
+     
 /*
     .valo-menu-item{
         

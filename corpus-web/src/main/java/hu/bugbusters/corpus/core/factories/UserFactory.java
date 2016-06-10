@@ -16,7 +16,7 @@ public class UserFactory {
 	private UsernameFactory usernameFactory;
 
 	private UserFactory() {
-		DaoImpl.getInstance();
+		dao = DaoImpl.getInstance();
 		usernameFactory = UsernameFactory.getUsernameFactory();
 	}
 

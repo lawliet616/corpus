@@ -7,20 +7,9 @@ import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 
 public class CourseFactory {
-	private static CourseFactory factory;
 	private static Dao dao = DaoImpl.getInstance();
 
-	private CourseFactory() {
-	}
-
-	public static CourseFactory getCourseFactory() {
-		if (factory == null) {
-			factory = new CourseFactory();
-		}
-		return factory;
-	}
-
-	public Course createCourse(String name, String room, int credit, String teacher) {
+	public static Course createCourse(String name, String room, int credit, String teacher) {
 		Course course = new Course();
 		course.setName(name);
 		course.setRoom(room);
@@ -29,7 +18,7 @@ public class CourseFactory {
 		return course;
 	}
 
-	public Course createAndSaveCourse(String name, String room, int credit, String teacher) {
+	public static Course createAndSaveCourse(String name, String room, int credit, String teacher) {
 		Course course = createCourse(name, room, credit, teacher);
 		dao.saveEntity(course);
 		return course;

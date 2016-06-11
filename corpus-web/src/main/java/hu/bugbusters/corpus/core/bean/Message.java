@@ -51,4 +51,26 @@ public class Message implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.message")
 	private Set<Inbox> receivedBy = new HashSet<>();
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Message message1 = (Message) o;
+
+		if (!id.equals(message1.id)) return false;
+		if (!subject.equals(message1.subject)) return false;
+		if (!message.equals(message1.message)) return false;
+		return time.equals(message1.time);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id.hashCode();
+		result = 31 * result + subject.hashCode();
+		result = 31 * result + message.hashCode();
+		result = 31 * result + time.hashCode();
+		return result;
+	}
 }

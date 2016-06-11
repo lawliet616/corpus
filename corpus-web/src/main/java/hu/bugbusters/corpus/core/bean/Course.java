@@ -39,4 +39,23 @@ public class Course implements Serializable {
 	@Setter
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.course")
 	private Set<TakenCourse> students = new HashSet<>();
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		Course course = (Course) o;
+
+		if (!id.equals(course.id)) return false;
+		return name.equals(course.name);
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id.hashCode();
+		result = 31 * result + name.hashCode();
+		return result;
+	}
 }

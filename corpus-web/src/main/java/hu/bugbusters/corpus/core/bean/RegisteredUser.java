@@ -63,4 +63,24 @@ public class RegisteredUser implements Serializable {
 	@Setter
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registeredUser")
 	private Set<Inbox> receivedMails = new HashSet<>();
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		RegisteredUser that = (RegisteredUser) o;
+
+		if (!id.equals(that.id)) return false;
+		if (!username.equals(that.username)) return false;
+		return email.equals(that.email);
+	}
+
+	@Override
+	public int hashCode() {
+		int result = id.hashCode();
+		result = 31 * result + username.hashCode();
+		result = 31 * result + email.hashCode();
+		return result;
+	}
 }

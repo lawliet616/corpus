@@ -22,6 +22,7 @@ public class InboxId implements java.io.Serializable {
     @ManyToOne
     private Message message;
 
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -34,6 +35,7 @@ public class InboxId implements java.io.Serializable {
         return true;
     }
 
+    @Override
     public int hashCode() {
         int result;
         result = (registeredUser != null ? registeredUser.hashCode() : 0);

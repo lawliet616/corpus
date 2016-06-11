@@ -83,8 +83,7 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 
 			@Override
 			public void click(RendererClickEvent event) {
-				
-				CourseFactory factory = CourseFactory.getCourseFactory();
+
 				courseList.getContainerDataSource().removeItem(event.getItemId());
 				
 				//Set<Course> courses = new HashSet<>();
@@ -101,7 +100,7 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 				
 				
 				for (Course course : tmp) {
-					factory.registerForCourse(loggedInUser, course);
+					CourseFactory.registerForCourse(loggedInUser, course);
 				}
 				
 				

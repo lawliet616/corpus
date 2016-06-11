@@ -41,6 +41,7 @@ public class Inbox implements java.io.Serializable {
         getPk().setMessage(message);
     }
 
+    @Override
     public boolean equals(Object o) {
         if (this == o)
             return true;
@@ -56,6 +57,7 @@ public class Inbox implements java.io.Serializable {
         return true;
     }
 
+    @Override
     public int hashCode() {
         return (getPk() != null ? getPk().hashCode() : 0);
     }

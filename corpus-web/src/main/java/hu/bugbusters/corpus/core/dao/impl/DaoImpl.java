@@ -188,7 +188,6 @@ public class DaoImpl implements Dao {
         Session session = SESSION_FACTORY.openSession();
         Transaction transaction = session.beginTransaction();
 
-        //deletePersistentEntity(session, entity);
         session.delete(entity);
 
         transaction.commit();
@@ -239,7 +238,7 @@ public class DaoImpl implements Dao {
         Transaction tx = session.beginTransaction();
 
         for (T entity : entities) {
-            deletePersistentEntity(session, entity);
+            session.delete(entity);
         }
 
         tx.commit();
@@ -290,19 +289,10 @@ public class DaoImpl implements Dao {
         Transaction tx = session.beginTransaction();
 
         for (T entity : entities) {
-            deletePersistentEntity(session, entity);
+            session.delete(entity);
         }
 
         tx.commit();
         session.close();
-    }
-
-    private <T> void deletePersistentEntity(Session session, T entity) {
-        Object persistentInstance = session.createCriteria(entity.getClass()).add(Example.create(entity)).uniqueResult();
-        if (persistentInstance != null) {
-            session.delete(persistentInstance);
-        } else {
-            System.out.println("Entity not found in database.");
-        }
     }
 }

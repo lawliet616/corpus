@@ -9,17 +9,19 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 public class CourseFactory {
 	private static Dao dao = DaoImpl.getInstance();
 
-	public static Course createCourse(String name, String room, int credit, String teacher) {
+	public static Course createCourse(String name, String room, int credit, String teacher, int maxSize, String description) {
 		Course course = new Course();
 		course.setName(name);
 		course.setRoom(room);
 		course.setCredit(credit);
 		course.setTeacher(teacher);
+		course.setMaxSize(maxSize);
+		course.setDescription(description);
 		return course;
 	}
 
-	public static Course createAndSaveCourse(String name, String room, int credit, String teacher) {
-		Course course = createCourse(name, room, credit, teacher);
+	public static Course createAndSaveCourse(String name, String room, int credit, String teacher, int maxSize, String description) {
+		Course course = createCourse(name, room, credit, teacher, maxSize, description);
 		dao.saveEntity(course);
 		return course;
 	}

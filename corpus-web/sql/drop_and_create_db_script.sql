@@ -27,6 +27,8 @@ CREATE TABLE CORPUS.course (
 	room varchar2(255 char),
 	credit int not null,
 	teacher varchar2(255 char),
+  max_size int not null,
+  description varchar2(4000 char),
 	primary key (id),
 	unique (name)
 );

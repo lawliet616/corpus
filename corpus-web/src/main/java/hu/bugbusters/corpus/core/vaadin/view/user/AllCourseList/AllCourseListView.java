@@ -20,6 +20,7 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 import hu.bugbusters.corpus.core.bean.Course;
+import hu.bugbusters.corpus.core.bean.RegisteredCourse;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
@@ -43,8 +44,8 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 		for (Course course : dao.listAllCourses()) {
 			boolean registered = false;
 			
-			for (RegisteredUser user : course.getStudents()) {
-				if(user.getId() == Login.getLoggedInUserId()){
+			for (RegisteredCourse user : course.getStudents()) {
+				if(user.getRegisteredUser().getId() == Login.getLoggedInUserId()){
 					registered = true;
 				}
 			}
@@ -83,12 +84,14 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 				courseList.getContainerDataSource().removeItem(event.getItemId());
 				
 				//Set<Course> courses = new HashSet<>();
-				Set<Course> tmp = Login.getLoggedInUser().getCourses();
+				Set<RegisteredCourse> tmp = Login.getLoggedInUser().getCourses();
 				List<Course> allTemp = dao.listAllCourses();
 				
 				for (Course course : allTemp) {
 					if(course.getId() == event.getItemId()){
-						tmp.add(course);
+						for (RegisteredCourse regCourse : course.getStudents()) {
+							tmp.add(regCourse);
+						}
 					}
 				}
 				RegisteredUser loggedInUser = Login.getLoggedInUser();
@@ -104,9 +107,11 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 					
 					if(Login.getLoggedInUser().getRole() == Role.USER){
 						
-						Set<RegisteredUser> courseStudents = course.getStudents();
+						Set<RegisteredCourse> courseStudents = course.getStudents();
 						
-						courseStudents.add(Login.getLoggedInUser());
+						for (RegisteredCourse reg : Login.getLoggedInUser().getCourses()) {
+							courseStudents.add(reg);
+						}
 						
 						course.setStudents(courseStudents);
 						

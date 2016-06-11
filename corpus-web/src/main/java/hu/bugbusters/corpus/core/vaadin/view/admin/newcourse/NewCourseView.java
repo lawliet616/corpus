@@ -11,6 +11,7 @@ import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Notification;
 
 import hu.bugbusters.corpus.core.bean.Course;
+import hu.bugbusters.corpus.core.bean.RegisteredCourse;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
@@ -54,9 +55,10 @@ public class NewCourseView extends NewCourseDesign implements View {
 						Integer.parseInt(txtCredit.getValue()), cmbTeachers.getValue().toString());
 
 				RegisteredUser teacher = dao.getUserByFullName(cmbTeachers.getValue().toString());
-				Set<Course> courseSet = new HashSet<>();
-				courseSet.add(course);
-				teacher.setCourses(courseSet);
+				factory.registerForCourse(teacher, course);
+				/*Set<RegisteredCourse> courseSet = new HashSet<>();
+				courseSet.add(regCourse);
+				teacher.setCourses(courseSet);*/
 				dao.updateEntity(teacher);
 				Notification.show("Sikeresen elmentette az adatokat.", Notification.Type.HUMANIZED_MESSAGE);
 				txtCredit.clear();

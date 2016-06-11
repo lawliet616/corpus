@@ -14,6 +14,7 @@ import com.vaadin.shared.data.sort.SortDirection;
 import com.vaadin.ui.Grid.SelectionMode;
 
 import hu.bugbusters.corpus.core.bean.Course;
+import hu.bugbusters.corpus.core.bean.RegisteredCourse;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
@@ -25,7 +26,7 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	public static final String NAME = "TeacherStudentList";
 	private BeanContainer<Long, RegisteredUser> userDataSource = new BeanContainer<Long, RegisteredUser>(RegisteredUser.class);
 	private Dao dao = DaoImpl.getInstance();
-	private Set<RegisteredUser> users = new HashSet<>();
+	private Set<RegisteredCourse> users = new HashSet<>();
 	private List<RegisteredUser> currentList = new ArrayList<>();
 	private List<RegisteredUser> ownStudentList = new ArrayList<>();
 	private List<Course> allCourse = new ArrayList<>();
@@ -39,14 +40,14 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	
 	private void studentList() {
 		
-		Set<Course> courses = new HashSet<>();
+		Set<RegisteredCourse> courses = new HashSet<>();
 		
 		for (RegisteredUser user : dao.listAllUsers()) {
 			
 			courses = user.getCourses();
 			
-			for (Course course : courses) {
-				if(course.getTeacher().equals(Login.getLoggedInUser().getFullName())){
+			for (RegisteredCourse course : courses) {
+				if(course.getCourse().getTeacher().equals(Login.getLoggedInUser().getFullName())){
 					if(user.getRole() == Role.USER ){
 						ownStudentList.add(user);
 					}
@@ -60,8 +61,8 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	private void createSelectGoup() {
 		
 		for (Course course : dao.listAllCourses()) {
-			for (RegisteredUser user : course.getStudents()) {
-				if(user.getId() == Login.getLoggedInUserId()){
+			for (RegisteredCourse user : course.getStudents()) {
+				if(user.getRegisteredUser().getId() == Login.getLoggedInUserId()){
 					selectGroup.addItem(course.getName());
 				}
 			}
@@ -82,7 +83,7 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	protected void selectFilter() {
 		String radio = selectGroup.getValue().toString();
 		
-		List<RegisteredUser> temp = new ArrayList<>();
+		List<RegisteredCourse> temp = new ArrayList<>();
 		userDataSource.removeAllItems();
 		currentList.clear();
 		
@@ -98,9 +99,9 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 			}
 			temp.addAll(users);
 			
-			for (RegisteredUser user : temp) {
-				if(user.getRole() != Role.TEACHER){
-					currentList.add(user);
+			for (RegisteredCourse user : temp) {
+				if(user.getRegisteredUser().getRole() != Role.TEACHER){
+					currentList.add(user.getRegisteredUser());
 				}
 			}
 			

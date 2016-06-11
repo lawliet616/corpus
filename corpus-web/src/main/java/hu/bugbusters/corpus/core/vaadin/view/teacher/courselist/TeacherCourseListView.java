@@ -22,6 +22,7 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 import hu.bugbusters.corpus.core.bean.Course;
+import hu.bugbusters.corpus.core.bean.RegisteredCourse;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
@@ -36,7 +37,6 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 	public static final String NAME = "TeacherCourseList";
 	private BeanContainer<Long, Course> userDataSource = new BeanContainer<Long, Course>(Course.class);
 	private Dao dao = DaoImpl.getInstance();
-	private Set<Course> course = new HashSet<>();
 	private List<Course> ownCourse = new ArrayList<>();
 	private RendererClickListener listener, listenerMail;
 	
@@ -45,10 +45,11 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 	}
 
 	private void fillTable() {
+	
 		
 		for (Course course : dao.listAllCourses()) {
-			for (RegisteredUser user : course.getStudents()) {
-				if(user.getId() == Login.getLoggedInUserId()){
+			for (RegisteredCourse user : course.getStudents()) {
+				if(user.getRegisteredUser().getId() == Login.getLoggedInUserId()){
 					ownCourse.add(course);
 				}
 			}
@@ -134,11 +135,11 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 			public void click(RendererClickEvent event) {
 				courseList.getContainerDataSource().removeItem(event.getItemId());
 				
-				Set<Course> courses = new HashSet<>();
-				Set<Course> tmp = Login.getLoggedInUser().getCourses();
+				Set<RegisteredCourse> courses = new HashSet<>();
+				Set<RegisteredCourse> tmp = Login.getLoggedInUser().getCourses();
 				
-				for (Course course : tmp) {
-					if(course.getId() != event.getItemId()){
+				for (RegisteredCourse course : tmp) {
+					if(course.getCourse().getId() != event.getItemId()){
 						courses.add(course);
 					}
 				}
@@ -160,11 +161,11 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 						
 					}else if(Login.getLoggedInUser().getRole() == Role.USER){
 						
-						Set<RegisteredUser> courseStudents = new HashSet<>();
-						Set<RegisteredUser> tmpStudents = course.getStudents();
+						Set<RegisteredCourse> courseStudents = new HashSet<>();
+						Set<RegisteredCourse> tmpStudents = course.getStudents();
 						
-						for (RegisteredUser registeredUser : tmpStudents) {
-							if(registeredUser.getId() != Login.getLoggedInUserId()){
+						for (RegisteredCourse registeredUser : tmpStudents) {
+							if(registeredUser.getRegisteredUser().getId() != Login.getLoggedInUserId()){
 								courseStudents.add(registeredUser);
 							}
 						}
@@ -193,7 +194,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 					e.printStackTrace();
 				}
 				
-				Set<RegisteredUser> courseStudents = course.getStudents();
+				Set<RegisteredCourse> courseStudents = course.getStudents();
 				
 				Window newMail = new Window("Új e-mail");
 				newMail.setContent(new NewMailView(newMail, courseStudents));

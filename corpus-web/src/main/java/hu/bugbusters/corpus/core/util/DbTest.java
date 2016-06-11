@@ -76,36 +76,17 @@ public class DbTest {
              	else
              	    user.getCourses.add(course)
              */
-            Set<Course> courseSet1 = new HashSet<>();
-            Set<Course> courseSet2 = new HashSet<>();
-            Set<Course> courseSet3 = new HashSet<>();
-            Set<Course> courseSet4 = new HashSet<>();
+            CourseFactory.registerForCourse(teacher1, course1, course2);
+            CourseFactory.registerForCourse(teacher2, course3, course4);
 
-            courseSet1.add(course1);
-            courseSet1.add(course2);
-            courseSet1.add(course3);
-
-            courseSet2.add(course3);
-            courseSet2.add(course4);
-
-            courseSet3.add(course4);
-
-            courseSet4.add(course1);
-            courseSet4.add(course2);
-
-            teacher1.setCourses(courseSet4);
-            teacher2.setCourses(courseSet2);
-
-            user1.setCourses(courseSet1);
-            user2.setCourses(courseSet3);
-            user3.setCourses(courseSet4);
-            user4.setCourses(courseSet2);
-            user5.setCourses(courseSet4);
-            user6.setCourses(courseSet3);
-            user7.setCourses(courseSet1);
-            user8.setCourses(courseSet1);
-
-            dao.updateEntities(teacher1, teacher2, user1, user2, user3, user4, user5, user6, user7, user8);
+            CourseFactory.registerForCourse(user1, course1, course2, course3);
+            CourseFactory.registerForCourse(user2, course4);
+            CourseFactory.registerForCourse(user3, course1, course2);
+            CourseFactory.registerForCourse(user4, course3, course4);
+            CourseFactory.registerForCourse(user5, course1, course2);
+            CourseFactory.registerForCourse(user6, course4);
+            CourseFactory.registerForCourse(user7, course1, course2, course3);
+            CourseFactory.registerForCourse(user8, course1, course2, course3);
 
             /*
                Sending and receiving messages

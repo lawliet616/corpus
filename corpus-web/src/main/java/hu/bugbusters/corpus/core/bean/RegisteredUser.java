@@ -54,12 +54,8 @@ public class RegisteredUser implements Serializable {
 
 	@Getter
 	@Setter
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "registered_user_course", catalog = "CORPUS", joinColumns = {
-			@JoinColumn(name = "r_id", nullable = false, updatable = false)},
-			inverseJoinColumns = {@JoinColumn(name = "c_id",
-					nullable = false, updatable = false)})
-	private Set<Course> courses = new HashSet<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registeredUser2")
+	private Set<RegisteredCourse> courses = new HashSet<>();
 
 	@Getter
 	@Setter

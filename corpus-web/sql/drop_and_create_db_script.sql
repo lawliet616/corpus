@@ -34,6 +34,7 @@ CREATE TABLE CORPUS.course (
 CREATE TABLE CORPUS.registered_user_course (
 	r_id number(19,0) not null,
 	c_id number(19,0) not null,
+  mark int check (mark < 6 and mark > 0),
 	primary key(r_id, c_id),
 	constraint fk_registered_user foreign key (r_id) 
     references CORPUS.registered_user(id) ON DELETE CASCADE,

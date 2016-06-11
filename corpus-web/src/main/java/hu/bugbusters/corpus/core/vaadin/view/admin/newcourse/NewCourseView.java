@@ -49,7 +49,7 @@ public class NewCourseView extends NewCourseDesign implements View {
 		if (checkValues()) {
 			try {
 				Course course = CourseFactory.createAndSaveCourse(txtName.getValue(), txtRoom.getValue(),
-						Integer.parseInt(txtCredit.getValue()), cmbTeachers.getValue().toString());
+						Integer.parseInt(txtCredit.getValue()), cmbTeachers.getValue().toString(), 0, "átmeneti infó");
 
 				RegisteredUser teacher = dao.getUserByFullName(cmbTeachers.getValue().toString());
 				CourseFactory.registerForCourse(teacher, course);

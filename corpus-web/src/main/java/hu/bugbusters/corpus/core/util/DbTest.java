@@ -64,10 +64,27 @@ public class DbTest {
             RegisteredUser user8 = factory.createAndSaveRegisteredUser("Jamaal Hathaway", "jamaal.hathaway@gmail.com",  Role.USER);
 
 
-            Course course1 = CourseFactory.createAndSaveCourse("Classical Archaeology and Ancient History", "001",3,teacher1.getFullName());
-            Course course2 = CourseFactory.createAndSaveCourse("Fine Art",                                  "002",2,teacher1.getFullName());
-            Course course3 = CourseFactory.createAndSaveCourse("Mathematics and Computer Science",          "003",4,teacher2.getFullName());
-            Course course4 = CourseFactory.createAndSaveCourse("Physics",                                   "004",5,teacher2.getFullName());
+            Course course1 = CourseFactory.createAndSaveCourse("Classical Archaeology and Ancient History", "001", 3, teacher1.getFullName(), 10,
+                    "The course combines study of the history, archaeology and art of the classical world. " +
+                            "It looks at the societies and cultures of the ancient Mediterranean world through their written texts, visual art and material remains, " +
+                            "and has at its centre the two classical cultures of Greece and Rome. " +
+                            "It is aimed at anyone interested in investigating ancient civilisations and their remains: from Greek temples and Roman amphitheatres to wall paintings and the poignant residues of everyday life. " +
+                            "While it is primarily a historical and non-linguistic degree, ancient languages can be used and learned as part of the course.");
+
+            Course course2 = CourseFactory.createAndSaveCourse("Fine Art", "002", 2, teacher1.getFullName(), 15,
+                    "Fine Art is the making and study of visual art. " +
+                            "It educates and prepares students to become artists and to follow other practices that are aligned to the making of art. " +
+                            "The curriculum is centred on the individual student’s potential and imagination.");
+
+            Course course3 = CourseFactory.createAndSaveCourse("Mathematics and Computer Science", "003", 4, teacher2.getFullName(), 10,
+                    "This joint degree offers the opportunity to combine an appreciation of mathematical reasoning with an understanding of computing. " +
+                            "Mathematics is a fundamental intellectual tool in computing, but computing is increasingly used as a key component in mathematical problem-solving.");
+
+            Course course4 = CourseFactory.createAndSaveCourse("Physics", "004", 5, teacher2.getFullName(), 15,
+                    "Physics is concerned with the study of the universe from the smallest to the largest scale, why it is the way it is and how it works. " +
+                            "Such knowledge is basic to scientific progress. The language of physics is mathematics: formulating physical theories sometimes requires new mathematical structures. " +
+                            "Physics is a fundamental science and a practical subject. Many techniques used in medical imaging, nanotechnology and quantum computing are derived from physics instrumentation. " +
+                            "Even the World Wide Web was a spin-off from the information processing and communications requirements of high-energy particle physics.");
 
             /*
              	Creating connection between existing users and courses

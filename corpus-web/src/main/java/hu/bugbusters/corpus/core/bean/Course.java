@@ -37,6 +37,14 @@ public class Course implements Serializable {
 
 	@Getter
 	@Setter
+	private int maxSize;
+
+	@Getter
+	@Setter
+	private String description;
+
+	@Getter
+	@Setter
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.course")
 	private Set<TakenCourse> students = new HashSet<>();
 

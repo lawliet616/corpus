@@ -134,18 +134,18 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 			@Override
 			public void click(RendererClickEvent event) {
 				courseList.getContainerDataSource().removeItem(event.getItemId());
-				
-				Set<TakenCourse> courses = new HashSet<>();
-				Set<TakenCourse> tmp = Login.getLoggedInUser().getCourses();
-				
-				for (TakenCourse course : tmp) {
-					if(course.getCourse().getId() != event.getItemId()){
-						courses.add(course);
-					}
-				}
 				RegisteredUser loggedInUser = Login.getLoggedInUser();
 				
-				loggedInUser.setCourses(courses);
+				Set<TakenCourse> tmpCourses = loggedInUser.getCourses();
+				
+				for (TakenCourse takenCourse : tmpCourses) {
+					if(takenCourse.getCourse().getId() == event.getItemId()){
+						dao.deleteEntity(takenCourse);
+						break;
+					}
+				}
+				
+				/*loggedInUser.setCourses(courses);
 				
 				dao.updateEntity(loggedInUser);
 				
@@ -154,12 +154,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 					
 					Course course = dao.getCourseById(id);
 					
-					if(Login.getLoggedInUser().getRole() == Role.TEACHER){
-						
-						course.setTeacher("Nincs tanár jelnleg");
-						
-						
-					}else if(Login.getLoggedInUser().getRole() == Role.USER){
+					if(Login.getLoggedInUser().getRole() == Role.USER){
 						
 						Set<TakenCourse> courseStudents = new HashSet<>();
 						Set<TakenCourse> tmpStudents = course.getStudents();
@@ -178,7 +173,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 					
 				} catch (CourseNotFoundException e) {
 					e.printStackTrace();
-				}
+				}*/
 			}
 		};
 		

@@ -188,7 +188,8 @@ public class DaoImpl implements Dao {
         Session session = SESSION_FACTORY.openSession();
         Transaction transaction = session.beginTransaction();
 
-        deletePersistentEntity(session, entity);
+        //deletePersistentEntity(session, entity);
+        session.delete(entity);
 
         transaction.commit();
         session.close();

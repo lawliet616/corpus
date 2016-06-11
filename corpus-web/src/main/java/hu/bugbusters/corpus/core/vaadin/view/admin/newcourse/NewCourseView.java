@@ -18,7 +18,6 @@ import hu.bugbusters.corpus.core.login.Role;
 
 @SuppressWarnings("serial")
 public class NewCourseView extends NewCourseDesign implements View {
-	private static final long serialVersionUID = -5564777106849244090L;
 	public static final String NAME = "NewCourse";
 	private Dao dao;
 
@@ -33,6 +32,8 @@ public class NewCourseView extends NewCourseDesign implements View {
 				saveCourse();
 			}
 		});
+		
+		cmbTeachers.setNullSelectionAllowed(false);
 	}
 
 	private void fillCombobox() {
@@ -53,10 +54,6 @@ public class NewCourseView extends NewCourseDesign implements View {
 
 				RegisteredUser teacher = dao.getUserByFullName(cmbTeachers.getValue().toString());
 				factory.registerForCourse(teacher, course);
-				/*Set<TakenCourse> courseSet = new HashSet<>();
-				courseSet.add(regCourse);
-				teacher.setCourses(courseSet);*/
-				dao.updateEntity(teacher);
 				Notification.show("Sikeresen elmentette az adatokat.", Notification.Type.HUMANIZED_MESSAGE);
 				txtCredit.clear();
 				txtName.clear();

@@ -40,18 +40,15 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 	
 	private void studentList() {
 		
-		Set<TakenCourse> courses = new HashSet<>();
+		Set<TakenCourse> courses = Login.getLoggedInUser().getCourses();
+		//List<RegisteredUser> users = new ArrayList<>();
 		
-		for (RegisteredUser user : dao.listAllUsers()) {
-			
-			courses = user.getCourses();
-			
-			for (TakenCourse course : courses) {
-				if(course.getCourse().getTeacher().equals(Login.getLoggedInUser().getFullName())){
-					if(user.getRole() == Role.USER ){
-						ownStudentList.add(user);
+		for (TakenCourse course : courses) {
+			for (TakenCourse takenCourse : course.getCourse().getStudents()) {
+				if(takenCourse.getRegisteredUser().getRole() == Role.USER){
+					if(!ownStudentList.contains(takenCourse.getRegisteredUser())){
+						ownStudentList.add(takenCourse.getRegisteredUser());
 					}
-					break;
 				}
 			}
 		}
@@ -87,7 +84,7 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 		userDataSource.removeAllItems();
 		currentList.clear();
 		
-		if(radio.equals("Egyik sem")){
+		if(radio.equals("Mindegyik")){
 			userDataSource.addAll(ownStudentList);
 			currentList.addAll(ownStudentList);
 		}

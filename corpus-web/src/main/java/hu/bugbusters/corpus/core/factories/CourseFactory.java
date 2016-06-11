@@ -39,7 +39,6 @@ public class CourseFactory {
 		TakenCourse takenCourse = new TakenCourse();
 		takenCourse.setRegisteredUser(registeredUser);
 		takenCourse.setCourse(course);
-		registeredUser.getCourses().add(takenCourse);
 		dao.saveEntity(takenCourse);
 	}
 

@@ -1,6 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.user.AllCourseList;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,6 +26,7 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
+import hu.bugbusters.corpus.core.factories.CourseFactory;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
 
@@ -81,22 +83,29 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 
 			@Override
 			public void click(RendererClickEvent event) {
+				
+				CourseFactory factory = CourseFactory.getCourseFactory();
 				courseList.getContainerDataSource().removeItem(event.getItemId());
 				
 				//Set<Course> courses = new HashSet<>();
-				Set<TakenCourse> tmp = Login.getLoggedInUser().getCourses();
+				List<Course> tmp = new ArrayList<>();
 				List<Course> allTemp = dao.listAllCourses();
+				
 				
 				for (Course course : allTemp) {
 					if(course.getId() == event.getItemId()){
-						for (TakenCourse regCourse : course.getStudents()) {
-							tmp.add(regCourse);
-						}
+							tmp.add(course);
 					}
 				}
 				RegisteredUser loggedInUser = Login.getLoggedInUser();
 				
-				loggedInUser.setCourses(tmp);
+				
+				for (Course course : tmp) {
+					factory.registerForCourse(loggedInUser, course);
+				}
+				
+				
+				/*loggedInUser.setCourses(tmp);
 				
 				dao.updateEntity(loggedInUser);
 				
@@ -125,7 +134,7 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 				
 				
 				
-				
+				*/
 			}
 		};
 		

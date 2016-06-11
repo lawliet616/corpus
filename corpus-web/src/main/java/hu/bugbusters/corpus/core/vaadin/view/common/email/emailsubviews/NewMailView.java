@@ -13,8 +13,7 @@ import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Window;
 
-import hu.bugbusters.corpus.core.bean.RegisteredCourse;
-import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import hu.bugbusters.corpus.core.bean.TakenCourse;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
@@ -81,7 +80,7 @@ public class NewMailView extends NewMailDesign implements View {
 		});
 	}
 
-	public NewMailView(final Window newMail, Set<RegisteredCourse> courseStudents) {
+	public NewMailView(final Window newMail, Set<TakenCourse> courseStudents) {
 		
 		addTargetButton.setEnabled(false);
 		addTargetButton.setVisible(false);
@@ -90,7 +89,7 @@ public class NewMailView extends NewMailDesign implements View {
 		
 		String names = "";
 
-		for (RegisteredCourse registeredUser : courseStudents) {
+		for (TakenCourse registeredUser : courseStudents) {
 			if(registeredUser.getRegisteredUser().getRole() != Role.TEACHER){
 				targets.add(registeredUser.getRegisteredUser().getEmail());
 			}

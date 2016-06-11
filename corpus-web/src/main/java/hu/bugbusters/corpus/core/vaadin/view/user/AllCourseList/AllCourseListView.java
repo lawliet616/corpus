@@ -20,7 +20,7 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 import hu.bugbusters.corpus.core.bean.Course;
-import hu.bugbusters.corpus.core.bean.RegisteredCourse;
+import hu.bugbusters.corpus.core.bean.TakenCourse;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
@@ -44,7 +44,7 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 		for (Course course : dao.listAllCourses()) {
 			boolean registered = false;
 			
-			for (RegisteredCourse user : course.getStudents()) {
+			for (TakenCourse user : course.getStudents()) {
 				if(user.getRegisteredUser().getId() == Login.getLoggedInUserId()){
 					registered = true;
 				}
@@ -84,12 +84,12 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 				courseList.getContainerDataSource().removeItem(event.getItemId());
 				
 				//Set<Course> courses = new HashSet<>();
-				Set<RegisteredCourse> tmp = Login.getLoggedInUser().getCourses();
+				Set<TakenCourse> tmp = Login.getLoggedInUser().getCourses();
 				List<Course> allTemp = dao.listAllCourses();
 				
 				for (Course course : allTemp) {
 					if(course.getId() == event.getItemId()){
-						for (RegisteredCourse regCourse : course.getStudents()) {
+						for (TakenCourse regCourse : course.getStudents()) {
 							tmp.add(regCourse);
 						}
 					}
@@ -107,9 +107,9 @@ public class AllCourseListView extends AllCourseListDesign implements View {
 					
 					if(Login.getLoggedInUser().getRole() == Role.USER){
 						
-						Set<RegisteredCourse> courseStudents = course.getStudents();
+						Set<TakenCourse> courseStudents = course.getStudents();
 						
-						for (RegisteredCourse reg : Login.getLoggedInUser().getCourses()) {
+						for (TakenCourse reg : Login.getLoggedInUser().getCourses()) {
 							courseStudents.add(reg);
 						}
 						

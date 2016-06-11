@@ -1,7 +1,6 @@
 package hu.bugbusters.corpus.core.bean;
 
-import hu.bugbusters.corpus.core.bean.join.InboxId;
-import hu.bugbusters.corpus.core.bean.join.RegisteredCourseId;
+import hu.bugbusters.corpus.core.bean.join.TakenCourseId;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,15 +9,15 @@ import javax.persistence.*;
 @SuppressWarnings("serial")
 @Entity
 @AssociationOverrides({
-        @AssociationOverride(name = "pk.registeredUser2",
+        @AssociationOverride(name = "pk.registeredUser",
                 joinColumns = @JoinColumn(name = "r_id")),
         @AssociationOverride(name = "pk.course",
                 joinColumns = @JoinColumn(name = "c_id")) })
-public class RegisteredCourse implements java.io.Serializable {
+public class TakenCourse implements java.io.Serializable {
     @Getter
     @Setter
     @EmbeddedId
-    private RegisteredCourseId pk = new RegisteredCourseId();
+    private TakenCourseId pk = new TakenCourseId();
 
     @Getter
     @Setter

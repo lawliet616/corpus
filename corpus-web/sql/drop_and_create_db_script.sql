@@ -1,5 +1,5 @@
 DROP TABLE CORPUS.registered_user cascade constraints;
-DROP TABLE CORPUS.registered_user_course cascade constraints;
+DROP TABLE CORPUS.taken_course cascade constraints;
 DROP TABLE CORPUS.course cascade constraints;
 DROP TABLE CORPUS.password_settings cascade constraints;
 DROP TABLE CORPUS.message cascade constraints;
@@ -31,10 +31,10 @@ CREATE TABLE CORPUS.course (
 	unique (name)
 );
 	
-CREATE TABLE CORPUS.registered_user_course (
+CREATE TABLE CORPUS.taken_course (
 	r_id number(19,0) not null,
 	c_id number(19,0) not null,
-  mark int check (mark < 6 and mark > 0),
+  mark int,
 	primary key(r_id, c_id),
 	constraint fk_registered_user foreign key (r_id) 
     references CORPUS.registered_user(id) ON DELETE CASCADE,

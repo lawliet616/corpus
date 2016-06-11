@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @SuppressWarnings("serial")
 @Embeddable
-public class RegisteredCourseId implements java.io.Serializable {
+public class TakenCourseId implements java.io.Serializable {
     @Getter
     @Setter
     @ManyToOne
@@ -26,7 +26,7 @@ public class RegisteredCourseId implements java.io.Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        RegisteredCourseId that = (RegisteredCourseId) o;
+        TakenCourseId that = (TakenCourseId) o;
 
         if (registeredUser != null ? !registeredUser.equals(that.registeredUser) : that.registeredUser != null) return false;
         if (course != null ? !course.equals(that.course) : that.course != null) return false;

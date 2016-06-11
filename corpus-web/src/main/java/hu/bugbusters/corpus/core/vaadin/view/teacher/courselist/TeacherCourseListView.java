@@ -22,7 +22,7 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 import hu.bugbusters.corpus.core.bean.Course;
-import hu.bugbusters.corpus.core.bean.RegisteredCourse;
+import hu.bugbusters.corpus.core.bean.TakenCourse;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
@@ -48,7 +48,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 	
 		
 		for (Course course : dao.listAllCourses()) {
-			for (RegisteredCourse user : course.getStudents()) {
+			for (TakenCourse user : course.getStudents()) {
 				if(user.getRegisteredUser().getId() == Login.getLoggedInUserId()){
 					ownCourse.add(course);
 				}
@@ -135,10 +135,10 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 			public void click(RendererClickEvent event) {
 				courseList.getContainerDataSource().removeItem(event.getItemId());
 				
-				Set<RegisteredCourse> courses = new HashSet<>();
-				Set<RegisteredCourse> tmp = Login.getLoggedInUser().getCourses();
+				Set<TakenCourse> courses = new HashSet<>();
+				Set<TakenCourse> tmp = Login.getLoggedInUser().getCourses();
 				
-				for (RegisteredCourse course : tmp) {
+				for (TakenCourse course : tmp) {
 					if(course.getCourse().getId() != event.getItemId()){
 						courses.add(course);
 					}
@@ -161,10 +161,10 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 						
 					}else if(Login.getLoggedInUser().getRole() == Role.USER){
 						
-						Set<RegisteredCourse> courseStudents = new HashSet<>();
-						Set<RegisteredCourse> tmpStudents = course.getStudents();
+						Set<TakenCourse> courseStudents = new HashSet<>();
+						Set<TakenCourse> tmpStudents = course.getStudents();
 						
-						for (RegisteredCourse registeredUser : tmpStudents) {
+						for (TakenCourse registeredUser : tmpStudents) {
 							if(registeredUser.getRegisteredUser().getId() != Login.getLoggedInUserId()){
 								courseStudents.add(registeredUser);
 							}
@@ -194,7 +194,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 					e.printStackTrace();
 				}
 				
-				Set<RegisteredCourse> courseStudents = course.getStudents();
+				Set<TakenCourse> courseStudents = course.getStudents();
 				
 				Window newMail = new Window("Új e-mail");
 				newMail.setContent(new NewMailView(newMail, courseStudents));

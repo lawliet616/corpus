@@ -10,9 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
@@ -54,8 +51,8 @@ public class RegisteredUser implements Serializable {
 
 	@Getter
 	@Setter
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registeredUser2")
-	private Set<RegisteredCourse> courses = new HashSet<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.registeredUser")
+	private Set<TakenCourse> courses = new HashSet<>();
 
 	@Getter
 	@Setter

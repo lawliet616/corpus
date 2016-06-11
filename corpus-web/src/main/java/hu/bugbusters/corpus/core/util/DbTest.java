@@ -25,6 +25,7 @@ public class DbTest {
         try {
             dao.getUserByUserName("admin");
         } catch (UserNotFoundException e) {
+        	e.printStackTrace();
             fillDb();
         } finally {
             testDb();
@@ -70,11 +71,6 @@ public class DbTest {
 
             /*
              	Creating connection between existing users and courses
-
-             	if user.getCourses() is empty
-             	    user.setCourses(courseSet)
-             	else
-             	    user.getCourses.add(course)
              */
             CourseFactory.registerForCourse(teacher1, course1, course2);
             CourseFactory.registerForCourse(teacher2, course3, course4);

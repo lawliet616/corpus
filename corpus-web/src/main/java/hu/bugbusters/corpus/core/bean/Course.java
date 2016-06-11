@@ -37,6 +37,6 @@ public class Course implements Serializable {
 
 	@Getter
 	@Setter
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "pk.course")
-	private Set<RegisteredCourse> students = new HashSet<>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "pk.course")
+	private Set<TakenCourse> students = new HashSet<>();
 }

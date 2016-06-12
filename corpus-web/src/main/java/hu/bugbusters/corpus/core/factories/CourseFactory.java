@@ -5,6 +5,7 @@ import hu.bugbusters.corpus.core.bean.TakenCourse;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.login.Role;
 
 public class CourseFactory {
 	private static Dao dao = DaoImpl.getInstance();
@@ -34,6 +35,8 @@ public class CourseFactory {
 				return;
 			}
 		}
+
+
 		TakenCourse takenCourse = new TakenCourse();
 		takenCourse.setRegisteredUser(registeredUser);
 		takenCourse.setCourse(course);
@@ -43,6 +46,21 @@ public class CourseFactory {
 	public static void registerForCourse(RegisteredUser registeredUser, Course... courses) {
 		for (Course course : courses) {
 			registerForCourse(registeredUser, course);
+		}
+	}
+
+	public static void quitCourse(RegisteredUser registeredUser, Course course){
+		for (TakenCourse takenCourse : course.getStudents()){
+			if(takenCourse.getRegisteredUser().equals(registeredUser)){
+				dao.deleteEntity(takenCourse);
+				break;
+			}
+		}
+	}
+
+	public static void quitCourse(RegisteredUser registeredUser, Course... courses){
+		for (Course course : courses) {
+			quitCourse(registeredUser, course);
 		}
 	}
 }

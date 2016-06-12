@@ -6,8 +6,10 @@ import com.vaadin.navigator.ViewChangeListener;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
+import hu.bugbusters.corpus.core.global.Global;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
+import hu.bugbusters.corpus.core.session.Session;
 import hu.bugbusters.corpus.core.util.DbTest;
 import hu.bugbusters.corpus.core.vaadin.view.CorpusView;
 import hu.bugbusters.corpus.core.vaadin.view.admin.AdminView;
@@ -35,7 +37,7 @@ public class CorpusUI extends UI implements ViewChangeListener {
 		navigator.addViewChangeListener(this);
 		
 		navigate();
-		
+		System.out.println(navigator.getCurrentView());
 	}
 	
 	public void navigate() {
@@ -48,11 +50,17 @@ public class CorpusUI extends UI implements ViewChangeListener {
 		if(!Login.loggedIn()) {
 			navigatorString = LoginView.NAME;
 		} else {
-			navigatorString = String.format(
-					"%s/%s",
-					navigateToViewByRole(Login.getLoggedInUser().getRole()),
-					parameters
-			);
+			if(navigator.getCurrentView() == null) {
+				navigatorString = (String) Session.getAttribute(Global.NAVIGATOR_SESSION_ATTRIBUTE_NAME);
+			} else {
+				navigatorString = String.format(
+						"%s/%s",
+						navigateToViewByRole(Login.getLoggedInUser().getRole()),
+						parameters
+				);
+				
+				Session.setAttribute(Global.NAVIGATOR_SESSION_ATTRIBUTE_NAME, navigatorString);
+			}
 		}
 		
 		navigator.navigateTo(navigatorString);

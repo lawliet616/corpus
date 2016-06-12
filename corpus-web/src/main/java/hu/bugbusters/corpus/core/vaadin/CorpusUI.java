@@ -37,7 +37,6 @@ public class CorpusUI extends UI implements ViewChangeListener {
 		navigator.addViewChangeListener(this);
 
 		navigate();
-		System.out.println(navigator.getCurrentView());
 	}
 
 	public void navigate() {

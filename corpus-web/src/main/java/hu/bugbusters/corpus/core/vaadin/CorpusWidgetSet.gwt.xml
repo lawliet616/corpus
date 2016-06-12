@@ -1,13 +1,13 @@
 <module>
 	<inherits name="com.vaadin.DefaultWidgetSet" />
 
-    <inherits name="com.askvikrant.digitalclock.widgetset.DigitalclockWidgetset" />
+	<inherits name="com.askvikrant.digitalclock.widgetset.DigitalclockWidgetset" />
 
-    <inherits name="com.vaadin.addon.calendar.gwt.CalendarWidgetset" />
+	<inherits name="com.vaadin.addon.calendar.gwt.CalendarWidgetset" />
 
-    <inherits name="org.vaadin.sliderpanel.WidgetSet" />
+	<inherits name="org.vaadin.sliderpanel.WidgetSet" />
 
-    <inherits name="org.vaadin.risto.stepper.widgetset.StepperWidgetset" />
+	<inherits name="org.vaadin.risto.stepper.widgetset.StepperWidgetset" />
 
-    <inherits name="org.vaadin.resetbuttonfortextfield.WidgetSet" />
+	<inherits name="org.vaadin.resetbuttonfortextfield.WidgetSet" />
 </module>

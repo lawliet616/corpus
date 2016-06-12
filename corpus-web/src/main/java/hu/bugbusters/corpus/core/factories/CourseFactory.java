@@ -29,6 +29,11 @@ public class CourseFactory {
 	}
 
 	public static void registerForCourse(RegisteredUser registeredUser, Course course) {
+		for (TakenCourse takenCourse : registeredUser.getCourses()){
+			if(takenCourse.getCourse().equals(course)){
+				return;
+			}
+		}
 		TakenCourse takenCourse = new TakenCourse();
 		takenCourse.setRegisteredUser(registeredUser);
 		takenCourse.setCourse(course);

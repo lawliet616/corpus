@@ -13,6 +13,7 @@ import hu.bugbusters.corpus.core.global.Global;
 import hu.bugbusters.corpus.core.password.PasswordRows;
 import hu.bugbusters.corpus.core.util.HibernateUtil;
 
+@SuppressWarnings("unchecked")
 public interface Dao {
 	SessionFactory SESSION_FACTORY = HibernateUtil.getSessionFactory();
 	int BATCH_SIZE = Global.DAO_BATCH_SIZE;

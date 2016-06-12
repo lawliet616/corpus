@@ -15,6 +15,7 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.factories.MessageFactory;
 
+@SuppressWarnings("unused")
 public class Mail {
 	private static final String from = "corpus.message@gmail.com";
 	private static final String password = "a1s2d3!%";

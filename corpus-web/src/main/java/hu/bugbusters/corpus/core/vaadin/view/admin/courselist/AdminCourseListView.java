@@ -1,7 +1,6 @@
 package hu.bugbusters.corpus.core.vaadin.view.admin.courselist;
 
 import com.vaadin.data.Validator;
-import com.vaadin.data.Validator.InvalidValueException;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
 import com.vaadin.data.util.BeanContainer;
@@ -134,12 +133,15 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 	protected void saveCourse() {
 		try {
 			Course course = courseBinder.getItemDataSource().getBean();
-			course.setTeacher(teacherField.getValue().toString());
+			RegisteredUser oldTeacher = dao.getUserByFullName(course.getTeacher());	
+			CourseFactory.quitCourse(oldTeacher, course);
+			String newTeacherName =teacherField.getValue().toString();
+			course.setTeacher(newTeacherName);
 			courseBinder.commit();
-
+			
 			dao.updateEntity(course);
-			RegisteredUser teacher = dao.getUserByFullName(teacherField.getValue().toString());
-			CourseFactory.registerForCourse(teacher, course);
+			RegisteredUser newTeacher = dao.getUserByFullName(newTeacherName);
+			CourseFactory.registerForCourse(newTeacher, course);
 			editCourseWindow.close();
 			courseTable.refreshRowCache();
 			Notification.show("Sikeresen elmentette a változásokat!", Notification.Type.HUMANIZED_MESSAGE);

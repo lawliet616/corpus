@@ -23,6 +23,7 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.Table;
+import com.vaadin.ui.TextArea;
 import com.vaadin.ui.Table.ColumnGenerator;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
@@ -71,17 +72,18 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 			}
 		});
 
-		courseTable.setVisibleColumns("name", "credit", "room", "teacher", "edit");
+		courseTable.setVisibleColumns("name", "credit", "room", "maxSize", "teacher", "edit");
 		courseTable.setColumnHeader("name", "Előadás címe");
-		courseTable.setColumnHeader("credit", "kredit");
-		courseTable.setColumnHeader("room", "terem");
-		courseTable.setColumnHeader("teacher", "előadó");
+		courseTable.setColumnHeader("credit", "Kredit");
+		courseTable.setColumnHeader("room", "Terem");
+		courseTable.setColumnHeader("maxSize", "Férőhelyek");
+		courseTable.setColumnHeader("teacher", "Előadó");
 		courseTable.setColumnHeader("edit", "szerkesztés");
 	}
 
 	protected void openEditWindow(Course course) {
 		editCourseWindow = new Window();
-		editCourseWindow.setHeight("400px");
+		editCourseWindow.setHeight("600px");
 		editCourseWindow.setWidth("700px");
 		editCourseWindow.center();
 		editCourseWindow.setContent(createCourseEditLayout(course));
@@ -128,11 +130,11 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 	private Component createCourseEditForm(BeanFieldGroup<Course> courseBinder) {
 		FormLayout formLayout = new FormLayout();
 
-		TextField idField= courseBinder.buildAndBind("Előadás azonosítója:", "id", TextField.class);
+		TextField idField = courseBinder.buildAndBind("Előadás azonosítója:", "id", TextField.class);
 		idField.setReadOnly(true);
 		idField.setWidth("100%");
 		formLayout.addComponent(idField);
-		
+
 		TextField nameField = courseBinder.buildAndBind("Előadás címe:", "name", TextField.class);
 		nameField.setNullRepresentation("");
 		nameField.setWidth("100%");
@@ -148,6 +150,17 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 		roomField.setWidth("100%");
 		formLayout.addComponent(roomField);
 
+		TextField sizeField = courseBinder.buildAndBind("Maximum férőhelyek:","maxSize",TextField.class);
+		sizeField.setNullRepresentation("");
+		sizeField.setWidth("100%");
+		formLayout.addComponent(sizeField);
+		
+		TextArea descriptionArea = courseBinder.buildAndBind("Leírás:","description", TextArea.class);
+		descriptionArea.setNullRepresentation("");
+		descriptionArea.setWidth("100%");
+		descriptionArea.setHeight("150px");
+		formLayout.addComponent(descriptionArea);
+		
 		ComboBox teacherField = new ComboBox("Előadó:");
 		teacherField.setNullSelectionAllowed(false);
 		Course bean = courseBinder.getItemDataSource().getBean();

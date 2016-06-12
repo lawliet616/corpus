@@ -20,4 +20,7 @@ public class Global {
 	public static final int MIN_PASSWORD_LENGTH                 = 5;
 	public static final int MAX_PASSWORD_LENGTH                 = 30;
 	public static final int NUMBER_OF_PASSWORD_RULES            = 3;
+
+	public static final int MIN_CREDIT 							= 0;
+	public static final int MAX_CREDIT 							= 20;
 }

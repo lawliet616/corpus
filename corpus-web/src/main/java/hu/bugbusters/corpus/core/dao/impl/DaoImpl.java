@@ -143,7 +143,7 @@ public class DaoImpl implements Dao {
 		Session session = SESSION_FACTORY.openSession();
 		Transaction transaction = session.beginTransaction();
 		Criteria crit = session.createCriteria(RegisteredUser.class);
-		Criterion emailCrit = Restrictions.eq("full_name", name);
+		Criterion emailCrit = Restrictions.eq("fullName", name);
 		crit.add(emailCrit);
 		RegisteredUser user = (RegisteredUser) crit.uniqueResult();
 

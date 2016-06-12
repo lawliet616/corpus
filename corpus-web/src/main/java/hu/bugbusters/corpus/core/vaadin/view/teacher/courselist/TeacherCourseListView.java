@@ -1,7 +1,6 @@
 package hu.bugbusters.corpus.core.vaadin.view.teacher.courselist;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -22,8 +21,8 @@ import com.vaadin.ui.renderers.ClickableRenderer.RendererClickEvent;
 import com.vaadin.ui.renderers.ClickableRenderer.RendererClickListener;
 
 import hu.bugbusters.corpus.core.bean.Course;
-import hu.bugbusters.corpus.core.bean.TakenCourse;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
+import hu.bugbusters.corpus.core.bean.TakenCourse;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
@@ -39,201 +38,198 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 	private Dao dao = DaoImpl.getInstance();
 	private List<Course> ownCourse = new ArrayList<>();
 	private RendererClickListener listener, listenerMail;
-	
+
 	public TeacherCourseListView() {
 		fillTable();
 	}
 
 	private void fillTable() {
-	
-		
+
 		for (Course course : dao.listAllCourses()) {
 			for (TakenCourse user : course.getStudents()) {
-				if(user.getRegisteredUser().getId() == Login.getLoggedInUserId()){
+				if (user.getRegisteredUser().getId() == Login.getLoggedInUserId()) {
 					ownCourse.add(course);
 				}
 			}
 		}
-		
+
 		userDataSource.setBeanIdProperty("id");
 		userDataSource.addAll(ownCourse);
-		
-		
-		
-		GeneratedPropertyContainer gpc=new GeneratedPropertyContainer(userDataSource);
-		
-		if(Login.getLoggedInUser().getRole() == Role.TEACHER){
-			
-			gpc.addGeneratedProperty("courseMail",new PropertyValueGenerator<String>(){
-			    private static final long serialVersionUID=-8571003699455731586L;
-			    @Override public String getValue(    Item item,    Object itemId,    Object propertyId){
-			      return "Kurzusmail küldése";
-			    }
-			    @Override public Class<String> getType(){
-			      return String.class;
-			    }
-			  }
-			);
-			
+
+		GeneratedPropertyContainer gpc = new GeneratedPropertyContainer(userDataSource);
+
+		if (Login.getLoggedInUser().getRole() == Role.TEACHER) {
+
+			gpc.addGeneratedProperty("courseMail", new PropertyValueGenerator<String>() {
+				private static final long serialVersionUID = -8571003699455731586L;
+
+				@Override
+				public String getValue(Item item, Object itemId, Object propertyId) {
+					return "Kurzusmail küldése";
+				}
+
+				@Override
+				public Class<String> getType() {
+					return String.class;
+				}
+			});
+
 			courseList.setContainerDataSource(gpc);
 			courseList.setSelectionMode(SelectionMode.SINGLE);
 			courseList.setColumns("name", "room", "credit", "courseMail");
 			courseList.sort("name", SortDirection.ASCENDING);
-			
-		}else{
-			gpc.addGeneratedProperty("delete",new PropertyValueGenerator<String>(){
-			    private static final long serialVersionUID=-8571003699455731586L;
-			    @Override public String getValue(    Item item,    Object itemId,    Object propertyId){
-			      return "Kurzus leadása";
-			    }
-			    @Override public Class<String> getType(){
-			      return String.class;
-			    }
-			  }
-			);
-			
+
+		} else {
+			gpc.addGeneratedProperty("delete", new PropertyValueGenerator<String>() {
+				private static final long serialVersionUID = -8571003699455731586L;
+
+				@Override
+				public String getValue(Item item, Object itemId, Object propertyId) {
+					return "Kurzus leadása";
+				}
+
+				@Override
+				public Class<String> getType() {
+					return String.class;
+				}
+			});
+
 			courseList.setContainerDataSource(gpc);
 			courseList.setSelectionMode(SelectionMode.SINGLE);
 			courseList.setColumns("name", "room", "credit", "delete");
 			courseList.sort("name", SortDirection.ASCENDING);
 		}
-		
+
 		defineListener();
-		
-		if(Login.getLoggedInUser().getRole() == Role.TEACHER){
+
+		if (Login.getLoggedInUser().getRole() == Role.TEACHER) {
 			courseList.getColumn("courseMail").setRenderer(new ButtonRenderer(listenerMail));
-		}else{
+		} else {
 			courseList.getColumn("delete").setRenderer(new ButtonRenderer(listener));
 		}
-		
+
 		headerNameSetting();
-		
+
 		courseList.addSelectionListener(new SelectionListener() {
-			
+
 			@Override
 			public void select(SelectionEvent event) {
-				
+
 				String selectedCourse = null;
-				
+
 				for (Course course : ownCourse) {
-					if(course.getId() == courseList.getSelectedRow()){
+					if (course.getId() == courseList.getSelectedRow()) {
 						selectedCourse = course.getName();
 					}
 				}
-				
+
 				Notification.show("Kiválasztva: " + selectedCourse);
-				
+
 			}
-		});		
+		});
 	}
 
 	private void defineListener() {
-		
+
 		listener = new RendererClickListener() {
 
 			@Override
 			public void click(RendererClickEvent event) {
 				courseList.getContainerDataSource().removeItem(event.getItemId());
 				RegisteredUser loggedInUser = Login.getLoggedInUser();
-				
+
 				Set<TakenCourse> tmpCourses = loggedInUser.getCourses();
-				
+
 				for (TakenCourse takenCourse : tmpCourses) {
-					if(takenCourse.getCourse().getId() == event.getItemId()){
+					if (takenCourse.getCourse().getId() == event.getItemId()) {
 						dao.deleteEntity(takenCourse);
 						break;
 					}
 				}
-				
-				/*loggedInUser.setCourses(courses);
-				
-				dao.updateEntity(loggedInUser);
-				
-				Long id = (long) event.getItemId();
-				try {
-					
-					Course course = dao.getCourseById(id);
-					
-					if(Login.getLoggedInUser().getRole() == Role.USER){
-						
-						Set<TakenCourse> courseStudents = new HashSet<>();
-						Set<TakenCourse> tmpStudents = course.getStudents();
-						
-						for (TakenCourse registeredUser : tmpStudents) {
-							if(registeredUser.getRegisteredUser().getId() != Login.getLoggedInUserId()){
-								courseStudents.add(registeredUser);
-							}
-						}
-						
-						course.setStudents(courseStudents);
-						
-					}
-					
-					dao.updateEntity(course);	
-					
-				} catch (CourseNotFoundException e) {
-					e.printStackTrace();
-				}*/
+
+				/*
+				 * loggedInUser.setCourses(courses);
+				 * 
+				 * dao.updateEntity(loggedInUser);
+				 * 
+				 * Long id = (long) event.getItemId(); try {
+				 * 
+				 * Course course = dao.getCourseById(id);
+				 * 
+				 * if(Login.getLoggedInUser().getRole() == Role.USER){
+				 * 
+				 * Set<TakenCourse> courseStudents = new HashSet<>();
+				 * Set<TakenCourse> tmpStudents = course.getStudents();
+				 * 
+				 * for (TakenCourse registeredUser : tmpStudents) {
+				 * if(registeredUser.getRegisteredUser().getId() !=
+				 * Login.getLoggedInUserId()){
+				 * courseStudents.add(registeredUser); } }
+				 * 
+				 * course.setStudents(courseStudents);
+				 * 
+				 * }
+				 * 
+				 * dao.updateEntity(course);
+				 * 
+				 * } catch (CourseNotFoundException e) { e.printStackTrace(); }
+				 */
 			}
 		};
-		
+
 		listenerMail = new RendererClickListener() {
 
 			@Override
 			public void click(RendererClickEvent event) {
-				
+
 				Course course = null;
 				try {
 					course = dao.getCourseById((Long) event.getItemId());
 				} catch (CourseNotFoundException e) {
 					e.printStackTrace();
 				}
-				
+
 				Set<TakenCourse> courseStudents = course.getStudents();
-				
+
 				Window newMail = new Window("Új e-mail");
 				newMail.setContent(new NewMailView(newMail, courseStudents));
 				newMail.setStyleName("subWindow");
-				
+
 				newMail.setResizable(false);
 				newMail.setWidth("75%");
 				newMail.setHeight("70%");
 				newMail.center();
 				newMail.setDraggable(false);
 				newMail.setModal(true);
-				
+
 				((CorpusUI) getUI()).addWindow(newMail);
-				
+
 			}
 		};
-		
+
 	}
 
 	private void headerNameSetting() {
-		
-		if(Login.getLoggedInUser().getRole() == Role.TEACHER){
+
+		if (Login.getLoggedInUser().getRole() == Role.TEACHER) {
 			courseList.getColumn("name").setHeaderCaption("Név");
 			courseList.getColumn("room").setHeaderCaption("Terem");
 			courseList.getColumn("credit").setHeaderCaption("Kredit");
 			courseList.getColumn("courseMail").setHeaderCaption("Kurzusmail");
-			
-		}else{
+
+		} else {
 			courseList.getColumn("name").setHeaderCaption("Név");
 			courseList.getColumn("room").setHeaderCaption("Terem");
 			courseList.getColumn("credit").setHeaderCaption("Kredit");
 			courseList.getColumn("delete").setHeaderCaption("Kurzus leadás");
 		}
-		
-		
-		
-		
-		
+
 	}
 
 	@Override
 	public void enter(ViewChangeEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

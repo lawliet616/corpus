@@ -14,7 +14,6 @@ import com.vaadin.ui.TextArea;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.login.Login;
 
-@SuppressWarnings("serial")
 public class AdminHomepageView extends AdminHomepageDesign implements View {
 	private static final long serialVersionUID = 6600854813360310972L;
 	public static final String Name="Homepage";

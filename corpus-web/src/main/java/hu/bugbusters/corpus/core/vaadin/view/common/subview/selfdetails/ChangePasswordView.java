@@ -54,11 +54,11 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 			checkNewPasswords();
 			isPasswordValid();
 			changePassword(txtNewPassword1.getValue());
-		} catch(EmptyFieldException e) {
+		} catch (EmptyFieldException e) {
 			Notification.show("Nincs minden mező kitöltve!", Notification.Type.WARNING_MESSAGE);
-		} catch(InvalidPasswordException e) {
+		} catch (InvalidPasswordException e) {
 			Notification.show("Nem sikerült az azonosítás!", Notification.Type.WARNING_MESSAGE);
-		} catch(NewPasswordNotMatchException e) {
+		} catch (NewPasswordNotMatchException e) {
 			Notification.show("Nem egyeznek meg az új jelszavak!", Notification.Type.WARNING_MESSAGE);
 		} catch (InvalidPasswordFormatException e) {
 			Notification.show(e.getMessage(), Notification.Type.WARNING_MESSAGE);
@@ -71,14 +71,16 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 		PasswordChecker checker = PasswordChecker.getPasswordChecker();
 		boolean valid = checker.check(txtNewPassword1.getValue());
 		if (!valid) {
-			//Notification.show(checker.getErrorMessage(), Notification.Type.WARNING_MESSAGE);
-			
+			// Notification.show(checker.getErrorMessage(),
+			// Notification.Type.WARNING_MESSAGE);
+
 			throw new InvalidPasswordFormatException(checker.getErrorMessage());
 		}
 	}
 
 	private void checkTextfields() throws EmptyFieldException {
-		if(txtNewPassword1.getValue().isEmpty() || txtNewPassword2.getValue().isEmpty() || txtOldPassword.getValue().isEmpty()) {
+		if (txtNewPassword1.getValue().isEmpty() || txtNewPassword2.getValue().isEmpty()
+				|| txtOldPassword.getValue().isEmpty()) {
 			throw new EmptyFieldException();
 		}
 	}
@@ -91,12 +93,13 @@ public class ChangePasswordView extends ChangePasswordDesign implements View {
 	}
 
 	private void checkNewPasswords() throws NewPasswordNotMatchException {
-		if(txtNewPassword1.getValue().compareTo(txtNewPassword2.getValue()) != 0) {
+		if (txtNewPassword1.getValue().compareTo(txtNewPassword2.getValue()) != 0) {
 			throw new NewPasswordNotMatchException();
 		}
 	}
 
-	private void checkOldPassword() throws CannotPerformOperationException, InvalidHashException, InvalidPasswordException  {
+	private void checkOldPassword()
+			throws CannotPerformOperationException, InvalidHashException, InvalidPasswordException {
 		String password = txtOldPassword.getValue();
 		Password.verify(password, registeredUser);
 	}

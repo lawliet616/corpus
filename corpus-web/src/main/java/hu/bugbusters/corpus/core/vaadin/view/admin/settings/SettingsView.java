@@ -12,7 +12,6 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.global.Global;
 import hu.bugbusters.corpus.core.password.PasswordRows;
 
-@SuppressWarnings("serial")
 public class SettingsView extends SettingsDesign implements View {
 	private static final long serialVersionUID = -8573576790437312010L;
 	public static final String NAME = "Settings";

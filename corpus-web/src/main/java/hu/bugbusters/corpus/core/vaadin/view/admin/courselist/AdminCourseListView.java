@@ -8,7 +8,6 @@ import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 
-@SuppressWarnings("serial")
 public class AdminCourseListView extends AdminCourseListDesign implements View {
 	private static final long serialVersionUID = -2216242736099627777L;
 	public final static String NAME = "AdminCourseList";

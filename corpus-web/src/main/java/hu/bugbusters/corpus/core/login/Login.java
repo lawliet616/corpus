@@ -10,15 +10,15 @@ import hu.bugbusters.corpus.core.session.Session;
 
 public class Login {
 	public static final String SESSION_ATTRIBUTE_NAME = Global.LOGIN_SESSION_ATTRIBUTE_NAME;
-	
+
 	public static void setLoggedInUserId(Long id) {
 		Session.setAttribute(SESSION_ATTRIBUTE_NAME, id);
 	}
-	
+
 	public static Long getLoggedInUserId() {
-		return (Long)Session.getAttribute(SESSION_ATTRIBUTE_NAME);
+		return (Long) Session.getAttribute(SESSION_ATTRIBUTE_NAME);
 	}
-	
+
 	public static RegisteredUser getLoggedInUser() {
 		try {
 			return DaoImpl.getInstance().getUserById(getLoggedInUserId());
@@ -27,15 +27,15 @@ public class Login {
 			return null;
 		}
 	}
-	
+
 	public static boolean loggedIn() {
-		if(getLoggedInUserId() != null) {
+		if (getLoggedInUserId() != null) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public static void logOut() {
 		Session.invalidate();
 		UI.getCurrent().getPage().reload();

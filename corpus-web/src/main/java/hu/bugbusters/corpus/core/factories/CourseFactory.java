@@ -9,7 +9,8 @@ import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 public class CourseFactory {
 	private static Dao dao = DaoImpl.getInstance();
 
-	public static Course createCourse(String name, String room, int credit, String teacher, int maxSize, String description) {
+	public static Course createCourse(String name, String room, int credit, String teacher, int maxSize,
+			String description) {
 		Course course = new Course();
 		course.setName(name);
 		course.setRoom(room);
@@ -20,21 +21,22 @@ public class CourseFactory {
 		return course;
 	}
 
-	public static Course createAndSaveCourse(String name, String room, int credit, String teacher, int maxSize, String description) {
+	public static Course createAndSaveCourse(String name, String room, int credit, String teacher, int maxSize,
+			String description) {
 		Course course = createCourse(name, room, credit, teacher, maxSize, description);
 		dao.saveEntity(course);
 		return course;
 	}
 
-	public static void registerForCourse(RegisteredUser registeredUser, Course course){
+	public static void registerForCourse(RegisteredUser registeredUser, Course course) {
 		TakenCourse takenCourse = new TakenCourse();
 		takenCourse.setRegisteredUser(registeredUser);
 		takenCourse.setCourse(course);
 		dao.saveEntity(takenCourse);
 	}
 
-	public static void registerForCourse(RegisteredUser registeredUser, Course... courses){
-		for (Course course : courses){
+	public static void registerForCourse(RegisteredUser registeredUser, Course... courses) {
+		for (Course course : courses) {
 			registerForCourse(registeredUser, course);
 		}
 	}

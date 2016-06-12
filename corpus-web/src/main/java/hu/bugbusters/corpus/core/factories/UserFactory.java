@@ -66,16 +66,16 @@ public class UserFactory {
 		 * @formatter:off Generate a valid password.
 		 * 
 		 * PasswordGenerator generator = new PasswordGenerator();
-		 * PasswordSettings settings = dao.getPasswordSettings(PasswordRows.CUSTOM);
+		 * PasswordSettings settings =
+		 * dao.getPasswordSettings(PasswordRows.CUSTOM);
 		 * 
-		 * if (settings == null) {
-		 * 		settings = dao.getPasswordSettings(PasswordRows.DEFAULT);
-		 * }
+		 * if (settings == null) { settings =
+		 * dao.getPasswordSettings(PasswordRows.DEFAULT); }
 		 * 
-		 * List<CharacterRule> rules = new ArrayList<>();
-		 * rules.add(new DigitCharacterRule(settings.getMinDigChar()));
-		 * rules.add(new UppercaseCharacterRule(settings.getMinUpperChar()));
-		 * rules.add(new LowercaseCharacterRule(settings.getMinLowerChar()));
+		 * List<CharacterRule> rules = new ArrayList<>(); rules.add(new
+		 * DigitCharacterRule(settings.getMinDigChar())); rules.add(new
+		 * UppercaseCharacterRule(settings.getMinUpperChar())); rules.add(new
+		 * LowercaseCharacterRule(settings.getMinLowerChar()));
 		 * 
 		 * password = generator.generatePassword(settings.getMaxLength(),rules);
 		 * password = Password.toDatabaseHash(password);

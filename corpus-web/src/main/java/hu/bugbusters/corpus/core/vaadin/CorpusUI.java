@@ -21,54 +21,51 @@ import hu.bugbusters.corpus.core.vaadin.view.user.UserView;
 @SuppressWarnings("serial")
 public class CorpusUI extends UI implements ViewChangeListener {
 	Navigator navigator;
-	
+
 	@Override
 	protected void init(final VaadinRequest request) {
 		DbTest.run();
 		getPage().setTitle("Corpus");
-		
+
 		navigator = new Navigator(this, this);
 
 		navigator.addView(LoginView.NAME, LoginView.class);
 		navigator.addView(UserView.NAME, UserView.class);
 		navigator.addView(TeacherView.NAME, TeacherView.class);
 		navigator.addView(AdminView.NAME, AdminView.class);
-		
+
 		navigator.addViewChangeListener(this);
-		
+
 		navigate();
 		System.out.println(navigator.getCurrentView());
 	}
-	
+
 	public void navigate() {
 		navigate("");
 	}
-	
+
 	public void navigate(String parameters) {
 		String navigatorString;
-		
-		if(!Login.loggedIn()) {
+
+		if (!Login.loggedIn()) {
 			navigatorString = LoginView.NAME;
 		} else {
-			if(navigator.getCurrentView() == null) {
+			if (navigator.getCurrentView() == null) {
 				navigatorString = (String) Session.getAttribute(Global.NAVIGATOR_SESSION_ATTRIBUTE_NAME);
 			} else {
-				navigatorString = String.format(
-						"%s/%s",
-						navigateToViewByRole(Login.getLoggedInUser().getRole()),
-						parameters
-				);
-				
+				navigatorString = String.format("%s/%s", navigateToViewByRole(Login.getLoggedInUser().getRole()),
+						parameters);
+
 				Session.setAttribute(Global.NAVIGATOR_SESSION_ATTRIBUTE_NAME, navigatorString);
 			}
 		}
-		
+
 		navigator.navigateTo(navigatorString);
 	}
 
 	private String navigateToViewByRole(Role role) {
 		String view;
-		switch(role) {
+		switch (role) {
 		case ADMIN:
 			view = AdminView.NAME;
 			break;
@@ -81,19 +78,19 @@ public class CorpusUI extends UI implements ViewChangeListener {
 		default:
 			throw new IllegalArgumentException("Unknown view");
 		}
-		
+
 		return view;
 	}
 
 	@Override
 	public boolean beforeViewChange(ViewChangeEvent event) {
-		if(event.getNewView().getClass() == LoginView.class) {
-			if(Login.loggedIn()) {
+		if (event.getNewView().getClass() == LoginView.class) {
+			if (Login.loggedIn()) {
 				return false;
 			} else {
 				return true;
 			}
-		} else if(((CorpusView) event.getNewView()).getRole() == Login.getLoggedInUser().getRole()) {
+		} else if (((CorpusView) event.getNewView()).getRole() == Login.getLoggedInUser().getRole()) {
 			return true;
 		} else {
 			return false;
@@ -102,6 +99,6 @@ public class CorpusUI extends UI implements ViewChangeListener {
 
 	@Override
 	public void afterViewChange(ViewChangeEvent event) {
-		
+
 	}
 }

@@ -18,98 +18,92 @@ import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.NewMailV
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.SentEmailsView;
 
 @SuppressWarnings("serial")
-public class EmailView extends EmailDesign implements View{
+public class EmailView extends EmailDesign implements View {
 	public static final String NAME = "Email";
-	
+
 	private Set<Inbox> reveivedMails = Login.getLoggedInUser().getReceivedMails();
-	
-	
+
 	public EmailView() {
-		
-		
 		emailSettings();
-		
 		buttonsettings();
-		
 		newMailSetting();
-		
 	}
-	
-	
 
 	private void buttonsettings() {
-			inboxButton.addClickListener(new ClickListener() {
-				
-				@Override
-				public void buttonClick(ClickEvent event) {
-					((CorpusUI) getUI()).navigate(InboxEmailView.NAME);
-				}
-			});
-		
+		inboxButton.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				((CorpusUI) getUI()).navigate(InboxEmailView.NAME);
+			}
+		});
+
 		sentEmailsButton.addClickListener(new ClickListener() {
-			
+
 			@Override
 			public void buttonClick(ClickEvent event) {
 				((CorpusUI) getUI()).navigate(SentEmailsView.NAME);
 			}
 		});
-		
+
 	}
+
 	public EmailView(String name) {
-		
+
 		emailSettings();
 		newMailSetting();
 		buttonsettings();
-		
-		if(name.equals(InboxEmailView.NAME)){
+
+		if (name.equals(InboxEmailView.NAME)) {
 			changeContet(new InboxEmailView());
-		}else if(name.equals(SentEmailsView.NAME)){
+		} else if (name.equals(SentEmailsView.NAME)) {
 			changeContet(new SentEmailsView());
 		}
 	}
-	
+
 	private void emailSettings() {
-		
+
 		int newMsg = 0;
-		
+
 		for (Inbox msg : reveivedMails) {
-			if(msg.getSeen() == 'N'){
+			if (msg.getSeen() == 'N') {
 				newMsg++;
 			}
 		}
-		
-		String inboxText = "Beérkezett üzenetek &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class=”valo-menu-badge”>" + newMsg +"</span>";
-		
+
+		String inboxText = "Beérkezett üzenetek &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class=”valo-menu-badge”>" + newMsg
+				+ "</span>";
+
 		inboxButton.setCaption(inboxText);
-		
+
 	}
-	
+
 	private void newMailSetting() {
 		newEmailButton.addClickListener(new ClickListener() {
-					
-					@Override
-					public void buttonClick(ClickEvent event) {
-						Window newMail = new Window("Új e-mail");
-						newMail.setContent(new NewMailView(newMail));
-						newMail.setStyleName("subWindow");
-						
-						newMail.setResizable(false);
-						newMail.setWidth("75%");
-						newMail.setHeight("70%");
-						newMail.center();
-						newMail.setDraggable(false);
-						newMail.setModal(true);
-						
-						((CorpusUI) getUI()).addWindow(newMail);	
-				}
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				Window newMail = new Window("Új e-mail");
+				newMail.setContent(new NewMailView(newMail));
+				newMail.setStyleName("subWindow");
+
+				newMail.setResizable(false);
+				newMail.setWidth("75%");
+				newMail.setHeight("70%");
+				newMail.center();
+				newMail.setDraggable(false);
+				newMail.setModal(true);
+
+				((CorpusUI) getUI()).addWindow(newMail);
+			}
 		});
 	}
 
 	@Override
-	public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {	
-		
+	public void enter(ViewChangeListener.ViewChangeEvent viewChangeEvent) {
+
 	}
-	
+
 	protected void changeContet(Component component) {
 		content.removeAllComponents();
 		content.addComponent(component);

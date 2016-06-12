@@ -10,11 +10,9 @@ public class HibernateUtil {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
 
 	private static SessionFactory buildSessionFactory() {
-		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-				.configure().build();
+		final StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure().build();
 		try {
-			return new MetadataSources(registry).buildMetadata()
-					.buildSessionFactory();
+			return new MetadataSources(registry).buildMetadata().buildSessionFactory();
 		} catch (Exception e) {
 			StandardServiceRegistryBuilder.destroy(registry);
 			throw new ExceptionInInitializerError(e);

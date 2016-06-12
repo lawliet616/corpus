@@ -5,7 +5,7 @@ public class NewPasswordNotMatchException extends Exception {
 	public NewPasswordNotMatchException() {
 		super();
 	}
-	
+
 	public NewPasswordNotMatchException(String message) {
 		super(message);
 	}

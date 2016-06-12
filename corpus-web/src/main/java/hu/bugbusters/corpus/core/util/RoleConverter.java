@@ -9,14 +9,14 @@ public class RoleConverter implements AttributeConverter<Role, Integer>{
 	@Override
 	public Integer convertToDatabaseColumn(Role role) {
 		switch(role) {
-		case ADMIN:
-			return new Integer(2);
-		case TEACHER:
-			return new Integer(1);
-		case USER:
-			return new Integer(0);
-		default:
-			throw new IllegalArgumentException("Unknown role: " + role);		
+			case ADMIN:
+				return new Integer(2);
+			case TEACHER:
+				return new Integer(1);
+			case USER:
+				return new Integer(0);
+			default:
+				throw new IllegalArgumentException("Unknown role: " + role);		
 		}
 	}
 

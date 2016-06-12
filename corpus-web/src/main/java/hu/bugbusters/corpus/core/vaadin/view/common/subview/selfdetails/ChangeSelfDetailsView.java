@@ -22,18 +22,17 @@ public class ChangeSelfDetailsView extends ChangeSelfDetailsDesign implements Vi
 	private RegisteredUser registeredUser;
 
 	public ChangeSelfDetailsView() {
-		
+
 		fillTheDetails();
-		
-		if(Login.getLoggedInUser().getRole() == Role.USER){
+
+		if (Login.getLoggedInUser().getRole() == Role.USER) {
 			ResetButtonForTextField.extend(txtEmail);
 			txtName.setReadOnly(true);
-			
-		}else{
+
+		} else {
 			ResetButtonForTextField.extend(txtEmail);
 			ResetButtonForTextField.extend(txtName);
 		}
-		
 
 		btnCancel.addClickListener(new ClickListener() {
 

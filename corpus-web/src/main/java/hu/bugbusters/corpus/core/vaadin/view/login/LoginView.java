@@ -35,11 +35,11 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 	public void buttonClick(ClickEvent event) {
 		try {
 			RegisteredUser registeredUser = DaoImpl.getInstance().getUserByUserName(userName.getValue());
-			
+
 			Password.verify(password.getValue(), registeredUser);
-			
+
 			Login.setLoggedInUserId(registeredUser.getId());
-			
+
 			((CorpusUI) getUI()).navigate();
 		} catch (UserNotFoundException | InvalidPasswordException e) {
 			showError();
@@ -49,8 +49,9 @@ public class LoginView extends LoginDesign implements View, ClickListener {
 	}
 
 	private void showError() {
-		Notification notification = new Notification("Hibás jelszó vagy felhasználónév!", Notification.Type.ERROR_MESSAGE);
-		
+		Notification notification = new Notification("Hibás jelszó vagy felhasználónév!",
+				Notification.Type.ERROR_MESSAGE);
+
 		notification.setDelayMsec(1500);
 		notification.show(getUI().getPage());
 

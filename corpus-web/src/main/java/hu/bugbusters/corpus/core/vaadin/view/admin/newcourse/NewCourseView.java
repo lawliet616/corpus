@@ -32,7 +32,7 @@ public class NewCourseView extends NewCourseDesign implements View {
 				saveCourse();
 			}
 		});
-		
+
 		cmbTeachers.setNullSelectionAllowed(false);
 	}
 

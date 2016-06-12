@@ -23,17 +23,17 @@ public class SelfDetailsView extends SelfDetailsDesign implements View {
 			}
 		});
 		btnChangePassword.addClickListener(new ClickListener() {
-			
+
 			@Override
 			public void buttonClick(ClickEvent event) {
-				((CorpusUI) getUI()).navigate(ChangePasswordView.NAME);				
+				((CorpusUI) getUI()).navigate(ChangePasswordView.NAME);
 			}
 		});
 	}
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		
+
 	}
 
 	private void fillTable() {

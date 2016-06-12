@@ -21,11 +21,11 @@ import hu.bugbusters.corpus.core.vaadin.view.teacher.courselist.TeacherCourseLis
 import hu.bugbusters.corpus.core.vaadin.view.teacher.studentlist.TeacherStudentListView;
 
 @SuppressWarnings("serial")
-public class TeacherView extends TeacherDesign implements CorpusView{
+public class TeacherView extends TeacherDesign implements CorpusView {
 	public static final String NAME = "Teacher";
-	public static final Role ROLE   = Role.TEACHER;
+	public static final Role ROLE = Role.TEACHER;
 
-	public TeacherView(){
+	public TeacherView() {
 		logoutButton.addClickListener(new LogoutClickListener());
 		userDetailsButton.addClickListener(new ClickListener() {
 
@@ -49,20 +49,20 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 			}
 		});
 		homepageSButton.addClickListener(new ClickListener() {
-			
+
 			@Override
 			public void buttonClick(ClickEvent event) {
 				((CorpusUI) getUI()).navigate(AdminHomepageView.Name);
 			}
 		});
 		courseListButton.addClickListener(new ClickListener() {
-			
+
 			@Override
 			public void buttonClick(ClickEvent event) {
 				((CorpusUI) getUI()).navigate(TeacherCourseListView.NAME);
 			}
 		});
-		
+
 		emailButton.addClickListener(new ClickListener() {
 
 			@Override
@@ -71,7 +71,7 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 			}
 		});
 	}
-	
+
 	protected void changeContet(Component component) {
 		content.removeAllComponents();
 		content.addComponent(component);
@@ -91,15 +91,15 @@ public class TeacherView extends TeacherDesign implements CorpusView{
 			component = new ChangePasswordView();
 		} else if (subView.equals(TeacherStudentListView.NAME)) {
 			component = new TeacherStudentListView();
-		}else if (subView.equals(TeacherCourseListView.NAME)) {
+		} else if (subView.equals(TeacherCourseListView.NAME)) {
 			component = new TeacherCourseListView();
-		}else if (subView.equals(EmailView.NAME)) {
+		} else if (subView.equals(EmailView.NAME)) {
 			component = new EmailView();
-		}else if (subView.equals(InboxEmailView.NAME)) {
+		} else if (subView.equals(InboxEmailView.NAME)) {
 			component = new EmailView(InboxEmailView.NAME);
-		}else if (subView.equals(SentEmailsView.NAME)) {
+		} else if (subView.equals(SentEmailsView.NAME)) {
 			component = new EmailView(SentEmailsView.NAME);
-		}else{
+		} else {
 			component = new AdminHomepageView();
 		}
 

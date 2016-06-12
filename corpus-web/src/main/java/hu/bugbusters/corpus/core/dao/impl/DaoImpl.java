@@ -2,297 +2,302 @@ package hu.bugbusters.corpus.core.dao.impl;
 
 import java.util.List;
 
-import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Restrictions;
 
 import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.PasswordSettings;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
+import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.password.PasswordRows;
 
 @SuppressWarnings("unchecked")
 public class DaoImpl implements Dao {
 
-    private static DaoImpl ourInstance = new DaoImpl();
+	private static DaoImpl ourInstance = new DaoImpl();
 
-    public static DaoImpl getInstance() {
-        return ourInstance;
-    }
+	public static DaoImpl getInstance() {
+		return ourInstance;
+	}
 
-    private DaoImpl() {
-    }
+	private DaoImpl() {
+	}
 
-    @Override
-    public List<Course> listAllCourses() {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        Criteria crit = session.createCriteria(Course.class);
-        List<Course> courses = crit.list();
+	@Override
+	public List<Course> listAllCourses() {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		Criteria crit = session.createCriteria(Course.class);
+		List<Course> courses = crit.list();
 
-        transaction.commit();
-        session.close();
+		transaction.commit();
+		session.close();
 
-        return courses;
-    }
+		return courses;
+	}
 
-    @Override
-    public List<RegisteredUser> listAllUsers() {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        Criteria crit = session.createCriteria(RegisteredUser.class);
-        List<RegisteredUser> users = crit.list();
+	@Override
+	public List<RegisteredUser> listAllUsers() {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		Criteria crit = session.createCriteria(RegisteredUser.class);
+		List<RegisteredUser> users = crit.list();
 
-        transaction.commit();
-        session.close();
+		transaction.commit();
+		session.close();
 
-        return users;
-    }
+		return users;
+	}
 
-    @Override
-    public Course getCourseById(Long id) throws CourseNotFoundException {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        Course course = session.get(Course.class, id);
+	@Override
+	public Course getCourseById(Long id) throws CourseNotFoundException {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		Course course = session.get(Course.class, id);
 
-        transaction.commit();
-        session.close();
+		transaction.commit();
+		session.close();
 
-        if (course == null) throw new CourseNotFoundException();
+		if (course == null)
+			throw new CourseNotFoundException();
 
-        return course;
-    }
+		return course;
+	}
 
-    @Override
-    public Course getCourseByName(String name) throws CourseNotFoundException {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        Criteria crit = session.createCriteria(Course.class);
-        Criterion nameCrit = Restrictions.eq("name", name);
-        crit.add(nameCrit);
-        Course course = (Course) crit.uniqueResult();
+	@Override
+	public Course getCourseByName(String name) throws CourseNotFoundException {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		Criteria crit = session.createCriteria(Course.class);
+		Criterion nameCrit = Restrictions.eq("name", name);
+		crit.add(nameCrit);
+		Course course = (Course) crit.uniqueResult();
 
-        transaction.commit();
-        session.close();
+		transaction.commit();
+		session.close();
 
-        if (course == null) throw new CourseNotFoundException();
+		if (course == null)
+			throw new CourseNotFoundException();
 
-        return course;
-    }
+		return course;
+	}
 
-    @Override
-    public RegisteredUser getUserById(Long id) throws UserNotFoundException {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        RegisteredUser user = session.get(RegisteredUser.class, id);
+	@Override
+	public RegisteredUser getUserById(Long id) throws UserNotFoundException {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		RegisteredUser user = session.get(RegisteredUser.class, id);
 
-        transaction.commit();
-        session.close();
+		transaction.commit();
+		session.close();
 
-        if (user == null) throw new UserNotFoundException();
+		if (user == null)
+			throw new UserNotFoundException();
 
-        return user;
-    }
+		return user;
+	}
 
-    @Override
-    public RegisteredUser getUserByUserName(String username) throws UserNotFoundException {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        Criteria crit = session.createCriteria(RegisteredUser.class);
-        Criterion userNameCrit = Restrictions.eq("username", username);
-        crit.add(userNameCrit);
-        RegisteredUser user = (RegisteredUser) crit.uniqueResult();
+	@Override
+	public RegisteredUser getUserByUserName(String username) throws UserNotFoundException {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		Criteria crit = session.createCriteria(RegisteredUser.class);
+		Criterion userNameCrit = Restrictions.eq("username", username);
+		crit.add(userNameCrit);
+		RegisteredUser user = (RegisteredUser) crit.uniqueResult();
 
-        transaction.commit();
-        session.close();
+		transaction.commit();
+		session.close();
 
-        if (user == null) throw new UserNotFoundException();
+		if (user == null)
+			throw new UserNotFoundException();
 
-        return user;
-    }
+		return user;
+	}
 
-    @Override
-    public RegisteredUser getUserByEmail(String address) throws UserNotFoundException {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        Criteria crit = session.createCriteria(RegisteredUser.class);
-        Criterion emailCrit = Restrictions.eq("email", address);
-        crit.add(emailCrit);
-        RegisteredUser user = (RegisteredUser) crit.uniqueResult();
+	@Override
+	public RegisteredUser getUserByEmail(String address) throws UserNotFoundException {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		Criteria crit = session.createCriteria(RegisteredUser.class);
+		Criterion emailCrit = Restrictions.eq("email", address);
+		crit.add(emailCrit);
+		RegisteredUser user = (RegisteredUser) crit.uniqueResult();
 
-        transaction.commit();
-        session.close();
+		transaction.commit();
+		session.close();
 
-        if (user == null) throw new UserNotFoundException();
+		if (user == null)
+			throw new UserNotFoundException();
 
-        return user;
-    }
-    
-    @Override
-    public RegisteredUser getUserByFullName(String name) throws UserNotFoundException {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        Criteria crit = session.createCriteria(RegisteredUser.class);
-        Criterion emailCrit = Restrictions.eq("fullName", name);
-        crit.add(emailCrit);
-        RegisteredUser user = (RegisteredUser) crit.uniqueResult();
+		return user;
+	}
 
-        transaction.commit();
-        session.close();
+	@Override
+	public RegisteredUser getUserByFullName(String name) throws UserNotFoundException {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		Criteria crit = session.createCriteria(RegisteredUser.class);
+		Criterion emailCrit = Restrictions.eq("fullName", name);
+		crit.add(emailCrit);
+		RegisteredUser user = (RegisteredUser) crit.uniqueResult();
 
-        if (user == null) throw new UserNotFoundException();
+		transaction.commit();
+		session.close();
 
-        return user;
-    }
+		if (user == null)
+			throw new UserNotFoundException();
 
-    @Override
-    public PasswordSettings getPasswordSettings(PasswordRows row) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
-        PasswordSettings passwordSettings = session.get(PasswordSettings.class, row.toInteger());
+		return user;
+	}
 
-        transaction.commit();
-        session.close();
+	@Override
+	public PasswordSettings getPasswordSettings(PasswordRows row) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
+		PasswordSettings passwordSettings = session.get(PasswordSettings.class, row.toInteger());
 
-        return passwordSettings;
-    }
+		transaction.commit();
+		session.close();
 
-    @Override
-    public <T> void saveEntity(T entity) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
+		return passwordSettings;
+	}
 
-        session.save(entity);
-        transaction.commit();
-        session.close();
-    }
+	@Override
+	public <T> void saveEntity(T entity) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
 
-    @Override
-    public <T> void updateEntity(T entity) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
+		session.save(entity);
+		transaction.commit();
+		session.close();
+	}
 
-        session.update(entity);
-        transaction.commit();
-        session.close();
-    }
+	@Override
+	public <T> void updateEntity(T entity) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
 
-    @Override
-    public <T> void deleteEntity(T entity) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction transaction = session.beginTransaction();
+		session.update(entity);
+		transaction.commit();
+		session.close();
+	}
 
-        session.delete(entity);
+	@Override
+	public <T> void deleteEntity(T entity) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction transaction = session.beginTransaction();
 
-        transaction.commit();
-        session.close();
-    }
+		session.delete(entity);
 
-    @Override
-    public <T> void saveEntities(List<T> entities) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction tx = session.beginTransaction();
+		transaction.commit();
+		session.close();
+	}
 
-        for (int i = 0; i < entities.size(); i++) {
+	@Override
+	public <T> void saveEntities(List<T> entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
 
-            session.save(entities.get(i));
-            if (i % BATCH_SIZE == 0) {
-                // flush a batch of inserts and release memory
-                session.flush();
-                session.clear();
-            }
-        }
+		for (int i = 0; i < entities.size(); i++) {
 
-        tx.commit();
-        session.close();
-    }
+			session.save(entities.get(i));
+			if (i % BATCH_SIZE == 0) {
+				// flush a batch of inserts and release memory
+				session.flush();
+				session.clear();
+			}
+		}
 
-    @Override
-    public <T> void updateEntities(List<T> entities) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction tx = session.beginTransaction();
+		tx.commit();
+		session.close();
+	}
 
-        for (int i = 0; i < entities.size(); i++) {
+	@Override
+	public <T> void updateEntities(List<T> entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
 
-            session.update(entities.get(i));
-            if (i % BATCH_SIZE == 0) {
-                // flush a batch of inserts and release memory
-                session.flush();
-                session.clear();
-            }
-        }
+		for (int i = 0; i < entities.size(); i++) {
 
-        tx.commit();
-        session.close();
-    }
+			session.update(entities.get(i));
+			if (i % BATCH_SIZE == 0) {
+				// flush a batch of inserts and release memory
+				session.flush();
+				session.clear();
+			}
+		}
 
-    @Override
-    public <T> void deleteEntities(List<T> entities) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction tx = session.beginTransaction();
+		tx.commit();
+		session.close();
+	}
 
-        for (T entity : entities) {
-            session.delete(entity);
-        }
+	@Override
+	public <T> void deleteEntities(List<T> entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
 
-        tx.commit();
-        session.close();
-    }
+		for (T entity : entities) {
+			session.delete(entity);
+		}
 
-    @Override
-    public <T> void saveEntities(T... entities) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction tx = session.beginTransaction();
+		tx.commit();
+		session.close();
+	}
 
-        for (int i = 0; i < entities.length; i++) {
+	@Override
+	public <T> void saveEntities(T... entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
 
-            session.save(entities[i]);
-            if (i % BATCH_SIZE == 0) {
-                // flush a batch of inserts and release memory
-                session.flush();
-                session.clear();
-            }
-        }
+		for (int i = 0; i < entities.length; i++) {
 
-        tx.commit();
-        session.close();
-    }
+			session.save(entities[i]);
+			if (i % BATCH_SIZE == 0) {
+				// flush a batch of inserts and release memory
+				session.flush();
+				session.clear();
+			}
+		}
 
-    @Override
-    public <T> void updateEntities(T... entities) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction tx = session.beginTransaction();
+		tx.commit();
+		session.close();
+	}
 
-        for (int i = 0; i < entities.length; i++) {
+	@Override
+	public <T> void updateEntities(T... entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
 
-            session.update(entities[i]);
-            if (i % BATCH_SIZE == 0) {
-                // flush a batch of inserts and release memory
-                session.flush();
-                session.clear();
-            }
-        }
+		for (int i = 0; i < entities.length; i++) {
 
-        tx.commit();
-        session.close();
-    }
+			session.update(entities[i]);
+			if (i % BATCH_SIZE == 0) {
+				// flush a batch of inserts and release memory
+				session.flush();
+				session.clear();
+			}
+		}
 
-    @Override
-    public <T> void deleteEntities(T... entities) {
-        Session session = SESSION_FACTORY.openSession();
-        Transaction tx = session.beginTransaction();
+		tx.commit();
+		session.close();
+	}
 
-        for (T entity : entities) {
-            session.delete(entity);
-        }
+	@Override
+	public <T> void deleteEntities(T... entities) {
+		Session session = SESSION_FACTORY.openSession();
+		Transaction tx = session.beginTransaction();
 
-        tx.commit();
-        session.close();
-    }
+		for (T entity : entities) {
+			session.delete(entity);
+		}
+
+		tx.commit();
+		session.close();
+	}
 }

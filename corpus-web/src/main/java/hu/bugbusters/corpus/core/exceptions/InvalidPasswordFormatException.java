@@ -5,7 +5,7 @@ public class InvalidPasswordFormatException extends Exception {
 	public InvalidPasswordFormatException() {
 		super();
 	}
-	
+
 	public InvalidPasswordFormatException(String message) {
 		super(message);
 	}

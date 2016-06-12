@@ -18,7 +18,7 @@ CREATE TABLE CORPUS.registered_user (
 	role int not null,
 	primary key (id),
 	unique (username),
-  unique (email)
+	unique (email)
 );
 	
 CREATE TABLE CORPUS.course (
@@ -27,8 +27,8 @@ CREATE TABLE CORPUS.course (
 	room varchar2(255 char),
 	credit int not null,
 	teacher varchar2(255 char),
-  max_size int not null,
-  description varchar2(4000 char),
+	max_size int not null,
+	description varchar2(4000 char),
 	primary key (id),
 	unique (name)
 );
@@ -36,7 +36,7 @@ CREATE TABLE CORPUS.course (
 CREATE TABLE CORPUS.taken_course (
 	r_id number(19,0) not null,
 	c_id number(19,0) not null,
-  mark int,
+	mark int,
 	primary key(r_id, c_id),
 	constraint fk_registered_user foreign key (r_id) 
     references CORPUS.registered_user(id) ON DELETE CASCADE,
@@ -60,17 +60,17 @@ CREATE TABLE CORPUS.message (
 	id number(19,0) not null,
   creator_id number(19,0) not null,
 	subject varchar2(255 char) not null,
-  message varchar2(4000 char) not null,
-  time timestamp not null,
+	message varchar2(4000 char) not null,
+	time timestamp not null,
 	primary key (id),
-  constraint fk_registered_user2 foreign key (creator_id) 
+	constraint fk_registered_user2 foreign key (creator_id) 
     references CORPUS.registered_user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE CORPUS.inbox (
 	r_id number(19,0) not null,
 	m_id number(19,0) not null,
-  seen char(1) not null check (seen in ( 'Y', 'N' )),
+	seen char(1) not null check (seen in ( 'Y', 'N' )),
 	primary key(r_id, m_id),
 	constraint fk_registered_user3 foreign key (r_id) 
     references CORPUS.registered_user(id) ON DELETE CASCADE,

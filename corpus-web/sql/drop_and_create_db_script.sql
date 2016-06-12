@@ -86,17 +86,9 @@ INSERT INTO CORPUS.password_settings(id) VALUES(1);
 COMMIT;
 
 CREATE OR REPLACE TRIGGER CORPUS.UPDATE_PASSWORD_TRIGGER
-	BEFORE DELETE OR INSERT OR UPDATE ON CORPUS.PASSWORD_SETTINGS
+	AFTER DELETE OR INSERT OR UPDATE ON CORPUS.PASSWORD_SETTINGS
 	FOR EACH ROW
 WHEN (NEW.id = 1)
 BEGIN
-	:NEW.id             := :OLD.id;
-	:NEW.min_length     := :OLD.min_length;
-	:NEW.max_length     := :OLD.max_length;
-	:NEW.min_dig_char   := :OLD.min_dig_char;
-	:NEW.min_upper_char := :OLD.min_upper_char;
-	:NEW.min_lower_char := :OLD.min_lower_char;
-	:NEW.min_rules      := :OLD.min_rules;
-	  
 	RAISE_APPLICATION_ERROR(-20999, 'First row cannot be deleted or modified.');
 END;

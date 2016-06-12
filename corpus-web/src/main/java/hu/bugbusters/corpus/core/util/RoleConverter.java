@@ -10,11 +10,11 @@ public class RoleConverter implements AttributeConverter<Role, Integer>{
 	public Integer convertToDatabaseColumn(Role role) {
 		switch(role) {
 			case ADMIN:
-				return new Integer(2);
+				return 2;
 			case TEACHER:
-				return new Integer(1);
+				return 1;
 			case USER:
-				return new Integer(0);
+				return 0;
 			default:
 				throw new IllegalArgumentException("Unknown role: " + role);		
 		}

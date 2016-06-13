@@ -40,7 +40,7 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 	public final static String NAME = "AdminCourseList";
 	private BeanContainer<Long, Course> courseDataSource;
 	private BeanFieldGroup<Course> courseBinder;
-	protected Window editCourseWindow;
+	private Window editCourseWindow;
 	private Dao dao;
 	private TextField idField;
 	private TextField nameField;
@@ -71,7 +71,7 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 				buttonLayout.addComponent(btnEdit);
 				buttonLayout.addComponent(btnDetails);
 				buttonLayout.setSpacing(true);
-				
+
 				btnEdit.addClickListener(new ClickListener() {
 					private static final long serialVersionUID = 3795164119475852944L;
 
@@ -155,6 +155,20 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 				saveCourse();
 			}
 		});
+		btnDelete.addClickListener(new ClickListener() {
+
+			@Override
+			public void buttonClick(ClickEvent event) {
+				deleteEntity();
+			}
+		});
+	}
+
+	protected void deleteEntity() {
+		Course course = courseBinder.getItemDataSource().getBean();
+		dao.deleteEntity(course);
+		editCourseWindow.close();
+		Notification.show("Sikeresen törölte a kurzust.", Notification.Type.HUMANIZED_MESSAGE);
 	}
 
 	protected void saveCourse() {

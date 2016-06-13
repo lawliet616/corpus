@@ -41,13 +41,6 @@ public class TeacherView extends TeacherDesign implements CorpusView {
 				((CorpusUI) getUI()).navigate(TeacherStudentListView.NAME);
 			}
 		});
-		settingsButton2.addClickListener(new ClickListener() {
-
-			@Override
-			public void buttonClick(ClickEvent event) {
-				((CorpusUI) getUI()).navigate(ChangePasswordView.NAME);
-			}
-		});
 		homepageSButton.addClickListener(new ClickListener() {
 
 			@Override

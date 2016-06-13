@@ -30,7 +30,6 @@ public class TeacherDesign extends HorizontalSplitPanel {
 	protected Button studentListButton;
 	protected Button courseListButton;
 	protected Button emailButton;
-	protected Button settingsButton2;
 	protected Button logoutButton;
 	protected VerticalLayout content;
 

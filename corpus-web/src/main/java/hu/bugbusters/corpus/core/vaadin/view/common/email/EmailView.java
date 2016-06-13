@@ -77,6 +77,7 @@ public class EmailView extends EmailDesign implements View {
 		inboxButton.setCaption(inboxText);
 
 	}
+	
 
 	private void newMailSetting() {
 		newEmailButton.addClickListener(new ClickListener() {

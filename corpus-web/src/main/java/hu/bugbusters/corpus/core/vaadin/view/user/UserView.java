@@ -34,13 +34,6 @@ public class UserView extends UserDesign implements CorpusView {
 				((CorpusUI) getUI()).navigate(SelfDetailsView.NAME);
 			}
 		});
-		settingsButton2.addClickListener(new ClickListener() {
-
-			@Override
-			public void buttonClick(ClickEvent event) {
-				((CorpusUI) getUI()).navigate(ChangePasswordView.NAME);
-			}
-		});
 		homepageSButton.addClickListener(new ClickListener() {
 
 			@Override

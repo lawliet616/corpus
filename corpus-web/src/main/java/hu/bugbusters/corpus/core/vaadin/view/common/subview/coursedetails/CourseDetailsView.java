@@ -13,7 +13,7 @@ public class CourseDetailsView extends CourseDetailsDesign implements View{
 
 	public CourseDetailsView(Course selectedCourse, final Window courseDetailWindow) {
 		labelCourseName.setValue("<b>Kurzus neve:</b>\t" + selectedCourse.getName());
-		labelMaxSize.setValue("<b>Maximum létszám:</b>\t" + selectedCourse.getMaxSize());
+		labelMaxSize.setValue("<b>Maximum létszám:</b>\t" + (selectedCourse.getStudents().size() - 1) + "/" +selectedCourse.getMaxSize());
 		labelCredit.setValue("<b>Kredit:</b>\t" + selectedCourse.getCredit());
 		labelTeacher.setValue("<b>Oktató:</b>\t" + selectedCourse.getTeacher());
 		labelRoom.setValue("<b>Terem:</b>\t" + selectedCourse.getRoom());

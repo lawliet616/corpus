@@ -2,6 +2,8 @@ package hu.bugbusters.corpus.core.vaadin.view.admin.newcourse;
 
 import java.util.List;
 
+import org.vaadin.dialogs.ConfirmDialog;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
@@ -30,11 +32,25 @@ public class NewCourseView extends NewCourseDesign implements View {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				saveCourse();
+				showConfirmDialog();
 			}
 		});
 
 		cmbTeachers.setNullSelectionAllowed(false);
+	}
+
+	protected void showConfirmDialog() {
+		ConfirmDialog.show(getUI(), "Biztos?", "Biztos vagy benne?", "Igen, biztos!", "Nem igazán.",
+				new ConfirmDialog.Listener() {
+					private static final long serialVersionUID = -1318588884359394783L;
+
+					@Override
+					public void onClose(ConfirmDialog dialog) {
+						if (dialog.isConfirmed()) {
+							saveCourse();
+						}
+					}
+				});
 	}
 
 	private void fillCombobox() {

@@ -5,8 +5,11 @@
  </head> 
  <body> 
   <vaadin-vertical-layout size-full margin> 
-   <vaadin-vertical-layout size-auto :middle :center> 
-    <vaadin-grid-layout caption="Jelszó követelmény beállítása" spacing :middle :center> 
+   <vaadin-label style-name="bold gridLabel" width="49%" plain-text :center>
+     Jelszó követelmény beállítása 
+   </vaadin-label> 
+   <vaadin-vertical-layout size-auto :middle :center :expand> 
+    <vaadin-grid-layout spacing :middle :center> 
      <row> 
       <column> 
        <vaadin-label size-auto plain-text :middle>

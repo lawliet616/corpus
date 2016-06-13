@@ -5,8 +5,13 @@
  </head> 
  <body> 
   <vaadin-horizontal-layout spacing size-full margin> 
-   <vaadin-table caption="Felhasználók listája" height-full _id="registeredUserTable"></vaadin-table> 
    <vaadin-option-group caption="Szűrés jogosultság szerint" item-caption-mode="id" _id="selectGroup" :right></vaadin-option-group> 
+   <vaadin-vertical-layout size-full :expand> 
+    <vaadin-label style-name="bold gridLabel" plain-text>
+      Felhasználók listája 
+    </vaadin-label> 
+    <vaadin-table size-full _id="registeredUserTable" :expand></vaadin-table> 
+   </vaadin-vertical-layout> 
   </vaadin-horizontal-layout>  
  </body>
 </html>

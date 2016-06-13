@@ -30,6 +30,7 @@ import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
 import hu.bugbusters.corpus.core.vaadin.CorpusUI;
 import hu.bugbusters.corpus.core.vaadin.view.common.email.emailsubviews.NewMailView;
+import hu.bugbusters.corpus.core.vaadin.view.common.subview.coursedetails.CourseDetailsView;
 
 @SuppressWarnings("serial")
 public class TeacherCourseListView extends TeacherCourseListDesign implements View {
@@ -37,7 +38,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 	private BeanContainer<Long, Course> userDataSource = new BeanContainer<Long, Course>(Course.class);
 	private Dao dao = DaoImpl.getInstance();
 	private List<Course> ownCourse = new ArrayList<>();
-	private RendererClickListener listener, listenerMail;
+	private RendererClickListener listener, listenerMail, listenerDetails;
 
 	public TeacherCourseListView() {
 		fillTable();
@@ -80,6 +81,21 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 			courseList.sort("name", SortDirection.ASCENDING);
 
 		} else {
+			
+			gpc.addGeneratedProperty("details", new PropertyValueGenerator<String>() {
+				private static final long serialVersionUID = -8571003699455731586L;
+
+				@Override
+				public String getValue(Item item, Object itemId, Object propertyId) {
+					return "Kurzus részletek";
+				}
+
+				@Override
+				public Class<String> getType() {
+					return String.class;
+				}
+			});
+			
 			gpc.addGeneratedProperty("delete", new PropertyValueGenerator<String>() {
 				private static final long serialVersionUID = -8571003699455731586L;
 
@@ -96,7 +112,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 
 			courseList.setContainerDataSource(gpc);
 			courseList.setSelectionMode(SelectionMode.SINGLE);
-			courseList.setColumns("name", "room", "credit", "delete");
+			courseList.setColumns("name", "room", "credit", "teacher", "details", "delete");
 			courseList.sort("name", SortDirection.ASCENDING);
 		}
 
@@ -105,6 +121,7 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 		if (Login.getLoggedInUser().getRole() == Role.TEACHER) {
 			courseList.getColumn("courseMail").setRenderer(new ButtonRenderer(listenerMail));
 		} else {
+			courseList.getColumn("details").setRenderer(new ButtonRenderer(listenerDetails));
 			courseList.getColumn("delete").setRenderer(new ButtonRenderer(listener));
 		}
 
@@ -146,34 +163,6 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 						break;
 					}
 				}
-
-				/*
-				 * loggedInUser.setCourses(courses);
-				 * 
-				 * dao.updateEntity(loggedInUser);
-				 * 
-				 * Long id = (long) event.getItemId(); try {
-				 * 
-				 * Course course = dao.getCourseById(id);
-				 * 
-				 * if(Login.getLoggedInUser().getRole() == Role.USER){
-				 * 
-				 * Set<TakenCourse> courseStudents = new HashSet<>();
-				 * Set<TakenCourse> tmpStudents = course.getStudents();
-				 * 
-				 * for (TakenCourse registeredUser : tmpStudents) {
-				 * if(registeredUser.getRegisteredUser().getId() !=
-				 * Login.getLoggedInUserId()){
-				 * courseStudents.add(registeredUser); } }
-				 * 
-				 * course.setStudents(courseStudents);
-				 * 
-				 * }
-				 * 
-				 * dao.updateEntity(course);
-				 * 
-				 * } catch (CourseNotFoundException e) { e.printStackTrace(); }
-				 */
 			}
 		};
 
@@ -206,6 +195,33 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 
 			}
 		};
+		
+		listenerDetails = new RendererClickListener() {
+
+			@Override
+			public void click(RendererClickEvent event) {
+				Course selectedCourse = null;
+				
+				for (Course course : dao.listAllCourses()) {
+					if(course.getId() == event.getItemId()){
+						selectedCourse = course;
+						break;
+					}
+				}
+				
+				Window courseDetailWindow = new Window("Részletek");
+				courseDetailWindow.setContent(new CourseDetailsView(selectedCourse, courseDetailWindow));
+				
+				courseDetailWindow.setResizable(false);
+				courseDetailWindow.setWidth("70%");
+				courseDetailWindow.setHeight("60%");
+				courseDetailWindow.center();
+				courseDetailWindow.setDraggable(false);
+				courseDetailWindow.setModal(true);
+				
+				((CorpusUI) getUI()).addWindow(courseDetailWindow);
+			}
+		};
 
 	}
 
@@ -221,7 +237,9 @@ public class TeacherCourseListView extends TeacherCourseListDesign implements Vi
 			courseList.getColumn("name").setHeaderCaption("Név");
 			courseList.getColumn("room").setHeaderCaption("Terem");
 			courseList.getColumn("credit").setHeaderCaption("Kredit");
-			courseList.getColumn("delete").setHeaderCaption("Kurzus leadás");
+			courseList.getColumn("teacher").setHeaderCaption("Oktató");
+			courseList.getColumn("details").setHeaderCaption("");
+			courseList.getColumn("delete").setHeaderCaption("");
 		}
 
 	}

@@ -69,6 +69,7 @@ $v-selection-item-border-radius: 0;
         height: 49px;
         padding-bottom: 0px;
         background-color: #069ed2;
+        color: white;
         
     }
 
@@ -88,8 +89,8 @@ $v-selection-item-border-radius: 0;
     .newEmailButton{
 
         font-size: 21px;
-        border: 2px solid #DB1842;
-        border-radius: 0;
+        background-color: #dd4b39;
+        color: white;
 
         .v-icon{
             font-size: 38px;
@@ -118,7 +119,7 @@ $v-selection-item-border-radius: 0;
     .notSeen{
         border: 0px;
         .v-icon{
-            color: #4cff00;
+            color: #dd4b39;
 
             &:hover{
                 border: 0px;
@@ -276,6 +277,10 @@ $v-selection-item-border-radius: 0;
     	padding: 5px 5px 5px 5px;
     }
     
+    .gridLabel{
+    	color: white;
+    	background-color: #263a5b;
+    }
     
 /*
     .valo-menu-item{

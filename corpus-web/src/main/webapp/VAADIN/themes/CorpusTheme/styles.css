@@ -13743,6 +13743,7 @@ div.v-layout.v-horizontal.v-widget {
 	height: 49px;
 	padding-bottom: 0px;
 	background-color: #069ed2;
+	color: white;
 }
 
 .CorpusTheme .valo-menu-part-email {
@@ -13760,8 +13761,8 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .newEmailButton {
 	font-size: 21px;
-	border: 2px solid #DB1842;
-	border-radius: 0;
+	background-color: #dd4b39;
+	color: white;
 }
 
 .CorpusTheme .newEmailButton .v-icon {
@@ -13791,7 +13792,7 @@ div.v-layout.v-horizontal.v-widget {
 }
 
 .CorpusTheme .notSeen .v-icon {
-	color: #4cff00;
+	color: #dd4b39;
 }
 
 .CorpusTheme .notSeen .v-icon:hover {
@@ -13949,4 +13950,9 @@ div.v-layout.v-horizontal.v-widget {
 
 .CorpusTheme .newMail {
 	padding: 5px 5px 5px 5px;
+}
+
+.CorpusTheme .gridLabel {
+	color: white;
+	background-color: #263a5b;
 }

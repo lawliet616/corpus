@@ -10,9 +10,13 @@ import com.vaadin.ui.Button.ClickListener;
 public class EmailReadView extends EmailReadDesign implements View {
 
 	public EmailReadView(String subject, String msg, final Window messageWindow) {
+		
 		labelSubject.setValue(subject);
 		
 		textAreaMessage.setValue(msg);
+		
+		labelSubject.setReadOnly(true);
+		textAreaMessage.setReadOnly(true);
 		
 		cancelButton.addClickListener(new ClickListener() {
 			

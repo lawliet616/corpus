@@ -1,5 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.admin.userlist;
 
+import org.vaadin.dialogs.ConfirmDialog;
+
 import com.vaadin.data.Container.Filter;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
@@ -84,7 +86,7 @@ public class UserListView extends UserListDesign implements View {
 					@Override
 					public void buttonClick(ClickEvent event) {
 						BeanItem<RegisteredUser> selectedBean = (BeanItem<RegisteredUser>) source.getItem(itemId);
-						deleteElement(selectedBean.getBean());
+						askForDeleteElement(selectedBean.getBean());
 					}
 				});
 
@@ -104,7 +106,21 @@ public class UserListView extends UserListDesign implements View {
 		userDataSource.addAll(dao.listAllUsers());
 	}
 
-	private void deleteElement(RegisteredUser user) {
+	private void askForDeleteElement(final RegisteredUser user) {
+		ConfirmDialog.show(getUI(), "Biztos?", "Biztos vagy benne?", "Igen, biztos!", "Nem igazán.",
+				new ConfirmDialog.Listener() {
+					private static final long serialVersionUID = -1318588884359394783L;
+
+					@Override
+					public void onClose(ConfirmDialog dialog) {
+						if (dialog.isConfirmed()) {
+							deleteEelement(user);	
+						}
+					}
+				});
+	}
+
+	private void deleteEelement(RegisteredUser user) {
 		if (user.getId() != Login.getLoggedInUserId()) {
 			dao.deleteEntity(user);
 			Notification.show("Sikeresen törölte a felhasználót!", Notification.Type.HUMANIZED_MESSAGE);

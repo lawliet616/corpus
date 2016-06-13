@@ -1,5 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.admin.courselist;
 
+import org.vaadin.dialogs.ConfirmDialog;
+
 import com.vaadin.data.Validator;
 import com.vaadin.data.fieldgroup.BeanFieldGroup;
 import com.vaadin.data.fieldgroup.FieldGroup.CommitException;
@@ -49,6 +51,8 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 	private TextField sizeField;
 	private TextArea descriptionArea;
 	private ComboBox teacherField;
+	private Button btnSave;
+	private Button btnDelete;
 
 	public AdminCourseListView() {
 		dao = DaoImpl.getInstance();
@@ -133,10 +137,10 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 		HorizontalLayout buttonLayout = new HorizontalLayout();
 		verticalLayout.addComponent(buttonLayout);
 		verticalLayout.setComponentAlignment(buttonLayout, Alignment.MIDDLE_CENTER);
-		Button btnSave = new Button("Mentés");
-		Button btnDelete = new Button("Törlés");
+		btnSave = new Button("Mentés");
+		btnDelete = new Button("Törlés");
 
-		addListenerToButtons(btnSave, btnDelete);
+		addListenerToButtons();
 
 		buttonLayout.addComponent(btnSave);
 		buttonLayout.addComponent(btnDelete);
@@ -146,29 +150,50 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 		return verticalLayout;
 	}
 
-	private void addListenerToButtons(Button btnSave, Button btnDelete) {
+	private void addListenerToButtons() {
 		Course bean = courseBinder.getItemDataSource().getBean();
 		btnSave.addClickListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				saveCourse();
+				showConfirmWindow(event.getButton());
 			}
 		});
 		btnDelete.addClickListener(new ClickListener() {
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				deleteEntity();
+				showConfirmWindow(event.getButton());
 			}
 		});
 	}
 
-	protected void deleteEntity() {
+	protected void showConfirmWindow(final Button button) {
+		ConfirmDialog.show(getUI(), "Biztos?", "Biztos vagy benne?", "Igen, biztos!", "Nem igazán.",
+				new ConfirmDialog.Listener() {
+					private static final long serialVersionUID = -1318588884359394783L;
+
+					@Override
+					public void onClose(ConfirmDialog dialog) {
+						if (dialog.isConfirmed()) {
+							if(button.equals(btnDelete)){
+								deleteCourse();
+							}else if(button.equals(btnSave)){
+								saveCourse();
+							}		
+						}
+					}
+				});
+	}
+
+	protected void deleteCourse() {
 		Course course = courseBinder.getItemDataSource().getBean();
 		dao.deleteEntity(course);
 		editCourseWindow.close();
 		Notification.show("Sikeresen törölte a kurzust.", Notification.Type.HUMANIZED_MESSAGE);
+		courseDataSource.removeAllItems();
+		courseDataSource.addAll(dao.listAllCourses());
+		editCourseWindow.close();
 	}
 
 	protected void saveCourse() {

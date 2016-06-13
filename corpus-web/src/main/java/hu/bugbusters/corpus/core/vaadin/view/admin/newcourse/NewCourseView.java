@@ -3,7 +3,6 @@ package hu.bugbusters.corpus.core.vaadin.view.admin.newcourse;
 import java.util.List;
 
 import org.vaadin.dialogs.ConfirmDialog;
-
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
@@ -27,6 +26,7 @@ public class NewCourseView extends NewCourseDesign implements View {
 	public NewCourseView() {
 		dao = DaoImpl.getInstance();
 		fillCombobox();
+		cmbTeachers.setNullSelectionAllowed(false);
 		btnSave.addClickListener(new ClickListener() {
 			private static final long serialVersionUID = -1904494345888185504L;
 
@@ -66,7 +66,8 @@ public class NewCourseView extends NewCourseDesign implements View {
 		if (checkValues() && isCoursenameUnique()) {
 			try {
 				Course course = CourseFactory.createAndSaveCourse(txtName.getValue(), txtRoom.getValue(),
-						Integer.parseInt(txtCredit.getValue()), cmbTeachers.getValue().toString(), 0, "átmeneti infó");
+						Integer.parseInt(txtCredit.getValue()), cmbTeachers.getValue().toString(),
+						Integer.parseInt(txtMaxUser.getValue()), txtDescription.getValue());
 
 				RegisteredUser teacher = dao.getUserByFullName(cmbTeachers.getValue().toString());
 				CourseFactory.registerForCourse(teacher, course);
@@ -74,6 +75,8 @@ public class NewCourseView extends NewCourseDesign implements View {
 				txtCredit.clear();
 				txtName.clear();
 				txtRoom.clear();
+				txtMaxUser.clear();
+				txtDescription.clear();
 			} catch (UserNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -92,15 +95,19 @@ public class NewCourseView extends NewCourseDesign implements View {
 
 	private boolean checkValues() {
 		try {
-			Integer.parseInt(txtCredit.getValue());
+			if (Integer.parseInt(txtCredit.getValue()) < 0 || Integer.parseInt(txtMaxUser.getValue()) < 0) {
+				Notification.show("A kredit és a maximum létszám csak pozitív lehet.",
+						Notification.Type.WARNING_MESSAGE);
+				return false;
+			}
 			if (txtName.getValue() != "" && txtRoom.getValue() != "" && cmbTeachers.getValue() != null) {
 				return true;
 			}
 			Notification.show("Nem adott meg minden szükséges információt.", Notification.Type.WARNING_MESSAGE);
 			return false;
 		} catch (NumberFormatException e) {
-			Notification.show("Kreditnek csak egész számot lehet megadni!", Notification.Type.WARNING_MESSAGE);
-			txtCredit.clear();
+			Notification.show("A kreditnek és a maximum létszámnak csak egész számot lehet megadni!",
+					Notification.Type.WARNING_MESSAGE);
 			return false;
 		}
 

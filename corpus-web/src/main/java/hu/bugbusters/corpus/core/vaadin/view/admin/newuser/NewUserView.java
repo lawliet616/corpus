@@ -1,5 +1,7 @@
 package hu.bugbusters.corpus.core.vaadin.view.admin.newuser;
 
+import org.vaadin.dialogs.ConfirmDialog;
+
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button.ClickEvent;
@@ -40,30 +42,44 @@ public class NewUserView extends NewUserDesign implements View {
 
 	protected void createNewUser() {
 		if (isValidValues()) {
-			String name = txtName.getValue();
-			String email = txtEmail.getValue();
-			Role role = (Role) cmbRoles.getValue();
+			final String name = txtName.getValue();
+			final String email = txtEmail.getValue();
+			final Role role = (Role) cmbRoles.getValue();
 			if (isNameReal(name)) {
-				UserFactory factory = UserFactory.getUserFactory();
-				try {
-					factory.createAndSaveRegisteredUser(name, email, role);
-					Notification.show("Sikeres mentés.", Notification.Type.HUMANIZED_MESSAGE);
-					txtName.clear();
-					txtEmail.clear();
-					txtName.focus();
-				} catch (CannotPerformOperationException | InvalidHashException e) {
-					Notification.show("Hiba a felhasználó létrehozása közben!", Notification.Type.WARNING_MESSAGE);
-					e.printStackTrace();
-				} catch (EmailAlreadyExistException e) {
-					Notification.show("Ez az e-mail cím már használatban van.", Notification.Type.WARNING_MESSAGE);
-					e.printStackTrace();
-				}
+				ConfirmDialog.show(getUI(), "Biztos?", "Biztos vagy benne?", "Igen, biztos!", "Nem igazán.",
+						new ConfirmDialog.Listener() {
+							private static final long serialVersionUID = -1318588884359394783L;
+
+							@Override
+							public void onClose(ConfirmDialog dialog) {
+								if (dialog.isConfirmed()) {
+									saveUser(name, email, role);	
+								}
+							}
+						});
 			} else {
 				Notification.show("Ez nem valódi név.", Notification.Type.WARNING_MESSAGE);
 			}
 		} else {
 			Notification.show("Nem töltött ki minden adatot, vagy nem választott jogosultságot!",
 					Notification.Type.WARNING_MESSAGE);
+		}
+	}
+
+	private void saveUser(String name, String email, Role role) {
+		try {
+			UserFactory factory = UserFactory.getUserFactory();
+			factory.createAndSaveRegisteredUser(name, email, role);
+			Notification.show("Sikeres mentés.", Notification.Type.HUMANIZED_MESSAGE);
+			txtName.clear();
+			txtEmail.clear();
+			txtName.focus();
+		} catch (CannotPerformOperationException | InvalidHashException e) {
+			Notification.show("Hiba a felhasználó létrehozása közben!", Notification.Type.WARNING_MESSAGE);
+			e.printStackTrace();
+		} catch (EmailAlreadyExistException e) {
+			Notification.show("Ez az e-mail cím már használatban van.", Notification.Type.WARNING_MESSAGE);
+			e.printStackTrace();
 		}
 	}
 

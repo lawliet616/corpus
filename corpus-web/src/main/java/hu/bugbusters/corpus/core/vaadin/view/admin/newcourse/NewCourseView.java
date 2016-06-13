@@ -12,6 +12,7 @@ import hu.bugbusters.corpus.core.bean.Course;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.exceptions.CourseNotFoundException;
 import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.factories.CourseFactory;
 import hu.bugbusters.corpus.core.login.Role;
@@ -46,7 +47,7 @@ public class NewCourseView extends NewCourseDesign implements View {
 	}
 
 	protected void saveCourse() {
-		if (checkValues()) {
+		if (checkValues() && isCoursenameUnique()) {
 			try {
 				Course course = CourseFactory.createAndSaveCourse(txtName.getValue(), txtRoom.getValue(),
 						Integer.parseInt(txtCredit.getValue()), cmbTeachers.getValue().toString(), 0, "átmeneti infó");
@@ -60,6 +61,16 @@ public class NewCourseView extends NewCourseDesign implements View {
 			} catch (UserNotFoundException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	private boolean isCoursenameUnique() {
+		try {
+			dao.getCourseByName(txtName.getValue());
+			Notification.show("Ezen a néven már szerepel előadás.", Notification.Type.WARNING_MESSAGE);
+			return false;
+		} catch (CourseNotFoundException e) {
+			return true;
 		}
 	}
 

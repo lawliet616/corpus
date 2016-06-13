@@ -33,6 +33,7 @@ import hu.bugbusters.corpus.core.exceptions.UserNotFoundException;
 import hu.bugbusters.corpus.core.factories.CourseFactory;
 import hu.bugbusters.corpus.core.global.Global;
 import hu.bugbusters.corpus.core.login.Role;
+import hu.bugbusters.corpus.core.vaadin.view.common.subview.coursedetails.CourseDetailsView;
 
 public class AdminCourseListView extends AdminCourseListDesign implements View {
 	private static final long serialVersionUID = -2216242736099627777L;
@@ -64,8 +65,15 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 
 			@Override
 			public Object generateCell(final Table source, final Object itemId, Object columnId) {
+				HorizontalLayout buttonLayout = new HorizontalLayout();
 				Button btnEdit = new Button("Szerkesztés");
+				Button btnDetails = new Button("Részletek");
+				buttonLayout.addComponent(btnEdit);
+				buttonLayout.addComponent(btnDetails);
+				buttonLayout.setSpacing(true);
+				
 				btnEdit.addClickListener(new ClickListener() {
+					private static final long serialVersionUID = 3795164119475852944L;
 
 					@Override
 					public void buttonClick(ClickEvent event) {
@@ -74,7 +82,17 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 					}
 				});
 
-				return btnEdit;
+				btnDetails.addClickListener(new ClickListener() {
+					private static final long serialVersionUID = 1672070317615358296L;
+
+					@Override
+					public void buttonClick(ClickEvent event) {
+						BeanItem<Course> selectedBean = (BeanItem<Course>) source.getItem(itemId);
+						showDetails(selectedBean.getBean());
+					}
+				});
+
+				return buttonLayout;
 			}
 		});
 
@@ -85,6 +103,15 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 		courseTable.setColumnHeader("maxSize", "Férőhelyek");
 		courseTable.setColumnHeader("teacher", "Előadó");
 		courseTable.setColumnHeader("edit", "szerkesztés");
+	}
+
+	protected void showDetails(Course course) {
+		Window detailsWindow = new Window("Részletek");
+		detailsWindow.setHeight("80%");
+		detailsWindow.setWidth("80%");
+		detailsWindow.center();
+		detailsWindow.setContent(new CourseDetailsView(course, detailsWindow));
+		this.getUI().addWindow(detailsWindow);
 	}
 
 	protected void openEditWindow(Course course) {
@@ -133,12 +160,12 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 	protected void saveCourse() {
 		try {
 			Course course = courseBinder.getItemDataSource().getBean();
-			RegisteredUser oldTeacher = dao.getUserByFullName(course.getTeacher());	
+			RegisteredUser oldTeacher = dao.getUserByFullName(course.getTeacher());
 			CourseFactory.quitCourse(oldTeacher, course);
-			String newTeacherName =teacherField.getValue().toString();
+			String newTeacherName = teacherField.getValue().toString();
 			course.setTeacher(newTeacherName);
 			courseBinder.commit();
-			
+
 			dao.updateEntity(course);
 			RegisteredUser newTeacher = dao.getUserByFullName(newTeacherName);
 			CourseFactory.registerForCourse(newTeacher, course);

@@ -26,6 +26,8 @@ public class CourseDetailsView extends CourseDetailsDesign implements View{
 		labelRoom.setReadOnly(true);
 		textAreaDesc.setReadOnly(true);
 		
+		courseDetailWindow.setModal(true);
+		
 		cancelButton.addClickListener(new ClickListener() {
 			
 			@Override
@@ -37,7 +39,6 @@ public class CourseDetailsView extends CourseDetailsDesign implements View{
 
 	@Override
 	public void enter(ViewChangeEvent event) {
-		// TODO Auto-generated method stub
 		
 	}
 

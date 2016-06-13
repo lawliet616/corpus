@@ -124,6 +124,7 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 		editCourseWindow.setWidth("700px");
 		editCourseWindow.center();
 		editCourseWindow.setContent(createCourseEditLayout(course));
+		editCourseWindow.setModal(true);
 		this.getUI().addWindow(editCourseWindow);
 	}
 

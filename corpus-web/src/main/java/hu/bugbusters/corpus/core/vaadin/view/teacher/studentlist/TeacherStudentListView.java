@@ -145,7 +145,7 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 				
 				markWindow.setResizable(false);
 				markWindow.setWidth("50%");
-				markWindow.setHeight("20%");
+				markWindow.setHeight("25%");
 				markWindow.center();
 				markWindow.setDraggable(false);
 				markWindow.setModal(true);

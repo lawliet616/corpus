@@ -64,7 +64,7 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 		courseDataSource.setBeanIdProperty("id");
 		courseDataSource.addAll(dao.listAllCourses());
 		courseTable.setContainerDataSource(courseDataSource);
-
+		courseTable.addStyleName("v-scrollable");
 		courseTable.addGeneratedColumn("edit", new ColumnGenerator() {
 
 			@Override
@@ -177,11 +177,11 @@ public class AdminCourseListView extends AdminCourseListDesign implements View {
 					@Override
 					public void onClose(ConfirmDialog dialog) {
 						if (dialog.isConfirmed()) {
-							if(button.equals(btnDelete)){
+							if (button.equals(btnDelete)) {
 								deleteCourse();
-							}else if(button.equals(btnSave)){
+							} else if (button.equals(btnSave)) {
 								saveCourse();
-							}		
+							}
 						}
 					}
 				});

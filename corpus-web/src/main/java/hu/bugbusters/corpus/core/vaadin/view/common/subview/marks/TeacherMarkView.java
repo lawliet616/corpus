@@ -17,12 +17,14 @@ import hu.bugbusters.corpus.core.bean.RegisteredUser;
 import hu.bugbusters.corpus.core.bean.TakenCourse;
 import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
+import hu.bugbusters.corpus.core.login.Login;
 
 @SuppressWarnings("serial")
 public class TeacherMarkView extends TeacherMarkDesign implements View {
 	
 	private BeanContainer<Long, Course> userDataSource = new BeanContainer<Long, Course>(Course.class);
 	private Set<TakenCourse> courseList;
+	private Set<TakenCourse> courseListTeacher;
 	private ArrayList<Course> courses  = new ArrayList<>();
 	private Dao dao = DaoImpl.getInstance();
 
@@ -32,9 +34,16 @@ public class TeacherMarkView extends TeacherMarkDesign implements View {
 		cmbxMark.setNullSelectionAllowed(false);
 		
 		courseList = user.getCourses();
+		courseListTeacher = Login.getLoggedInUser().getCourses();
 		
 		for (TakenCourse course : courseList) {
-			courses.add(course.getCourse());
+			for (TakenCourse teacherCourse : courseListTeacher) {
+				if(course.getCourse().getId() == teacherCourse.getCourse().getId()){
+					courses.add(course.getCourse());
+					break;
+				}
+			}
+			
 		}
 		
 		userDataSource.setBeanIdProperty("id");
@@ -65,6 +74,8 @@ public class TeacherMarkView extends TeacherMarkDesign implements View {
 					choosenTakenCourse.setMark(mark);
 					
 					dao.updateEntity(choosenTakenCourse);
+					
+					Notification.show("Jegybeírás megtörtént!");
 				}else{
 					Notification.show("Nincs megadva kurzus vagy hallgató!");
 				}

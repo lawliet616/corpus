@@ -3,10 +3,13 @@ package hu.bugbusters.corpus.core.mail;
 import java.util.List;
 import java.util.Properties;
 
+import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import hu.bugbusters.corpus.core.bean.Inbox;
 import hu.bugbusters.corpus.core.bean.RegisteredUser;
@@ -42,15 +45,13 @@ public class Mail {
 
 		RegisteredUser sender = dao.getUserById(senderId);
 
-		/*
-		 * MimeMessage msg = new MimeMessage(getSession()); msg.setFrom(new
-		 * InternetAddress(from)); msg.setSubject(subject);
-		 * msg.addRecipients(Message.RecipientType.TO, addresses);
-		 * if(containsHtml){ msg.setText(message); } else {
-		 * msg.setContent(message,"text/html"); }
-		 * 
-		 * Transport.send(msg);
-		 */
+		MimeMessage msg = new MimeMessage(getSession()); msg.setFrom(new
+		InternetAddress(from)); msg.setSubject(subject);
+		msg.addRecipients(Message.RecipientType.TO, addresses);
+		if(containsHtml){ msg.setText(message); } else {
+		msg.setContent(message,"text/html"); }
+		
+		Transport.send(msg);
 
 		store(sender, addresses, subject, message);
 	}

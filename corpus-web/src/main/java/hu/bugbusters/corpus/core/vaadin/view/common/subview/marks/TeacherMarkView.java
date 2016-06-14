@@ -9,6 +9,7 @@ import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.AbstractSelect.ItemCaptionMode;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.Window;
 
 import hu.bugbusters.corpus.core.bean.Course;
@@ -48,20 +49,25 @@ public class TeacherMarkView extends TeacherMarkDesign implements View {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				
-				TakenCourse choosenTakenCourse = null;
-				
-				for (TakenCourse takenCourse : courseList) {
-					if(takenCourse.getCourse().getId() == cmbxCourse.getValue()){
-						choosenTakenCourse = takenCourse;
+				if(cmbxCourse.getValue() != null && cmbxMark.getValue() != null){
+					System.out.println(cmbxCourse.getValue());
+					TakenCourse choosenTakenCourse = null;
+					
+					for (TakenCourse takenCourse : courseList) {
+						if(takenCourse.getCourse().getId() == cmbxCourse.getValue()){
+							choosenTakenCourse = takenCourse;
+						}
 					}
+					
+					int mark = Integer.parseInt((String) cmbxMark.getValue());
+					
+					
+					choosenTakenCourse.setMark(mark);
+					
+					dao.updateEntity(choosenTakenCourse);
+				}else{
+					Notification.show("Nincs megadva kurzus vagy hallgató!");
 				}
-				
-				int mark = Integer.parseInt((String) cmbxMark.getValue());
-				
-				
-				choosenTakenCourse.setMark(mark);
-				
-				dao.updateEntity(choosenTakenCourse);
 				
 			}
 		});

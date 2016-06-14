@@ -8,9 +8,13 @@ import java.util.Set;
 import com.vaadin.data.Property.ValueChangeEvent;
 import com.vaadin.data.Property.ValueChangeListener;
 import com.vaadin.data.util.BeanContainer;
+import com.vaadin.event.SelectionEvent;
+import com.vaadin.event.SelectionEvent.SelectionListener;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.shared.data.sort.SortDirection;
+import com.vaadin.ui.Notification;
+import com.vaadin.ui.Window;
 import com.vaadin.ui.Grid.SelectionMode;
 
 import hu.bugbusters.corpus.core.bean.Course;
@@ -20,6 +24,9 @@ import hu.bugbusters.corpus.core.dao.Dao;
 import hu.bugbusters.corpus.core.dao.impl.DaoImpl;
 import hu.bugbusters.corpus.core.login.Login;
 import hu.bugbusters.corpus.core.login.Role;
+import hu.bugbusters.corpus.core.vaadin.CorpusUI;
+import hu.bugbusters.corpus.core.vaadin.view.common.subview.coursedetails.CourseDetailsView;
+import hu.bugbusters.corpus.core.vaadin.view.common.subview.marks.TeacherMarkView;
 
 @SuppressWarnings("serial")
 public class TeacherStudentListView extends TeacherStudentListDesign implements View {
@@ -113,11 +120,40 @@ public class TeacherStudentListView extends TeacherStudentListDesign implements 
 		userDataSource.addAll(ownStudentList);
 
 		grid.setContainerDataSource(userDataSource);
-		grid.setSelectionMode(SelectionMode.MULTI);
+		grid.setSelectionMode(SelectionMode.SINGLE);
 		grid.setColumns("username", "role", "fullName", "email");
 		grid.sort("username", SortDirection.ASCENDING);
 
 		headerNameSetting();
+		
+		grid.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void select(SelectionEvent event) {
+				
+				RegisteredUser user = null;
+				
+				for (RegisteredUser regUser : dao.listAllUsers()) {
+					if(regUser.getId() == grid.getSelectedRow()){
+						user = regUser;
+						break;
+					}
+				}
+				
+				Window markWindow = new Window("Jegybeírás");
+				markWindow.setContent(new TeacherMarkView(markWindow, user));
+				
+				markWindow.setResizable(false);
+				markWindow.setWidth("50%");
+				markWindow.setHeight("20%");
+				markWindow.center();
+				markWindow.setDraggable(false);
+				markWindow.setModal(true);
+				
+				((CorpusUI) getUI()).addWindow(markWindow);
+
+			}
+		});
 
 	}
 

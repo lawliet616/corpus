@@ -144,10 +144,10 @@ public class DbTest {
                     "Esteems it ye sending reached as. " +
                     "Longer lively her design settle tastes advice mrs off who. ", false);
 
-            Mail.sendMail(teacher2Id, studentGroup2, "Mail to my students", "<p>Whether article spirits new her covered hastily sitting her. " +
+            Mail.sendMail(teacher2Id, studentGroup2, "Mail to my students", "Whether article spirits new her covered hastily sitting her. " +
                     "Money witty books nor son add. Chicken age had evening believe but proceed pretend mrs. " +
                     "At missed advice my it no sister. Miss told ham dull knew see she spot near can. " +
-                    "Spirit her entire her called.</p>", true);
+                    "Spirit her entire her called.", false);
 
             Mail.sendMail(user1Id, teachers, "Mail to my teachers", "Offered say visited elderly and. " +
                     "Waited period are played family man formed. " +

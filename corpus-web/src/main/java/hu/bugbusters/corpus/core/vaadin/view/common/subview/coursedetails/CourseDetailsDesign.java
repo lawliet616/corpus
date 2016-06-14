@@ -25,6 +25,7 @@ public class CourseDetailsDesign extends VerticalLayout {
 	protected Label labelCredit;
 	protected Label labelTeacher;
 	protected Label labelRoom;
+	protected Label labelMark;
 	protected TextArea textAreaDesc;
 	protected Button cancelButton;
 
